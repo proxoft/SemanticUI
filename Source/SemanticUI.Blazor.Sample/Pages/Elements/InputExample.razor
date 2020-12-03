@@ -1,0 +1,67 @@
+﻿@page "/Elements/Input"
+
+<h3>Input</h3>
+
+<Example Header="Input"
+         Text="A standard input">
+
+    <SeInput Placeholder="Search..." />
+
+</Example>
+
+
+<h3>States</h3>
+
+<Example Header="Focus"
+         Text="An input field can show a user is currently interacting with it">
+
+    <SeInput Decorations="InputDecorations.Focus"
+             Placeholder="Search..." />
+
+</Example>
+
+<Example Header="Loading"
+         Text="An icon input field can show that it is currently loading data">
+
+    <Message Content="Loading inputs automatically modify the input's icon on loading state to show loading indication" />
+
+    <SeInput Decorations="InputDecorations.Icon | InputDecorations.Loading"
+             Placeholder="Search...">
+        <Left>
+            <Icon Name="search" />
+        </Left>
+    </SeInput>
+
+    <br />
+    <br />
+
+    <SeInput Decorations="InputDecorations.IconRight | InputDecorations.Loading"
+             Placeholder="Search...">
+        <Right>
+            <Icon Name="search" />
+        </Right>
+    </SeInput>
+
+</Example>
+
+<Example Header="Value binding">
+    <SeInput @bind-Value="@_value" />
+    <Message Header="Binded value"
+             Content="@_value" />
+</Example>
+
+<Example Header="OnKeyUp">
+    <SeInput OnKeyUp="this.OnKeyUp" />
+    <Message Header="Keys:"
+             Content="@keys" />
+</Example>
+
+@code {
+    private string _value;
+    private string keys = string.Empty;
+
+    private void OnKeyUp(KeyboardEventArgs args)
+    {
+        this.keys += args.Key + " ";
+    }
+}

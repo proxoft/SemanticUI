@@ -1,0 +1,33 @@
+﻿@page "/Collections/Message"
+
+<h1>Message</h1>
+
+<Example Header="Mesage"
+         Text="A basic message">
+
+    <Message Header="Changed in Service"
+             Content="We just updated our privacy policy here to better service our customers. We recommend reviewing the changes." />
+
+</Example>
+
+<Example Header="Dismissable Block"
+         Text="A message that the user can choose to hide">
+    @if (_isVisisble1)
+    {
+    <Message Header="Welcome back!"
+             Content="This is a special notification which you can dismiss if you're bored with it."
+             CanClose="true"
+             OnCloseIconClick="() => _isVisisble1 = false" />
+    }
+    else
+    {
+        <Button OnClick="() => _isVisisble1 = true">
+            Show message
+        </Button>
+    }
+</Example>
+
+
+@code {
+    private bool _isVisisble1 = true;
+}

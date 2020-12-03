@@ -1,0 +1,336 @@
+﻿@page "/Elements/List"
+<h1>List</h1>
+
+<ExampleDescription Header="List"
+                    Text="A list groups related content" />
+
+<List>
+    <Item>
+        Apples
+    </Item>
+    <Item>
+        Pears
+    </Item>
+    <Item>
+        Oranges
+    </Item>
+</List>
+
+<br />
+
+<List>
+    <Item>
+        <Icon Name="users" />
+        <Content>
+            Semantic UI
+        </Content>
+    </Item>
+
+    <Item>
+        <Icon Name="marker" />
+        <Content>
+            New York, NY
+        </Content>
+    </Item>
+
+    <Item>
+        <Icon Name="mail" />
+        <Content>
+            <a href="mailto:jack@semantic-ui.com">jack@semantic-ui.com</a>
+        </Content>
+    </Item>
+
+    <Item>
+        <Icon Name="linkify" />
+        <Content>
+            <a href="http://www.semantic-ui.com">semantic-ui.com</a>
+        </Content>
+    </Item>
+</List>
+
+<Example Header="Bulleted"
+         Text="A list can mark items with a bullet">
+    <List Decorations="ListDecorations.Bulleted">
+        <Item>
+            Gaining Access
+        </Item>
+        <Item>
+            Inviting Friends
+        </Item>
+        <Item>
+            <div>Benefits</div>
+            <List>
+                <LinkItem>Link to somewhere</LinkItem>
+                <Item>Rebates</Item>
+                <Item>Discounts</Item>
+            </List>
+        </Item>
+        <Item>Warranty</Item>
+    </List>
+</Example>
+
+<Example Header="Ordered"
+         Text="A list can be ordered numerically">
+    <List Decorations="ListDecorations.Ordered">
+        <LinkItem>Getting started</LinkItem>
+        <LinkItem>Introduction</LinkItem>
+        <LinkItem>
+            <a>Languages</a>
+            <List>
+                <LinkItem>HTML</LinkItem>
+                <LinkItem>Javascript</LinkItem>
+                <LinkItem>CSS</LinkItem>
+            </List>
+        </LinkItem>
+        <LinkItem>Review</LinkItem>
+    </List>
+
+</Example>
+
+<Example Header="Link"
+         Text="A list can be specially formatted for navigation links">
+    <List Decorations="ListDecorations.Link">
+        <LinkItem IsActive="true">
+            Home
+        </LinkItem>
+        <LinkItem>
+            About
+        </LinkItem>
+        <LinkItem>
+            Jobs
+        </LinkItem>
+        <LinkItem>
+            Team
+        </LinkItem>
+    </List>
+</Example>
+
+<h1>Content</h1>
+
+<Example Header="Icon"
+         Text="A list item can contain an icon">
+    <List>
+        <LinkItem>
+            <Icon Name="help" />
+            <Content>
+                <Header>Floated icon</Header>
+                <Description>
+                    This text will always have a left margin to make sure it sits alongside your icon.
+                </Description>
+            </Content>
+        </LinkItem>
+        <LinkItem>
+            <Icon Name="right triangle" />
+            <Content>
+                <Header>Icon alignment</Header>
+                <Description>
+                    Floated icons are by default top aligned. To have an icon top aligned try this example.
+                </Description>
+            </Content>
+        </LinkItem>
+        <Item>
+            <Icon Name="help" />
+            Inline text
+        </Item>
+    </List>
+</Example>
+
+<Example Header="Header"
+         Text="A list item can contain a header">
+    <List>
+        <Item>
+            <Header>
+                <Icon Name="help" />
+
+                <Content>
+                    New York city
+                </Content>
+            </Header>
+            A lovely city
+        </Item>
+        <Item>
+            <Header>Chicago</Header>
+            Also quite a lovely city
+        </Item>
+        <Item>
+            <Header>Los Angeles</Header>
+            Sometimes can be a lovely city
+        </Item>
+        <Item>
+            <Header>San Francisco</Header>
+            What a lovely city
+        </Item>
+    </List>
+</Example>
+
+<h1>Variations</h1>
+
+<Example Header="Horizontal"
+         Text="A list can be formatted to have items appear horizontally">
+    <List Orientation="Horizontal">
+        <Item>
+            <img class="ui avatar image" src="/images/avatar/small/tom.jpg">
+            <Content>
+                <Header>Tom</Header>
+                Tom Contributor
+            </Content>
+        </Item>
+        <Item>
+            <img class="ui avatar image" src="/images/avatar/small/christian.jpg">
+            <Content>
+                <Header>Christian Rocha</Header>
+                Admin
+            </Content>
+        </Item>
+        <Item>
+            <img class="ui avatar image" src="/images/avatar/small/matt.jpg">
+            <Content>
+                <Header>Matt</Header>
+                Top Rated User
+            </Content>
+        </Item>
+    </List>
+</Example>
+
+<Example Header="Selection"
+         Text="A selection list formats list items as possible choices">
+    <List Decorations="ListDecorations.Selection"
+          VerticallyAligned="Middle">
+        <Item>
+            <img class="ui avatar image" src="/images/avatar/small/helen.jpg">
+            <Content>
+                <Header>Helen</Header>
+            </Content>
+        </Item>
+        <Item>
+            <img class="ui avatar image" src="/images/avatar/small/christian.jpg">
+            <Content>
+                <Header>Christian</Header>
+            </Content>
+        </Item>
+        <Item>
+            <img class="ui avatar image" src="/images/avatar/small/daniel.jpg">
+            <Content>
+                <Header>Daniel</Header>
+            </Content>
+        </Item>
+    </List>
+</Example>
+
+
+<Example Header="Animated"
+         Text="A list can animate to set the current item apart from the list">
+    <List Decorations="ListDecorations.Animated"
+          VerticallyAligned="Middle">
+        <Item>
+            <img class="ui avatar image" src="/images/avatar/small/helen.jpg">
+            <Content>
+                <Header>Helen</Header>
+            </Content>
+        </Item>
+        <Item>
+            <img class="ui avatar image" src="/images/avatar/small/christian.jpg">
+            <Content>
+                <Header>Christian</Header>
+            </Content>
+        </Item>
+        <Item>
+            <img class="ui avatar image" src="/images/avatar/small/daniel.jpg">
+            <Content>
+                <Header>Daniel</Header>
+            </Content>
+        </Item>
+    </List>
+</Example>
+
+<Example Header="Divided"
+         Text="A list can show divisions between content">
+    <List Decorations="ListDecorations.Divided">
+        <Item>
+            <img class="ui avatar image" src="/images/avatar/small/daniel.jpg">
+            <Content>
+                <a class="header">Daniel Louise</a>
+            </Content>
+        </Item>
+        <Item>
+            <img class="ui avatar image" src="/images/avatar/small/stevie.jpg">
+            <Content>
+                <a class="header">Stevie Feliciano</a>
+            </Content>
+        </Item>
+        <Item>
+            <img class="ui avatar image" src="/images/avatar/small/elliot.jpg">
+            <Content>
+                <a class="header">Eliot Fu</a>
+            </Content>
+        </Item>
+    </List>
+</Example>
+
+<h1>Content variations</h1>
+
+<Example Header="VerticallyAligned"
+         Text="An element inside a list can be vertically aligned">
+    <Item>
+        <img class="ui avatar image" src="/images/wireframe/square-image.png">
+        <Content VerticallyAligned="Top">
+            Top Aligned
+        </Content>
+    </Item>
+    <Item>
+        <img class="ui avatar image" src="/images/wireframe/square-image.png">
+        <Content VerticallyAligned="Middle">
+            Top Aligned
+        </Content>
+    </Item>
+    <Item>
+        <img class="ui avatar image" src="/images/wireframe/square-image.png">
+        <Content VerticallyAligned="Bottom">
+            Top Aligned
+        </Content>
+    </Item>
+</Example>
+
+<Example Header="Floated"
+         Text="An list, or an element inside a list can be floated left or right">
+    <List Decorations="ListDecorations.Divided"
+          VerticallyAligned="Middle">
+        <Item>
+            <Content Floated="Right">
+                <Button>Add</Button>
+            </Content>
+            <img class="ui avatar image" src="/images/avatar/small/lena.png">
+            <Content>
+                Lena
+            </Content>
+        </Item>
+        <Item>
+            <Content Floated="Right">
+                <Button>Add</Button>
+            </Content>
+            <img class="ui avatar image" src="/images/avatar/small/lindsay.png">
+            <Content>
+                Lindsay
+            </Content>
+        </Item>
+        <Item>
+            <Content Floated="Right">
+                <Button>Add</Button>
+            </Content>
+            <img class="ui avatar image" src="/images/avatar/small/mark.png">
+            <Content>
+                Mark
+            </Content>
+        </Item>
+        <Item>
+            <Content Floated="Right">
+                <Button>Add</Button>
+            </Content>
+            <img class="ui avatar image" src="/images/avatar/small/molly.png">
+            <Content>
+                Molly
+            </Content>
+        </Item>
+    </List>
+</Example>
+

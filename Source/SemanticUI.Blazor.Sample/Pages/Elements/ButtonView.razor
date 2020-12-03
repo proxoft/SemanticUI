@@ -1,0 +1,65 @@
+﻿@page "/Elements/Button"
+<h1> Button </h1>
+
+<Segment>
+    <ExampleDescription Header="Button"
+                        Text="A standard button"/>
+
+    <Button>
+        Follow
+    </Button>
+</Segment>
+
+<Segment>
+    <ExampleDescription Header="Buttons"
+                 Text="Buttons can exist together as a group" />
+
+    <ButtonsGroup>
+        <Button>One</Button>
+        <Button>Two</Button>
+        <Button>Three</Button>
+    </ButtonsGroup>
+</Segment>
+
+<Segment>
+    <ExampleDescription Header="Vertical Buttons"
+                 Text="Groups can be formatted to appear vertically" />
+
+    <ButtonsGroup Orientation="Vertical">
+        <Button>One</Button>
+        <Button>Two</Button>
+        <Button>Three</Button>
+    </ButtonsGroup>
+</Segment>
+
+<Segment>
+    <ExampleDescription Header="Vertical Buttons"
+                 Text="A button group can be less pronounced" />
+
+    <ButtonsGroup Decoration="ButtonDecoration.Basic">
+        <Button>One</Button>
+        <Button>Two</Button>
+        <Button>Three</Button>
+    </ButtonsGroup>
+</Segment>
+
+<Segment>
+    <ExampleDescription Header="Equal Width"
+                 Text="Groups can have their widths divided evenly" />
+
+    <ButtonsGroup Decoration="ButtonDecoration.Basic"
+                  Amount="Five">
+        <Button>One</Button>
+        <Button>Two</Button>
+        <Button>Three</Button>
+    </ButtonsGroup>
+
+    <ButtonsGroup Decoration="ButtonDecoration.Basic"
+                  Amount="Five">
+        <Button>One</Button>
+        <Button>Two</Button>
+        <Button>Three</Button>
+        <Button>Four</Button>
+        <Button>Five</Button>
+    </ButtonsGroup>
+</Segment>

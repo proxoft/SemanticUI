@@ -1,0 +1,126 @@
+﻿@page "/Modules/Modal"
+
+<Example Header="Modal">
+    @code {
+        bool example1 = false;
+    }
+
+    <Modal IsActive="@example1">
+        <Header>Select o photo</Header>
+        <Content>
+            Some content
+        </Content>
+        <Actions>
+            <Button Emphasizes="Emphasizes.Ok"
+                    OnClick="() => example1 = false">
+                Yes
+            </Button>
+        </Actions>
+    </Modal>
+
+    <Button OnClick="() => example1 = true">
+        Show
+    </Button>
+
+</Example>
+
+<Example Header="Actions">
+    @code {
+        bool example2 = false;
+    }
+
+    <Modal IsActive="@example2">
+        <Header>Select o photo</Header>
+        <Content>
+            Some content
+        </Content>
+        <Actions>
+            <Button Emphasizes="Emphasizes.Approve"
+                    OnClick="() => example2 = false">
+                Approve
+            </Button>
+            <Button OnClick="() => example2 = false">
+                Neutral
+            </Button>
+            <Button Emphasizes="Emphasizes.Cancel"
+                    OnClick="() => example2 = false">
+                Cancel
+            </Button>
+        </Actions>
+    </Modal>
+
+    <Button OnClick="() => example2 = true">
+        Show
+    </Button>
+
+</Example>
+
+
+<Example Header="Image">
+    @code {
+        bool example3 = false;
+    }
+
+    <Modal IsActive="@example3">
+        <Header>Modal #1 </Header>
+        <Content Decorations="ContentDecorations.Image">
+            <ImageDiv>
+                <Icon Name="right arrow" />
+            </ImageDiv>
+            <Description>
+                We have more to share with you. Follow us along to modal 2
+            </Description>
+        </Content>
+        <Actions>
+            <Button Emphasizes="Emphasizes.Primary"
+                    OnClick="() => example3 = false">
+                Proceed
+            </Button>
+        </Actions>
+    </Modal>
+
+    <Button OnClick="() => example3 = true">
+        Show
+    </Button>
+
+</Example>
+
+<Example Header="Basic">
+    @code {
+        bool example4 = false;
+    }
+
+    <Modal IsActive="@example4"
+           Decorations="ModalDecorations.Basic"
+           Size="Small">
+        <Header Decorations="HeaderDecorations.Icon">
+            <Icon Name="archive" />
+            Archive Old Messages
+        </Header>
+        <Content>
+            <p>Your inbox is getting full, would you like us to enable automatic archiving of old messages?</p>
+        </Content>
+        <Actions>
+            <Button Color="Red"
+                    Emphasizes="Emphasizes.Cancel"
+                    Decoration="ButtonDecoration.Basic | ButtonDecoration.Inverted"
+                    OnClick="() => example4 = false">
+                <Icon Name="remove" />
+                No
+            </Button>
+            <Button Color="Green"
+                    Emphasizes="Emphasizes.Ok"
+                    Decoration="ButtonDecoration.Basic | ButtonDecoration.Inverted"
+                    OnClick="() => example4 = false">
+                <Icon Name="checkmark" />
+                Yes
+            </Button>
+        </Actions>
+    </Modal>
+
+    <Button OnClick="() => example4 = true">
+        Show
+    </Button>
+
+</Example>
+

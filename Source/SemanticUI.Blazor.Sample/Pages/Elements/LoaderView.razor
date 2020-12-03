@@ -1,0 +1,79 @@
+﻿@page "/Elements/Loader"
+
+<h1>Loader</h1>
+
+
+<Example Header="Loader"
+         Text="A loader">
+
+    <Segment>
+        <Image Src="/images/wireframe/short-paragraph.png" />
+
+        <Dimmer Active="true">
+            <Loader />
+        </Dimmer>
+    </Segment>
+
+</Example>
+
+
+
+<Example Header="Text loader"
+         Text="A loader can contain text">
+
+    <Segment>
+        <Image Src="/images/wireframe/short-paragraph.png" />
+
+        <Dimmer Active="true">
+            <Loader Decorations="LoaderDecorations.Text"
+                    Text="Loading" />
+        </Dimmer>
+    </Segment>
+
+    <Segment>
+        <Image Src="/images/wireframe/short-paragraph.png" />
+
+        <Dimmer Active="true"
+                Decorations="DimmerDecorations.Inverted">
+            <Loader Decorations="LoaderDecorations.Text"
+                    Text="Loading" />
+        </Dimmer>
+    </Segment>
+
+</Example>
+
+<Example Header="Inline"
+         Text="Loaders can appear inline with content ">
+
+    <Loader Decorations="LoaderDecorations.Inline" />
+    Some other text
+
+</Example>
+
+<Example Header="Inline Center"
+         Text="Loaders can appear inline centered with content">
+
+    <Loader Decorations="LoaderDecorations.Inline | LoaderDecorations.Centered" />
+</Example>
+
+
+<Example Header="Size"
+         Text="Loaders can have different sizes">
+
+    <Segment>
+        <Image Src="/images/wireframe/short-paragraph.png" />
+
+        <Dimmer Active="true">
+            <Loader Size="Small" />
+        </Dimmer>
+    </Segment>
+
+    <Segment>
+        <Image Src="/images/wireframe/short-paragraph.png" />
+
+        <Dimmer Active="true">
+            <Loader Size="Massive" />
+        </Dimmer>
+    </Segment>
+
+</Example>
