@@ -2,12 +2,10 @@
 @namespace Proxoft.SemanticUI.Blazor
 
 <DivTemplate Component="this">
-    <LeftChildContent>
-        @if (!string.IsNullOrWhiteSpace(this.Text))
-        {
-            @this.Text
-        }
-    </LeftChildContent>
+    @if (!string.IsNullOrWhiteSpace(this.Text))
+    {
+        @this.Text
+    }
 </DivTemplate>
 
 @code {

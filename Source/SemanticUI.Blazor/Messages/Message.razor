@@ -4,42 +4,40 @@
 @using Microsoft.AspNetCore.Components.Web;
 
 <DivTemplate Component="this">
-    <LeftChildContent>
-        @if (HasIcon)
+    @if (HasIcon)
+    {
+        <Icon Name="@Icon" @onclick="OnIconClick" />
+    }
+
+    <Content>
+        @if (HasHeader)
         {
-            <Icon Name="@Icon" @onclick="OnIconClick" />
+            <Header>
+                @Header
+            </Header>
         }
 
-        <Content>
-            @if (HasHeader)
-            {
-                <Header>
-                    @Header
-                </Header>
-            }
-
-            @if (HasContent)
-            {
-                <p>
-                    @Content
-                </p>
-            }
-            @if (this.HasItems)
-            {
-                <ul>
-                    @foreach (var i in Items)
-                    {
-                        <li>@i</li>
-                    }
-                </ul>
-            }
-        </Content>
-
-        @if (this.CanClose)
+        @if (HasContent)
         {
-            <Icon Name="close" @onclick="OnCloseIconClick" />
+            <p>
+                @Content
+            </p>
         }
-    </LeftChildContent>
+        @if (this.HasItems)
+        {
+            <ul>
+                @foreach (var i in Items)
+                {
+                    <li>@i</li>
+                }
+            </ul>
+        }
+    </Content>
+
+    @if (this.CanClose)
+    {
+        <Icon Name="close" @onclick="OnCloseIconClick" />
+    }
 </DivTemplate>
 
 @code {

@@ -2,22 +2,20 @@
 @namespace Proxoft.SemanticUI.Blazor
 
 <DivTemplate Component="this">
-    <LeftChildContent>
-        @Left
+    @Left
 
-        <input value="@Value"
-               type="text"
-               placeholder="@Placeholder"
-               readonly="@IsReadonly"
-               disabled="@IsDisabled"
-               @onchange="this.InputValueChanged"
-               @onkeydown="this.OnKeyDown"
-               @onkeyup="this.OnKeyUp"
-               @onfocus="this.OnFocus"
-               @onblur="this.OnBlur" />
+    <input value="@Value"
+            type="text"
+            placeholder="@Placeholder"
+            readonly="@IsReadonly"
+            disabled="@IsDisabled"
+            @onchange="this.InputValueChanged"
+            @onkeydown="this.OnKeyDown"
+            @onkeyup="this.OnKeyUp"
+            @onfocus="this.OnFocus"
+            @onblur="this.OnBlur" />
 
-        @Right
-    </LeftChildContent>
+    @Right
 </DivTemplate>
 
 @code {
