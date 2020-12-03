@@ -44,6 +44,31 @@
 
 </Example>
 
+<Example Header="Labeled"
+         Text="An input can be formatted with a label">
+
+    <SeInput Decorations="InputDecorations.LabeledRight"
+             Placeholder="Enter weight...">
+        <Right>
+            <Label Decorations="LabelDecorations.Basic">kg</Label>
+        </Right>
+    </SeInput>
+
+    <br />
+    <br />
+
+    <SeInput Decorations="InputDecorations.LabeledRight"
+             Placeholder="Amount">
+        <Left>
+            <Label>$</Label>
+        </Left>
+        <Right>
+            <Label Decorations="LabelDecorations.Basic">.00</Label>
+        </Right>
+    </SeInput>
+
+</Example>
+
 <Example Header="Value binding">
     <SeInput @bind-Value="@_value" />
     <Message Header="Binded value"
