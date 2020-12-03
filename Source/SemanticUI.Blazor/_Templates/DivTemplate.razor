@@ -4,7 +4,7 @@
      @attributes="@Component.Attributes()"
      @onclick="Component.OnClick">
 
-    @LeftChildContent
+    @ChildContent
 
     @if (this.Component is ContainerSemanticComponent c)
     {
@@ -19,7 +19,7 @@
     public SemanticComponent Component { get; set; }
 
     [Parameter]
-    public RenderFragment LeftChildContent { get; set; }
+    public RenderFragment ChildContent { get; set; }
 
     [Parameter]
     public RenderFragment RightChildContent { get; set; }
