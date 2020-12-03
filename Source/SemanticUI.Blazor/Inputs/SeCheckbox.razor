@@ -1,10 +1,12 @@
 ﻿@inherits InputComponent
 @namespace Proxoft.SemanticUI.Blazor
 
-<div class="@Class()">
-    <input type="@HtmlType" checked="@Checked">
-    <label>@Label</label>
-</div>
+<DivTemplate Component="this">
+    <LeftChildContent>
+        <input type="@HtmlType" checked="@Checked">
+        <label>@Label</label>
+    </LeftChildContent>
+</DivTemplate>
 
 @code {
     public SeCheckbox() : base("checkbox")

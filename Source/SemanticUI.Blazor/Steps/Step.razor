@@ -1,16 +1,14 @@
-﻿@inherits SemanticComponent
+﻿@inherits ContainerSemanticComponent
 @namespace Proxoft.SemanticUI.Blazor
 
-<div class="@Class()"
-     @onclick="OnClick">
-
-    @if (!string.IsNullOrWhiteSpace(this.IconName))
-    {
-        <Icon Name="@IconName" />
-    }
-
-    @ChildContent
-</div>
+<DivTemplate Component="this">
+    <LeftChildContent>
+        @if (!string.IsNullOrWhiteSpace(this.IconName))
+        {
+            <Icon Name="@IconName" />
+        }
+    </LeftChildContent>
+</DivTemplate>
 
 @code {
     public Step(): base("step", false)

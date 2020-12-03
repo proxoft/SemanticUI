@@ -20,9 +20,6 @@ namespace Proxoft.SemanticUI.Blazor
         public Dictionary<string, object> UnmatchedAttributes { get; set; }
 
         [Parameter]
-        public RenderFragment ChildContent { get; set; }
-
-        [Parameter]
         public Tooltip Tooltip
         {
             get => _tooltip;
@@ -46,7 +43,7 @@ namespace Proxoft.SemanticUI.Blazor
 
         protected bool PrefixUiClass { get; set; }
 
-        protected string Class()
+        internal string Class()
         {
             return new[]
             {
@@ -65,7 +62,7 @@ namespace Proxoft.SemanticUI.Blazor
             yield break;
         }
 
-        protected Dictionary<string, object> Attributes()
+        internal Dictionary<string, object> Attributes()
         {
             var attributes = this.UnmatchedAttributes ?? new Dictionary<string, object>();
             InitializeAttributes(attributes);

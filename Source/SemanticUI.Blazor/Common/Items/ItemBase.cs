@@ -4,7 +4,7 @@ using Proxoft.SemanticUI.Core;
 
 namespace Proxoft.SemanticUI.Blazor
 {
-    public abstract class ItemBase : SemanticComponent
+    public abstract class ItemBase : ContainerSemanticComponent
     {
         protected ItemBase() : base("item", prefixUiClass: false)
         {

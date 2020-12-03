@@ -1,46 +1,46 @@
-﻿@inherits SemanticComponent
+﻿@inherits ContainerSemanticComponent
 @namespace Proxoft.SemanticUI.Blazor
 
 @using Microsoft.AspNetCore.Components.Web;
 
-<div class="@Class()" @onclick="OnMessageClick">
-    @if (HasIcon)
-    {
-        <Icon Name="@Icon" @onclick="OnIconClick" />
-    }
-
-    <div class="content">
-        @if (HasHeader)
+<DivTemplate Component="this">
+    <LeftChildContent>
+        @if (HasIcon)
         {
-            <div class="header">
-                @Header
-            </div>
+            <Icon Name="@Icon" @onclick="OnIconClick" />
         }
 
-        @if (HasContent)
-        {
-            <p>
-                @Content
-            </p>
-        }
-        @if (this.HasItems)
-        {
-            <ul>
-                @foreach (var i in Items)
-                {
-                    <li>@i</li>
-                }
-            </ul>
-        }
+        <Content>
+            @if (HasHeader)
+            {
+                <Header>
+                    @Header
+                </Header>
+            }
 
-        @ChildContent
-    </div>
+            @if (HasContent)
+            {
+                <p>
+                    @Content
+                </p>
+            }
+            @if (this.HasItems)
+            {
+                <ul>
+                    @foreach (var i in Items)
+                    {
+                        <li>@i</li>
+                    }
+                </ul>
+            }
+        </Content>
 
-    @if (this.CanClose)
-    {
-        <Icon Name="close" @onclick="OnCloseIconClick" />
-    }
-</div>
+        @if (this.CanClose)
+        {
+            <Icon Name="close" @onclick="OnCloseIconClick" />
+        }
+    </LeftChildContent>
+</DivTemplate>
 
 @code {
     private MessageData _data = new MessageData();
@@ -129,9 +129,6 @@
 
     [Parameter]
     public EventCallback<MouseEventArgs> OnIconClick { get; set; }
-
-    [Parameter]
-    public EventCallback<MouseEventArgs> OnMessageClick { get; set; }
 
     [Parameter]
     public EventCallback<MouseEventArgs> OnCloseIconClick { get; set; }

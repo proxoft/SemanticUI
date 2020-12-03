@@ -1,11 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Microsoft.AspNetCore.Components;
 using Proxoft.SemanticUI.Core;
 
 namespace Proxoft.SemanticUI.Blazor
 {
-    public class LabelBase : SemanticComponent
+    public class LabelBase : ContainerSemanticComponent
     {
         public LabelBase(string cssName = "label") : base(cssName)
         {

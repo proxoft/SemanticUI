@@ -1,0 +1,26 @@
+﻿@namespace Proxoft.SemanticUI.Blazor
+
+<div class="@Component.Class()"
+     @attributes="@Component.Attributes()"
+     @onclick="Component.OnClick">
+
+    @LeftChildContent
+
+    @if (this.Component is ContainerSemanticComponent c)
+    {
+        @c.ChildContent
+    }
+
+    @RightChildContent
+</div>
+
+@code {
+    [Parameter]
+    public SemanticComponent Component { get; set; }
+
+    [Parameter]
+    public RenderFragment LeftChildContent { get; set; }
+
+    [Parameter]
+    public RenderFragment RightChildContent { get; set; }
+}

@@ -1,9 +1,7 @@
 ﻿@inherits HeaderBase
 @namespace Proxoft.SemanticUI.Blazor
 
-<div class="@Class()">
-    @ChildContent
-</div>
+<DivTemplate Component="this" />
 
 @code {
     public Header() : base("header", true)

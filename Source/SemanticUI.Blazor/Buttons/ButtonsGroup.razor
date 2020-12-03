@@ -3,9 +3,9 @@
 
 @if (this.IsVisible)
 {
-    <div class="@Class()">
+    <DivTemplate Component="this">
         @ChildContent
-    </div>
+    </DivTemplate>
 }
 
 @code {

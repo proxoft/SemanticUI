@@ -5,7 +5,7 @@ using Proxoft.SemanticUI.Core;
 
 namespace Proxoft.SemanticUI.Blazor
 {
-    public abstract class ButtonBase<T> : SemanticComponent
+    public abstract class ButtonBase<T> : ContainerSemanticComponent
         where T: ButtonBaseData
     {
         public ButtonBase(string cssName) : base(cssName)
