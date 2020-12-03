@@ -46,9 +46,6 @@
         set => _data.Decorations = value;
     }
 
-    [Parameter]
-    public EventCallback<MouseEventArgs> OnClick { get; set; }
-
     protected override IEnumerable<string> Classes()
     {
         yield return _data.ToClass();

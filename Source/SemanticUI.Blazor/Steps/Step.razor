@@ -23,9 +23,6 @@
     [Parameter]
     public StepDecorations Decorations { get; set; }
 
-    [Parameter]
-    public EventCallback<MouseEventArgs> OnClick { get; set; }
-
     protected override IEnumerable<string> Classes()
     {
         yield return this.Decorations.ToClass();

@@ -2,8 +2,6 @@
 
 @namespace Proxoft.SemanticUI.Blazor
 
-@using Microsoft.AspNetCore.Components.Web;
-
 @if (this.IsVisible)
 {
     <button type="@ButtonTypeAttribute()"
@@ -18,9 +16,6 @@
 @code {
     [Parameter]
     public ButtonType Type { get; set; } = ButtonType.Button;
-
-    [Parameter]
-    public EventCallback<MouseEventArgs> OnClick { get; set; }
 
     private string ButtonTypeAttribute() => this.Type.ToAttribute();
 }

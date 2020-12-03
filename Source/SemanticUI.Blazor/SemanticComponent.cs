@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Microsoft.AspNetCore.Components;
+using Microsoft.AspNetCore.Components.Web;
 using Proxoft.SemanticUI.Core;
 
 namespace Proxoft.SemanticUI.Blazor
@@ -37,6 +38,9 @@ namespace Proxoft.SemanticUI.Blazor
 
         [Parameter]
         public string Title { get; set; }
+
+        [Parameter]
+        public EventCallback<MouseEventArgs> OnClick { get; set; }
 
         protected string CssName { get; set; }
 
