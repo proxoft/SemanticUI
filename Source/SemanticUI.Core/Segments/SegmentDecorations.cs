@@ -30,13 +30,13 @@ namespace Proxoft.SemanticUI.Core
 
     public static class SegmentDecorationsExtensions
     {
-        private static readonly SegmentDecorations[] allValues = Enum.GetValues(typeof(SegmentDecorations))
+        private static readonly SegmentDecorations[] _allValues = Enum.GetValues(typeof(SegmentDecorations))
                 .Cast<SegmentDecorations>()
                 .ToArray();
 
         public static string ToClass(this SegmentDecorations decorations)
         {
-            var classes = allValues
+            var classes = _allValues
                 .Select(v =>
                 {
                     return decorations.HasFlag(v)

@@ -22,13 +22,13 @@ namespace Proxoft.SemanticUI.Core
 
     public static class InputDecorationsExtensions
     {
-        private static readonly InputDecorations[] allValues = System.Enum.GetValues(typeof(InputDecorations))
+        private static readonly InputDecorations[] _allValues = System.Enum.GetValues(typeof(InputDecorations))
                 .Cast<InputDecorations>()
                 .ToArray();
 
         public static string ToClass(this InputDecorations decorations)
         {
-            var classes = allValues
+            var classes = _allValues
                 .Select(v =>
                 {
                     return decorations.HasFlag(v)
