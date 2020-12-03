@@ -1,9 +1,7 @@
 ﻿@inherits SemanticComponent
 @namespace Proxoft.SemanticUI.Blazor
 
-<div class="@Class()">
-    @ChildContent
-</div>
+<DivTemplate Component="this" />
 
 @code {
     public Form() : base("form")

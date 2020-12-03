@@ -1,11 +1,9 @@
-﻿@inherits SemanticComponent
+﻿@inherits ContainerSemanticComponent
 @namespace Proxoft.SemanticUI.Blazor
 
 <Dimmer Active="this.IsActive"
         Decorations="this.DimmerDecorations">
-    <div class="@Class()">
-        @ChildContent
-    </div>
+    <DivTemplate Component="this" />
 </Dimmer>
 
 @code {

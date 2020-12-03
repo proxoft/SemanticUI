@@ -4,7 +4,7 @@ using Proxoft.SemanticUI.Core;
 
 namespace Proxoft.SemanticUI.Blazor
 {
-    public abstract class TRowCell : SemanticComponent
+    public abstract class TRowCell : ContainerSemanticComponent
     {
         protected TRowCell() : base(string.Empty, false)
         {

@@ -4,7 +4,7 @@ using Proxoft.SemanticUI.Core;
 
 namespace Proxoft.SemanticUI.Blazor
 {
-    public class HeaderBase : SemanticComponent
+    public class HeaderBase : ContainerSemanticComponent
     {
         public HeaderBase(string cssName, bool prefixUiClass) : base(cssName, prefixUiClass)
         {

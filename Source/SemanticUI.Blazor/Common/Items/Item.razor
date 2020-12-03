@@ -1,11 +1,11 @@
 ﻿@inherits ItemBase
 @namespace Proxoft.SemanticUI.Blazor
 
-<div class="@Class()">
-    @ChildContent
-
-    @if (HasRightIcon)
-    {
-        <i class="@RightIcon icon"></i>
-    }
-</div>
+<DivTemplate Component="this">
+    <RightChildContent>
+        @if (HasRightIcon)
+        {
+            <Icon Name="@RightIcon" />
+        }
+    </RightChildContent>
+</DivTemplate>

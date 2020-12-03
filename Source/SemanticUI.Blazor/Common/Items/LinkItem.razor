@@ -4,12 +4,16 @@
 
 @using Microsoft.AspNetCore.Components.Routing;
 
-<a href="@Href" class="@Class()">
+<a href="@Href"
+   class="@Class()"
+   @onclick="OnClick"
+   @attributes="UnmatchedAttributes">
+
     @ChildContent
 
     @if (HasRightIcon)
     {
-        <i class="@RightIcon icon"></i>
+        <Icon Name="@RightIcon" />
     }
 </a>
 

@@ -1,7 +1,8 @@
 ﻿@inherits TCell
 @namespace Proxoft.SemanticUI.Blazor
 
-<th class="@Class()">
+<th class="@Class()"
+    @attributes="Attributes()">
     @ChildContent
 </th>
 

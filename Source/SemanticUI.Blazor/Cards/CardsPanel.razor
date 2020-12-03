@@ -1,9 +1,9 @@
-﻿@inherits SemanticComponent
+﻿@inherits ContainerSemanticComponent
 @namespace Proxoft.SemanticUI.Blazor
 
-<div class="@Class()">
+<DivTemplate Component="this">
     @ChildContent
-</div>
+</DivTemplate>
 
 @code {
     public CardsPanel() : base("cards")

@@ -1,9 +1,7 @@
 ﻿@inherits LabelBase
 @namespace Proxoft.SemanticUI.Blazor
 
-<div class="@Class()" @onclick="OnClick">
-    @ChildContent
-</div>
+<DivTemplate Component="this" />
 
 @code {
     [Parameter]

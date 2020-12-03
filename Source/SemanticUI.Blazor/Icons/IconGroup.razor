@@ -1,7 +1,9 @@
-﻿@inherits SemanticComponent
+﻿@inherits ContainerSemanticComponent
 @namespace  Proxoft.SemanticUI.Blazor
 
-<i class="@Class()">
+<i class="@Class()"
+   @attributes="UnmatchedAttributes"
+   @onclick="OnClick">
     @ChildContent
 </i>
 
