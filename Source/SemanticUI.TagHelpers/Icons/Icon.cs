@@ -8,7 +8,7 @@ namespace Proxoft.SemanticUI.TagHelpers
     [HtmlTargetElement("sui-icon")]
     public class Icon : SemanticTagHelper
     {
-        private IconData _data = new IconData();
+        private IconData _data = new ();
 
         public Icon() : base("icon", "i", false)
         {

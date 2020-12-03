@@ -1,0 +1,66 @@
+﻿@page
+@using Proxoft.SemanticUI.Core
+
+<h1>Message</h1>
+
+<sl-description header="Message"
+                text="A basic message" />
+
+<sui-message header="Changes in Service"
+             content="We just updated our privacy policy here to better service our customers. We recommend reviewing the changes." />
+
+@{
+    var listMessageData = new MessageData()
+    {
+        Header = "New Site Features",
+        Items = new[]
+        {
+            "You can now have cover images on blog pages",
+            "Drafts will now auto-save while writing"
+        }
+    };
+}
+
+<sl-description header="List Message"
+                text="A message with list" />
+
+<sui-message data="@listMessageData" />
+
+<sl-description header="Icon Message"
+                text="A message can contain an icon" />
+
+<sui-message icon-name="inbox"
+             header="Have you heard about our mailing list?"
+             content="Get the best news in your e-mail every day." />
+
+
+
+<sl-description header="Dismissable Block"
+                text="A message that the user can choose to hide" />
+
+<sui-message icon-name="inbox"
+             can-close="true"
+             header="Welcome back!"
+             content="This is a special notification which you can dismiss if you're bored with it." />
+
+<sui-message severity="Warning"
+             content="Dismissable blocks do not automatically close when using the close icon, this behavior must be defined using Javascript, for example:">
+    <code>
+        $('.message .close')
+            .on('click', function() {
+        $(this)
+            .closest('.message')
+            .transition('fade')
+            ;
+        })
+        ;
+    </code>
+</sui-message>
+
+
+<h1>Variations</h1>
+<sl-description header="Floating"
+                text="A message can float above content that it is related to" />
+
+<sui-message content="Way to go!"
+             floating="true" />

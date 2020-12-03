@@ -13,6 +13,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SemanticUI.TagHelpers", "Se
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SemanticUI.Blazor.Sample", "SemanticUI.Blazor.Sample\SemanticUI.Blazor.Sample.csproj", "{185B9F09-AA3F-4787-9C1A-BDC93FCB9D70}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SemanticUI.TagHelpers.Sample", "SemanticUI.TagHelpers.Sample\SemanticUI.TagHelpers.Sample.csproj", "{C69D6F41-6F53-4BC9-BEB5-ACE250B8EC40}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{185B9F09-AA3F-4787-9C1A-BDC93FCB9D70}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{185B9F09-AA3F-4787-9C1A-BDC93FCB9D70}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{185B9F09-AA3F-4787-9C1A-BDC93FCB9D70}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C69D6F41-6F53-4BC9-BEB5-ACE250B8EC40}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C69D6F41-6F53-4BC9-BEB5-ACE250B8EC40}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C69D6F41-6F53-4BC9-BEB5-ACE250B8EC40}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C69D6F41-6F53-4BC9-BEB5-ACE250B8EC40}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

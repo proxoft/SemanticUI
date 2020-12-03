@@ -1,0 +1,135 @@
+﻿@page
+
+<h1>Step</h1>
+
+<sl-description header="Step"
+                text="A single step" />
+
+<sui-step-panel>
+    <sui-step>
+        Shipping
+    </sui-step>
+</sui-step-panel>
+
+<h1>Groups</h1>
+
+<sl-description header="Steps"
+                text="A set of steps" />
+
+<sui-step-panel>
+    <sui-step>
+        <sui-icon name="truck" />
+        <sui-content>
+            <sui-title>
+                Shipping
+            </sui-title>
+            <sui-description>
+                Choose your shipping options
+            </sui-description>
+        </sui-content>
+    </sui-step>
+
+    <sui-step decorations="Active">
+        <sui-icon name="payment" />
+
+        <sui-content>
+            <sui-title>
+                Billing
+            </sui-title>
+            <sui-description>
+                Enter billing information
+            </sui-description>
+        </sui-content>
+    </sui-step>
+
+    <sui-step decorations="Disabled">
+        <sui-icon name="info" />
+
+        <sui-content>
+            <sui-description>
+                Confirm order
+            </sui-description>
+        </sui-content>
+    </sui-step>
+</sui-step-panel>
+
+
+<sl-description header="Ordered"
+                text="A step can show a ordered sequence of steps" />
+
+<sui-step-panel decorations="Ordered">
+    <sui-step decorations="Completed">
+        <sui-content>
+            <sui-title>
+                Shipping
+            </sui-title>
+            <sui-description>
+                Choose your shipping options
+            </sui-description>
+        </sui-content>
+    </sui-step>
+
+    <sui-step decorations="Completed">
+        <sui-content>
+            <sui-title>
+                Billing
+            </sui-title>
+            <sui-description>
+                Enter billing information
+            </sui-description>
+        </sui-content>
+    </sui-step>
+
+    <sui-step decorations="Active">
+        <sui-content>
+            <sui-title>
+                Confirm order
+            </sui-title>
+            <sui-description>
+                Verify order details
+            </sui-description>
+        </sui-content>
+    </sui-step>
+</sui-step-panel>
+
+
+<sl-description header="Ordered"
+                text="A step can show a ordered sequence of steps" />
+
+<sui-step-panel decorations="Vertical">
+    <sui-step decorations="Completed">
+        <sui-icon name="truck" />
+        <sui-content>
+            <step-title>
+                Shipping
+            </step-title>
+            <step-description>
+                Choose your shipping options
+            </step-description>
+        </sui-content>
+    </sui-step>
+
+    <sui-step decorations="Completed">
+        <sui-icon name="credit card" />
+        <sui-content>
+            <sui-title>
+                Billing
+            </sui-title>
+            <sui-description>
+                Enter billing information
+            </sui-description>
+        </sui-content>
+    </sui-step>
+
+    <sui-step decorations="Active">
+        <sui-icon name="info" />
+        <sui-content>
+            <sui-title>
+                Confirm order
+            </sui-title>
+            <sui-description>
+                Verify order details
+            </sui-description>
+        </sui-content>
+    </sui-step>
+</sui-step-panel>

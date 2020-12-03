@@ -1,0 +1,89 @@
+﻿@page
+
+<h1>Segment</h1>
+
+<sui-segment>
+    <p>some content</p>
+</sui-segment>
+
+<h1>Groups</h1>
+
+<sl-description header="Segments"
+                text="A group of segments can be formatted to appear together">
+</sl-description>
+
+<sui-segmentGroup>
+    <sui-segment>
+        Top
+    </sui-segment>
+    <sui-segment>
+        Middle
+    </sui-segment>
+    <sui-segment>
+        Middle
+    </sui-segment>
+    <sui-segment>
+        Middle
+    </sui-segment>
+    <sui-segment>
+        Bottom
+    </sui-segment>
+</sui-segmentGroup>
+
+<sl-description header="Nested Segments"
+                text="A group of segments can be nested in another group of segments">
+</sl-description>
+
+<sui-segmentGroup>
+    <sui-segment>
+        Top
+    </sui-segment>
+    <sui-segmentGroup>
+        <sui-segment>
+            Nested top
+        </sui-segment>
+        <sui-segment>
+            Nested middle
+        </sui-segment>
+        <sui-segment>
+            Nested bottom
+        </sui-segment>
+    </sui-segmentGroup>
+
+    <sui-segment>
+        Top
+    </sui-segment>
+    <sui-segmentGroup orientation="Horizontal">
+        <sui-segment>
+            Top
+        </sui-segment>
+        <sui-segment>
+            Middle
+        </sui-segment>
+        <sui-segment>
+            Bottom
+        </sui-segment>
+    </sui-segmentGroup>
+    <sui-segment>
+        Bottom
+    </sui-segment>
+</sui-segmentGroup>
+
+<h1>Variations</h1>
+
+<sl-description header="Inverted"
+                text="A segment can have its colors inverted for contrast" />
+
+<sui-segment decorations="Inverted">
+    I'm here to tell you something, and you will probably read me first.
+</sui-segment>
+
+<sl-description header="Compact"
+                text="A segment may take up only as much space as is necessary" />
+
+<sui-segment decorations="Compact">
+    Pellentesque habitant morbi
+</sui-segment>
+
+<br />
+<br />

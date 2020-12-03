@@ -1,0 +1,78 @@
+﻿@page
+
+<h1>Button</h1>
+
+
+<sl-example header="Button"
+            text="A standard button">
+    <sui-button>
+        Follow
+    </sui-button>
+</sl-example>
+
+<sl-example header="Link button"
+            text="An achor styled as button">
+    <sui-linkButton href="https://semantic-ui.com/elements/button.html" target="_blank">
+        Go to
+    </sui-linkButton>
+</sl-example>
+
+<sl-example header="Emphasis"
+            text="A button can be formatted to show different levels of emphasis">
+    <sui-button emphasizes="Primary">
+        Save
+    </sui-button>
+    <sui-button>
+        Discard
+    </sui-button>
+    <sui-button emphasizes="Secondary">
+        Save
+    </sui-button>
+    <sui-button emphasizes="Positive">
+        OK
+    </sui-button>
+    <sui-button emphasizes="Negative">
+        False
+    </sui-button>
+</sl-example>
+
+<sl-example header="Disabled"
+            text="A button can show it is currently unable to be interacted with">
+    <sui-button state="Disabled">
+        Followed
+    </sui-button>
+</sl-example>
+
+<sl-example header="Loading"
+            text="A button can show a loading indicator">
+    <sui-button state="Loading">
+        Content
+    </sui-button>
+    <sui-button state="Loading" decoration="Basic">
+        Content
+    </sui-button>
+    <sui-button state="Loading" emphasizes="Primary">
+        Content
+    </sui-button>
+    <sui-button state="Loading" emphasizes="Secondary">
+        Content
+    </sui-button>
+</sl-example>
+
+<sl-example header="Vertical Buttons"
+            text="Groups can be formatted to appear vertically">
+    <sui-buttonsGroup orientation="Vertical">
+        <sui-button>
+            Feed
+        </sui-button>
+        <sui-button>
+            Messages
+        </sui-button>
+        <sui-button>
+            Events
+        </sui-button>
+        <sui-button>
+            Photos
+        </sui-button>
+    </sui-buttonsGroup>
+</sl-example>

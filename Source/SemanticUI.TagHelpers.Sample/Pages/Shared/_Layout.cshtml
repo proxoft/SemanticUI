@@ -1,0 +1,36 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - SemanticUI.TagHelpers.Sample</title>
+    <link rel="stylesheet" href="/sidea-core/semantic-ui/semantic.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+</head>
+<body>
+    <div class="container">
+        <div>
+            <partial name="_SidebarPartial" />
+        </div>
+        <div>
+            <sui-container>
+                @RenderBody()
+            </sui-container>
+        </div>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="/sidea-core/semantic-ui/semantic.min.js" type="text/javascript"></script>
+
+    <script>
+        $('.message .close')
+            .on('click', function () {
+                $(this)
+                    .closest('.message')
+                    .transition('fade')
+                    ;
+            })
+            ;
+    </script>
+</body>
+</html>

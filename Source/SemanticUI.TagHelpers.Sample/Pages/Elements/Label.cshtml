@@ -1,0 +1,168 @@
+﻿@page
+<h1>Label</h1>
+
+<sl-example header="Label"
+            text="A label">
+    <sui-label>
+        <sui-icon name="mail" />
+        23
+    </sui-label>
+</sl-example>
+
+<sl-example header="Tag"
+            text="A label can appear as a tag">
+    <sui-label decorations="Tag">
+        Next
+    </sui-label>
+    <sui-label decorations="Tag"
+               color="Red">
+        Upcoming
+    </sui-label>
+    <sui-label decorations="Tag"
+               color="Teal">
+        Featured
+    </sui-label>
+</sl-example>
+
+<sl-example header="Ribbon"
+            text="A label can appear as a ribbon attaching itself to an element.">
+    <sui-segmentGroup orientation="Horizontal">
+        <sui-segment>
+            <sui-ribbonLabel color="Red">
+                Overview
+            </sui-ribbonLabel>
+            <p></p>
+            <p>some content</p>
+        </sui-segment>
+        <sui-segment>
+            <sui-ribbonLabel color="Blue"
+                             position="Right">
+                Overview
+            </sui-ribbonLabel>
+            <p></p>
+            <p>some content</p>
+        </sui-segment>
+    </sui-segmentGroup>
+</sl-example>
+
+<sl-example header="Floating"
+            text="A label can float above another element.">
+
+    <sui-menu decorations="Compact">
+        <sui-menuItem>
+            <sui-icon name="mail" />
+            Messages
+            <sui-label decorations="Floating"
+                       color="Red">22</sui-label>
+        </sui-menuItem>
+        <sui-menuItem>
+            <sui-icon name="users" />
+            Friends
+            <sui-label decorations="Floating"
+                       color="Teal">42</sui-label>
+        </sui-menuItem>
+    </sui-menu>
+</sl-example>
+
+<h1>Variations</h1>
+<sl-example header="Circular"
+            text="A label can be circular">
+    <sui-label decorations="Circular" color="Red">2</sui-label>
+    <sui-label decorations="Circular" color="Orange">2</sui-label>
+    <sui-label decorations="Circular" color="Yellow">2</sui-label>
+    <sui-label decorations="Circular" color="Olive">2</sui-label>
+    <sui-label decorations="Circular" color="Teal">2</sui-label>
+
+    <br />
+    <sui-label decorations="CircularEmpty" color="Red" />
+    <sui-label decorations="CircularEmpty" color="Orange" />
+    <sui-label decorations="CircularEmpty" color="Yellow" />
+    <sui-label decorations="CircularEmpty" color="Olive" />
+    <sui-label decorations="CircularEmpty" color="Teal" />
+</sl-example>
+
+<sl-example header="Basic"
+            text="A label can reduce its complexity">
+    <sui-label decorations="Basic">
+        Basic
+    </sui-label>
+    <sui-label decorations="Basic"
+               pointing="UpPointing">
+        Pointing
+    </sui-label>
+    <sui-label decorations="Basic"
+               pointing="UpPointing"
+               color="Red">
+        Red pointing
+    </sui-label>
+    <sui-label decorations="Basic"
+               color="Blue">
+        Blue
+    </sui-label>
+</sl-example>
+
+<h1>Groups</h1>
+
+<sl-example header="Different common properties">
+    <sui-labelGroup size="Huge">
+        <sui-label>
+            Fun
+        </sui-label>
+        <sui-label>
+            Happy
+        </sui-label>
+        <sui-label>
+            Smart
+        </sui-label>
+        <sui-label>
+            Witty
+        </sui-label>
+    </sui-labelGroup>
+
+
+    <sui-labelGroup color="Blue">
+        <sui-label>
+            Fun <sui-icon name="close" />
+        </sui-label>
+        <sui-label>
+            Happy
+        </sui-label>
+        <sui-label>
+            Smart
+        </sui-label>
+        <sui-label>
+            Witty
+        </sui-label>
+    </sui-labelGroup>
+
+    <sui-labelGroup decorations="Tag">
+        <sui-label>
+            $10.00
+        </sui-label>
+        <sui-label>
+            $109.99
+        </sui-label>
+        <sui-label>
+            $24.56
+        </sui-label>
+        <sui-label>
+            $10.25
+        </sui-label>
+    </sui-labelGroup>
+
+
+    <sui-labelGroup decorations="Circular">
+        <sui-label>
+            10
+        </sui-label>
+        <sui-label>
+            109
+        </sui-label>
+        <sui-label>
+            24
+        </sui-label>
+        <sui-label>
+            10
+        </sui-label>
+    </sui-labelGroup>
+</sl-example>
