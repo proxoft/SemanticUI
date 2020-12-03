@@ -1,0 +1,22 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+    <PropertyGroup>
+        <TargetFramework>net5.0</TargetFramework>
+        <AssemblyName>Proxoft.SemanticUI.TagHelpers.Sample</AssemblyName>
+        <RootNamespace>Proxoft.SemanticUI.TagHelpers.Sample</RootNamespace>
+    </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Pages\Modules\**" />
+    <Content Remove="Pages\Modules\**" />
+    <EmbeddedResource Remove="Pages\Modules\**" />
+    <None Remove="Pages\Modules\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\SemanticUI.Core\SemanticUI.Core.csproj" />
+    <ProjectReference Include="..\SemanticUI.Resources\SemanticUI.Resources.csproj" />
+    <ProjectReference Include="..\SemanticUI.TagHelpers\SemanticUI.TagHelpers.csproj" />
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,164 @@
+﻿@page "/Elements/Image"
+
+<h3>Image</h3>
+
+<Example Header="Image"
+         Text="An image">
+    <Image Size="Small"
+           Src="/images/wireframe/image.png" />
+</Example>
+
+
+<h3>States</h3>
+
+<Example Header="Hidden"
+         Text="An image can be hidden">
+    <Image Size="Small"
+           Decorations="ImageDecorations.Hidden"
+           Src="/images/wireframe/image.png" />
+</Example>
+
+<Example Header="Disabled"
+         Text="An image can show that it is disabled and cannot be selected">
+    <Image Decorations="ImageDecorations.Disabled"
+           Size="Medium"
+           Src="/images/wireframe/image.png" />
+</Example>
+
+
+<h3>Variations</h3>
+
+<Example Header="Avatar"
+         Text="An image may be formatted to appear inline with text as an avatar">
+    <Image Decorations="ImageDecorations.Avatar"
+           Src="/images/wireframe/square-image.png" />
+    <span>Username</span>
+</Example>
+
+<Example Header="Bordered"
+         Text="An image may include a border to emphasize the edges of white or transparent content">
+    <Image Decorations="ImageDecorations.Bordered"
+           Size="Medium"
+           Src="/images/wireframe/white-image.png" />
+</Example>
+
+<Example Header="Fluid"
+         Text="An image can take up the width of its container">
+    <Image Decorations="ImageDecorations.Fluid"
+           Src="/images/wireframe/image.png" />
+</Example>
+
+<Example Header="Rounded"
+         Text="An image may appear rounded">
+    <Image Decorations="ImageDecorations.Rounded"
+           Size="Medium"
+           Src="/images/wireframe/square-image.png" />
+</Example>
+
+<Example Header="Circular"
+         Text="An image may appear circular">
+    <Image Decorations="ImageDecorations.Circular"
+           Size="Medium"
+           Src="/images/wireframe/square-image.png" />
+</Example>
+
+<Example Header="Vertically Aligned"
+         Text="An image can specify its vertical alignment">
+    <p>
+        <Image Size="Tiny"
+               Src="/images/wireframe/square-image.png"
+               VerticallyAligned="Top" />
+        <span>Top Aligned</span>
+    </p>
+
+    <p>
+        <Image Size="Tiny"
+               Src="/images/wireframe/square-image.png"
+               VerticallyAligned="Middle" />
+        <span>Middle Aligned</span>
+    </p>
+
+    <p>
+        <Image Size="Tiny"
+               Src="/images/wireframe/square-image.png"
+               VerticallyAligned="Bottom" />
+        <span>Bottom Aligned</span>
+    </p>
+</Example>
+
+<Example Header="Centered"
+         Text="An image can appear centered in a content block">
+    <Segment>
+        <Image Decorations="ImageDecorations.Centered"
+               Size="Medium"
+               Src="/images/wireframe/image.png" />
+
+        <p>Te eum doming eirmod, nominati pertinacia argumentum ad his. Ex eam alia facete scriptorem, est autem aliquip detraxit at. Usu ocurreret referrentur at, cu epicurei appellantur vix. Cum ea laoreet recteque electram, eos choro alterum definiebas in. Vim dolorum definiebas an. Mei ex natum rebum iisque.</p>
+        <p>Audiam quaerendum eu sea, pro omittam definiebas ex. Te est latine definitiones. Quot wisi nulla ex duo. Vis sint solet expetenda ne, his te phaedrum referrentur consectetuer. Id vix fabulas oporteat, ei quo vide phaedrum, vim vivendum maiestatis in.</p>
+
+        <Image Decorations="ImageDecorations.Centered"
+               Size="Small"
+               Src="/images/wireframe/image.png" />
+
+        <p>Eu quo homero blandit intellegebat. Incorrupte consequuntur mei id. Mei ut facer dolores adolescens, no illum aperiri quo, usu odio brute at. Qui te porro electram, ea dico facete utroque quo. Populo quodsi te eam, wisi everti eos ex, eum elitr altera utamur at. Quodsi convenire mnesarchum eu per, quas minimum postulant per id.</p>
+    </Segment>
+</Example>
+
+<Example Header="Spaced"
+         Text="An image can specify that it needs an additional spacing to separate it from nearby content">
+    <Segment>
+        <p>
+            Te eum doming eirmod, nominati pertinacia <Image Size="Mini"
+                                                             Spaced="Left | Right"
+                                                             Src="/images/wireframe/image.png" />
+            argumentum ad his. Ex eam alia facete scriptorem, est autem aliquip detraxit at. Usu ocurreret referrentur at, cu epicurei appellantur vix. Cum ea laoreet recteque electram, eos choro alterum definiebas in. Vim dolorum definiebas an. Mei ex natum rebum iisque.
+        </p>
+
+        <p><Image Size="Mini" Spaced="Right" Src="/images/wireframe/image.png" /> Audiam quaerendum eu sea, pro omittam definiebas ex. Te est latine definitiones. Quot wisi nulla ex duo. Vis sint solet expetenda ne, his te phaedrum referrentur consectetuer. Id vix fabulas oporteat, ei quo vide phaedrum, vim vivendum maiestatis in.</p>
+        <p>Eu quo homero blandit intellegebat. Incorrupte consequuntur mei id. Mei ut facer dolores adolescens, no illum aperiri quo, usu odio brute at. Qui te porro electram, ea dico facete utroque quo. Populo quodsi te eam, wisi everti eos ex, eum elitr altera utamur at. Quodsi convenire mnesarchum eu per, quas minimum postulant per id.<Image Size="Mini" Spaced="Left" Src="/images/wireframe/image.png" /></p>
+    </Segment>
+</Example>
+
+<Example Header="Floated"
+         Text="An image can sit to the left or right of other content">
+    <Segment>
+        <Image Size="Small" Floated="Left" Src="/images/wireframe/image.png" />
+        <p>Te eum doming eirmod, nominati pertinacia argumentum ad his. Ex eam alia facete scriptorem, est autem aliquip detraxit at. Usu ocurreret referrentur at, cu epicurei appellantur vix. Cum ea laoreet recteque electram, eos choro alterum definiebas in. Vim dolorum definiebas an. Mei ex natum rebum iisque.</p>
+        <Image Size="Small" Floated="Right" Src="/images/wireframe/image.png" />
+        <p>Audiam quaerendum eu sea, pro omittam definiebas ex. Te est latine definitiones. Quot wisi nulla ex duo. Vis sint solet expetenda ne, his te phaedrum referrentur consectetuer. Id vix fabulas oporteat, ei quo vide phaedrum, vim vivendum maiestatis in.</p>
+        <p>Eu quo homero blandit intellegebat. Incorrupte consequuntur mei id. Mei ut facer dolores adolescens, no illum aperiri quo, usu odio brute at. Qui te porro electram, ea dico facete utroque quo. Populo quodsi te eam, wisi everti eos ex, eum elitr altera utamur at. Quodsi convenire mnesarchum eu per, quas minimum postulant per id.</p>
+    </Segment>
+</Example>
+
+<Example Header="Size"
+         Text="An image may appear at different sizes">
+
+    <Image Size="Mini" Src="/images/wireframe/image.png" /> <br/>
+    <Image Size="Tiny" Src="/images/wireframe/image.png" /><br />
+    <Image Size="Small" Src="/images/wireframe/image.png" /><br />
+    <Image Size="Medium" Src="/images/wireframe/image.png" /><br />
+    <Image Size="Large" Src="/images/wireframe/image.png" /><br />
+    <Image Size="Big" Src="/images/wireframe/image.png" /><br />
+    <Image Size="Huge" Src="/images/wireframe/image.png" /><br />
+    <Image Size="Massive" Src="/images/wireframe/image.png" /><br />
+</Example>
+
+
+<h3>Groups</h3>
+
+<Example Header="Size"
+         Text="A group of images can be formatted to have the same size.">
+    <ImageGroup Size="Tiny">
+        <Image Src="/images/wireframe/image.png" />
+        <Image Src="/images/wireframe/image.png" />
+        <Image Src="/images/wireframe/image.png" />
+        <Image Src="/images/wireframe/image.png" />
+    </ImageGroup>
+
+    <ImageGroup Size="Small">
+        <Image Src="/images/wireframe/image.png" />
+        <Image Src="/images/wireframe/image.png" />
+        <Image Src="/images/wireframe/image.png" />
+        <Image Src="/images/wireframe/image.png" />
+    </ImageGroup>
+</Example>

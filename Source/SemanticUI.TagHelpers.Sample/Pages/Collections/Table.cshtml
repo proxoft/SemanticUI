@@ -1,0 +1,195 @@
+﻿@page
+@using Proxoft.SemanticUI.Core
+
+<h1>Table</h1>
+
+<sl-example header="Table"
+            text="A standard table">
+    <sui-table>
+        <thead>
+            <sui-tr>
+                <sui-th>
+                    Name
+                </sui-th>
+                <sui-th>
+                    Age
+                </sui-th>
+                <sui-th>
+                    Job
+                </sui-th>
+            </sui-tr>
+        </thead>
+        <tbody>
+            <sui-tr>
+                <sui-td>James</sui-td>
+                <sui-td>24</sui-td>
+                <sui-td>Engineer</sui-td>
+            </sui-tr>
+            <sui-tr>
+                <sui-td>
+                    Jill
+                </sui-td>
+                <sui-td>
+                    26
+                </sui-td>
+                <sui-td>
+                    Engineer
+                </sui-td>
+            </sui-tr>
+            <sui-tr>
+                <sui-td>Elyse</sui-td>
+                <sui-td>24</sui-td>
+                <sui-td>Designer</sui-td>
+            </sui-tr>
+        </tbody>
+    </sui-table>
+</sl-example>
+
+<h1>Structured</h1>
+
+<sl-example header="Structured"
+            text="A table can be formatted to display complex structured data">
+    <sui-table decorations="Celled | TableDecorations.Structured">
+        <thead>
+            <sui-tr>
+                <sui-th row-span="2">
+                    Name
+                </sui-th>
+                <sui-th row-span="2">
+                    Type
+                </sui-th>
+                <sui-th row-span="2">
+                    Files
+                </sui-th>
+                <sui-th col-span="3">
+                    Languages
+                </sui-th>
+            </sui-tr>
+            <sui-tr>
+                <sui-th>
+                    Ruby
+                </sui-th>
+                <sui-th>
+                    Javascript
+                </sui-th>
+                <sui-th>
+                    Python
+                </sui-th>
+            </sui-tr>
+        </thead>
+        <tbody>
+            <sui-tr>
+                <sui-td>Alpha Team</sui-td>
+                <sui-td>Project 1</sui-td>
+                <sui-td alignment="Right">2</sui-td>
+                <sui-td alignment="Center">
+                    <sui-icon name="checkmark"
+                              size="Large"
+                              color="Green" />
+                </sui-td>
+                <sui-td></sui-td>
+                <sui-td></sui-td>
+            </sui-tr>
+            <sui-tr>
+                <sui-td row-span="3">Beta Team</sui-td>
+                <sui-td>Project 1</sui-td>
+                <sui-td alignment="Right">52</sui-td>
+                <sui-td alignment="Center">
+                    <sui-icon name="checkmark"
+                              size="Large"
+                              color="Green" />
+                </sui-td>
+                <sui-td></sui-td>
+                <sui-td></sui-td>
+            </sui-tr>
+            <sui-tr>
+                <sui-td>Project 2</sui-td>
+                <sui-td alignment="Right">12</sui-td>
+                <sui-td></sui-td>
+                <sui-td alignment="Center">
+                    <sui-icon name="checkmark"
+                              size="Large"
+                              color="Green" />
+                </sui-td>
+                <sui-td></sui-td>
+            </sui-tr>
+            <sui-tr>
+                <sui-td>Project 3</sui-td>
+                <sui-td alignment="Right">21</sui-td>
+                <sui-td alignment="Center">
+                    <sui-icon name="checkmark"
+                              size="Large"
+                              color="Green" />
+                </sui-td>
+                <sui-td></sui-td>
+                <sui-td></sui-td>
+            </sui-tr>
+        </tbody>
+    </sui-table>
+</sl-example>
+
+<h1>Variations</h1>
+
+<sl-example header="Single Line"
+            text="A table can specify that its cell contents should remain on a single line, and not wrap.">
+    <sui-table decorations="SingleLine">
+        <thead>
+            <sui-tr>
+                <sui-th>Name</sui-th>
+                <sui-th>Registration Date</sui-th>
+                <sui-th>E-mail address</sui-th>
+                <sui-th>Premium Plan</sui-th>
+            </sui-tr>
+        </thead>
+        <tbody>
+            <sui-tr>
+                <sui-td>John Lilki</sui-td>
+                <sui-td>September 14, 2013</sui-td>
+                <sui-td>jhlilk22@yahoo.com</sui-td>
+                <sui-td>No</sui-td>
+            </sui-tr>
+            <sui-tr>
+                <sui-td>Jamie Harington</sui-td>
+                <sui-td>January 11, 2014</sui-td>
+                <sui-td>jamieharingonton@yahoo.com</sui-td>
+                <sui-td>Yes</sui-td>
+            </sui-tr>
+            <sui-tr>
+                <sui-td>Jill Lewis</sui-td>
+                <sui-td>May 11, 2014</sui-td>
+                <sui-td>jilsewris22@yahoo.com</sui-td>
+                <sui-td>Yes</sui-td>
+            </sui-tr>
+        </tbody>
+    </sui-table>
+</sl-example>
+
+<sl-example header="Fixed"
+            text="A table can use table-layout: fixed a special faster form of table rendering that does not resize table cells based on content.">
+    <sui-table decorations="SingleLine | TableDecorations.Fixed">
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Status</th>
+                <th>Description</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>John</td>
+                <td>Approved</td>
+                <td title="This is much too long to fit I'm sorry about that">This is much too long to fit I'm sorry about that. This is much too long to fit I'm sorry about that.</td>
+            </tr>
+            <tr>
+                <td>Jamie</td>
+                <td>Approved</td>
+                <td>Shorter description</td>
+            </tr>
+            <tr>
+                <td>Jill</td>
+                <td>Denied</td>
+                <td>Shorter description</td>
+            </tr>
+        </tbody>
+    </sui-table>
+</sl-example>

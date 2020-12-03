@@ -1,0 +1,20 @@
+﻿@inherits SemanticComponent
+@namespace Proxoft.SemanticUI.Blazor
+
+<div class="@Class()">
+    @ChildContent
+</div>
+
+@code {
+    public StatisticGroup() : base("statistics")
+    {
+    }
+
+    [Parameter]
+    public Amount Count { get; set; }
+
+    protected override IEnumerable<string> Classes()
+    {
+        yield return this.Count.ToClass(string.Empty);
+    }
+}

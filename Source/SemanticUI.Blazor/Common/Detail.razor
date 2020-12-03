@@ -1,0 +1,17 @@
+﻿@inherits SemanticComponent
+@namespace Proxoft.SemanticUI.Blazor
+
+<div class="@Class()">
+    @ChildContent
+</div>
+
+@code {
+    public Detail() : base("detail", false)
+    {
+    }
+
+    protected override IEnumerable<string> Classes()
+    {
+        yield break;
+    }
+}

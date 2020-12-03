@@ -1,0 +1,10 @@
+﻿@namespace Proxoft.SemanticUI.Blazor
+
+<tfoot>
+    @ChildContent
+</tfoot>
+
+@code {
+    [Parameter]
+    public RenderFragment ChildContent { get; set; }
+}

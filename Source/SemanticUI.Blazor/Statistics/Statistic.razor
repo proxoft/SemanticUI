@@ -1,0 +1,36 @@
+﻿@inherits SemanticComponent
+@namespace Proxoft.SemanticUI.Blazor
+
+<div class="@Class()">
+    @ChildContent
+</div>
+
+@code {
+    public Statistic() : base("statistic")
+    {
+    }
+
+    [Parameter]
+    public Orientation Orientation { get; set; } = Orientation.Vertical;
+
+    [Parameter]
+    public Color Color { get; set; }
+
+    [Parameter]
+    public Size Size { get; set; }
+
+    [Parameter]
+    public Position Floated { get; set; }
+
+    [Parameter]
+    public bool Inverted { get; set; }
+
+    protected override IEnumerable<string> Classes()
+    {
+        yield return this.Orientation.ToClass(Orientation.Vertical);
+        yield return this.Color.ToClass();
+        yield return this.Size.ToClass();
+        yield return this.Floated.ToFloatedClass();
+        yield return "inverted".ToClassIf(this.Inverted);
+    }
+}

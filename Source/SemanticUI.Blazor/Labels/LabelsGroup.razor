@@ -1,0 +1,14 @@
+﻿@inherits LabelBase
+@namespace Proxoft.SemanticUI.Blazor
+
+<div class="@Class()"
+     @onclick="OnClick">
+
+    @ChildContent
+</div>
+
+@code {
+    public LabelsGroup(): base("labels")
+    {
+    }
+}

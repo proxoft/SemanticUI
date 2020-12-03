@@ -1,0 +1,238 @@
+﻿@page "/Elements/Header"
+
+<h3>Header</h3>
+
+<Example Header="Content Headers"
+         Text="Headers may be oriented to give the importance of a section in the context of the content that surrounds it">
+    <Header Size="Huge">
+        Huge Header
+    </Header>
+    <Header Size="Large">
+        Large Header
+    </Header>
+    <Header Size="Small">
+        Huge Header
+    </Header>
+</Example>
+
+<Example Header="Icon headers"
+         Text="A header can be formatted to emphasize an icon">
+
+    <Header Decorations="HeaderDecorations.Icon">
+        <Icon Name="settings" />
+        <Content>
+            Account Settings
+            <Subheader>Manage your account settings and set e-mail preferences.</Subheader>
+        </Content>
+    </Header>
+
+    <Header Decorations="HeaderDecorations.Icon"
+            Alignment="Center">
+        <Icon Name="circular users" />
+        <Content>
+            Friends
+        </Content>
+    </Header>
+</Example>
+
+<Example Header="Sub Headers"
+         Text="Headers may be formatted to label smaller or de-emphasized content.">
+    <Subheader IsRoot="true">
+        Price
+    </Subheader>
+    <span>$10.99</span>
+
+    <br />
+
+    <List Orientation="Horizontal">
+        <Item>
+            <img class="ui mini circular image" src="/images/avatar/small/molly.png">
+            <Content>
+                <Subheader IsRoot="true">
+                    Molly
+                </Subheader>
+                Coordinator
+            </Content>
+        </Item>
+        <Item>
+            <img class="ui mini circular image" src="/images/avatar/small/elyse.png">
+            <Content>
+                <Subheader IsRoot="true">
+                    Elyse
+                </Subheader>
+                Developer
+            </Content>
+        </Item>
+        <Item>
+            <img class="ui mini circular image" src="/images/avatar/small/eve.png">
+            <Content>
+                <Subheader IsRoot="true">
+                    Eve
+                </Subheader>
+                Project Manager
+            </Content>
+        </Item>
+    </List>
+</Example>
+
+<h3>Content</h3>
+
+<Example Header="Image"
+         Text="A header may contain an image">
+    <Header>
+        <img class="ui image" src="/images/icons/school.png">
+        <Content>
+            Learn more
+        </Content>
+    </Header>
+</Example>
+
+<Example Header="Icon"
+         Text="A header may contain an icon">
+    <Header>
+        <Icon Name="plug" />
+        <Content>
+            Uptime Guarantee
+        </Content>
+    </Header>
+
+    <Header>
+        <Icon Name="settings" />
+        <Content>
+            Account Settings
+            <Subheader>
+                Manage your preferences
+            </Subheader>
+        </Content>
+    </Header>
+</Example>
+
+<h3>States</h3>
+
+<Example Header="Disabled"
+         Text="A header can show that it is inactive">
+
+    <Header Decorations="HeaderDecorations.Disabled">
+        Disabled Header
+    </Header>
+</Example>
+
+
+<h3>Variations</h3>
+
+<Example Header="Dividing"
+         Text="A header can be formatted to divide itself from the content below it">
+    <Header Decorations="HeaderDecorations.Dividing">
+        Dividing header
+    </Header>
+    <div>
+        some content after header
+    </div>
+</Example>
+
+<Example Header="Block"
+         Text="A header can be formatted to appear inside a content block">
+    <Header Decorations="HeaderDecorations.Block">
+        Block Header
+    </Header>
+</Example>
+
+<Example Header="Attached"
+         Text="A header can be attached to other content, like a segment">
+
+    <Header Attached="Top">
+        Top attached
+    </Header>
+    <Segment Attached="Middle">
+        <p>middle segmetn</p>
+    </Segment>
+    <Header Attached="Middle">
+        Attached
+    </Header>
+    <Segment Attached="Middle">
+        <p>middle segmetn</p>
+    </Segment>
+    <Header Attached="Bottom">
+        Bottom Attached
+    </Header>
+
+</Example>
+
+<Example Header="Floating"
+         Text="A header can sit to the left or right of other content">
+    <Segment Decorations="SegmentDecorations.Clearing">
+        <Header Floated="Right">
+            Go Forward
+        </Header>
+
+        <Header Floated="Left">
+            Go Back
+        </Header>
+    </Segment>
+</Example>
+
+<Example Header="Text alignment"
+         Text="A header can have its text aligned to a side">
+    <Header Alignment="Right">
+        Right
+    </Header>
+    <Header Alignment="Left">
+        Left
+    </Header>
+    <Header Decorations="HeaderDecorations.Justified">
+        This should take up the full width even if only one line
+    </Header>
+    <Header Alignment="Center">
+        Center
+    </Header>
+</Example>
+
+<Example Header="Colored"
+         Text="A header can be formatted with different colors">
+
+    <Header Color="Red">
+        Red
+    </Header>
+    <Header Color="Orange">
+        Orange
+    </Header>
+    <Header Color="Blue">
+        Red
+    </Header>
+    <Header Color="Grey">
+        Grey
+    </Header>
+    <Header Color="Black">
+        Black
+    </Header>
+</Example>
+
+<Example Header="Inverted"
+         Text="A header can have its colors inverted for contrast">
+    <Message Severity="Info">
+        Inverted headers use modified light versions of your site's color scheme that are adapted to have more contrast on dark background
+    </Message>
+
+    <Segment Decorations="SegmentDecorations.Inverted">
+        <Header Color="Red"
+                Decorations="HeaderDecorations.Inverted">
+            Red
+        </Header>
+        <Header Color="Orange"
+                Decorations="HeaderDecorations.Inverted">
+            Orange
+        </Header>
+        <Header Color="Blue"
+                Decorations="HeaderDecorations.Inverted">
+            Red
+        </Header>
+        <Header Color="Grey"
+                Decorations="HeaderDecorations.Inverted">
+            Grey
+        </Header>
+        <Header Color="Black"
+                Decorations="HeaderDecorations.Inverted">
+            Black
+        </Header>
+    </Segment>
+</Example>

@@ -1,0 +1,19 @@
+﻿@inherits HeaderBase
+@namespace Proxoft.SemanticUI.Blazor
+
+<div class="@Class()">
+    @ChildContent
+</div>
+
+@code {
+    public Subheader() : base("sub header", false)
+    {
+    }
+
+    [Parameter]
+    public bool IsRoot
+    {
+        get => this.PrefixUiClass;
+        set => this.PrefixUiClass = value;
+    }
+}

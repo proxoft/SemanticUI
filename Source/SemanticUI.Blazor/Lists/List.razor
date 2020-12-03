@@ -1,0 +1,32 @@
+﻿@inherits SemanticComponent
+@namespace Proxoft.SemanticUI.Blazor
+
+<div class="@Class()">
+    @ChildContent
+</div>
+
+@code {
+    public List(): base("list")
+    {
+    }
+
+    [Parameter]
+    public ListDecorations Decorations { get; set; }
+
+    [Parameter]
+    public Orientation Orientation { get; set; } = Vertical;
+
+    [Parameter]
+    public Size Size { get; set; }
+
+    [Parameter]
+    public Position VerticallyAligned { get; set; }
+
+    protected override IEnumerable<string> Classes()
+    {
+        yield return this.VerticallyAligned.ToVerticalAlignmentClass();
+        yield return this.Decorations.ToClass();
+        yield return this.Orientation.ToClass(emptyIf: Vertical);
+        yield return this.Size.ToClass();
+    }
+}

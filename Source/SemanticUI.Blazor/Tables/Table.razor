@@ -1,0 +1,32 @@
+﻿@inherits SemanticComponent
+@namespace Proxoft.SemanticUI.Blazor
+
+<table class="@Class()">
+    @ChildContent
+</table>
+
+@code {
+    public Table() : base("table")
+    {
+    }
+
+    [Parameter]
+    public TableDecorations Decorations { get; set; } = Compact | Striped;
+
+    [Parameter]
+    public Size Size { get; set; }
+
+    [Parameter]
+    public Amount Columns { get; set; }
+
+    [Parameter]
+    public Color Color { get; set; }
+
+    protected override IEnumerable<string> Classes()
+    {
+        yield return this.Size.ToClass();
+        yield return this.Decorations.ToClass();
+        yield return this.Columns.ToClass(of: "column");
+        yield return this.Color.ToClass();
+    }
+}

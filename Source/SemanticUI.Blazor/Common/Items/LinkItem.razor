@@ -1,0 +1,63 @@
+﻿@inherits ItemBase
+@implements IDisposable
+@namespace Proxoft.SemanticUI.Blazor
+
+@using Microsoft.AspNetCore.Components.Routing;
+
+<a href="@Href" class="@Class()">
+    @ChildContent
+
+    @if (HasRightIcon)
+    {
+        <i class="@RightIcon icon"></i>
+    }
+</a>
+
+@code {
+    [Inject]
+    public NavigationManager NavigationManager { get; set; }
+
+    [Parameter]
+    public string Href { get; set; }
+
+    [Parameter]
+    public ActiveUrlMatch ActiveUrlMatch { get; set; } = ActiveUrlMatch.None;
+
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+        this.NavigationManager.LocationChanged += LocationChanged;
+    }
+
+    protected override void OnParametersSet()
+    {
+        base.OnParametersSet();
+        this.NavigationManager.LocationChanged -= this.LocationChanged;
+        if (this.ActiveUrlMatch == ActiveUrlMatch.Exact)
+        {
+            this.SetIsActiveFromNavigationManager();
+            this.NavigationManager.LocationChanged += this.LocationChanged;
+        }
+    }
+
+    private void LocationChanged(object sender, LocationChangedEventArgs e)
+    {
+        this.SetIsActiveFromNavigationManager();
+    }
+
+    private void SetIsActiveFromNavigationManager()
+    {
+        if(this.ActiveUrlMatch == ActiveUrlMatch.None || this.NavigationManager == null)
+        {
+            return;
+        }
+
+        this.IsActive = this.NavigationManager.BaseUri + Href?.TrimStart('/') == this.NavigationManager.Uri;
+        this.StateHasChanged();
+    }
+
+    public void Dispose()
+    {
+        this.NavigationManager.LocationChanged -= LocationChanged;
+    }
+}

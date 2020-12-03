@@ -1,0 +1,21 @@
+﻿@inherits SingleButtonBase
+
+@namespace Proxoft.SemanticUI.Blazor
+
+@if (this.IsVisible)
+{
+    <button type="@ButtonTypeAttribute()"
+            class="@Class()"
+            disabled="@Disabled"
+            @onclick="OnClick">
+
+        @ChildContent
+    </button>
+}
+
+@code {
+    [Parameter]
+    public ButtonType Type { get; set; } = ButtonType.Button;
+
+    private string ButtonTypeAttribute() => this.Type.ToAttribute();
+}

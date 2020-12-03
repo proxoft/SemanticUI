@@ -1,0 +1,32 @@
+﻿@inherits SemanticComponent
+@namespace Proxoft.SemanticUI.Blazor
+
+<div class="@Class()">
+    @ChildContent
+</div>
+
+@code {
+    public SegmentGroup() : base("segments")
+    {
+    }
+
+    [Parameter]
+    public bool Stacked { get; set; }
+
+    [Parameter]
+    public bool Raised { get; set; }
+
+    [Parameter]
+    public bool Piled { get; set; }
+
+    [Parameter]
+    public Orientation Orientation { get; set; } = Vertical;
+
+    protected override IEnumerable<string> Classes()
+    {
+        yield return "piled".ToClassIf(this.Piled);
+        yield return "stacked".ToClassIf(this.Stacked);
+        yield return "raised".ToClassIf(this.Raised);
+        yield return this.Orientation.ToClass(emptyIf: Vertical);
+    }
+}

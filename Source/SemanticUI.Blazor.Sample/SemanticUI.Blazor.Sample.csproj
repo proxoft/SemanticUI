@@ -1,0 +1,14 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+    <AssemblyName>Proxoft.SemanticUI.Blazor.Sample</AssemblyName>
+    <RootNamespace>Proxoft.SemanticUI.Blazor.Sample</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\SemanticUI.Blazor\SemanticUI.Blazor.csproj" />
+    <ProjectReference Include="..\SemanticUI.Resources\SemanticUI.Resources.csproj" />
+  </ItemGroup>
+
+</Project>

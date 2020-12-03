@@ -1,0 +1,114 @@
+﻿@page "/Modules/Dimmer"
+
+<Example Header="Overlayable Section">
+
+    <Segment>
+        <h3 class="ui header">
+            Overlayable Section
+        </h3>
+        <div>
+            Some text here
+        </div>
+
+        <Dimmer Active="@IsActive1">
+            sadf
+        </Dimmer>
+    </Segment>
+
+    <Button OnClick="() => IsActive1 = !IsActive1">
+        @ActiveText(IsActive1)
+    </Button>
+
+</Example>
+
+<Example Header="Blurring"
+         Text="A dimmable element can blur its contents">
+
+    <Segment Decorations="Example2">
+        <h3 class="ui header">
+            Overlayable Section
+        </h3>
+        <div>
+            Some text here
+        </div>
+
+        <Dimmer Active="@IsActive2">
+        </Dimmer>
+    </Segment>
+
+    <Segment Decorations="Example2">
+        <h3 class="ui header">
+            Overlayable Section
+        </h3>
+        <div>
+            Some text here
+        </div>
+
+        <Dimmer Decorations="DimmerDecorations.Inverted" Active="@IsActive2">
+        </Dimmer>
+    </Segment>
+
+    <Button OnClick="() => IsActive2 = !IsActive2">
+        @ActiveText(IsActive2)
+    </Button>
+
+</Example>
+
+<Example Header="Vertical Alignment"
+         Text="A dimmer can have its content top or bottom aligned.">
+
+    <Segment>
+        <h3 class="ui header">
+            Overlayable Section
+        </h3>
+        <div>
+            Some text here
+        </div>
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+
+        <Dimmer Aligned="Position.Top" Active="@IsActive3">
+            <DimmerContent>
+                <h2 class="ui inverted header">Title</h2>
+                <div class="ui primary button">Add</div>
+                <div class="ui button">View</div>
+            </DimmerContent>
+        </Dimmer>
+    </Segment>
+
+    <Button OnClick="() => IsActive3 = !IsActive3">
+        @ActiveText(IsActive3)
+    </Button>
+
+</Example>
+
+<Example Header="Page Dimmer"
+         Text="A dimmer can be formatted to be fixed to the page.">
+
+    <Dimmer Decorations="DimmerDecorations.Page"
+            Active="@IsActive4">
+        <Button OnClick="() => IsActive4 = false">
+            Close
+        </Button>
+    </Dimmer>
+
+    <Button OnClick="() => IsActive4 = !IsActive4">
+        @ActiveText(IsActive4)
+    </Button>
+
+</Example>
+
+@code {
+    private bool IsActive1 { get; set; }
+    private bool IsActive2 { get; set; }
+    private SegmentDecorations Example2 => this.IsActive2 ? SegmentDecorations.Blurred : SegmentDecorations.NoDecoration;
+    private bool IsActive3 { get; set; }
+    private bool IsActive4 { get; set; }
+
+    private string ActiveText(bool isActive)
+        => isActive ? "Off" : "On";
+}
