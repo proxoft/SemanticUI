@@ -1,0 +1,12 @@
+﻿@inherits HeaderBase
+@namespace Proxoft.SemanticUI.Blazor
+
+<div class="@Class()">
+    @ChildContent
+</div>
+
+@code {
+    public Header() : base("header", true)
+    {
+    }
+}

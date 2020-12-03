@@ -1,0 +1,152 @@
+﻿@inherits SemanticComponent
+@namespace Proxoft.SemanticUI.Blazor
+
+@using Microsoft.AspNetCore.Components.Web;
+
+<div class="@Class()" @onclick="OnMessageClick">
+    @if (HasIcon)
+    {
+        <Icon Name="@Icon" @onclick="OnIconClick" />
+    }
+
+    <div class="content">
+        @if (HasHeader)
+        {
+            <div class="header">
+                @Header
+            </div>
+        }
+
+        @if (HasContent)
+        {
+            <p>
+                @Content
+            </p>
+        }
+        @if (this.HasItems)
+        {
+            <ul>
+                @foreach (var i in Items)
+                {
+                    <li>@i</li>
+                }
+            </ul>
+        }
+
+        @ChildContent
+    </div>
+
+    @if (this.CanClose)
+    {
+        <Icon Name="close" @onclick="OnCloseIconClick" />
+    }
+</div>
+
+@code {
+    private MessageData _data = new MessageData();
+
+    public Message() : base("message")
+    {
+    }
+
+    [Parameter]
+    public MessageData Data
+    {
+        get => _data;
+        set => _data = value ?? new MessageData();
+    }
+
+    [Parameter]
+    public Severity Severity
+    {
+        get => _data.Severity;
+        set => _data.Severity = value;
+    }
+
+    [Parameter]
+    public Size Size
+    {
+        get => _data.Size;
+        set => _data.Size = value;
+    }
+
+    [Parameter]
+    public Color Color
+    {
+        get => _data.Color;
+        set => _data.Color = value;
+    }
+
+    [Parameter]
+    public string Icon
+    {
+        get => _data.Icon;
+        set => _data.Icon = value;
+    }
+
+    private bool HasIcon => !string.IsNullOrWhiteSpace(this.Icon);
+
+    [Parameter]
+    public string Header
+    {
+        get => _data.Header;
+        set => _data.Header = value;
+    }
+
+    private bool HasHeader => !string.IsNullOrWhiteSpace(this.Header);
+
+    [Parameter]
+    public string Content
+    {
+        get => _data.Content;
+        set => _data.Content = value;
+    }
+
+    private bool HasContent => !string.IsNullOrWhiteSpace(this.Content);
+
+    [Parameter]
+    public bool CanClose
+    {
+        get => _data.CanClose;
+        set => _data.CanClose = value;
+    }
+
+    [Parameter]
+    public bool Floating
+    {
+        get => _data.Floating;
+        set => _data.Floating = value;
+    }
+
+    [Parameter]
+    public IEnumerable<string> Items
+    {
+        get => _data.Items;
+        set => _data.Items = value?.ToArray();
+    }
+
+    private bool HasItems => _data.Items?.Length > 0;
+
+    [Parameter]
+    public EventCallback<MouseEventArgs> OnIconClick { get; set; }
+
+    [Parameter]
+    public EventCallback<MouseEventArgs> OnMessageClick { get; set; }
+
+    [Parameter]
+    public EventCallback<MouseEventArgs> OnCloseIconClick { get; set; }
+
+    protected override IEnumerable<string> Classes()
+    {
+        yield return "icon".ToClassIf(this.HasIcon);
+        yield return this.Severity.ToClass();
+
+        if (this.Severity == Severity.NoSeverity)
+        {
+            yield return this.Color.ToClass();
+        }
+
+        yield return this.Size.ToClass();
+        yield return "floating".ToClassIf(this.Floating);
+    }
+}

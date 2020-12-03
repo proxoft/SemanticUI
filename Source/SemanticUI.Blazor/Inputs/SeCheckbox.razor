@@ -1,0 +1,39 @@
+﻿@inherits InputComponent
+@namespace Proxoft.SemanticUI.Blazor
+
+<div class="@Class()">
+    <input type="@HtmlType" checked="@Checked">
+    <label>@Label</label>
+</div>
+
+@code {
+    public SeCheckbox() : base("checkbox")
+    {
+    }
+
+    [Parameter]
+    public bool Checked { get; set; }
+
+    [Parameter]
+    public CheckboxType Type { get; set; }
+
+    [Parameter]
+    public string Label { get; set; }
+
+    [Parameter]
+    public bool Fitted { get; set; }
+
+    private string HtmlType => this.Type == CheckboxType.Radio ? "radion" : "checkbox";
+
+    protected override IEnumerable<string> Classes()
+    {
+        return base.Classes().Concat(this.ClassesPrivate());
+    }
+
+    protected IEnumerable<string> ClassesPrivate()
+    {
+        yield return this.State.ToClass();
+        yield return "fitted".ToClassIf(this.Fitted);
+        yield return this.Type.ToClass();
+    }
+}

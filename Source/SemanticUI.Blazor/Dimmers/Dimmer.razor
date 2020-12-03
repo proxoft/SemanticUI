@@ -1,0 +1,28 @@
+﻿@inherits SemanticComponent
+@namespace Proxoft.SemanticUI.Blazor
+
+<div class="@Class()">
+    @ChildContent
+</div>
+
+@code {
+    public Dimmer() : base("dimmer")
+    {
+    }
+
+    [Parameter]
+    public bool Active { get; set; }
+
+    [Parameter]
+    public DimmerDecorations Decorations { get; set; }
+
+    [Parameter]
+    public Position Aligned { get; set; }
+
+    protected override IEnumerable<string> Classes()
+    {
+        yield return this.Decorations.ToClass();
+        yield return "active".ToClassIf(this.Active);
+        yield return this.Aligned.ToVerticalAlignmentClass();
+    }
+}

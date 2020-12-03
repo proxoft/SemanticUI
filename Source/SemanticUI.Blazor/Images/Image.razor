@@ -1,0 +1,40 @@
+﻿@inherits SemanticComponent
+@namespace Proxoft.SemanticUI.Blazor
+
+<img src="@Src" class="@Class()" alt="@Alt" />
+
+@code {
+    public Image() : base("image")
+    {
+    }
+
+    [Parameter]
+    public string Src { get; set; }
+
+    [Parameter]
+    public string Alt { get; set; }
+
+    [Parameter]
+    public ImageDecorations Decorations { get; set; }
+
+    [Parameter]
+    public Size Size { get; set; }
+
+    [Parameter]
+    public Position VerticallyAligned { get; set; }
+
+    [Parameter]
+    public Position Spaced { get; set; }
+
+    [Parameter]
+    public Position Floated { get; set; }
+
+    protected override IEnumerable<string> Classes()
+    {
+        yield return this.Decorations.ToClass();
+        yield return this.Size.ToClass();
+        yield return this.VerticallyAligned.ToVerticalAlignmentClass();
+        yield return this.Spaced.ToSpacedClass();
+        yield return this.Floated.ToFloatedClass();
+    }
+}

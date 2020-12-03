@@ -1,0 +1,25 @@
+﻿@inherits SemanticComponent
+@namespace Proxoft.SemanticUI.Blazor
+
+<div class="@Class()">
+    @ChildContent
+</div>
+
+@code {
+    public CardsPanel() : base("cards")
+    {
+    }
+
+    public Amount Count { get; set; }
+
+    public bool Stackable { get; set; }
+
+    public bool Doubling { get; set; }
+
+    protected override IEnumerable<string> Classes()
+    {
+        yield return this.Count.ToClass(of: string.Empty);
+        yield return "stackable".ToClassIf(this.Stackable);
+        yield return "doubling".ToClassIf(this.Doubling);
+    }
+}

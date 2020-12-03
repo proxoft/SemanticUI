@@ -4,7 +4,6 @@
         <TargetFramework>net5.0</TargetFramework>
         <AssemblyName>Proxoft.SemanticUI.Core</AssemblyName>
         <RootNamespace>Proxoft.SemanticUI.Core</RootNamespace>
-        <PackageProjectUrl>https://github.com/proxoft/SemanticUI</PackageProjectUrl>
         <RepositoryUrl>https://github.com/proxoft/SemanticUI</RepositoryUrl>
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
         <Version>1.0.0</Version>

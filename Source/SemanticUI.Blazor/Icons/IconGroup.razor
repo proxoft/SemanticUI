@@ -1,0 +1,20 @@
+﻿@inherits SemanticComponent
+@namespace  Proxoft.SemanticUI.Blazor
+
+<i class="@Class()">
+    @ChildContent
+</i>
+
+@code {
+    public IconGroup() : base("icons")
+    {
+    }
+
+    [Parameter]
+    public Size Size { get; set; }
+
+    protected override IEnumerable<string> Classes()
+    {
+        yield return this.Size.ToClass();
+    }
+}

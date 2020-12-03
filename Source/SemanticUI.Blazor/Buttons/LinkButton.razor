@@ -1,0 +1,21 @@
+﻿@inherits SingleButtonBase
+@namespace Proxoft.SemanticUI.Blazor
+
+@if (this.IsVisible)
+{
+    <a href="@Href"
+       target="@Target"
+       class="@Class()"
+       disabled="@Disabled">
+
+        @ChildContent
+    </a>
+}
+
+@code {
+    [Parameter]
+    public string Href { get; set; }
+
+    [Parameter]
+    public string Target { get; set; }
+}

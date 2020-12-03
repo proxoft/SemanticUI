@@ -1,0 +1,24 @@
+﻿@inherits SemanticComponent
+@namespace Proxoft.SemanticUI.Blazor
+
+<div class="@Class()">
+    @ChildContent
+</div>
+
+@code {
+    public Form() : base("form")
+    {
+    }
+
+    [Parameter]
+    public Size Size { get; set; }
+
+    [Parameter]
+    public Severity Severity { get; set; }
+
+    protected override IEnumerable<string> Classes()
+    {
+        yield return this.Size.ToClass();
+        yield return this.Severity.ToClass();
+    }
+}

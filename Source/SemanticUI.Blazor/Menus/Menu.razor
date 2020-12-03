@@ -1,0 +1,28 @@
+﻿@inherits SemanticComponent
+@namespace Proxoft.SemanticUI.Blazor
+
+<div class="@Class()">
+    @ChildContent
+</div>
+
+@code {
+    public Menu() : base("menu")
+    {
+    }
+
+    [Parameter]
+    public Orientation Orientation { get; set; } = Horizontal;
+
+    [Parameter]
+    public Position Alignment { get; set; } = Left;
+
+    [Parameter]
+    public MenuDecorations Decorations { get; set; }
+
+    protected override IEnumerable<string> Classes()
+    {
+        yield return this.Orientation.ToClass();
+        yield return this.Decorations.ToClass();
+        yield return this.Alignment.ToAlignmentClass();
+    }
+}

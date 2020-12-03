@@ -1,0 +1,33 @@
+﻿@inherits SemanticComponent
+@namespace Proxoft.SemanticUI.Blazor
+
+<div class="@Class()"
+     @onclick="OnClick">
+
+    @if (!string.IsNullOrWhiteSpace(this.IconName))
+    {
+        <Icon Name="@IconName" />
+    }
+
+    @ChildContent
+</div>
+
+@code {
+    public Step(): base("step", false)
+    {
+    }
+
+    [Parameter]
+    public string IconName { get; set; }
+
+    [Parameter]
+    public StepDecorations Decorations { get; set; }
+
+    [Parameter]
+    public EventCallback<MouseEventArgs> OnClick { get; set; }
+
+    protected override IEnumerable<string> Classes()
+    {
+        yield return this.Decorations.ToClass();
+    }
+}

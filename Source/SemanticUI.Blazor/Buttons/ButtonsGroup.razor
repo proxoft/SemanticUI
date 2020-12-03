@@ -1,0 +1,40 @@
+﻿@inherits ButtonBase<ButtonsGroupData>
+@namespace Proxoft.SemanticUI.Blazor
+
+@if (this.IsVisible)
+{
+    <div class="@Class()">
+        @ChildContent
+    </div>
+}
+
+@code {
+    public ButtonsGroup() : base("buttons")
+    {
+    }
+
+    [Parameter]
+    public Orientation Orientation
+    {
+        get => this.Data.Orientation;
+        set => this.Data.Orientation = value;
+    }
+
+    [Parameter]
+    public Amount Amount
+    {
+        get => this.Data.Amount;
+        set => this.Data.Amount = value;
+    }
+
+    protected override IEnumerable<string> Classes()
+    {
+        return base.Classes()
+            .Concat(
+                new[] {
+                    this.Orientation.ToClass(),
+                    this.Amount.ToClass(of: "")
+                });
+
+    }
+}

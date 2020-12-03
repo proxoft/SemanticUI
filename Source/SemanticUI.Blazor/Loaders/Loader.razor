@@ -1,0 +1,33 @@
+﻿@inherits SemanticComponent
+@namespace Proxoft.SemanticUI.Blazor
+
+<div class="@Class()">
+    @if (!string.IsNullOrWhiteSpace(this.Text)) {
+        @this.Text
+    }
+</div>
+
+@code {
+
+    public Loader() : base("loader")
+    {
+    }
+
+    bool Active { get; set; } = true;
+
+    [Parameter]
+    public string Text { get; set; }
+
+    [Parameter]
+    public LoaderDecorations Decorations { get; set; }
+
+    [Parameter]
+    public Size Size { get; set; }
+
+    protected override IEnumerable<string> Classes()
+    {
+        yield return "active".ToClassIf(this.Active);
+        yield return this.Decorations.ToClass();
+        yield return this.Size.ToClass();
+    }
+}

@@ -1,0 +1,22 @@
+﻿@inherits LabelBase
+@namespace Proxoft.SemanticUI.Blazor
+
+<div class="@Class()">
+    @ChildContent
+</div>
+
+@code {
+    [Parameter]
+    public Position Attached { get; set; }
+
+    protected override IEnumerable<string> Classes()
+    {
+        return base.Classes()
+            .Concat(this.ClassesPrivate());
+    }
+
+    private IEnumerable<string> ClassesPrivate()
+    {
+        yield return this.Attached.ToAttachedClass();
+    }
+}
