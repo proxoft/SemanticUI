@@ -33439,6 +33439,15 @@ select.ui.dropdown {
   opacity: 1;
 }
 
+.ui.vertical.menu .ui.simple.active.dropdown > .menu,
+.ui.vertical.menu .ui.simple.dropdown:hover > .menu {
+    overflow: visible;
+    width: auto;
+    height: auto;
+    top: 0 !important;
+    opacity: 1;
+}
+
 .ui.simple.dropdown > .menu > .item:active > .menu,
 .ui.simple.dropdown:hover > .menu > .item:hover > .menu {
   overflow: visible;
