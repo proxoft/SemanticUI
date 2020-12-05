@@ -1,15 +1,10 @@
-﻿@inherits ContainerSemanticComponent
+﻿@inherits MenuBase
 @namespace Proxoft.SemanticUI.Blazor
 
 <DivTemplate Component="this" />
 
 @code {
-    public SubMenu() : base("menu", false)
+    public SubMenu() : base(false)
     {
-    }
-
-    protected override IEnumerable<string> Classes()
-    {
-        yield break;
     }
 }
