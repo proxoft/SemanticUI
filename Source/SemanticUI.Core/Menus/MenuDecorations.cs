@@ -8,26 +8,31 @@ namespace Proxoft.SemanticUI.Core
     public enum MenuDecorations
     {
         None       = 0,
-        Icon       = 1 << 0,
-        Labeled    = 1 << 1,
-        Pointing   = 1 << 2,
-        Inverted   = 1 << 3,
-        Fixed      = 1 << 4,
-        Fluid      = 1 << 5,
-        Compact    = 1 << 6,
-        Borderless = 1 << 7
+        Borderless = 1 << 1,
+        Compact    = 1 << 2,
+        Icon       = 1 << 3,
+        Inverted   = 1 << 4,
+        Labeled    = 1 << 5,
+        Left       = 1 << 6,
+        Fixed      = 1 << 7,
+        Fluid      = 1 << 8,
+        Pagination = 1 << 9,
+        Pointing   = 1 << 10,
+        Secondary  = 1 << 11,
+        Tabular    = 1 << 12,
+        Text       = 1 << 13
     }
 
     public static class MenuDecorationsExtensions
     {
-        private static readonly MenuDecorations[] allValues = System.Enum.GetValues(typeof(MenuDecorations))
+        private static readonly MenuDecorations[] _allValues = System.Enum.GetValues(typeof(MenuDecorations))
                 .Cast<MenuDecorations>()
                 .ToArray();
 
 
         public static string ToClass(this MenuDecorations decorations)
         {
-            var classes = allValues
+            var classes = _allValues
                 .Select(v =>
                 {
                     return decorations.HasFlag(v)

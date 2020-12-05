@@ -7,6 +7,9 @@
     [Parameter]
     public Position Attached { get; set; }
 
+    [Parameter]
+    public Position Pointing { get; set; }
+
     protected override IEnumerable<string> Classes()
     {
         return base.Classes()
@@ -16,5 +19,6 @@
     private IEnumerable<string> ClassesPrivate()
     {
         yield return this.Attached.ToAttachedClass();
+        yield return this.Pointing.ToPointingClass();
     }
 }

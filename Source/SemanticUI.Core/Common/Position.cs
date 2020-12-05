@@ -27,42 +27,36 @@ namespace Proxoft.SemanticUI.Core
 
     public static class PositionExtensions
     {
-        public static string ToAlignmentClass(this Position position)
+        public static string ToAlignmentClass(this Position position, Position omitIf = Position.Left)
         {
-            switch (position)
+            if(position == omitIf)
             {
-                case Left:
-                case Right:
-                case Center:
-                    return position.ToString().ToLower() + " aligned";
-                default:
-                    return string.Empty;
+                return string.Empty;
             }
+
+            return position switch
+            {
+                Left or Right or Center => position.ToString().ToLower() + " aligned",
+                _ => string.Empty,
+            };
         }
 
         public static string ToVerticalAlignmentClass(this Position position)
         {
-            switch (position)
+            return position switch
             {
-                case Top:
-                case Bottom:
-                case Middle:
-                    return position.ToString().ToLower() + " aligned";
-                default:
-                    return string.Empty;
-            }
+                Top or Bottom or Middle => position.ToString().ToLower() + " aligned",
+                _ => string.Empty,
+            };
         }
 
         public static string ToFloatedClass(this Position position)
         {
-            switch (position)
+            return position switch
             {
-                case Right:
-                case Left:
-                    return position.ToString().ToLower() + " floated";
-                default:
-                    return string.Empty;
-            }
+                Right or Left => position.ToString().ToLower() + " floated",
+                _ => string.Empty,
+            };
         }
 
         public static string ToSpacedClass(this Position position)
@@ -127,6 +121,18 @@ namespace Proxoft.SemanticUI.Core
             return position.HasFlag(Right)
                 ? "right"
                 : string.Empty;
+        }
+
+        public static string ToPointingClass(this Position position)
+        {
+            return position switch
+            {
+                Top => "pointing",
+                Bottom => "below pointing",
+                Left => "left pointing",
+                Right => "right poiting",
+                _ => string.Empty
+            };
         }
 
         private static string HorizontalPosition(this Position position, bool ignoreCenter = false)

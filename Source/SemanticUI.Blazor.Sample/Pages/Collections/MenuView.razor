@@ -1,0 +1,333 @@
+﻿@page "/Collections/Menu"
+
+<h3>Menu</h3>
+
+<Example Header="Menu"
+         Text="A menu">
+    <Menu Items="Three">
+        <Item IsActive="true">Editorials</Item>
+        <Item>Reviews</Item>
+        <Item>Upcoming events</Item>
+    </Menu>
+</Example>
+
+
+<Example Header="Secondary Menu"
+         Text="A menu can adjust its appearance to de-emphasize its contents">
+    <Menu Decorations="MenuDecorations.Secondary">
+        <LinkItem IsActive="true">
+            Home
+        </LinkItem>
+        <LinkItem>
+            Messages
+        </LinkItem>
+        <LinkItem>
+            Friends
+        </LinkItem>
+
+        <SubMenu Alignment="Right">
+            <Item>
+                <SeInput Placeholder="Search..."
+                         Decorations="InputDecorations.IconRight">
+                    <Right>
+                        <Icon Name="search" Decorations="IconDecorations.Link" />
+                    </Right>
+                </SeInput>
+            </Item>
+            <LinkItem>
+                Logout
+            </LinkItem>
+        </SubMenu>
+    </Menu>
+</Example>
+
+<Example Header="Pointing"
+         Text="A menu can point to show its relationship to nearby content">
+
+    <Menu Decorations="MenuDecorations.Pointing">
+        <LinkItem IsActive="true">
+            Home
+        </LinkItem>
+        <LinkItem>
+            Messages
+        </LinkItem>
+        <LinkItem>
+            Friends
+        </LinkItem>
+
+        <SubMenu Alignment="Right">
+            <Item>
+                <SeInput Placeholder="Search..."
+                         Decorations="InputDecorations.IconRight">
+                    <Right>
+                        <Icon Name="search" Decorations="IconDecorations.Link" />
+                    </Right>
+                </SeInput>
+            </Item>
+        </SubMenu>
+    </Menu>
+</Example>
+
+
+<Example Header="Pointing"
+         Text="A menu can point to show its relationship to nearby content">
+
+    <Menu Decorations="MenuDecorations.Pointing | MenuDecorations.Secondary">
+        <LinkItem IsActive="true">
+            Home
+        </LinkItem>
+        <LinkItem>
+            Messages
+        </LinkItem>
+        <LinkItem>
+            Friends
+        </LinkItem>
+
+        <SubMenu Alignment="Right">
+            <LinkItem>
+                Logout
+            </LinkItem>
+        </SubMenu>
+    </Menu>
+    <Segment>
+        <p></p>
+    </Segment>
+</Example>
+
+<Example Header="Tabular"
+         Text="A menu can be formatted to show tabs of information">
+    <Menu Decorations="MenuDecorations.Tabular">
+        <LinkItem IsActive="true">
+            Bio
+        </LinkItem>
+        <LinkItem>
+            Photos
+        </LinkItem>
+    </Menu>
+
+    <Menu Decorations="MenuDecorations.Tabular"
+          Attached="Position.Top">
+        <LinkItem IsActive="true">
+            Bio
+        </LinkItem>
+        <LinkItem>
+            Photos
+        </LinkItem>
+    </Menu>
+    <Segment Attached="Position.Bottom">
+        <img src="Images/Wireframe/short-paragraph.png" />
+    </Segment>
+
+
+    <Segment Attached="Position.Top">
+        <img src="Images/Wireframe/short-paragraph.png" />
+    </Segment>
+    <Menu Decorations="MenuDecorations.Tabular"
+          Attached="Position.Bottom">
+        <LinkItem IsActive="true">
+            Bio
+        </LinkItem>
+        <LinkItem>
+            Photos
+        </LinkItem>
+    </Menu>
+</Example>
+
+<Example Header="Vertical menu">
+
+    <Grid>
+        <Column Wide="Four">
+            <Menu Orientation="Vertical"
+                  Decorations="MenuDecorations.Fluid | MenuDecorations.Tabular">
+                <LinkItem IsActive="true">
+                    Bio
+                </LinkItem>
+                <LinkItem>
+                    Pics
+                </LinkItem>
+                <LinkItem>
+                    Companies
+                </LinkItem>
+                <LinkItem>
+                    Links
+                </LinkItem>
+            </Menu>
+        </Column>
+        <Column Wide="Twelve">
+            <img src="Images/Wireframe/short-paragraph.png" />
+        </Column>
+    </Grid>
+
+    <Grid>
+
+        <Column Wide="Twelve">
+            <img src="Images/Wireframe/short-paragraph.png" />
+        </Column>
+
+        <Column Wide="Four">
+            <Menu Orientation="Vertical"
+                  Decorations="MenuDecorations.Fluid | MenuDecorations.Tabular"
+                  Alignment="Right">
+                <LinkItem IsActive="true">
+                    Bio
+                </LinkItem>
+                <LinkItem>
+                    Pics
+                </LinkItem>
+                <LinkItem>
+                    Companies
+                </LinkItem>
+                <LinkItem>
+                    Links
+                </LinkItem>
+            </Menu>
+        </Column>
+    </Grid>
+</Example>
+
+<Example Header="Text"
+         Text="A menu can be formatted for text content">
+    <Menu Decorations="MenuDecorations.Text">
+        <Item Decorations="ItemDecorations.Header">
+            Sorted
+        </Item>
+        <LinkItem IsActive="true">
+            Closest
+        </LinkItem>
+        <LinkItem>
+            Most Comments
+        </LinkItem>
+        <LinkItem>
+            Most Popular
+        </LinkItem>
+    </Menu>
+</Example>
+
+<Example Header="Vertical Menu"
+         Text="A vertical menu displays elements vertically..">
+    <Menu Orientation="Vertical">
+        <LinkItem IsActive="true"
+                  Color="Teal">
+            Inbox
+            <Label Color="Teal"
+                   Pointing="Position.Left">
+                1
+            </Label>
+        </LinkItem>
+        <LinkItem>
+            Spam
+            <Label>
+                51
+            </Label>
+        </LinkItem>
+        <LinkItem>
+            Updates
+            <Label>
+                1
+            </Label>
+        </LinkItem>
+    </Menu>
+
+    <Menu Orientation="Vertical"
+          Decorations="MenuDecorations.Secondary">
+        <LinkItem IsActive="true">
+            Account
+        </LinkItem>
+        <LinkItem>
+            Settings
+        </LinkItem>
+        <DropdownItem RightIcon="dropdown">
+            Display options
+
+            <Menu>
+                <Header>Text size</Header>
+                <LinkItem>Small</LinkItem>
+                <LinkItem>Medium</LinkItem>
+                <LinkItem>Large</LinkItem>
+            </Menu>
+
+        </DropdownItem>
+    </Menu>
+
+    <Menu Orientation="Vertical"
+          Decorations="MenuDecorations.Text">
+        <Item Decorations="ItemDecorations.Header">Sort by</Item>
+        <LinkItem IsActive="true">
+            Closest
+        </LinkItem>
+        <LinkItem>
+            Most Comments
+        </LinkItem>
+        <LinkItem>
+            Most popular
+        </LinkItem>
+    </Menu>
+
+    <Menu Orientation="Vertical"
+          Decorations="MenuDecorations.Pointing">
+        <LinkItem IsActive="true">
+            Home
+        </LinkItem>
+        <LinkItem>
+            Messages
+        </LinkItem>
+        <LinkItem>
+            Friends
+        </LinkItem>
+    </Menu>
+
+    <Menu Orientation="Vertical"
+          Decorations="MenuDecorations.Pointing | MenuDecorations.Secondary">
+        <LinkItem IsActive="true">
+            Home
+        </LinkItem>
+        <LinkItem>
+            Messages
+        </LinkItem>
+        <LinkItem>
+            Friends
+        </LinkItem>
+    </Menu>
+</Example>
+
+<Example Header="Pagination"
+         Text="A pagination menu is specially formatted to present links to pages of content">
+    <Menu Decorations="MenuDecorations.Pagination">
+        <LinkItem IsActive="true">
+            1
+        </LinkItem>
+        <Item Decorations="ItemDecorations.Disabled">
+            ...
+        </Item>
+        <LinkItem>
+            10
+        </LinkItem>
+        <LinkItem>
+            11
+        </LinkItem>
+        <LinkItem>
+            12
+        </LinkItem>
+    </Menu>
+</Example>
+
+<Example Header="Menu"
+         Text="A menu may contain another menu group in the same level as menu items.">
+    <Menu>
+        <LinkItem>
+            Browse
+        </LinkItem>
+        <LinkItem>
+            Submit
+        </LinkItem>
+
+        <SubMenu Alignment="Right">
+            <LinkItem>Sign Up</LinkItem>
+            <LinkItem>Help</LinkItem>
+        </SubMenu>
+    </Menu>
+</Example>
+
+@code {
+
+}

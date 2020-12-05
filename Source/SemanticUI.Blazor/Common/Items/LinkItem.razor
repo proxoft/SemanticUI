@@ -18,6 +18,10 @@
 </a>
 
 @code {
+    public LinkItem() : base("item", false)
+    {
+    }
+
     [Inject]
     public NavigationManager NavigationManager { get; set; }
 
@@ -51,7 +55,7 @@
 
     private void SetIsActiveFromNavigationManager()
     {
-        if(this.ActiveUrlMatch == ActiveUrlMatch.None || this.NavigationManager == null)
+        if (this.ActiveUrlMatch == ActiveUrlMatch.None || this.NavigationManager == null)
         {
             return;
         }
