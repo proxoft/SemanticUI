@@ -10,7 +10,8 @@ namespace Proxoft.SemanticUI.Core
         None     = 0,
         Disabled = 1 << 0,
         Fitted   = 1 << 1,
-        Header   = 1 << 2
+        Header   = 1 << 2,
+        Link     = 1 << 3
     }
 
     public static class ItemDecorationsExtensions
