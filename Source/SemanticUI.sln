@@ -15,6 +15,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SemanticUI.Blazor.Sample", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SemanticUI.TagHelpers.Sample", "SemanticUI.TagHelpers.Sample\SemanticUI.TagHelpers.Sample.csproj", "{C69D6F41-6F53-4BC9-BEB5-ACE250B8EC40}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Samples", "Samples", "{7A4B82EF-23B5-46ED-9908-DEB88F01AB44}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -48,6 +50,9 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{185B9F09-AA3F-4787-9C1A-BDC93FCB9D70} = {7A4B82EF-23B5-46ED-9908-DEB88F01AB44}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {77A25B15-A0AC-4057-A425-E2459A7FB78E}
