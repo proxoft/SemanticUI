@@ -9,7 +9,7 @@
         <PackageProjectUrl></PackageProjectUrl>
         <RepositoryUrl>https://github.com/proxoft/SemanticUI</RepositoryUrl>
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
-        <Version>1.1.0</Version>
+        <Version>1.2.0</Version>
         <PackageIcon>logo.png</PackageIcon>
         <Authors>Proxoft</Authors>
         <Company>Proxoft s.r.o.</Company>
