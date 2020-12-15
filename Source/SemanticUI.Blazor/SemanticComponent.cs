@@ -39,6 +39,9 @@ namespace Proxoft.SemanticUI.Blazor
         [Parameter]
         public EventCallback<MouseEventArgs> OnClick { get; set; }
 
+        [Parameter]
+        public string CssClass { get; set; }
+
         protected string CssName { get; set; }
 
         protected bool PrefixUiClass { get; set; }
@@ -52,6 +55,7 @@ namespace Proxoft.SemanticUI.Blazor
             .Concat(this.Classes())
             .Concat(new [] { this.CssName })
             .Concat(this.AfterCssNameClasses())
+            .Concat(new[] { this.CssClass })
             .ToClass();
         }
 

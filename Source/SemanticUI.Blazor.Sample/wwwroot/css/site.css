@@ -6,3 +6,7 @@ html, body {
     display: grid;
     grid-template-columns: 250px auto;
 }
+
+.ui.input.olive-background > input {
+    background-color: rgba(233, 246, 187, 0.25);
+}
