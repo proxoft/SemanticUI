@@ -2,7 +2,7 @@
 @namespace Proxoft.SemanticUI.Blazor
 
 <DivTemplate Component="this">
-    <input type="@HtmlType" checked="@Checked">
+    <input type="@HtmlType" @bind="@Checked">
     <label>@Label</label>
 </DivTemplate>
 
