@@ -5,6 +5,13 @@ namespace Proxoft.SemanticUI.Core
 {
     public static class ClassTools
     {
+        public static string ConcatIfNotEmpty(this string prefix, string suffix)
+        {
+            return string.IsNullOrWhiteSpace(prefix)
+                ? string.Empty
+                : $"{prefix} {suffix}";
+        }
+
         public static string ToClass(this IEnumerable<string> classes)
             => string.Join(" ", classes.Where(c => !string.IsNullOrWhiteSpace(c)));
 

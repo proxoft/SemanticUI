@@ -1,0 +1,80 @@
+﻿@page "/Elements/Icon"
+<h1> Icon </h1>
+
+<Segment>
+    <ExampleDescription Header="Disabled"
+                        Text="An icon can show that it is disabled" />
+    <Icon Name="cloud"
+          Decorations="IconDecorations.Disabled" />
+</Segment>
+
+<Segment>
+    <ExampleDescription Header="Loading"
+                        Text="An icon can be used as a simple loader"/>
+    <Icon Name="spinner "
+          Decorations="IconDecorations.Loading" />
+</Segment>
+
+<Segment>
+    <ExampleDescription Header="Rotated"
+                        Text="An icon can be rotated"/>
+    <Icon Name="cloud"
+          Decorations="IconDecorations.RotatedClockwise" />
+
+    <Icon Name="cloud"
+          Decorations="IconDecorations.RotatedCounterClockwise" />
+</Segment>
+
+
+<Segment>
+    <ExampleDescription Header="Bordered"
+                        Text="An icon can be formatted to appear bordered"/>
+    <Icon Name="users"
+          Decorations="IconDecorations.Bordered" />
+
+    <Icon Name="users"
+          Color="Teal"
+          Decorations="IconDecorations.Bordered" />
+
+    <Icon Name="users"
+          Decorations="IconDecorations.Bordered | IconDecorations.Inverted" />
+
+    <Icon Name="users"
+          Color="Teal"
+          Decorations="IconDecorations.Bordered | IconDecorations.Inverted" />
+</Segment>
+
+<h2>Groups</h2>
+
+<Segment>
+    <ExampleDescription Header="Icons"
+                        Text="Several icons can be used together as a group" />
+
+    <IconGroup Size="Huge">
+        <Icon Name="dont"
+              Color="Red"
+              Size="Big" />
+
+        <Icon Name="user" />
+    </IconGroup>
+    
+</Segment>
+
+
+<Segment>
+    <ExampleDescription Header="Corner icon"
+                        Text="A group of icons can display a smaller corner icon" />
+
+    <IconGroup Size="Big">
+        <Icon Name="puzzle" />
+        <Icon Name="add"
+              Corner="Position.Right" />
+    </IconGroup>
+
+    <IconGroup Size="Big">
+        <Icon Name="puzzle" />
+        <Icon Name="add"
+              Corner="Position.Bottom | Position.Left" />
+    </IconGroup>
+    
+</Segment>

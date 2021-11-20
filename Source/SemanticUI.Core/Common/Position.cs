@@ -27,7 +27,7 @@ namespace Proxoft.SemanticUI.Core
 
     public static class PositionExtensions
     {
-        public static string ToAlignmentClass(this Position position, Position omitIf = Position.Left)
+        public static string ToAlignmentClass(this Position position, Position omitIf = Left)
         {
             if(position == omitIf)
             {
@@ -92,6 +92,12 @@ namespace Proxoft.SemanticUI.Core
             }
 
             return string.Empty;
+        }
+
+        public static string ToCornerClass(this Position position)
+        {
+            var p = position.ToTopBottomRightLeft(false, false);
+            return p.ConcatIfNotEmpty("corner");
         }
 
         public static string ToAttachedClass(this Position position)
@@ -168,6 +174,52 @@ namespace Proxoft.SemanticUI.Core
             }
 
             return string.Empty;
+        }
+
+        private static string ToTopBottomRightLeft(this Position position, bool allowMiddle, bool allowCenter)
+        {
+            var result = $"{position.ToTopBottom(allowMiddle)} {position.ToLeftRight(allowCenter)}";
+            return result.Trim();
+        }
+
+        private static string ToTopBottom(this Position position, bool allowMiddle)
+        {
+            if (position.HasFlag(Top))
+            {
+                return "top";
+            }
+
+            if(allowMiddle && position.HasFlag(Middle))
+            {
+                return "middle";
+            }
+
+            if (position.HasFlag(Bottom))
+            {
+                return "bottom";
+            }
+
+            return "";
+        }
+
+        private static string ToLeftRight(this Position position, bool allowCenter)
+        {
+            if (position.HasFlag(Left))
+            {
+                return "left";
+            }
+
+            if (allowCenter && position.HasFlag(Center))
+            {
+                return "center";
+            }
+
+            if (position.HasFlag(Right))
+            {
+                return "right";
+            }
+
+            return "";
         }
     }
 }
