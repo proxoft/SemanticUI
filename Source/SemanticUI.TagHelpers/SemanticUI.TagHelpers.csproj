@@ -3,11 +3,11 @@
     <PropertyGroup>
         <TargetFramework>net5.0</TargetFramework>
          <AssemblyName>Proxoft.SemanticUI.TagHelpers</AssemblyName>
-        <RootNamespace>Proxoft.SemanticUI.TagHelpers  </RootNamespace>
+        <RootNamespace>Proxoft.SemanticUI.TagHelpers</RootNamespace>
         <RazorLangVersion>3.0</RazorLangVersion>
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
         <RepositoryUrl>https://github.com/proxoft/SemanticUI</RepositoryUrl>
-        <Version>1.0.1</Version>
+        <Version>1.1.0</Version>
         <Authors>Proxoft</Authors>
         <Company>Proxoft s.r.o.</Company>
         <Product>SemanticUI</Product>

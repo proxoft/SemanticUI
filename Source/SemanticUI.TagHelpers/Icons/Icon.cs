@@ -44,6 +44,12 @@ namespace Proxoft.SemanticUI.TagHelpers
             set => _data.Decorations = value;
         }
 
+        public Position Corner
+        {
+            get => _data.Corner;
+            set => _data.Corner = value;
+        }
+
         protected override IEnumerable<string> Classes()
         {
             yield return _data.ToClass();
