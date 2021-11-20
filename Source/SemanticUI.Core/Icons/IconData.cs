@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace Proxoft.SemanticUI.Core
 {
@@ -11,6 +10,8 @@ namespace Proxoft.SemanticUI.Core
 
         public Color Color { get; set; } = Color.NoColor;
 
+        public Position Corner { get; set; } = Position.Default;
+
         public IconDecorations Decorations { get; set; }
 
         public string ToClass() => this.Classes().ToClass();
@@ -21,6 +22,7 @@ namespace Proxoft.SemanticUI.Core
             yield return this.Size.ToClass();
             yield return this.Color.ToClass();
             yield return this.Decorations.ToClass();
+            yield return this.Corner.ToCornerClass();
         }
     }
 }

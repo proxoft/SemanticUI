@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.30709.64
+# Visual Studio Version 17
+VisualStudioVersion = 17.1.31903.286
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SemanticUI.Core", "SemanticUI.Core\SemanticUI.Core.csproj", "{1CE5C392-953B-4045-8C7D-96A83B70AD4D}"
 EndProject
@@ -16,6 +16,11 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SemanticUI.TagHelpers.Sample", "SemanticUI.TagHelpers.Sample\SemanticUI.TagHelpers.Sample.csproj", "{C69D6F41-6F53-4BC9-BEB5-ACE250B8EC40}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Samples", "Samples", "{7A4B82EF-23B5-46ED-9908-DEB88F01AB44}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "SolutionItems", "SolutionItems", "{441D5F47-5F0A-4C1D-A700-B674B77405FD}"
+	ProjectSection(SolutionItems) = preProject
+		global.json = global.json
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
