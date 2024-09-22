@@ -1,10 +1,23 @@
-﻿@namespace Proxoft.SemanticUI.Blazor
+﻿@inherits Proxoft.SemanticUI.Blazor.SemanticComponent
+@namespace Proxoft.SemanticUI.Blazor
 
-<tfoot>
+<tfoot class="@Class()" 
+       @onclick="OnClick"
+       @attributes="Attributes()">
     @ChildContent
 </tfoot>
 
-@code {
+@code
+{
+    public TFoot() : base("", prefixUiClass: false)
+    {
+    }
+
     [Parameter]
     public RenderFragment ChildContent { get; set; }
+
+    protected override IEnumerable<string> Classes()
+    {
+        yield break;
+    }
 }
