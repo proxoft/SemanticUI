@@ -2,7 +2,8 @@
 @namespace Proxoft.SemanticUI.Blazor
 
 <table class="@Class()"
-       @attributes="UnmatchedAttributes">
+       @onclick="OnClick"
+       @attributes="Attributes()">
     @ChildContent
 </table>
 
