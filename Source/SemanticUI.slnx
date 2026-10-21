@@ -1,0 +1,13 @@
+<Solution>
+  <Folder Name="/Samples/">
+    <Project Path="SemanticUI.Blazor.Sample/SemanticUI.Blazor.Sample.csproj" />
+    <Project Path="SemanticUI.TagHelpers.Sample/SemanticUI.TagHelpers.Sample.csproj" />
+  </Folder>
+  <Folder Name="/SolutionItems/">
+    <File Path="global.json" />
+  </Folder>
+  <Project Path="SemanticUI.Blazor/SemanticUI.Blazor.csproj" />
+  <Project Path="SemanticUI.Core/SemanticUI.Core.csproj" />
+  <Project Path="SemanticUI.Resources/SemanticUI.Resources.csproj" />
+  <Project Path="SemanticUI.TagHelpers/SemanticUI.TagHelpers.csproj" />
+</Solution>
