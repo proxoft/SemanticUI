@@ -24,22 +24,22 @@
     }
 
     [Parameter]
-    public string Value { get; set; }
+    public required string Value { get; set; }
 
     [Parameter]
     public EventCallback<string> ValueChanged { get; set; }
 
     [Parameter]
-    public string Placeholder { get; set; }
+    public string? Placeholder { get; set; }
 
     [Parameter]
     public InputDecorations Decorations { get; set; }
 
     [Parameter]
-    public RenderFragment Left { get; set; }
+    public RenderFragment? Left { get; set; }
 
     [Parameter]
-    public RenderFragment Right { get; set; }
+    public RenderFragment? Right { get; set; }
 
     [Parameter]
     public EventCallback<KeyboardEventArgs> OnKeyDown { get; set; }
@@ -63,7 +63,7 @@
 
     private void InputValueChanged(ChangeEventArgs e)
     {
-        this.Value = e.Value as string;
+        this.Value = e.Value as string ?? "";
         this.ValueChanged.InvokeAsync(this.Value);
     }
 

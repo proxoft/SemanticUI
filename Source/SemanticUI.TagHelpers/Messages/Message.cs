@@ -1,7 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Razor.TagHelpers;
+﻿using Microsoft.AspNetCore.Razor.TagHelpers;
 using Proxoft.SemanticUI.Core;
 
 namespace Proxoft.SemanticUI.TagHelpers.Messages
@@ -118,7 +115,7 @@ namespace Proxoft.SemanticUI.TagHelpers.Messages
         public IEnumerable<string> Items
         {
             get => _data.Items;
-            set => _data.Items = value?.ToArray();
+            set => _data.Items = value?.ToArray() ?? [];
         }
 
         private bool HasItems => _data.Items?.Length > 0;

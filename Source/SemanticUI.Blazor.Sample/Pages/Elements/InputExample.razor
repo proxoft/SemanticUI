@@ -78,7 +78,7 @@
 <Example Header="OnKeyUp">
     <SeInput OnKeyUp="this.OnKeyUp" />
     <Message Header="Keys:"
-             Content="@keys" />
+             Content="@_keys" />
 </Example>
 
 <Example Header="Additional Css Class">
@@ -86,11 +86,11 @@
 </Example>
 
 @code {
-    private string _value;
-    private string keys = string.Empty;
+    private string _value = "";
+    private string _keys = "";
 
     private void OnKeyUp(KeyboardEventArgs args)
     {
-        this.keys += args.Key + " ";
+        _keys += args.Key + " ";
     }
 }

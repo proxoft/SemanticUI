@@ -11,8 +11,9 @@ namespace Proxoft.SemanticUI.TagHelpers.Images
         {
         }
 
-        public string Src { get; set; }
-        public string Alt { get; set; }
+        public string Src { get; set; } = "";
+        
+        public string? Alt { get; set; }
 
         public ImageDecorations Decorations { get; set; }
 

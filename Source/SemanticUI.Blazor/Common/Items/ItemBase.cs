@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using Microsoft.AspNetCore.Components;
+﻿using Microsoft.AspNetCore.Components;
 using Proxoft.SemanticUI.Core;
 
 namespace Proxoft.SemanticUI.Blazor
@@ -17,7 +16,7 @@ namespace Proxoft.SemanticUI.Blazor
         public bool IsActive { get; set; }
 
         [Parameter]
-        public string RightIcon { get; set; }
+        public string RightIcon { get; set; } = "";
 
         [Parameter]
         public ItemDecorations Decorations { get; set; }

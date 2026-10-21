@@ -9,9 +9,9 @@ namespace Proxoft.SemanticUI.TagHelpers
         {
         }
 
-        public string Href { get; set; }
+        public string Href { get; set; } = "";
 
-        public string Target { get; set; }
+        public string? Target { get; set; }
 
         public override void Process(TagHelperContext context, TagHelperOutput output)
         {

@@ -4,7 +4,10 @@
     <Project Path="SemanticUI.TagHelpers.Sample/SemanticUI.TagHelpers.Sample.csproj" />
   </Folder>
   <Folder Name="/SolutionItems/">
+    <File Path="Directory.Build.props" />
+    <File Path="Directory.Packages.props" />
     <File Path="global.json" />
+    <File Path="NuGet.config" />
   </Folder>
   <Project Path="SemanticUI.Blazor/SemanticUI.Blazor.csproj" />
   <Project Path="SemanticUI.Core/SemanticUI.Core.csproj" />

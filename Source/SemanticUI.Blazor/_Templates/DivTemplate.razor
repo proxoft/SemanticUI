@@ -16,11 +16,11 @@
 
 @code {
     [Parameter]
-    public SemanticComponent Component { get; set; }
+    public required SemanticComponent Component { get; set; }
 
     [Parameter]
-    public RenderFragment ChildContent { get; set; }
+    public required RenderFragment ChildContent { get; set; }
 
     [Parameter]
-    public RenderFragment RightChildContent { get; set; }
+    public required RenderFragment RightChildContent { get; set; }
 }

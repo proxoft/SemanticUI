@@ -1,7 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
     <PropertyGroup>
-        <TargetFramework>net5.0</TargetFramework>
         <AssemblyName>Proxoft.SemanticUI.Resources</AssemblyName>
         <RootNamespace>Proxoft.SemanticUI.Resources</RootNamespace>
         <GenerateEmbeddedFilesManifest>true</GenerateEmbeddedFilesManifest>
@@ -10,7 +9,6 @@
         <PackageProjectUrl>https://github.com/proxoft/SemanticUI</PackageProjectUrl>
         <RepositoryUrl>https://github.com/proxoft/SemanticUI</RepositoryUrl>
         <Version>1.0.1</Version>
-        <PackageIcon>logo.png</PackageIcon>
         <Authors>Proxoft</Authors>
         <Company>Proxoft s.r.o.</Company>
         <Product>SemanticUI</Product>
@@ -25,10 +23,10 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <PackageReference Include="Microsoft.AspNetCore.Http.Abstractions" Version="2.2.0" />
-        <PackageReference Include="Microsoft.AspNetCore.StaticFiles" Version="2.2.0" />
-        <PackageReference Include="Microsoft.Extensions.FileProviders.Abstractions" Version="5.0.0" />
-        <PackageReference Include="Microsoft.Extensions.FileProviders.Embedded" Version="5.0.0" />
+        <PackageReference Include="Microsoft.AspNetCore.Http.Abstractions" />
+        <PackageReference Include="Microsoft.AspNetCore.StaticFiles" />
+        <PackageReference Include="Microsoft.Extensions.FileProviders.Abstractions" />
+        <PackageReference Include="Microsoft.Extensions.FileProviders.Embedded" />
     </ItemGroup>
 
     <ItemGroup>
@@ -53,10 +51,6 @@
     <None Remove="semantic\themes\default\assets\fonts\outline-icons.woff" />
     <None Remove="semantic\themes\default\assets\fonts\outline-icons.woff2" />
     <None Remove="semantic\themes\default\assets\images\flags.png" />
-    <None Include="..\logo.png">
-      <Pack>True</Pack>
-      <PackagePath></PackagePath>
-    </None>
   </ItemGroup>
 
   <ItemGroup>

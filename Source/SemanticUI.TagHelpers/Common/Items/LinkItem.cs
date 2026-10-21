@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using Microsoft.AspNetCore.Http;
+﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc.TagHelpers;
 using Microsoft.AspNetCore.Mvc.ViewFeatures;
 using Microsoft.AspNetCore.Razor.TagHelpers;
@@ -24,7 +22,7 @@ namespace Proxoft.SemanticUI.TagHelpers.Common.Items
 
         public bool IsHeader { get; set; }
 
-        public string RightIcon { get; set; }
+        public string? RightIcon { get; set; }
 
         public ActiveUrlMatch ActiveUrlMatch { get; set; } = ActiveUrlMatch.Exact;
 
