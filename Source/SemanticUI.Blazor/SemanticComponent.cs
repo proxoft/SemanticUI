@@ -17,7 +17,7 @@ namespace Proxoft.SemanticUI.Blazor
         }
 
         [Parameter(CaptureUnmatchedValues = true)]
-        public Dictionary<string, object> UnmatchedAttributes { get; set; }
+        public Dictionary<string, object> UnmatchedAttributes { get; set; } = [];
 
         [Parameter]
         public Tooltip Tooltip
@@ -34,15 +34,15 @@ namespace Proxoft.SemanticUI.Blazor
         }
 
         [Parameter]
-        public string Title { get; set; }
+        public string Title { get; set; } = "";
 
         [Parameter]
         public EventCallback<MouseEventArgs> OnClick { get; set; }
 
         [Parameter]
-        public string CssClass { get; set; }
+        public string CssClass { get; set; } = "";
 
-        protected string CssName { get; set; }
+        protected string CssName { get; set; } = "";
 
         protected bool PrefixUiClass { get; set; }
 

@@ -1,7 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.Razor">
 
     <PropertyGroup>
-        <TargetFramework>net5.0</TargetFramework>
          <AssemblyName>Proxoft.SemanticUI.TagHelpers</AssemblyName>
         <RootNamespace>Proxoft.SemanticUI.TagHelpers</RootNamespace>
         <RazorLangVersion>3.0</RazorLangVersion>
@@ -11,7 +10,7 @@
         <Authors>Proxoft</Authors>
         <Company>Proxoft s.r.o.</Company>
         <Product>SemanticUI</Product>
-        <PackageIcon>logo.png</PackageIcon>
+        <WarningsNotAsErrors>NU1901;NU1902;NU1903;NU1904</WarningsNotAsErrors>
     </PropertyGroup>
 
     <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
@@ -23,19 +22,12 @@
     </PropertyGroup>
     
     <ItemGroup>
-      <PackageReference Include="Microsoft.AspNetCore.Mvc.TagHelpers" Version="2.2.0" />
-      <PackageReference Include="Microsoft.AspNetCore.Razor" Version="2.2.0" />
+      <PackageReference Include="Microsoft.AspNetCore.Mvc.TagHelpers" />
+      <PackageReference Include="Microsoft.AspNetCore.Razor" />
     </ItemGroup>
     
     <ItemGroup>
       <ProjectReference Include="..\SemanticUI.Core\SemanticUI.Core.csproj" />
-    </ItemGroup>
-    
-    <ItemGroup>
-      <None Include="..\logo.png">
-        <Pack>True</Pack>
-        <PackagePath></PackagePath>
-      </None>
     </ItemGroup>
 
 </Project>

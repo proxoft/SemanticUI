@@ -1,10 +1,8 @@
-﻿using System.Collections.Generic;
-
-namespace Proxoft.SemanticUI.Core
+﻿namespace Proxoft.SemanticUI.Core
 {
     public class IconData
     {
-        public string Name { get; set; }
+        public string Name { get; set; } = "";
 
         public Size Size { get; set; }
 

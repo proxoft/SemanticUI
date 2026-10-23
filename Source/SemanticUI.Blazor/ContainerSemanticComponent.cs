@@ -8,7 +8,6 @@ namespace Proxoft.SemanticUI.Blazor
         {
         }
 
-        [Parameter]
-        public RenderFragment ChildContent { get; set; }
+        [Parameter] public RenderFragment ChildContent { get; set; } = null!;
     }
 }

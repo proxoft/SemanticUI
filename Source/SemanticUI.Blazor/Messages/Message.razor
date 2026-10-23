@@ -1,8 +1,6 @@
 ﻿@inherits ContainerSemanticComponent
 @namespace Proxoft.SemanticUI.Blazor
 
-@using Microsoft.AspNetCore.Components.Web;
-
 <DivTemplate Component="this">
     @if (HasIcon)
     {
@@ -120,7 +118,7 @@
     public IEnumerable<string> Items
     {
         get => _data.Items;
-        set => _data.Items = value?.ToArray();
+        set => _data.Items = value?.ToArray() ?? [];
     }
 
     private bool HasItems => _data.Items?.Length > 0;

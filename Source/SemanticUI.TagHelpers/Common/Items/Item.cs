@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using Microsoft.AspNetCore.Razor.TagHelpers;
+﻿using Microsoft.AspNetCore.Razor.TagHelpers;
 using Proxoft.SemanticUI.Core;
 
 namespace Proxoft.SemanticUI.TagHelpers.Common.Items
@@ -17,7 +16,7 @@ namespace Proxoft.SemanticUI.TagHelpers.Common.Items
 
         public bool IsActive { get; set; }
 
-        public string RightIcon { get; set; }
+        public string? RightIcon { get; set; }
 
         protected bool HasRightIcon => !string.IsNullOrWhiteSpace(this.RightIcon);
 

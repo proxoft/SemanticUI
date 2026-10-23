@@ -9,10 +9,9 @@
     }
 
     [Parameter]
-    public string Src { get; set; }
+    public required string Src { get; set; }
 
-    [Parameter]
-    public string Alt { get; set; }
+    [Parameter] public string Alt { get; set; } = "";
 
     [Parameter]
     public ImageDecorations Decorations { get; set; }

@@ -1,0 +1,32 @@
+<Project>
+    <PropertyGroup>
+        <TargetFramework>net10.0</TargetFramework>
+
+        <Nullable>enable</Nullable>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+
+        <RootNamespace>Proxoft.SemanticUI.$(MSBuildProjectName)</RootNamespace>
+        <AssemblyName>Proxoft.SemanticUI.$(MSBuildProjectName)</AssemblyName>
+
+        <!--Set version conditionally so that it will not interfere with build arguments /p:Version -->
+        <IncludeSourceRevisionInInformationalVersion>true</IncludeSourceRevisionInInformationalVersion>
+        <ContinuousIntegrationBuild>true</ContinuousIntegrationBuild>
+        <NoWarn>$(NoWarn);CS8632;NU1605</NoWarn>
+
+        <Company>Proxoft s.r.o.</Company>
+        <CurrentYear>$([System.DateTime]::Now.Year)</CurrentYear>
+        <Authors>$(Company)</Authors>
+        <Product>SemanticUI.Blazor</Product>
+        <Owner>$(Company)</Owner>
+        <Copyright>Copyright © $(Company) - $(CurrentYear)</Copyright>
+
+        <ManagePackageVersionsCentrally>true</ManagePackageVersionsCentrally>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <InternalsVisibleTo Include="$(AssemblyName).Tests"/>
+        <InternalsVisibleTo Include="Proxoft.SemanticUI.Tests"/>
+    </ItemGroup>
+
+</Project>
