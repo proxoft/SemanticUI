@@ -16,9 +16,9 @@
             return pointing switch
             {
                 LabelPointing.UpPointing => "pointing",
-                LabelPointing.LeftPointing => "left poingin",
+                LabelPointing.LeftPointing => "left pointing",
                 LabelPointing.RightPointing => "right pointing",
-                LabelPointing.BellowPointing => "pointing bellow",
+                LabelPointing.BellowPointing => "pointing below",
                 _ => string.Empty
             };
         }

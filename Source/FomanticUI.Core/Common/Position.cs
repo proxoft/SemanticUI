@@ -134,9 +134,9 @@ namespace Proxoft.FomanticUI.Core
             return position switch
             {
                 Top => "pointing",
-                Bottom => "below pointing",
+                Bottom => "pointing below",
                 Left => "left pointing",
-                Right => "right poiting",
+                Right => "right pointing",
                 _ => string.Empty
             };
         }
