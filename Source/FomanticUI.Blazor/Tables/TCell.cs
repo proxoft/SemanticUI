@@ -32,12 +32,12 @@ namespace Proxoft.FomanticUI.Blazor
         {
             if (this.RowSpan > 1)
             {
-                attributes.Add("rowspan", this.RowSpan);
+                attributes["rowspan"] = this.RowSpan;
             }
 
             if (this.ColSpan > 1)
             {
-                attributes.Add("colspan", this.ColSpan);
+                attributes["colspan"] = this.ColSpan;
             }
         }
 
