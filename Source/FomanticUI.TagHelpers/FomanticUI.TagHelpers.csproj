@@ -3,14 +3,12 @@
     <PropertyGroup>
          <AssemblyName>Proxoft.FomanticUI.TagHelpers</AssemblyName>
         <RootNamespace>Proxoft.FomanticUI.TagHelpers</RootNamespace>
-        <RazorLangVersion>3.0</RazorLangVersion>
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
         <RepositoryUrl>https://github.com/proxoft/SemanticUI</RepositoryUrl>
         <Version>2.0.0</Version>
         <Authors>Proxoft</Authors>
         <Company>Proxoft s.r.o.</Company>
         <Product>FomanticUI</Product>
-        <WarningsNotAsErrors>NU1901;NU1902;NU1903;NU1904</WarningsNotAsErrors>
     </PropertyGroup>
 
     <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
@@ -22,8 +20,7 @@
     </PropertyGroup>
     
     <ItemGroup>
-      <PackageReference Include="Microsoft.AspNetCore.Mvc.TagHelpers" />
-      <PackageReference Include="Microsoft.AspNetCore.Razor" />
+      <FrameworkReference Include="Microsoft.AspNetCore.App" />
     </ItemGroup>
     
     <ItemGroup>

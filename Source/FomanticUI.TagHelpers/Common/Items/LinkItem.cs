@@ -63,7 +63,13 @@ namespace Proxoft.FomanticUI.TagHelpers.Common.Items
                 return false;
             }
 
-            var path = _httpContextAccessor.HttpContext.Request.Path.ToString();
+            var request = _httpContextAccessor.HttpContext?.Request;
+            if (request is null)
+            {
+                return false;
+            }
+
+            var path = request.Path.ToString();
             if (this.ActiveUrlMatch == ActiveUrlMatch.Exact)
             {
                 path += "/Index";
