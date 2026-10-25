@@ -1,0 +1,25 @@
+@inherits ContainerFomanticComponent
+@namespace Proxoft.FomanticUI.Blazor
+
+@if (string.IsNullOrWhiteSpace(this.Href))
+{
+    <DivTemplate Component="this" />
+}
+else
+{
+    <AnchorTemplate Component="this" Href="@Href" />
+}
+
+@code {
+    public ContentHeader() : base("header", false)
+    {
+    }
+
+    [Parameter]
+    public string Href { get; set; } = "";
+
+    protected override IEnumerable<string> Classes()
+    {
+        yield break;
+    }
+}

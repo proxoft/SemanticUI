@@ -1,0 +1,22 @@
+@inherits ContainerFomanticComponent
+@namespace Proxoft.FomanticUI.Blazor
+
+<DivTemplate Component="this" />
+
+@code {
+    public Breadcrumb() : base("breadcrumb")
+    {
+    }
+
+    [Parameter]
+    public Size Size { get; set; }
+
+    [Parameter]
+    public bool IsInverted { get; set; }
+
+    protected override IEnumerable<string> Classes()
+    {
+        yield return this.Size.ToClass();
+        yield return "inverted".ToClassIf(this.IsInverted);
+    }
+}

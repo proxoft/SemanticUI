@@ -1,0 +1,15 @@
+@inherits ContainerFomanticComponent
+@namespace Proxoft.FomanticUI.Blazor
+
+<DivTemplate Component="this" />
+
+@code {
+    public CommentMetadata() : base("metadata", false)
+    {
+    }
+
+    protected override IEnumerable<string> Classes()
+    {
+        yield break;
+    }
+}

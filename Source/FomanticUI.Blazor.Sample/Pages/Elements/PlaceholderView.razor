@@ -1,0 +1,66 @@
+@page "/Elements/Placeholder"
+
+<h1>Placeholder</h1>
+
+<Example Header="Placeholder"
+         Text="A placeholder reserves space for content that is still loading">
+
+    <Placeholder>
+        <PlaceholderHeader HasImage="true">
+            <PlaceholderLine />
+            <PlaceholderLine />
+        </PlaceholderHeader>
+        <PlaceholderParagraph>
+            <PlaceholderLine Length="PlaceholderLineLength.Medium" />
+            <PlaceholderLine Length="PlaceholderLineLength.Short" />
+        </PlaceholderParagraph>
+    </Placeholder>
+</Example>
+
+<Example Header="Line length"
+         Text="Lines can have different lengths">
+
+    <Placeholder>
+        <PlaceholderParagraph>
+            <PlaceholderLine Length="PlaceholderLineLength.Full" />
+            <PlaceholderLine Length="PlaceholderLineLength.VeryLong" />
+            <PlaceholderLine Length="PlaceholderLineLength.Long" />
+            <PlaceholderLine Length="PlaceholderLineLength.Medium" />
+            <PlaceholderLine Length="PlaceholderLineLength.Short" />
+            <PlaceholderLine Length="PlaceholderLineLength.VeryShort" />
+        </PlaceholderParagraph>
+    </Placeholder>
+</Example>
+
+<Example Header="Image"
+         Text="A placeholder can show a square or rectangular image">
+
+    <Grid Columns="Two">
+        <Column>
+            <Placeholder>
+                <PlaceholderImage Shape="PlaceholderImageShape.Square" />
+            </Placeholder>
+        </Column>
+        <Column>
+            <Placeholder>
+                <PlaceholderImage Shape="PlaceholderImageShape.Rectangular" />
+            </Placeholder>
+        </Column>
+    </Grid>
+</Example>
+
+<Example Header="Fluid and Inverted"
+         Text="A placeholder can take up the full width or have inverted colors">
+
+    <Placeholder Decorations="PlaceholderDecorations.Fluid">
+        <PlaceholderLine />
+        <PlaceholderLine />
+    </Placeholder>
+
+    <Segment Decorations="SegmentDecorations.Inverted">
+        <Placeholder Decorations="PlaceholderDecorations.Inverted">
+            <PlaceholderLine />
+            <PlaceholderLine />
+        </Placeholder>
+    </Segment>
+</Example>

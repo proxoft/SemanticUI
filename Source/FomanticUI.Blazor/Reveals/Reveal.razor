@@ -1,0 +1,26 @@
+@inherits ContainerFomanticComponent
+@namespace Proxoft.FomanticUI.Blazor
+
+<DivTemplate Component="this" />
+
+@code {
+    public Reveal() : base("reveal")
+    {
+    }
+
+    [Parameter]
+    public RevealType Type { get; set; }
+
+    [Parameter]
+    public RevealDecorations Decorations { get; set; }
+
+    [Parameter]
+    public Size Size { get; set; }
+
+    protected override IEnumerable<string> Classes()
+    {
+        yield return this.Decorations.ToClass();
+        yield return this.Size.ToClass();
+        yield return this.Type.ToClass();
+    }
+}

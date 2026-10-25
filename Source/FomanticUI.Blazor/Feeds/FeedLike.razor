@@ -1,0 +1,21 @@
+@inherits ContainerFomanticComponent
+@namespace Proxoft.FomanticUI.Blazor
+
+<AnchorTemplate Component="this" Href="@Href" />
+
+@code {
+    public FeedLike() : base("like", false)
+    {
+    }
+
+    [Parameter]
+    public string Href { get; set; } = "";
+
+    [Parameter]
+    public bool IsActive { get; set; }
+
+    protected override IEnumerable<string> Classes()
+    {
+        yield return "active".ToClassIf(this.IsActive);
+    }
+}

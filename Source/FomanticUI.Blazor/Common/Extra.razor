@@ -1,0 +1,18 @@
+@inherits ContainerFomanticComponent
+@namespace Proxoft.FomanticUI.Blazor
+
+<DivTemplate Component="this" />
+
+@code {
+    public Extra() : base("extra", false)
+    {
+    }
+
+    [Parameter]
+    public ExtraDecorations Decorations { get; set; }
+
+    protected override IEnumerable<string> Classes()
+    {
+        yield return this.Decorations.ToClass();
+    }
+}

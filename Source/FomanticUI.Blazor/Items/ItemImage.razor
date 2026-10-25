@@ -1,0 +1,27 @@
+@inherits ContainerFomanticComponent
+@namespace Proxoft.FomanticUI.Blazor
+
+<DivTemplate Component="this" />
+
+@code {
+    public ItemImage() : base("image", false)
+    {
+    }
+
+    /// <summary>
+    /// Without a size the image gets the default item image width; with a size it renders as a sized "ui image".
+    /// </summary>
+    [Parameter]
+    public Size Size { get; set; }
+
+    protected override void OnParametersSet()
+    {
+        base.OnParametersSet();
+        this.PrefixUiClass = this.Size != Size.Undefined;
+    }
+
+    protected override IEnumerable<string> Classes()
+    {
+        yield return this.Size.ToClass();
+    }
+}

@@ -1,0 +1,25 @@
+@namespace Proxoft.FomanticUI.Blazor
+
+<a href="@Href"
+   class="@Component.Class()"
+   @attributes="@Component.Attributes()"
+   @onclick="Component.OnClick">
+
+    @ChildContent
+
+    @if (this.Component is ContainerFomanticComponent c)
+    {
+        @c.ChildContent
+    }
+</a>
+
+@code {
+    [Parameter]
+    public required FomanticComponent Component { get; set; }
+
+    [Parameter]
+    public required string Href { get; set; }
+
+    [Parameter]
+    public RenderFragment? ChildContent { get; set; }
+}

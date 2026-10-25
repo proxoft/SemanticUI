@@ -1,0 +1,34 @@
+@inherits ContainerFomanticComponent
+@namespace Proxoft.FomanticUI.Blazor
+
+<DivTemplate Component="this" />
+
+@code {
+    public Comments() : base("comments")
+    {
+    }
+
+    /// <summary>
+    /// Set for replies placed inside a <see cref="Comment"/>; nested lists render without the "ui" prefix.
+    /// </summary>
+    [Parameter]
+    public bool IsNested { get; set; }
+
+    [Parameter]
+    public CommentsDecorations Decorations { get; set; }
+
+    [Parameter]
+    public Size Size { get; set; }
+
+    protected override void OnParametersSet()
+    {
+        base.OnParametersSet();
+        this.PrefixUiClass = !this.IsNested;
+    }
+
+    protected override IEnumerable<string> Classes()
+    {
+        yield return this.Decorations.ToClass();
+        yield return this.Size.ToClass();
+    }
+}

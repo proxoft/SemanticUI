@@ -1,0 +1,54 @@
+@page "/Collections/Breadcrumb"
+
+<h1>Breadcrumb</h1>
+
+<Example Header="Breadcrumb"
+         Text="A standard breadcrumb">
+
+    <Breadcrumb>
+        <BreadcrumbSection Href="/">Home</BreadcrumbSection>
+        <BreadcrumbDivider />
+        <BreadcrumbSection Href="/Collections/Breadcrumb">Collections</BreadcrumbSection>
+        <BreadcrumbDivider />
+        <BreadcrumbSection IsActive="true">Breadcrumb</BreadcrumbSection>
+    </Breadcrumb>
+</Example>
+
+<Example Header="Icon divider"
+         Text="A breadcrumb can use icons as dividers">
+
+    <Breadcrumb>
+        <BreadcrumbSection Href="/">Home</BreadcrumbSection>
+        <BreadcrumbDivider Icon="right angle" />
+        <BreadcrumbSection Href="/Collections/Breadcrumb">Collections</BreadcrumbSection>
+        <BreadcrumbDivider Icon="right chevron" />
+        <BreadcrumbSection IsActive="true">Breadcrumb</BreadcrumbSection>
+    </Breadcrumb>
+</Example>
+
+<Example Header="Size"
+         Text="A breadcrumb can have different sizes">
+
+    @foreach (var size in new[] { Mini, Small, Large, Huge })
+    {
+        <div>
+            <Breadcrumb Size="size">
+                <BreadcrumbSection Href="/">Home</BreadcrumbSection>
+                <BreadcrumbDivider Icon="right angle" />
+                <BreadcrumbSection IsActive="true">@size</BreadcrumbSection>
+            </Breadcrumb>
+        </div>
+    }
+</Example>
+
+<Example Header="Inverted"
+         Text="A breadcrumb can have inverted colors">
+
+    <Segment Decorations="SegmentDecorations.Inverted">
+        <Breadcrumb IsInverted="true">
+            <BreadcrumbSection Href="/">Home</BreadcrumbSection>
+            <BreadcrumbDivider />
+            <BreadcrumbSection IsActive="true">Inverted</BreadcrumbSection>
+        </Breadcrumb>
+    </Segment>
+</Example>

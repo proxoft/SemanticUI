@@ -1,0 +1,15 @@
+@inherits ContainerFomanticComponent
+@namespace Proxoft.FomanticUI.Blazor
+
+<DivTemplate Component="this" />
+
+@code {
+    public FeedLabel() : base("label", false)
+    {
+    }
+
+    protected override IEnumerable<string> Classes()
+    {
+        yield break;
+    }
+}

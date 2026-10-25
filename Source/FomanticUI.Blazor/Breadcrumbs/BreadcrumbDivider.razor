@@ -1,0 +1,40 @@
+@inherits FomanticComponent
+@namespace Proxoft.FomanticUI.Blazor
+
+@if (this.HasIcon)
+{
+    <i class="@Class()"
+       @attributes="Attributes()"
+       @onclick="OnClick">
+    </i>
+}
+else
+{
+    <span class="@Class()"
+          @attributes="Attributes()"
+          @onclick="OnClick">
+        @Text
+    </span>
+}
+
+@code {
+    public BreadcrumbDivider() : base("divider", false)
+    {
+    }
+
+    /// <summary>
+    /// Icon name, e.g. "right angle". When set, the divider renders as an icon instead of <see cref="Text"/>.
+    /// </summary>
+    [Parameter]
+    public string Icon { get; set; } = "";
+
+    [Parameter]
+    public string Text { get; set; } = "/";
+
+    private bool HasIcon => !string.IsNullOrWhiteSpace(this.Icon);
+
+    protected override IEnumerable<string> Classes()
+    {
+        yield return this.HasIcon ? $"{this.Icon} icon" : string.Empty;
+    }
+}

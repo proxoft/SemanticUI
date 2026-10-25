@@ -1,0 +1,69 @@
+@page "/Elements/Divider"
+
+<h1>Divider</h1>
+
+<Example Header="Divider"
+         Text="A standard divider">
+
+    <Segment>
+        <Image Src="/images/wireframe/short-paragraph.png" />
+        <Divider />
+        <Image Src="/images/wireframe/short-paragraph.png" />
+    </Segment>
+</Example>
+
+<Example Header="Vertical Divider"
+         Text="A divider can segment content vertically">
+
+    <Segment>
+        <Grid Columns="Two" CssClass="very relaxed stackable">
+            <Column>Left content</Column>
+            <Column>Right content</Column>
+        </Grid>
+        <Divider Decorations="DividerDecorations.Vertical">Or</Divider>
+    </Segment>
+</Example>
+
+<Example Header="Horizontal Divider"
+         Text="A divider can segment content horizontally">
+
+    <Segment>
+        <Button>Log in</Button>
+        <Divider Decorations="DividerDecorations.Horizontal">Or</Divider>
+        <Button>Sign up</Button>
+    </Segment>
+</Example>
+
+<Example Header="Inverted"
+         Text="A divider can have its colors inverted">
+
+    <Segment Decorations="SegmentDecorations.Inverted">
+        <StyledText>Some text</StyledText>
+        <Divider Decorations="DividerDecorations.Inverted" />
+        <Divider Decorations="DividerDecorations.Horizontal | DividerDecorations.Inverted">Horizontal</Divider>
+    </Segment>
+</Example>
+
+<Example Header="Fitted, Hidden, Section"
+         Text="A divider can be fitted, hidden or separate sections">
+
+    <Segment>
+        Fitted
+        <Divider Decorations="DividerDecorations.Fitted" />
+        Hidden
+        <Divider Decorations="DividerDecorations.Hidden" />
+        Section
+        <Divider Decorations="DividerDecorations.Section" />
+        End
+    </Segment>
+</Example>
+
+<Example Header="Size"
+         Text="A horizontal divider can have different sizes">
+
+    <Segment>
+        <Divider Decorations="DividerDecorations.Horizontal" Size="Mini">Mini</Divider>
+        <Divider Decorations="DividerDecorations.Horizontal" Size="Large">Large</Divider>
+        <Divider Decorations="DividerDecorations.Horizontal" Size="Massive">Massive</Divider>
+    </Segment>
+</Example>

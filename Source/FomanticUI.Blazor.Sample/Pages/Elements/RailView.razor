@@ -1,0 +1,53 @@
+@page "/Elements/Rail"
+
+<h1>Rail</h1>
+
+<Example Header="Rail"
+         Text="A rail shows content next to a container">
+
+    <Segment CssClass="rail-demo">
+        Main content
+        <Rail Side="Left">
+            <Segment>Left rail</Segment>
+        </Rail>
+        <Rail Side="Right">
+            <Segment>Right rail</Segment>
+        </Rail>
+    </Segment>
+</Example>
+
+<Example Header="Internal"
+         Text="A rail can be placed inside the container">
+
+    <Segment CssClass="rail-demo">
+        <Rail Side="Left" Decorations="RailDecorations.Internal">
+            <Segment>Left internal rail</Segment>
+        </Rail>
+        <Rail Side="Right" Decorations="RailDecorations.Internal">
+            <Segment>Right internal rail</Segment>
+        </Rail>
+    </Segment>
+</Example>
+
+<Example Header="Close and Attached"
+         Text="A rail can sit closer to, or directly against, the container">
+
+    <Segment CssClass="rail-demo">
+        Main content
+        <Rail Side="Left" Decorations="RailDecorations.Close">
+            <Segment>Close rail</Segment>
+        </Rail>
+        <Rail Side="Right" Decorations="RailDecorations.Attached">
+            <Segment>Attached rail</Segment>
+        </Rail>
+    </Segment>
+</Example>
+
+<style>
+    .rail-demo {
+        width: 40%;
+        min-height: 120px;
+        margin-left: auto !important;
+        margin-right: auto !important;
+    }
+</style>

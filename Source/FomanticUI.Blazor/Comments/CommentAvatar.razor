@@ -1,0 +1,35 @@
+@inherits FomanticComponent
+@namespace Proxoft.FomanticUI.Blazor
+
+@if (string.IsNullOrWhiteSpace(this.Href))
+{
+    <DivTemplate Component="this">
+        <img src="@Src" alt="@Alt" />
+    </DivTemplate>
+}
+else
+{
+    <AnchorTemplate Component="this" Href="@Href">
+        <img src="@Src" alt="@Alt" />
+    </AnchorTemplate>
+}
+
+@code {
+    public CommentAvatar() : base("avatar", false)
+    {
+    }
+
+    [Parameter]
+    public required string Src { get; set; }
+
+    [Parameter]
+    public string Alt { get; set; } = "";
+
+    [Parameter]
+    public string Href { get; set; } = "";
+
+    protected override IEnumerable<string> Classes()
+    {
+        yield break;
+    }
+}
