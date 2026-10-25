@@ -34,7 +34,7 @@ namespace Proxoft.FomanticUI.Blazor
         }
 
         [Parameter]
-        public string Title { get; set; } = "";
+        public string? Title { get; set; }
 
         [Parameter]
         public EventCallback<MouseEventArgs> OnClick { get; set; }

@@ -30,23 +30,24 @@ namespace Proxoft.FomanticUI.Core
         public static string ToClass(this bool value, string trueClass, string falseClass)
             => (value ? trueClass : falseClass) ?? string.Empty; 
 
-        public static void SetAsAttribute(this string value, string attributeName, IDictionary<string, object> attributes, bool ignoreIfNull = true)
+        public static void SetAsAttribute(this string? value, string attributeName, IDictionary<string, object> attributes, bool ignoreIfNull = true)
             => SetAttribute(attributeName, value, attributes, ignoreIfNull);
 
-        public static void SetAttribute(string attributeName, object value, IDictionary<string, object> attributes, bool ignoreIfNull = true)
+        public static void SetAttribute(string attributeName, object? value, IDictionary<string, object> attributes, bool ignoreIfNull = true)
         {
             if(ignoreIfNull && value == null)
             {
                 return;
             }
 
+            // a null value is stored only when ignoreIfNull is false; Blazor omits attributes whose value is null
             if (attributes.ContainsKey(attributeName))
             {
-                attributes[attributeName] = value;
+                attributes[attributeName] = value!;
             }
             else
             {
-                attributes.Add(attributeName, value);
+                attributes.Add(attributeName, value!);
             }
         }
     }
