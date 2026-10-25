@@ -1,9 +1,9 @@
 ﻿namespace Proxoft.FomanticUI.Core
 {
-    public class ButtonsGroupData : ButtonBaseData
+    public record ButtonsGroupData : ButtonBaseData
     {
-        public Orientation Orientation { get; set; } = Orientation.Horizontal;
-        
-        public Amount Amount { get; set; }
+        public Orientation Orientation { get; init; } = Orientation.Horizontal;
+
+        public Amount Amount { get; init; }
     }
 }

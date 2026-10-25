@@ -12,27 +12,29 @@ namespace Proxoft.FomanticUI.Blazor
         }
 
         [Parameter]
-        public ButtonState State
-        {
-            get => this.Data.State;
-            set => this.Data.State = value;
-        }
+        public ButtonState? State { get; set; }
 
         [Parameter]
-        public Emphasizes Emphasizes
-        {
-            get => this.Data.Emphasizes;
-            set => this.Data.Emphasizes = value;
-        }
+        public Emphasizes? Emphasizes { get; set; }
 
-        public bool Disabled => this.State != ButtonState.Enabled && this.State != ButtonState.Active;
+        public bool Disabled => this.Effective.State != ButtonState.Enabled && this.Effective.State != ButtonState.Active;
+
+        protected override SingleButtonData ApplyParameters(SingleButtonData data)
+        {
+            var applied = base.ApplyParameters(data);
+            return applied with
+            {
+                State = this.State ?? applied.State,
+                Emphasizes = this.Emphasizes ?? applied.Emphasizes
+            };
+        }
 
         protected override IEnumerable<string> Classes()
         {
             return base.Classes()
                 .Concat(new[] {
-                    this.State.ToClass(),
-                    this.Emphasizes.ToClass()
+                    this.Effective.State.ToClass(),
+                    this.Effective.Emphasizes.ToClass()
                 });
         }
     }

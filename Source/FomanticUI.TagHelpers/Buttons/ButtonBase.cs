@@ -1,76 +1,76 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using Microsoft.AspNetCore.Razor.TagHelpers;
 using Proxoft.FomanticUI.Core;
 
 namespace Proxoft.FomanticUI.TagHelpers
 {
     public abstract class ButtonBase<T> : FomanticTagHelper
-        where T : ButtonBaseData
+        where T : ButtonBaseData, new()
     {
-        private T _data = Activator.CreateInstance<T>();
-
         protected ButtonBase(
             string cssName,
             string tagName) : base(cssName, tagName)
         {
         }
 
-        public T Data
+        /// <summary>
+        /// All settings in one value; attributes written on the element override its values.
+        /// </summary>
+        public T? Data { get; set; }
+
+        public bool IsVisible { get; set; } = true;
+
+        public Color Color { get; set; }
+
+        public Size Size { get; set; }
+
+        public ButtonDecoration Decoration { get; set; }
+
+        public bool Fluid { get; set; }
+
+        public Position Floated { get; set; }
+
+        public Position Attached { get; set; }
+
+        /// <summary>
+        /// <see cref="Data"/> with the attributes written on the element applied.
+        /// </summary>
+        protected T Effective { get; private set; } = new();
+
+        public override void Process(TagHelperContext context, TagHelperOutput output)
         {
-            get => _data;
-            set => _data = value ?? Activator.CreateInstance<T>();
+            this.Effective = this.ApplyProperties(context, this.Data ?? new T());
+            base.Process(context, output);
         }
 
-        public bool IsVisible
+        /// <summary>
+        /// Overrides values of <paramref name="data"/> with the attributes that are set; derived buttons add their own.
+        /// </summary>
+        protected virtual T ApplyProperties(TagHelperContext context, T data)
         {
-            get => _data.IsVisible;
-            set => _data.IsVisible = value;
-        }
+            // 'with' on the base record clones the runtime type, so the cast back to T is safe
+            ButtonBaseData applied = data with
+            {
+                IsVisible = IsSet(context, nameof(this.IsVisible)) ? this.IsVisible : data.IsVisible,
+                Color = IsSet(context, nameof(this.Color)) ? this.Color : data.Color,
+                Size = IsSet(context, nameof(this.Size)) ? this.Size : data.Size,
+                Decoration = IsSet(context, nameof(this.Decoration)) ? this.Decoration : data.Decoration,
+                Fluid = IsSet(context, nameof(this.Fluid)) ? this.Fluid : data.Fluid,
+                Floated = IsSet(context, nameof(this.Floated)) ? this.Floated : data.Floated,
+                Attached = IsSet(context, nameof(this.Attached)) ? this.Attached : data.Attached
+            };
 
-        public Color Color
-        {
-            get => _data.Color;
-            set => _data.Color = value;
-        }
-
-        public Size Size
-        {
-            get => _data.Size;
-            set => _data.Size = value;
-        }
-
-        public ButtonDecoration Decoration
-        {
-            get => _data.Decoration;
-            set => _data.Decoration = value;
-        }
-
-        public bool Fluid
-        {
-            get => _data.Fluid;
-            set => _data.Fluid = value;
-        }
-
-        public Position Floated
-        {
-            get => _data.Floated;
-            set => _data.Floated = value;
-        }
-
-        public Position Attached
-        {
-            get => _data.Attached;
-            set => _data.Attached = value;
+            return (T)applied;
         }
 
         protected override IEnumerable<string> Classes()
         {
-            yield return this.Decoration.ToClass();
-            yield return "fluid".ToClassIf(this.Fluid);
-            yield return this.Color.ToClass();
-            yield return this.Size.ToClass();
-            yield return this.Floated.ToFloatedClass();
-            yield return this.Attached.ToAttachedClass();
+            yield return this.Effective.Decoration.ToClass();
+            yield return "fluid".ToClassIf(this.Effective.Fluid);
+            yield return this.Effective.Color.ToClass();
+            yield return this.Effective.Size.ToClass();
+            yield return this.Effective.Floated.ToFloatedClass();
+            yield return this.Effective.Attached.ToAttachedClass();
         }
     }
 }

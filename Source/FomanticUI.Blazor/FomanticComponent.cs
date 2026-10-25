@@ -6,8 +6,6 @@ namespace Proxoft.FomanticUI.Blazor;
 
 public abstract class FomanticComponent : ComponentBase
 {
-    private Tooltip _tooltip = new ();
-
     protected FomanticComponent(string cssName, bool prefixUiClass = true)
     {
         this.CssName = cssName;
@@ -18,18 +16,13 @@ public abstract class FomanticComponent : ComponentBase
     public Dictionary<string, object> UnmatchedAttributes { get; set; } = [];
 
     [Parameter]
-    public Tooltip? Tooltip
-    {
-        get => _tooltip;
-        set => _tooltip = value ?? new Tooltip();
-    }
+    public Tooltip? Tooltip { get; set; }
 
+    /// <summary>
+    /// Tooltip text; overrides <see cref="Tooltip"/>.Content.
+    /// </summary>
     [Parameter]
-    public string TooltipContent
-    {
-        get => this.Tooltip?.Content ?? "";
-        set => this.Tooltip?.Content = value;
-    }
+    public string? TooltipContent { get; set; }
 
     [Parameter]
     public string? Title { get; set; }
@@ -74,7 +67,11 @@ public abstract class FomanticComponent : ComponentBase
 
     protected virtual void InitializeAttributes(Dictionary<string, object> attributes)
     {
-        this.Tooltip?.SetAttributes(attributes);
+        var tooltip = this.TooltipContent is { } content
+            ? (this.Tooltip ?? new Tooltip()) with { Content = content }
+            : this.Tooltip;
+
+        tooltip.SetAttributes(attributes);
         this.Title.SetAsAttribute("title", attributes);
     }
 }

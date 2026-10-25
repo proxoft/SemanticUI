@@ -11,19 +11,11 @@ namespace Proxoft.FomanticUI.TagHelpers
         {
         }
 
-        public ButtonState State
-        {
-            get => this.Data.State;
-            set => this.Data.State = value;
-        }
+        public ButtonState State { get; set; }
 
-        public Emphasizes Emphasizes
-        {
-            get => this.Data.Emphasizes;
-            set => this.Data.Emphasizes = value;
-        }
+        public Emphasizes Emphasizes { get; set; }
 
-        public bool Disabled => this.State == ButtonState.Disabled;
+        public bool Disabled => this.Effective.State == ButtonState.Disabled;
 
         public override void Process(TagHelperContext context, TagHelperOutput output)
         {
@@ -34,12 +26,22 @@ namespace Proxoft.FomanticUI.TagHelpers
             }
         }
 
+        protected override SingleButtonData ApplyProperties(TagHelperContext context, SingleButtonData data)
+        {
+            var applied = base.ApplyProperties(context, data);
+            return applied with
+            {
+                State = IsSet(context, nameof(this.State)) ? this.State : applied.State,
+                Emphasizes = IsSet(context, nameof(this.Emphasizes)) ? this.Emphasizes : applied.Emphasizes
+            };
+        }
+
         protected override IEnumerable<string> Classes()
         {
             return base.Classes()
                 .Concat(new[] {
-                    this.Emphasizes.ToClass(),
-                    this.State.ToClass()
+                    this.Effective.Emphasizes.ToClass(),
+                    this.Effective.State.ToClass()
                 });
         }
     }

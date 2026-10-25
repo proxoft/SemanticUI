@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Microsoft.AspNetCore.Razor.TagHelpers;
 using Proxoft.FomanticUI.Core;
 
@@ -8,51 +7,45 @@ namespace Proxoft.FomanticUI.TagHelpers
     [HtmlTargetElement("fui-icon")]
     public class Icon : FomanticTagHelper
     {
-        private IconData _data = new ();
+        private IconData _effective = new();
 
         public Icon() : base("icon", "i", false)
         {
         }
 
-        public IconData Data
-        {
-            get => _data;
-            set => _data = value ?? new IconData();
-        }
+        /// <summary>
+        /// All settings in one value; attributes written on the element override its values.
+        /// </summary>
+        public IconData? Data { get; set; }
 
-        public string Name
-        {
-            get => _data.Name;
-            set => _data.Name = value;
-        }
+        public string Name { get; set; } = "";
 
-        public Size Size
-        {
-            get => _data.Size;
-            set => _data.Size = value;
-        }
+        public Size Size { get; set; }
 
-        public Color Color
-        {
-            get => _data.Color;
-            set => _data.Color = value;
-        }
+        public Color Color { get; set; }
 
-        public IconDecorations Decorations
-        {
-            get => _data.Decorations;
-            set => _data.Decorations = value;
-        }
+        public IconDecorations Decorations { get; set; }
 
-        public Position Corner
+        public Position Corner { get; set; }
+
+        public override void Process(TagHelperContext context, TagHelperOutput output)
         {
-            get => _data.Corner;
-            set => _data.Corner = value;
+            var data = this.Data ?? new IconData();
+            _effective = data with
+            {
+                Name = IsSet(context, nameof(this.Name)) ? this.Name : data.Name,
+                Size = IsSet(context, nameof(this.Size)) ? this.Size : data.Size,
+                Color = IsSet(context, nameof(this.Color)) ? this.Color : data.Color,
+                Decorations = IsSet(context, nameof(this.Decorations)) ? this.Decorations : data.Decorations,
+                Corner = IsSet(context, nameof(this.Corner)) ? this.Corner : data.Corner
+            };
+
+            base.Process(context, output);
         }
 
         protected override IEnumerable<string> Classes()
         {
-            yield return _data.ToClass();
+            yield return _effective.ToClass();
         }
     }
 }

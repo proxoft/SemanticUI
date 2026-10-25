@@ -3,6 +3,7 @@ using Proxoft.FomanticUI.Core;
 
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.RegularExpressions;
 
 namespace Proxoft.FomanticUI.TagHelpers
 {
@@ -46,6 +47,22 @@ namespace Proxoft.FomanticUI.TagHelpers
                 .Concat(new[] { this.CssName })
                 .Concat(this.AfterCssNameClasses())
                 .ToClass();
+        }
+
+        /// <summary>
+        /// true when the attribute bound to the property was written on the element,
+        /// e.g. IsSet(context, nameof(IconName)) checks for icon-name="...".
+        /// </summary>
+        protected static bool IsSet(TagHelperContext context, string propertyName)
+        {
+            return context.AllAttributes.ContainsName(ToHtmlName(propertyName));
+        }
+
+        // the same property-to-attribute naming Razor uses for tag helpers (IconName -> icon-name)
+        private static string ToHtmlName(string propertyName)
+        {
+            return Regex.Replace(propertyName, "(?<!^)((?<=[a-zA-Z0-9])[A-Z][a-z])|((?<=[a-z])[A-Z])", "-$1$2")
+                .ToLowerInvariant();
         }
 
         protected abstract IEnumerable<string> Classes();

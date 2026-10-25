@@ -8,10 +8,15 @@
     {
     }
 
+    /// <summary>
+    /// A subheader standing on its own (not inside a header) renders as "ui sub header".
+    /// </summary>
     [Parameter]
-    public bool IsRoot
+    public bool IsRoot { get; set; }
+
+    protected override void OnParametersSet()
     {
-        get => this.PrefixUiClass;
-        set => this.PrefixUiClass = value;
+        base.OnParametersSet();
+        this.PrefixUiClass = this.IsRoot;
     }
 }

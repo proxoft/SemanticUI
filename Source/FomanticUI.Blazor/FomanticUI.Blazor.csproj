@@ -10,10 +10,6 @@
         <Authors>Proxoft</Authors>
         <Company>Proxoft s.r.o.</Company>
         <Product>FomanticUI</Product>
-
-        <!-- BL0007 (parameters should be auto properties): several components expose a Data object
-             together with parameters that forward into it (e.g. Icon.Name -> Data.Name) by design -->
-        <NoWarn>$(NoWarn);BL0007</NoWarn>
     </PropertyGroup>
 
     <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">

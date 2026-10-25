@@ -12,24 +12,26 @@ namespace Proxoft.FomanticUI.TagHelpers
         {
         }
 
-        public Orientation Orientation
-        {
-            get => this.Data.Orientation;
-            set => this.Data.Orientation = value;
-        }
+        public Orientation Orientation { get; set; } = Orientation.Horizontal;
 
-        public Amount Amount
+        public Amount Amount { get; set; }
+
+        protected override ButtonsGroupData ApplyProperties(TagHelperContext context, ButtonsGroupData data)
         {
-            get => this.Data.Amount;
-            set => this.Data.Amount = value;
+            var applied = base.ApplyProperties(context, data);
+            return applied with
+            {
+                Orientation = IsSet(context, nameof(this.Orientation)) ? this.Orientation : applied.Orientation,
+                Amount = IsSet(context, nameof(this.Amount)) ? this.Amount : applied.Amount
+            };
         }
 
         protected override IEnumerable<string> Classes()
         {
             return base.Classes()
                 .Concat(new[] {
-                    this.Orientation.ToClass(emptyIf: Orientation.Horizontal),
-                    this.Amount.ToClass(string.Empty)
+                    this.Effective.Orientation.ToClass(emptyIf: Orientation.Horizontal),
+                    this.Effective.Amount.ToClass(string.Empty)
                 });
         }
     }

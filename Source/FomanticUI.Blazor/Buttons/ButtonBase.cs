@@ -1,82 +1,82 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Microsoft.AspNetCore.Components;
 using Proxoft.FomanticUI.Core;
 
 namespace Proxoft.FomanticUI.Blazor
 {
     public abstract class ButtonBase<T> : ContainerFomanticComponent
-        where T: ButtonBaseData
+        where T: ButtonBaseData, new()
     {
         public ButtonBase(string cssName) : base(cssName)
         {
         }
 
-        private T _data = Activator.CreateInstance<T>();
+        /// <summary>
+        /// All settings in one value; individual parameters override its values.
+        /// </summary>
+        [Parameter]
+        public T? Data { get; set; }
 
         [Parameter]
-        public T Data
+        public bool? IsVisible { get; set; }
+
+        [Parameter]
+        public Color? Color { get; set; }
+
+        [Parameter]
+        public Size? Size { get; set; }
+
+        [Parameter]
+        public ButtonDecoration? Decoration { get; set; }
+
+        [Parameter]
+        public bool? Fluid { get; set; }
+
+        [Parameter]
+        public Position? Floated { get; set; }
+
+        [Parameter]
+        public Position? Attached { get; set; }
+
+        /// <summary>
+        /// <see cref="Data"/> with the individual parameters applied.
+        /// </summary>
+        protected T Effective { get; private set; } = new();
+
+        protected override void OnParametersSet()
         {
-            get => _data;
-            set => _data = value ?? Activator.CreateInstance<T>();
+            base.OnParametersSet();
+            this.Effective = this.ApplyParameters(this.Data ?? new T());
         }
 
-        [Parameter]
-        public bool IsVisible
+        /// <summary>
+        /// Overrides values of <paramref name="data"/> with the parameters that are set; derived buttons add their own.
+        /// </summary>
+        protected virtual T ApplyParameters(T data)
         {
-            get => _data.IsVisible;
-            set => _data.IsVisible = value;
-        }
+            // 'with' on the base record clones the runtime type, so the cast back to T is safe
+            ButtonBaseData applied = data with
+            {
+                IsVisible = this.IsVisible ?? data.IsVisible,
+                Color = this.Color ?? data.Color,
+                Size = this.Size ?? data.Size,
+                Decoration = this.Decoration ?? data.Decoration,
+                Fluid = this.Fluid ?? data.Fluid,
+                Floated = this.Floated ?? data.Floated,
+                Attached = this.Attached ?? data.Attached
+            };
 
-        [Parameter]
-        public Color Color
-        {
-            get => _data.Color;
-            set => _data.Color = value;
-        }
-
-        [Parameter]
-        public Size Size {
-            get => _data.Size;
-            set => _data.Size = value;
-        }
-
-        [Parameter]
-        public ButtonDecoration Decoration
-        {
-            get => _data.Decoration;
-            set => _data.Decoration = value;
-        }
-
-        [Parameter]
-        public bool Fluid
-        {
-            get => _data.Fluid;
-            set => _data.Fluid = value;
-        }
-
-        [Parameter]
-        public Position Floated
-        {
-            get => _data.Floated;
-            set => _data.Floated = value;
-        }
-
-        [Parameter]
-        public Position Attached
-        {
-            get => _data.Attached;
-            set => _data.Attached = value;
+            return (T)applied;
         }
 
         protected override IEnumerable<string> Classes()
         {
-            yield return this.Decoration.ToClass();
-            yield return "fluid".ToClassIf(this.Fluid);
-            yield return this.Color.ToClass();
-            yield return this.Size.ToClass();
-            yield return this.Floated.ToFloatedClass();
-            yield return this.Attached.ToAttachedClass();
+            yield return this.Effective.Decoration.ToClass();
+            yield return "fluid".ToClassIf(this.Effective.Fluid);
+            yield return this.Effective.Color.ToClass();
+            yield return this.Effective.Size.ToClass();
+            yield return this.Effective.Floated.ToFloatedClass();
+            yield return this.Effective.Attached.ToAttachedClass();
         }
     }
 }

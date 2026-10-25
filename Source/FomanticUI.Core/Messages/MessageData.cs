@@ -1,23 +1,26 @@
 ﻿namespace Proxoft.FomanticUI.Core
 {
-    public class MessageData
+    /// <summary>
+    /// All message settings in one immutable value; derive variants with <c>data with { ... }</c>.
+    /// </summary>
+    public record MessageData
     {
-        public Severity Severity { get; set; } = Severity.NoSeverity;
+        public Severity Severity { get; init; } = Severity.NoSeverity;
 
-        public Size Size { get; set; } = Size.Undefined;
+        public Size Size { get; init; } = Size.Undefined;
 
-        public Color Color { get; set; } = Color.NoColor;
+        public Color Color { get; init; } = Color.NoColor;
 
-        public string Icon { get; set; } = "";
+        public string Icon { get; init; } = "";
 
-        public string Header { get; set; } = "";
+        public string Header { get; init; } = "";
 
-        public string Content { get; set; } = "";
+        public string Content { get; init; } = "";
 
-        public bool CanClose { get; set; }
+        public bool CanClose { get; init; }
 
-        public bool Floating { get; set; }
+        public bool Floating { get; init; }
 
-        public string[] Items { get; set; } = [];
+        public IReadOnlyList<string> Items { get; init; } = [];
     }
 }

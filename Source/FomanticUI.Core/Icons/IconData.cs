@@ -1,17 +1,16 @@
 ﻿namespace Proxoft.FomanticUI.Core
 {
-    public class IconData
+    /// <summary>
+    /// All icon settings in one immutable value, e.g. <c>new IconData("user", Size.Large)</c>;
+    /// derive variants with <c>data with { Color = Color.Red }</c>.
+    /// </summary>
+    public record IconData(
+        string Name = "",
+        Size Size = Size.Undefined,
+        Color Color = Color.NoColor,
+        IconDecorations Decorations = IconDecorations.NoDecoration,
+        Position Corner = Position.Default)
     {
-        public string Name { get; set; } = "";
-
-        public Size Size { get; set; }
-
-        public Color Color { get; set; } = Color.NoColor;
-
-        public Position Corner { get; set; } = Position.Default;
-
-        public IconDecorations Decorations { get; set; }
-
         public string ToClass() => this.Classes().ToClass();
 
         private IEnumerable<string> Classes()

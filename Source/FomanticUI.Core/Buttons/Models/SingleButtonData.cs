@@ -1,9 +1,9 @@
 ﻿namespace Proxoft.FomanticUI.Core
 {
-    public class SingleButtonData : ButtonBaseData
+    public record SingleButtonData : ButtonBaseData
     {
-        public ButtonState State { get; set; }
+        public ButtonState State { get; init; }
 
-        public Emphasizes Emphasizes { get; set; }
+        public Emphasizes Emphasizes { get; init; }
     }
 }

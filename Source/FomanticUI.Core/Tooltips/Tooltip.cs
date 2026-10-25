@@ -1,11 +1,7 @@
 ﻿namespace Proxoft.FomanticUI.Core
 {
-    public class Tooltip
-    {
-        public string Content { get; set; } = "";
-
-        public Position Position { get; set; } = Position.TopRight;
-
-        public bool InvertedTooltip { get; set; }
-    }
+    public record Tooltip(
+        string Content = "",
+        Position Position = Position.TopRight,
+        bool InvertedTooltip = false);
 }
