@@ -2,11 +2,11 @@
 {
     public enum LabelPointing
     {
-        NoPointing,
-        UpPointing,
-        LeftPointing,
-        RightPointing,
-        BellowPointing
+        No,
+        Up,
+        Left,
+        Right,
+        Below
     }
 
     public static class PointingExtensions
@@ -15,10 +15,10 @@
         {
             return pointing switch
             {
-                LabelPointing.UpPointing => "pointing",
-                LabelPointing.LeftPointing => "left pointing",
-                LabelPointing.RightPointing => "right pointing",
-                LabelPointing.BellowPointing => "pointing below",
+                LabelPointing.Up => "pointing",
+                LabelPointing.Left => "left pointing",
+                LabelPointing.Right => "right pointing",
+                LabelPointing.Below => "pointing below",
                 _ => string.Empty
             };
         }
