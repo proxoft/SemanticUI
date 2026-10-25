@@ -1,0 +1,33 @@
+# CLAUDE.md
+
+This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+
+## Overview
+
+Fomantic UI wrappers for ASP.NET Core, shipped as NuGet packages under the `Proxoft.FomanticUI.*` namespace: Blazor components and Razor tag helpers that render Fomantic UI markup (CSS class composition), plus an assembly that serves the Fomantic UI CSS/JS/fonts as embedded resources.
+
+## Commands
+
+All .NET code lives under `Source/`; the solution is `Source/FomanticUI.slnx`. SDK is pinned in `Source/global.json` (10.0.103), target framework is `net10.0`.
+
+```bash
+dotnet build Source/FomanticUI.slnx
+dotnet run --project Source/FomanticUI.Blazor.Sample        # Blazor Server demo of every component
+dotnet run --project Source/FomanticUI.TagHelpers.Sample    # Razor Pages demo of the tag helpers
+```
+
+- There is no test project yet (`Directory.Build.props` already declares `InternalsVisibleTo` for `*.Tests` / `Proxoft.FomanticUI.Tests`).
+- `TreatWarningsAsErrors` is on for all projects — new warnings break the build.
+- Library projects have `GeneratePackageOnBuild=true` and write output **outside the repo** to `../../../Builds/<Project>/<Configuration>` (relative to each project folder). Each library has its own `<Version>` in its csproj; bump it when changing a package.
+- Package versions are managed centrally in `Source/Directory.Packages.props` (`PackageReference` entries in csproj files have no version).
+
+## Architecture
+
+Four library projects, layered:
+
+- **FomanticUI.Core** — UI-framework-agnostic model: enums (`Color`, `Size`, `Position`, …) and `[Flags]` `*Decorations` enums, each with a `ToClass()` extension that maps the value to Fomantic UI CSS class names. `ClassTools` provides the helpers (`ToClass`, `ToClassIf`, `SetAsAttribute`) used everywhere to build class strings. All CSS-class knowledge belongs here so both front-ends share it.
+- **FomanticUI.Blazor** — Razor components (`RazorLangVersion` 3.0). Every component derives from `FomanticComponent` (or `ContainerFomanticComponent`, which adds `ChildContent`). The base builds the final class as `ui` + `Classes()` + `CssName` + `AfterCssNameClasses()` + user `CssClass`; subclasses override `Classes()` / `AfterCssNameClasses()` / `InitializeAttributes()` and typically render via `_Templates/DivTemplate.razor` (`<DivTemplate Component="this" />`). Unmatched attributes, `Tooltip`, `Title` and `OnClick` are handled by the base. `_Imports.razor` adds `using static` for common Core enums so consumers can write e.g. `Color="Red"`.
+- **FomanticUI.TagHelpers** — the same component set as tag helpers (`<fui-label>`, `<fui-button>`, …). Base class `FomanticTagHelper(cssName, tagName, prefixUi)` uses the same class-composition order and overrides `Classes()`. Folder layout mirrors FomanticUI.Blazor.
+- **FomanticUI.Resources** — Fomantic UI dist files (currently 2.9.4) under `fomantic/` embedded via `ManifestEmbeddedFileProvider`, exposed by `app.UseFomanticUiResources("/some-path")` (namespace `Microsoft.AspNetCore.Builder`). The page then links `/some-path/semantic.min.css`. Everything under `fomantic/` is embedded by a glob in the csproj; Fomantic keeps the upstream `semantic.*` file names. Flag and emoji icons in Fomantic CSS load SVGs from the jsDelivr CDN rather than from embedded assets.
+
+When adding or changing a component, the usual touch points are: the decoration enum + `ToClass()` in Core, the Blazor component, the matching tag helper, and an example page in each sample app (Blazor sample: `Pages/<Category>/*View.razor` + `Shared/Sidebar.razor`; TagHelpers sample: `Pages/<Category>/*.cshtml` + `Pages/Shared/_SidebarPartial.cshtml`).

@@ -6,8 +6,8 @@
         <ImplicitUsings>enable</ImplicitUsings>
         <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
 
-        <RootNamespace>Proxoft.SemanticUI.$(MSBuildProjectName)</RootNamespace>
-        <AssemblyName>Proxoft.SemanticUI.$(MSBuildProjectName)</AssemblyName>
+        <RootNamespace>Proxoft.$(MSBuildProjectName)</RootNamespace>
+        <AssemblyName>Proxoft.$(MSBuildProjectName)</AssemblyName>
 
         <!--Set version conditionally so that it will not interfere with build arguments /p:Version -->
         <IncludeSourceRevisionInInformationalVersion>true</IncludeSourceRevisionInInformationalVersion>
@@ -17,7 +17,7 @@
         <Company>Proxoft s.r.o.</Company>
         <CurrentYear>$([System.DateTime]::Now.Year)</CurrentYear>
         <Authors>$(Company)</Authors>
-        <Product>SemanticUI.Blazor</Product>
+        <Product>FomanticUI.Blazor</Product>
         <Owner>$(Company)</Owner>
         <Copyright>Copyright © $(Company) - $(CurrentYear)</Copyright>
 
@@ -26,7 +26,7 @@
 
     <ItemGroup>
         <InternalsVisibleTo Include="$(AssemblyName).Tests"/>
-        <InternalsVisibleTo Include="Proxoft.SemanticUI.Tests"/>
+        <InternalsVisibleTo Include="Proxoft.FomanticUI.Tests"/>
     </ItemGroup>
 
 </Project>

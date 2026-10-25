@@ -1,0 +1,32 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Razor">
+
+    <PropertyGroup>
+        <RazorLangVersion>3.0</RazorLangVersion>
+        <OutputType>Library</OutputType>
+        <AssemblyName>Proxoft.FomanticUI.Blazor</AssemblyName>
+        <RootNamespace>Proxoft.FomanticUI.Blazor</RootNamespace>
+        <RepositoryUrl>https://github.com/proxoft/SemanticUI</RepositoryUrl>
+        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+        <Version>2.0.0</Version>
+        <Authors>Proxoft</Authors>
+        <Company>Proxoft s.r.o.</Company>
+        <Product>FomanticUI</Product>
+    </PropertyGroup>
+
+    <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+        <OutputPath>../../../Builds/FomanticUI.Blazor/Debug</OutputPath>
+    </PropertyGroup>
+
+    <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+        <OutputPath>../../../Builds/FomanticUI.Blazor/Release</OutputPath>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Microsoft.AspNetCore.Components.Web" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\FomanticUI.Core\FomanticUI.Core.csproj" />
+    </ItemGroup>
+
+</Project>

@@ -1,0 +1,22 @@
+﻿@inherits Proxoft.FomanticUI.Blazor.FomanticComponent
+@namespace Proxoft.FomanticUI.Blazor
+
+<tbody class="@Class()"
+       @onclick="OnClick"
+       @attributes="Attributes()">
+    @ChildContent
+</tbody>
+
+@code {
+    public TBody() : base("", prefixUiClass: false)
+    {
+    }
+
+    [Parameter]
+    public required RenderFragment ChildContent { get; set; }
+
+    protected override IEnumerable<string> Classes()
+    {
+        yield break;
+    }
+}

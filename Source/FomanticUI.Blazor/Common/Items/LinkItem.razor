@@ -1,0 +1,70 @@
+﻿@inherits ItemBase
+@implements IDisposable
+@namespace Proxoft.FomanticUI.Blazor
+
+@using Microsoft.AspNetCore.Components.Routing;
+
+<a href="@Href"
+   class="@Class()"
+   @onclick="OnClick"
+   @attributes="UnmatchedAttributes">
+
+    @ChildContent
+
+    @if (HasRightIcon)
+    {
+        <Icon Name="@(RightIcon ?? "")" />
+    }
+</a>
+
+@code {
+    public LinkItem() : base("item", false)
+    {
+    }
+
+    [Inject] public NavigationManager NavigationManager { get; set; } = null!;
+
+    [Parameter]
+    public required string Href { get; set; }
+
+    [Parameter]
+    public ActiveUrlMatch ActiveUrlMatch { get; set; } = ActiveUrlMatch.None;
+
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+        this.NavigationManager.LocationChanged += LocationChanged;
+    }
+
+    protected override void OnParametersSet()
+    {
+        base.OnParametersSet();
+        this.NavigationManager.LocationChanged -= this.LocationChanged;
+        if (this.ActiveUrlMatch == ActiveUrlMatch.Exact)
+        {
+            this.SetIsActiveFromNavigationManager();
+            this.NavigationManager.LocationChanged += this.LocationChanged;
+        }
+    }
+
+    private void LocationChanged(object? sender, LocationChangedEventArgs e)
+    {
+        this.SetIsActiveFromNavigationManager();
+    }
+
+    private void SetIsActiveFromNavigationManager()
+    {
+        if (this.ActiveUrlMatch == ActiveUrlMatch.None)
+        {
+            return;
+        }
+
+        this.IsActive = this.NavigationManager.BaseUri + Href?.TrimStart('/') == this.NavigationManager.Uri;
+        this.StateHasChanged();
+    }
+
+    public void Dispose()
+    {
+        this.NavigationManager.LocationChanged -= this.LocationChanged;
+    }
+}

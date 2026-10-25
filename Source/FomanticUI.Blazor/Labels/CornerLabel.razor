@@ -1,0 +1,20 @@
+﻿@inherits LabelBase
+@namespace Proxoft.FomanticUI.Blazor
+
+<DivTemplate Component="this" />
+
+@code {
+    [Parameter]
+    public Position Position { get; set; }
+
+    protected override IEnumerable<string> Classes()
+    {
+        return base.Classes().Concat(this.ClassesPrivate());
+    }
+
+    private IEnumerable<string> ClassesPrivate()
+    {
+        yield return this.Position.ToLabelClass();
+        yield return "corner";
+    }
+}

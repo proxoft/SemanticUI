@@ -1,0 +1,18 @@
+﻿@inherits ContainerFomanticComponent
+@namespace Proxoft.FomanticUI.Blazor
+
+<DivTemplate Component="this" />
+
+@code {
+    public StatisticValue() : base("value", false)
+    {
+    }
+
+    [Parameter]
+    public bool IsTextValue { get; set; }
+
+    protected override IEnumerable<string> Classes()
+    {
+        yield return "text".ToClassIf(this.IsTextValue);
+    }
+}

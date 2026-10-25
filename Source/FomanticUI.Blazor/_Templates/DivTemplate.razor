@@ -1,0 +1,26 @@
+﻿@namespace Proxoft.FomanticUI.Blazor
+
+<div class="@Component.Class()"
+     @attributes="@Component.Attributes()"
+     @onclick="Component.OnClick">
+
+    @ChildContent
+
+    @if (this.Component is ContainerFomanticComponent c)
+    {
+        @c.ChildContent
+    }
+
+    @RightChildContent
+</div>
+
+@code {
+    [Parameter]
+    public required FomanticComponent Component { get; set; }
+
+    [Parameter]
+    public required RenderFragment ChildContent { get; set; }
+
+    [Parameter]
+    public required RenderFragment RightChildContent { get; set; }
+}

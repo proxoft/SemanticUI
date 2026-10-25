@@ -1,0 +1,34 @@
+﻿@inherits ContainerFomanticComponent
+@namespace Proxoft.FomanticUI.Blazor
+
+<DivTemplate Component="this" />
+
+@code {
+    public Column() : base("column", false)
+    {
+    }
+
+    [Parameter]
+    public Position Aligned { get; set; }
+
+    [Parameter]
+    public Amount Wide { get; set; }
+
+    [Parameter]
+    public Amount MobileWide { get; set; }
+
+    [Parameter]
+    public Amount TabletWide { get; set; }
+
+    [Parameter]
+    public Amount ComputerWide { get; set; }
+
+    protected override IEnumerable<string> Classes()
+    {
+        yield return this.Wide.ToClass("wide");
+        yield return this.MobileWide.ToClass("wide mobile");
+        yield return this.TabletWide.ToClass("wide tablet");
+        yield return this.ComputerWide.ToClass("wide computer");
+        yield return this.Aligned.ToAlignmentClass();
+    }
+}

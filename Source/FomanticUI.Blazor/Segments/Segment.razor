@@ -1,0 +1,38 @@
+﻿@inherits ContainerFomanticComponent
+@namespace Proxoft.FomanticUI.Blazor
+
+<DivTemplate Component="this" />
+
+@code {
+    public Segment() : base("segment")
+    {
+    }
+
+    [Parameter]
+    public Color Color { get; set; }
+
+    [Parameter]
+    public SegmentDecorations Decorations { get; set; }
+
+    [Parameter]
+    public Position Alignment { get; set; }
+
+    [Parameter]
+    public Position Attached { get; set; }
+
+    [Parameter]
+    public Position Floated { get; set; }
+
+    [Parameter]
+    public Orientation Orientation { get; set; } = Horizontal;
+
+    protected override IEnumerable<string> Classes()
+    {
+        yield return this.Decorations.ToClass();
+        yield return this.Color.ToClass();
+        yield return this.Alignment.ToAlignmentClass();
+        yield return this.Floated.ToFloatedClass();
+        yield return this.Attached.ToAttachedClass();
+        yield return this.Orientation.ToClass(emptyIf: Horizontal);
+    }
+}

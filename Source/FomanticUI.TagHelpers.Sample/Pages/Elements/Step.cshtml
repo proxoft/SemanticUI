@@ -1,0 +1,135 @@
+﻿@page
+
+<h1>Step</h1>
+
+<sl-description header="Step"
+                text="A single step" />
+
+<fui-step-panel>
+    <fui-step>
+        Shipping
+    </fui-step>
+</fui-step-panel>
+
+<h1>Groups</h1>
+
+<sl-description header="Steps"
+                text="A set of steps" />
+
+<fui-step-panel>
+    <fui-step>
+        <fui-icon name="truck" />
+        <fui-content>
+            <fui-title>
+                Shipping
+            </fui-title>
+            <fui-description>
+                Choose your shipping options
+            </fui-description>
+        </fui-content>
+    </fui-step>
+
+    <fui-step decorations="Active">
+        <fui-icon name="payment" />
+
+        <fui-content>
+            <fui-title>
+                Billing
+            </fui-title>
+            <fui-description>
+                Enter billing information
+            </fui-description>
+        </fui-content>
+    </fui-step>
+
+    <fui-step decorations="Disabled">
+        <fui-icon name="info" />
+
+        <fui-content>
+            <fui-description>
+                Confirm order
+            </fui-description>
+        </fui-content>
+    </fui-step>
+</fui-step-panel>
+
+
+<sl-description header="Ordered"
+                text="A step can show a ordered sequence of steps" />
+
+<fui-step-panel decorations="Ordered">
+    <fui-step decorations="Completed">
+        <fui-content>
+            <fui-title>
+                Shipping
+            </fui-title>
+            <fui-description>
+                Choose your shipping options
+            </fui-description>
+        </fui-content>
+    </fui-step>
+
+    <fui-step decorations="Completed">
+        <fui-content>
+            <fui-title>
+                Billing
+            </fui-title>
+            <fui-description>
+                Enter billing information
+            </fui-description>
+        </fui-content>
+    </fui-step>
+
+    <fui-step decorations="Active">
+        <fui-content>
+            <fui-title>
+                Confirm order
+            </fui-title>
+            <fui-description>
+                Verify order details
+            </fui-description>
+        </fui-content>
+    </fui-step>
+</fui-step-panel>
+
+
+<sl-description header="Ordered"
+                text="A step can show a ordered sequence of steps" />
+
+<fui-step-panel decorations="Vertical">
+    <fui-step decorations="Completed">
+        <fui-icon name="truck" />
+        <fui-content>
+            <step-title>
+                Shipping
+            </step-title>
+            <step-description>
+                Choose your shipping options
+            </step-description>
+        </fui-content>
+    </fui-step>
+
+    <fui-step decorations="Completed">
+        <fui-icon name="credit card" />
+        <fui-content>
+            <fui-title>
+                Billing
+            </fui-title>
+            <fui-description>
+                Enter billing information
+            </fui-description>
+        </fui-content>
+    </fui-step>
+
+    <fui-step decorations="Active">
+        <fui-icon name="info" />
+        <fui-content>
+            <fui-title>
+                Confirm order
+            </fui-title>
+            <fui-description>
+                Verify order details
+            </fui-description>
+        </fui-content>
+    </fui-step>
+</fui-step-panel>
