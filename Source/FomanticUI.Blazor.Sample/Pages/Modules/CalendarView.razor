@@ -1,0 +1,78 @@
+@page "/Modules/Calendar"
+@using System.Globalization
+
+<h1>Calendar</h1>
+
+<Example Header="Date"
+         Text="A date picker. Navigation, selection and the popup are handled in C#, without JavaScript.">
+
+    <Calendar @bind-Value="_date" Placeholder="Date" ShowToday="true" />
+    <p>Selected: @(_date?.ToString("D") ?? "none")</p>
+</Example>
+
+<Example Header="Inline"
+         Text="A calendar can be shown inline instead of in a popup">
+
+    <Calendar @bind-Value="_inlineDate" IsInline="true" />
+    <p>Selected: @(_inlineDate?.ToString("D") ?? "none")</p>
+</Example>
+
+<Example Header="Month and Year"
+         Text="A calendar can select a month or a year">
+
+    <Grid Columns="Two">
+        <Column>
+            <Calendar @bind-Value="_month" Type="CalendarType.Month" Placeholder="Month" />
+            <p>Selected: @(_month?.ToString("Y") ?? "none")</p>
+        </Column>
+        <Column>
+            <Calendar @bind-Value="_year" Type="CalendarType.Year" Placeholder="Year" />
+            <p>Selected: @(_year?.Year.ToString() ?? "none")</p>
+        </Column>
+    </Grid>
+</Example>
+
+<Example Header="Min, Max and Disabled dates"
+         Text="Selectable dates can be limited to a range, and individual dates (here weekends) can be disabled">
+
+    <Calendar @bind-Value="_limitedDate"
+              IsInline="true"
+              MinDate="_today.AddDays(-5)"
+              MaxDate="_today.AddDays(20)"
+              IsDisabledDate="d => d.DayOfWeek is DayOfWeek.Saturday or DayOfWeek.Sunday" />
+</Example>
+
+<Example Header="Culture and First Day of Week"
+         Text="Month and day names, the input format and the first day of the week follow the culture">
+
+    <Grid Columns="Two">
+        <Column>
+            <Calendar @bind-Value="_cultureDate" Culture="@CultureInfo.GetCultureInfo("sk-SK")" Placeholder="Dátum" TodayText="Dnes" ShowToday="true" />
+        </Column>
+        <Column>
+            <Calendar @bind-Value="_cultureDate" Culture="@CultureInfo.GetCultureInfo("de-DE")" FirstDayOfWeek="DayOfWeek.Sunday" Placeholder="Datum" />
+        </Column>
+    </Grid>
+</Example>
+
+<Example Header="Size, Inverted, Disabled"
+         Text="A calendar can have a different size, inverted colors, or be disabled">
+
+    <Segment Decorations="SegmentDecorations.Inverted">
+        <Calendar @bind-Value="_invertedDate" IsInline="true" IsInverted="true" Size="Small" />
+    </Segment>
+
+    <Calendar Value="_today" State="EditState.Disabled" />
+</Example>
+
+@code {
+    private readonly DateOnly _today = DateOnly.FromDateTime(DateTime.Today);
+
+    private DateOnly? _date;
+    private DateOnly? _inlineDate;
+    private DateOnly? _month;
+    private DateOnly? _year;
+    private DateOnly? _limitedDate;
+    private DateOnly? _cultureDate;
+    private DateOnly? _invertedDate;
+}
