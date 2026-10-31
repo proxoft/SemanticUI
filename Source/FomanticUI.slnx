@@ -4,6 +4,9 @@
         <Project Path="FomanticUI.TagHelpers.Sample/FomanticUI.TagHelpers.Sample.csproj" />
     </Folder>
     <Folder Name="/SolutionItems/">
+        <File Path="../LICENSE" />
+        <File Path="../README.md" />
+        <File Path="build-packages.cmd" />
         <File Path="Directory.Build.props" />
         <File Path="Directory.Packages.props" />
         <File Path="FomanticUI.sln.DotSettings" />
