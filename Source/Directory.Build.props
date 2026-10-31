@@ -17,10 +17,11 @@
         <Company>Proxoft s.r.o.</Company>
         <CurrentYear>$([System.DateTime]::Now.Year)</CurrentYear>
         <Authors>$(Company)</Authors>
-        <Product>FomanticUI.Blazor</Product>
+        <Product>Proxoft.FomanticUI</Product>
         <Owner>$(Company)</Owner>
         <Copyright>Copyright © $(Company) - $(CurrentYear)</Copyright>
 
+        <Version>2.0.0</Version>
         <ManagePackageVersionsCentrally>true</ManagePackageVersionsCentrally>
     </PropertyGroup>
 
