@@ -1,16 +1,17 @@
 <Solution>
     <Folder Name="/Samples/">
-        <Project Path="FomanticUI.Blazor.Sample/FomanticUI.Blazor.Sample.csproj"/>
-        <Project Path="FomanticUI.TagHelpers.Sample/FomanticUI.TagHelpers.Sample.csproj"/>
+        <Project Path="FomanticUI.Blazor.Sample/FomanticUI.Blazor.Sample.csproj" />
+        <Project Path="FomanticUI.TagHelpers.Sample/FomanticUI.TagHelpers.Sample.csproj" />
     </Folder>
     <Folder Name="/SolutionItems/">
-        <File Path="Directory.Build.props"/>
-        <File Path="Directory.Packages.props"/>
-        <File Path="global.json"/>
-        <File Path="NuGet.config"/>
+        <File Path="Directory.Build.props" />
+        <File Path="Directory.Packages.props" />
+        <File Path="FomanticUI.sln.DotSettings" />
+        <File Path="global.json" />
+        <File Path="NuGet.config" />
     </Folder>
-    <Project Path="FomanticUI.Blazor/FomanticUI.Blazor.csproj"/>
-    <Project Path="FomanticUI.Core/FomanticUI.Core.csproj"/>
-    <Project Path="FomanticUI.Resources/FomanticUI.Resources.csproj"/>
-    <Project Path="FomanticUI.TagHelpers/FomanticUI.TagHelpers.csproj"/>
+    <Project Path="FomanticUI.Blazor/FomanticUI.Blazor.csproj" />
+    <Project Path="FomanticUI.Core/FomanticUI.Core.csproj" />
+    <Project Path="FomanticUI.Resources/FomanticUI.Resources.csproj" />
+    <Project Path="FomanticUI.TagHelpers/FomanticUI.TagHelpers.csproj" />
 </Solution>
