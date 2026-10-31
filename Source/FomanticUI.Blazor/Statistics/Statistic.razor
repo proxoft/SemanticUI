@@ -1,0 +1,36 @@
+﻿@inherits ContainerFomanticComponent
+@namespace Proxoft.FomanticUI.Blazor
+
+<DivTemplate Component="this"/>
+
+@code {
+
+    public Statistic() : base("statistic")
+    {
+    }
+
+    [Parameter]
+    public Orientation Orientation { get; set; } = Vertical;
+
+    [Parameter]
+    public Color Color { get; set; }
+
+    [Parameter]
+    public Size Size { get; set; }
+
+    [Parameter]
+    public Position Floated { get; set; }
+
+    [Parameter]
+    public bool Inverted { get; set; }
+
+    protected override IEnumerable<string> Classes()
+    {
+        yield return Orientation.ToClass(Vertical);
+        yield return Color.ToClass();
+        yield return Size.ToClass();
+        yield return Floated.ToFloatedClass();
+        yield return "inverted".ToClassIf(Inverted);
+    }
+
+}

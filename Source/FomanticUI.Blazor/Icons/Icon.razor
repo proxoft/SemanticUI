@@ -1,0 +1,57 @@
+﻿@inherits FomanticComponent
+@namespace Proxoft.FomanticUI.Blazor
+
+<i class="@Class()"
+   @attributes="Attributes()"
+   @onclick="OnClick">
+</i>
+
+@code {
+    private IconData _effective = new();
+
+    public Icon() : base("icon", false)
+    {
+    }
+
+    /// <summary>
+    ///     All settings in one value; individual parameters override its values.
+    /// </summary>
+    [Parameter]
+    public IconData? Data { get; set; }
+
+    [Parameter]
+    public string? Name { get; set; }
+
+    [Parameter]
+    public Size? Size { get; set; }
+
+    [Parameter]
+    public Color? Color { get; set; }
+
+    [Parameter]
+    public IconDecorations? Decorations { get; set; }
+
+    [Parameter]
+    public Position? Corner { get; set; }
+
+    protected override void OnParametersSet()
+    {
+        base.OnParametersSet();
+
+        IconData data = Data ?? new IconData();
+        _effective = data with
+        {
+            Name = Name ?? data.Name,
+            Size = Size ?? data.Size,
+            Color = Color ?? data.Color,
+            Decorations = Decorations ?? data.Decorations,
+            Corner = Corner ?? data.Corner
+        };
+    }
+
+    protected override IEnumerable<string> Classes()
+    {
+        yield return _effective.ToClass();
+    }
+
+}

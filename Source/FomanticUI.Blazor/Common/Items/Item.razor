@@ -1,0 +1,20 @@
+﻿@inherits ItemBase
+
+@namespace Proxoft.FomanticUI.Blazor
+
+<DivTemplate Component="this">
+    <RightChildContent>
+        @if (HasRightIcon)
+        {
+            <Icon Name="@(RightIcon ?? "")"/>
+        }
+    </RightChildContent>
+</DivTemplate>
+
+@code {
+
+    public Item() : base("item", false)
+    {
+    }
+
+}

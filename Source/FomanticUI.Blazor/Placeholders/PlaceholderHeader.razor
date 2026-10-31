@@ -1,0 +1,23 @@
+@inherits ContainerFomanticComponent
+@namespace Proxoft.FomanticUI.Blazor
+
+<DivTemplate Component="this"/>
+
+@code {
+
+    public PlaceholderHeader() : base("header", false)
+    {
+    }
+
+    /// <summary>
+    ///     Renders an image placeholder next to the header lines.
+    /// </summary>
+    [Parameter]
+    public bool HasImage { get; set; }
+
+    protected override IEnumerable<string> Classes()
+    {
+        yield return "image".ToClassIf(HasImage);
+    }
+
+}

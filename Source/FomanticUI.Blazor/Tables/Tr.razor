@@ -1,0 +1,11 @@
+﻿@inherits TRowCell
+@namespace Proxoft.FomanticUI.Blazor
+
+<tr class="@Class()"
+    @onclick="OnClick"
+    @attributes="Attributes()">
+    @ChildContent
+</tr>
+
+@code {
+}

@@ -1,0 +1,77 @@
+@page "/Elements/Reveal"
+
+<h1>Reveal</h1>
+
+<Example Header="Fade"
+         Text="Hover to fade out the visible content and reveal the hidden content">
+
+    <Reveal Type="RevealType.Fade" Size="Small">
+        <RevealContent IsVisible="true">
+            <Image Src="/images/wireframe/square-image.png" Decorations="ImageDecorations.Rounded" Size="Small"/>
+        </RevealContent>
+        <RevealContent>
+            <Image Src="/images/avatar/small/stevie.jpg" Decorations="ImageDecorations.Rounded" Size="Small"/>
+        </RevealContent>
+    </Reveal>
+</Example>
+
+<Example Header="Move"
+         Text="The visible content can move away in any direction">
+
+    @foreach (RevealType type in new[] { RevealType.Move, RevealType.MoveRight, RevealType.MoveUp, RevealType.MoveDown })
+    {
+        <Reveal Type="type" Size="Small" CssClass="inline-reveal">
+            <RevealContent IsVisible="true">
+                <Image Src="/images/wireframe/square-image.png" Size="Small"/>
+            </RevealContent>
+            <RevealContent>
+                <Image Src="/images/avatar/small/elliot.jpg" Size="Small"/>
+            </RevealContent>
+        </Reveal>
+    }
+</Example>
+
+<Example Header="Rotate"
+         Text="The visible content can rotate away">
+
+    @foreach (RevealType type in new[] { RevealType.Rotate, RevealType.RotateLeft })
+    {
+        <Reveal Type="type" Size="Small" CssClass="circular inline-reveal">
+            <RevealContent IsVisible="true">
+                <Image Src="/images/wireframe/square-image.png" Decorations="ImageDecorations.Circular" Size="Small"/>
+            </RevealContent>
+            <RevealContent>
+                <Image Src="/images/avatar/small/helen.jpg" Decorations="ImageDecorations.Circular" Size="Small"/>
+            </RevealContent>
+        </Reveal>
+    }
+</Example>
+
+<Example Header="Active and Disabled"
+         Text="A reveal can be forced to its revealed state, or not react to hover">
+
+    <Reveal Type="RevealType.Fade" Size="Small" Decorations="RevealDecorations.Active" CssClass="inline-reveal">
+        <RevealContent IsVisible="true">
+            <Image Src="/images/wireframe/square-image.png" Size="Small"/>
+        </RevealContent>
+        <RevealContent>
+            <Image Src="/images/avatar/small/matt.jpg" Size="Small"/>
+        </RevealContent>
+    </Reveal>
+
+    <Reveal Type="RevealType.Fade" Size="Small" Decorations="RevealDecorations.Disabled" CssClass="inline-reveal">
+        <RevealContent IsVisible="true">
+            <Image Src="/images/wireframe/square-image.png" Size="Small"/>
+        </RevealContent>
+        <RevealContent>
+            <Image Src="/images/avatar/small/matt.jpg" Size="Small"/>
+        </RevealContent>
+    </Reveal>
+</Example>
+
+<style>
+    .inline-reveal {
+        display: inline-block !important;
+        margin-right: 1em;
+    }
+</style>

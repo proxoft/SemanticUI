@@ -1,0 +1,24 @@
+﻿@inherits ContainerFomanticComponent
+@namespace Proxoft.FomanticUI.Blazor
+
+<DivTemplate Component="this"/>
+
+@code {
+
+    public Form() : base("form")
+    {
+    }
+
+    [Parameter]
+    public Size Size { get; set; }
+
+    [Parameter]
+    public Severity Severity { get; set; }
+
+    protected override IEnumerable<string> Classes()
+    {
+        yield return Size.ToClass();
+        yield return Severity.ToClass();
+    }
+
+}

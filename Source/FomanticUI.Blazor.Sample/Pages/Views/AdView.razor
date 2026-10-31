@@ -1,0 +1,20 @@
+@page "/Views/Ad"
+
+<h1>Advertisement</h1>
+
+<Example Header="Ad units"
+         Text="An ad reserves space in a standard ad unit size. The Test decoration shows a grey box with the text 'Ad'.">
+
+    @foreach (AdUnit unit in new[] { AdUnit.MediumRectangle, AdUnit.Banner, AdUnit.Leaderboard, AdUnit.SmallButton })
+    {
+        <Example Header="@unit.ToString()" Text="@unit.ToClass()">
+            <Ad Unit="unit" Decorations="AdDecorations.Test"/>
+        </Example>
+    }
+</Example>
+
+<Example Header="Centered"
+         Text="An ad can be centered">
+
+    <Ad Unit="AdUnit.Banner" Decorations="AdDecorations.Test | AdDecorations.Centered"/>
+</Example>

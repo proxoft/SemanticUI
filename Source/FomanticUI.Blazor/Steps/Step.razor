@@ -1,0 +1,28 @@
+﻿@inherits ContainerFomanticComponent
+@namespace Proxoft.FomanticUI.Blazor
+
+<DivTemplate Component="this">
+    @if (!string.IsNullOrWhiteSpace(IconName))
+    {
+        <Icon Name="@IconName"/>
+    }
+</DivTemplate>
+
+@code {
+
+    public Step() : base("step", false)
+    {
+    }
+
+    [Parameter]
+    public string? IconName { get; set; }
+
+    [Parameter]
+    public StepDecorations Decorations { get; set; }
+
+    protected override IEnumerable<string> Classes()
+    {
+        yield return Decorations.ToClass();
+    }
+
+}

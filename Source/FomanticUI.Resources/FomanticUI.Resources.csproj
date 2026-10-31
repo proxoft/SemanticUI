@@ -1,0 +1,36 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <AssemblyName>Proxoft.FomanticUI.Resources</AssemblyName>
+        <RootNamespace>Proxoft.FomanticUI.Resources</RootNamespace>
+        <GenerateEmbeddedFilesManifest>true</GenerateEmbeddedFilesManifest>
+
+        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+        <PackageProjectUrl>https://github.com/proxoft/SemanticUI</PackageProjectUrl>
+        <RepositoryUrl>https://github.com/proxoft/SemanticUI</RepositoryUrl>
+        <Version>2.0.0</Version>
+        <Authors>Proxoft</Authors>
+        <Company>Proxoft s.r.o.</Company>
+        <Product>FomanticUI</Product>
+    </PropertyGroup>
+
+    <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+        <OutputPath>../../../Builds/FomanticUI.Resources/Debug</OutputPath>
+    </PropertyGroup>
+
+    <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+        <OutputPath>../../../Builds/FomanticUI.Resources/Release</OutputPath>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <FrameworkReference Include="Microsoft.AspNetCore.App"/>
+        <PackageReference Include="Microsoft.Extensions.FileProviders.Embedded"/>
+    </ItemGroup>
+
+
+    <ItemGroup>
+        <None Remove="fomantic\**"/>
+        <EmbeddedResource Include="fomantic\**"/>
+    </ItemGroup>
+
+</Project>

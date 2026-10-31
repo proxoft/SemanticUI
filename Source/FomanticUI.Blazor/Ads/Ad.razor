@@ -1,0 +1,24 @@
+@inherits ContainerFomanticComponent
+@namespace Proxoft.FomanticUI.Blazor
+
+<DivTemplate Component="this"/>
+
+@code {
+
+    public Ad() : base("ad")
+    {
+    }
+
+    [Parameter]
+    public AdUnit Unit { get; set; }
+
+    [Parameter]
+    public AdDecorations Decorations { get; set; }
+
+    protected override IEnumerable<string> Classes()
+    {
+        yield return Unit.ToClass();
+        yield return Decorations.ToClass();
+    }
+
+}

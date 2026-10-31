@@ -1,0 +1,128 @@
+﻿@inherits ContainerFomanticComponent
+@namespace Proxoft.FomanticUI.Blazor
+
+<DivTemplate Component="this">
+    @if (HasIcon)
+    {
+        <Icon Name="@_effective.Icon" @onclick="OnIconClick"/>
+    }
+
+    <Content>
+        @if (HasHeader)
+        {
+            <Header>
+                @_effective.Header
+            </Header>
+        }
+
+        @if (HasContent)
+        {
+            <p>
+                @_effective.Content
+            </p>
+        }
+        @if (HasItems)
+        {
+            <ul>
+                @foreach (var i in _effective.Items)
+                {
+                    <li>@i</li>
+                }
+            </ul>
+        }
+    </Content>
+
+    @if (_effective.CanClose)
+    {
+        <Icon Name="close" @onclick="OnCloseIconClick"/>
+    }
+</DivTemplate>
+
+@code {
+    private MessageData _effective = new();
+
+    public Message() : base("message")
+    {
+    }
+
+    /// <summary>
+    ///     All settings in one value; individual parameters override its values.
+    /// </summary>
+    [Parameter]
+    public MessageData? Data { get; set; }
+
+    [Parameter]
+    public Severity? Severity { get; set; }
+
+    [Parameter]
+    public Size? Size { get; set; }
+
+    [Parameter]
+    public Color? Color { get; set; }
+
+    [Parameter]
+    public string? Icon { get; set; }
+
+    [Parameter]
+    public string? Header { get; set; }
+
+    [Parameter]
+    public string? Content { get; set; }
+
+    [Parameter]
+    public bool? CanClose { get; set; }
+
+    [Parameter]
+    public bool? Floating { get; set; }
+
+    [Parameter]
+    public IEnumerable<string>? Items { get; set; }
+
+    [Parameter]
+    public EventCallback<MouseEventArgs> OnIconClick { get; set; }
+
+    [Parameter]
+    public EventCallback<MouseEventArgs> OnCloseIconClick { get; set; }
+
+    private bool HasIcon => !string.IsNullOrWhiteSpace(_effective.Icon);
+
+    private bool HasHeader => !string.IsNullOrWhiteSpace(_effective.Header);
+
+    private bool HasContent => !string.IsNullOrWhiteSpace(_effective.Content);
+
+    private bool HasItems => _effective.Items.Count > 0;
+
+    protected override void OnParametersSet()
+    {
+        base.OnParametersSet();
+
+        MessageData data = Data ?? new MessageData();
+        _effective = data with
+        {
+            Severity = Severity ?? data.Severity,
+            Size = Size ?? data.Size,
+            Color = Color ?? data.Color,
+            Icon = Icon ?? data.Icon,
+            Header = Header ?? data.Header,
+            Content = Content ?? data.Content,
+            CanClose = CanClose ?? data.CanClose,
+            Floating = Floating ?? data.Floating,
+            Items = Items?.ToArray() ?? data.Items
+        };
+    }
+
+    protected override IEnumerable<string> Classes()
+    {
+        yield return "icon".ToClassIf(HasIcon);
+        yield return _effective.Severity.ToClass();
+
+        if (_effective.Severity == Core.Severity.NoSeverity)
+        {
+            yield return _effective.Color.ToClass();
+        }
+
+        yield return _effective.Size.ToClass();
+        yield return "floating".ToClassIf(_effective.Floating);
+    }
+
+}

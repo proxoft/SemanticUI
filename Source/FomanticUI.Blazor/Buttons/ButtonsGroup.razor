@@ -1,0 +1,42 @@
+﻿@inherits ButtonBase<ButtonsGroupData>
+@namespace Proxoft.FomanticUI.Blazor
+
+@if (Effective.IsVisible)
+{
+    <DivTemplate Component="this"/>
+}
+
+@code {
+
+    public ButtonsGroup() : base("buttons")
+    {
+    }
+
+    [Parameter]
+    public Orientation? Orientation { get; set; }
+
+    [Parameter]
+    public Amount? Amount { get; set; }
+
+    protected override ButtonsGroupData ApplyParameters(ButtonsGroupData data)
+    {
+        ButtonsGroupData applied = base.ApplyParameters(data);
+        return applied with
+        {
+            Orientation = Orientation ?? applied.Orientation,
+            Amount = Amount ?? applied.Amount
+        };
+    }
+
+    protected override IEnumerable<string> Classes()
+    {
+        return base.Classes()
+            .Concat(
+                new[]
+                {
+                    Effective.Orientation.ToClass(),
+                    Effective.Amount.ToClass("")
+                });
+    }
+
+}

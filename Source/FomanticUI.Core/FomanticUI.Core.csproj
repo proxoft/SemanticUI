@@ -1,0 +1,17 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <AssemblyName>Proxoft.FomanticUI.Core</AssemblyName>
+        <RootNamespace>Proxoft.FomanticUI.Core</RootNamespace>
+        <RepositoryUrl>https://github.com/proxoft/SemanticUI</RepositoryUrl>
+        <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    </PropertyGroup>
+
+    <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+        <OutputPath>../../../Builds/FomanticUI.Core/Debug</OutputPath>
+    </PropertyGroup>
+
+    <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+        <OutputPath>../../../Builds/FomanticUI.Core/Release</OutputPath>
+    </PropertyGroup>
+</Project>

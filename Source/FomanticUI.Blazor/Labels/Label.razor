@@ -1,0 +1,26 @@
+﻿@inherits LabelBase
+@namespace Proxoft.FomanticUI.Blazor
+
+<DivTemplate Component="this"/>
+
+@code {
+
+    [Parameter]
+    public Position Attached { get; set; }
+
+    [Parameter]
+    public Position Pointing { get; set; }
+
+    protected override IEnumerable<string> Classes()
+    {
+        return base.Classes()
+            .Concat(ClassesPrivate());
+    }
+
+    private IEnumerable<string> ClassesPrivate()
+    {
+        yield return Attached.ToAttachedClass();
+        yield return Pointing.ToPointingClass();
+    }
+
+}

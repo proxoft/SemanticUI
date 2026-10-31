@@ -1,0 +1,36 @@
+@inherits ContainerFomanticComponent
+@namespace Proxoft.FomanticUI.Blazor
+
+<span class="@Class()"
+      @attributes="Attributes()"
+      @onclick="OnClick">
+    @ChildContent
+</span>
+
+@code {
+
+    public StyledText() : base("text")
+    {
+    }
+
+    [Parameter]
+    public Color Color { get; set; }
+
+    [Parameter]
+    public Size Size { get; set; }
+
+    [Parameter]
+    public Severity Severity { get; set; }
+
+    [Parameter]
+    public TextDecorations Decorations { get; set; }
+
+    protected override IEnumerable<string> Classes()
+    {
+        yield return Color.ToClass();
+        yield return Severity.ToClass();
+        yield return Size.ToClass();
+        yield return Decorations.ToClass();
+    }
+
+}

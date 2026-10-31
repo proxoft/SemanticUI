@@ -1,0 +1,39 @@
+@inherits FomanticComponent
+@namespace Proxoft.FomanticUI.Blazor
+
+<em data-emoji="@EmojiCode"
+    class="@Class()"
+    @attributes="Attributes()"
+    @onclick="OnClick">
+</em>
+
+@code {
+
+    public Emoji() : base("", false)
+    {
+    }
+
+    /// <summary>
+    ///     Emoji shortcode with or without colons, e.g. "smile" or ":smile:".
+    /// </summary>
+    [Parameter]
+    public required string Name { get; set; }
+
+    /// <summary>
+    ///     Fomantic supports Small, Medium, Large and Big for emojis.
+    /// </summary>
+    [Parameter]
+    public Size Size { get; set; }
+
+    [Parameter]
+    public EmojiDecorations Decorations { get; set; }
+
+    private string EmojiCode => $":{Name.Trim(':')}:";
+
+    protected override IEnumerable<string> Classes()
+    {
+        yield return Size.ToClass();
+        yield return Decorations.ToClass();
+    }
+
+}

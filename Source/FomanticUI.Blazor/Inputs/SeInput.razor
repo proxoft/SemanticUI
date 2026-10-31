@@ -1,0 +1,76 @@
+﻿@inherits InputComponent
+@namespace Proxoft.FomanticUI.Blazor
+
+<DivTemplate Component="this">
+    @Left
+
+    <input value="@Value"
+           type="text"
+           placeholder="@Placeholder"
+           readonly="@IsReadonly"
+           disabled="@IsDisabled"
+           @onchange="InputValueChanged"
+           @onkeydown="OnKeyDown"
+           @onkeyup="OnKeyUp"
+           @onfocus="OnFocus"
+           @onblur="OnBlur"/>
+
+    @Right
+</DivTemplate>
+
+@code {
+
+    public SeInput() : base("input")
+    {
+    }
+
+    [Parameter]
+    public required string Value { get; set; }
+
+    [Parameter]
+    public EventCallback<string> ValueChanged { get; set; }
+
+    [Parameter]
+    public string? Placeholder { get; set; }
+
+    [Parameter]
+    public InputDecorations Decorations { get; set; }
+
+    [Parameter]
+    public RenderFragment? Left { get; set; }
+
+    [Parameter]
+    public RenderFragment? Right { get; set; }
+
+    [Parameter]
+    public EventCallback<KeyboardEventArgs> OnKeyDown { get; set; }
+
+    [Parameter]
+    public EventCallback<KeyboardEventArgs> OnKeyUp { get; set; }
+
+    [Parameter]
+    public EventCallback<FocusEventArgs> OnBlur { get; set; }
+
+    [Parameter]
+    public EventCallback<FocusEventArgs> OnFocus { get; set; }
+
+    private bool IsReadonly => State == EditState.ReadOnly;
+    private bool IsDisabled => State == EditState.Disabled;
+
+    protected override IEnumerable<string> Classes()
+    {
+        return base.Classes().Concat(ClassesPrivate());
+    }
+
+    private void InputValueChanged(ChangeEventArgs e)
+    {
+        Value = e.Value as string ?? "";
+        ValueChanged.InvokeAsync(Value);
+    }
+
+    private IEnumerable<string> ClassesPrivate()
+    {
+        yield return Decorations.ToClass();
+    }
+
+}

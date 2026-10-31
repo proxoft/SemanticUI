@@ -1,0 +1,32 @@
+﻿@inherits ContainerFomanticComponent
+@namespace Proxoft.FomanticUI.Blazor
+
+<DivTemplate Component="this"/>
+
+@code {
+
+    public SegmentGroup() : base("segments")
+    {
+    }
+
+    [Parameter]
+    public bool Stacked { get; set; }
+
+    [Parameter]
+    public bool Raised { get; set; }
+
+    [Parameter]
+    public bool Piled { get; set; }
+
+    [Parameter]
+    public Orientation Orientation { get; set; } = Vertical;
+
+    protected override IEnumerable<string> Classes()
+    {
+        yield return "piled".ToClassIf(Piled);
+        yield return "stacked".ToClassIf(Stacked);
+        yield return "raised".ToClassIf(Raised);
+        yield return Orientation.ToClass(Vertical);
+    }
+
+}

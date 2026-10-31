@@ -1,0 +1,26 @@
+@inherits FomanticComponent
+@namespace Proxoft.FomanticUI.Blazor
+
+<i class="@Class()"
+   @attributes="Attributes()"
+   @onclick="OnClick">
+</i>
+
+@code {
+
+    public Flag() : base("flag", false)
+    {
+    }
+
+    /// <summary>
+    ///     Country code or name, e.g. "de", "france" or "united kingdom".
+    /// </summary>
+    [Parameter]
+    public required string Name { get; set; }
+
+    protected override IEnumerable<string> Classes()
+    {
+        yield return Name;
+    }
+
+}

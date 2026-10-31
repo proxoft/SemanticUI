@@ -1,0 +1,20 @@
+@inherits FomanticComponent
+@namespace Proxoft.FomanticUI.Blazor
+
+<DivTemplate Component="this"/>
+
+@code {
+
+    public PlaceholderImage() : base("image", false)
+    {
+    }
+
+    [Parameter]
+    public PlaceholderImageShape Shape { get; set; }
+
+    protected override IEnumerable<string> Classes()
+    {
+        yield return Shape.ToClass();
+    }
+
+}

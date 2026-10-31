@@ -1,0 +1,41 @@
+﻿@inherits InputComponent
+@namespace Proxoft.FomanticUI.Blazor
+
+<DivTemplate Component="this">
+    <input type="@HtmlType" @bind="@Checked">
+    <label>@Label</label>
+</DivTemplate>
+
+@code {
+
+    public SeCheckbox() : base("checkbox")
+    {
+    }
+
+    [Parameter]
+    public bool Checked { get; set; }
+
+    [Parameter]
+    public CheckboxType Type { get; set; }
+
+    [Parameter]
+    public string Label { get; set; } = "";
+
+    [Parameter]
+    public bool Fitted { get; set; }
+
+    private string HtmlType => Type == CheckboxType.Radio ? "radio" : "checkbox";
+
+    protected override IEnumerable<string> Classes()
+    {
+        return base.Classes().Concat(ClassesPrivate());
+    }
+
+    protected IEnumerable<string> ClassesPrivate()
+    {
+        yield return State.ToClass();
+        yield return "fitted".ToClassIf(Fitted);
+        yield return Type.ToClass();
+    }
+
+}

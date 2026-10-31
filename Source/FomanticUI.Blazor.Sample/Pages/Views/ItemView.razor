@@ -1,0 +1,62 @@
+@page "/Views/Item"
+
+<h1>Item</h1>
+
+<Example Header="Items"
+         Text="A group of items with image, header, metadata, description and extra content">
+
+    <Items Decorations="ItemsDecorations.Divided">
+        @foreach (var name in new[] { "Matt", "Stevie" })
+        {
+            <Item>
+                <ItemImage>
+                    <img src="/images/wireframe/image.png"/>
+                </ItemImage>
+                <Content>
+                    <ContentHeader Href="#">@name</ContentHeader>
+                    <MetaInfo><span>Description</span></MetaInfo>
+                    <Description>
+                        <Image Src="/images/wireframe/short-paragraph.png"/>
+                    </Description>
+                    <Extra>
+                        <Label>Additional details</Label>
+                    </Extra>
+                </Content>
+            </Item>
+        }
+    </Items>
+</Example>
+
+<Example Header="Image size and vertical alignment"
+         Text="Item images can be sized and content can be vertically aligned">
+
+    <Items>
+        <Item>
+            <ItemImage Size="Tiny">
+                <img src="/images/wireframe/image.png"/>
+            </ItemImage>
+            <Content VerticallyAligned="Middle">
+                <ContentHeader>Middle aligned content</ContentHeader>
+            </Content>
+        </Item>
+    </Items>
+</Example>
+
+<Example Header="Link and Relaxed"
+         Text="Items can be links and have more space between them">
+
+    <Items Decorations="ItemsDecorations.Link | ItemsDecorations.Relaxed">
+        @foreach (var name in new[] { "Christian", "Daniel", "Elyse" })
+        {
+            <Item>
+                <ItemImage Size="Mini">
+                    <img src="/images/wireframe/square-image.png"/>
+                </ItemImage>
+                <Content>
+                    <ContentHeader>@name</ContentHeader>
+                    <Description>Hover to see the link style</Description>
+                </Content>
+            </Item>
+        }
+    </Items>
+</Example>

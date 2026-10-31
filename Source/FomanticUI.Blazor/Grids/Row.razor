@@ -1,0 +1,24 @@
+﻿@inherits ContainerFomanticComponent
+@namespace Proxoft.FomanticUI.Blazor
+
+<DivTemplate Component="this"/>
+
+@code {
+
+    public Row() : base("row", false)
+    {
+    }
+
+    [Parameter]
+    public Position Alignment { get; set; }
+
+    [Parameter]
+    public Amount Columns { get; set; }
+
+    protected override IEnumerable<string> Classes()
+    {
+        yield return Alignment.ToAlignmentClass();
+        yield return Columns.ToClass("columns");
+    }
+
+}

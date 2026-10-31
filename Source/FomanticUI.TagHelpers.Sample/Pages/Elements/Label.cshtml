@@ -1,0 +1,171 @@
+﻿@page
+<h1>Label</h1>
+
+<sl-example header="Label"
+            text="A label">
+    <fui-label>
+        <fui-icon name="mail"/>
+        23
+    </fui-label>
+</sl-example>
+
+<sl-example header="Tag"
+            text="A label can appear as a tag">
+    <fui-label decorations="Tag">
+        Next
+    </fui-label>
+    <fui-label decorations="Tag"
+               color="Red">
+        Upcoming
+    </fui-label>
+    <fui-label decorations="Tag"
+               color="Teal">
+        Featured
+    </fui-label>
+</sl-example>
+
+<sl-example header="Ribbon"
+            text="A label can appear as a ribbon attaching itself to an element.">
+    <fui-segmentGroup orientation="Horizontal">
+        <fui-segment>
+            <fui-ribbonLabel color="Red">
+                Overview
+            </fui-ribbonLabel>
+            <p></p>
+            <p>some content</p>
+        </fui-segment>
+        <fui-segment>
+            <fui-ribbonLabel color="Blue"
+                             position="Right">
+                Overview
+            </fui-ribbonLabel>
+            <p></p>
+            <p>some content</p>
+        </fui-segment>
+    </fui-segmentGroup>
+</sl-example>
+
+<sl-example header="Floating"
+            text="A label can float above another element.">
+
+    <fui-menu decorations="Compact">
+        <fui-menuItem>
+            <fui-icon name="mail"/>
+            Messages
+            <fui-label decorations="Floating"
+                       color="Red">22
+            </fui-label>
+        </fui-menuItem>
+        <fui-menuItem>
+            <fui-icon name="users"/>
+            Friends
+            <fui-label decorations="Floating"
+                       color="Teal">42
+            </fui-label>
+        </fui-menuItem>
+    </fui-menu>
+</sl-example>
+
+<h1>Variations</h1>
+<sl-example header="Circular"
+            text="A label can be circular">
+    <fui-label decorations="Circular" color="Red">2</fui-label>
+    <fui-label decorations="Circular" color="Orange">2</fui-label>
+    <fui-label decorations="Circular" color="Yellow">2</fui-label>
+    <fui-label decorations="Circular" color="Olive">2</fui-label>
+    <fui-label decorations="Circular" color="Teal">2</fui-label>
+
+    <br/>
+    <fui-label decorations="CircularEmpty" color="Red"/>
+    <fui-label decorations="CircularEmpty" color="Orange"/>
+    <fui-label decorations="CircularEmpty" color="Yellow"/>
+    <fui-label decorations="CircularEmpty" color="Olive"/>
+    <fui-label decorations="CircularEmpty" color="Teal"/>
+</sl-example>
+
+<sl-example header="Basic"
+            text="A label can reduce its complexity">
+    <fui-label decorations="Basic">
+        Basic
+    </fui-label>
+    <fui-label decorations="Basic"
+               pointing="Up">
+        Pointing
+    </fui-label>
+    <fui-label decorations="Basic"
+               pointing="Up"
+               color="Red">
+        Red pointing
+    </fui-label>
+    <fui-label decorations="Basic"
+               color="Blue">
+        Blue
+    </fui-label>
+</sl-example>
+
+<h1>Groups</h1>
+
+<sl-example header="Different common properties">
+    <fui-labelGroup size="Huge">
+        <fui-label>
+            Fun
+        </fui-label>
+        <fui-label>
+            Happy
+        </fui-label>
+        <fui-label>
+            Smart
+        </fui-label>
+        <fui-label>
+            Witty
+        </fui-label>
+    </fui-labelGroup>
+
+
+    <fui-labelGroup color="Blue">
+        <fui-label>
+            Fun
+            <fui-icon name="close"/>
+        </fui-label>
+        <fui-label>
+            Happy
+        </fui-label>
+        <fui-label>
+            Smart
+        </fui-label>
+        <fui-label>
+            Witty
+        </fui-label>
+    </fui-labelGroup>
+
+    <fui-labelGroup decorations="Tag">
+        <fui-label>
+            $10.00
+        </fui-label>
+        <fui-label>
+            $109.99
+        </fui-label>
+        <fui-label>
+            $24.56
+        </fui-label>
+        <fui-label>
+            $10.25
+        </fui-label>
+    </fui-labelGroup>
+
+
+    <fui-labelGroup decorations="Circular">
+        <fui-label>
+            10
+        </fui-label>
+        <fui-label>
+            109
+        </fui-label>
+        <fui-label>
+            24
+        </fui-label>
+        <fui-label>
+            10
+        </fui-label>
+    </fui-labelGroup>
+</sl-example>

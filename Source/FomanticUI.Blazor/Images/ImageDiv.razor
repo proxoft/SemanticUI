@@ -1,0 +1,36 @@
+﻿@inherits ContainerFomanticComponent
+@namespace Proxoft.FomanticUI.Blazor
+
+<DivTemplate Component="this"/>
+
+@code {
+
+    public ImageDiv() : base("image")
+    {
+    }
+
+    [Parameter]
+    public ImageDecorations Decorations { get; set; }
+
+    [Parameter]
+    public Size Size { get; set; }
+
+    [Parameter]
+    public Position VerticallyAligned { get; set; }
+
+    [Parameter]
+    public Position Spaced { get; set; }
+
+    [Parameter]
+    public Position Floated { get; set; }
+
+    protected override IEnumerable<string> Classes()
+    {
+        yield return Decorations.ToClass();
+        yield return Size.ToClass();
+        yield return VerticallyAligned.ToVerticalAlignmentClass();
+        yield return Spaced.ToSpacedClass();
+        yield return Floated.ToFloatedClass();
+    }
+
+}

@@ -1,0 +1,384 @@
+@using System.Globalization
+@inherits FomanticComponent
+@namespace Proxoft.FomanticUI.Blazor
+
+@*
+    Renders Fomantic UI's calendar markup; navigation, selection and the popup are handled in C#
+    instead of Fomantic's jQuery module, so it runs without JS interop (e.g. in Blazor WebAssembly).
+*@
+
+<div class="@Class()"
+     @attributes="Attributes()"
+     @onclick="OnClick">
+
+    @if (IsInline)
+    {
+        <div class="calendar">
+            @CalendarTable
+        </div>
+    }
+    else
+    {
+        <div class="ui left icon input">
+            <i class="@($"{Icon} icon")"></i>
+            <input type="text"
+                   value="@InputText"
+                   placeholder="@Placeholder"
+                   readonly="@(State == EditState.ReadOnly)"
+                   disabled="@(State == EditState.Disabled)"
+                   @onclick="Open"
+                   @onfocus="Open"
+                   @onchange="InputChanged"
+                   @onkeydown="InputKeyDown"/>
+        </div>
+
+        @if (_isOpen)
+        {
+            @* transparent layer closing the popup on a click anywhere outside of it *@
+            <div style="position: fixed; top: 0; right: 0; bottom: 0; left: 0; z-index: 1899;"
+                 @onclick="Close">
+            </div>
+
+            <div class="@PopupClass"
+                 style="top: 100%; left: 0; right: auto; z-index: 1900;">
+                @CalendarTable
+            </div>
+        }
+    }
+</div>
+
+@code {
+    private CalendarView _view;
+    private DateOnly _focus;
+    private DateOnly? _lastValue;
+    private bool _isOpen;
+    private string? _rejectedInput;
+
+    public Calendar() : base("calendar")
+    {
+    }
+
+    [Parameter]
+    public DateOnly? Value { get; set; }
+
+    [Parameter]
+    public EventCallback<DateOnly?> ValueChanged { get; set; }
+
+    /// <summary>
+    ///     What is selected: a date, a month (first day of the month) or a year (January 1st).
+    /// </summary>
+    [Parameter]
+    public CalendarType Type { get; set; }
+
+    /// <summary>
+    ///     Shows the calendar directly instead of an input with a popup.
+    /// </summary>
+    [Parameter]
+    public bool IsInline { get; set; }
+
+    [Parameter]
+    public DateOnly? MinDate { get; set; }
+
+    [Parameter]
+    public DateOnly? MaxDate { get; set; }
+
+    /// <summary>
+    ///     Disables individual days, e.g. weekends.
+    /// </summary>
+    [Parameter]
+    public Func<DateOnly, bool>? IsDisabledDate { get; set; }
+
+    /// <summary>
+    ///     Defaults to the culture's first day of the week.
+    /// </summary>
+    [Parameter]
+    public DayOfWeek? FirstDayOfWeek { get; set; }
+
+    /// <summary>
+    ///     Culture for month and day names and for the input format. Defaults to the current culture.
+    /// </summary>
+    [Parameter]
+    public CultureInfo? Culture { get; set; }
+
+    /// <summary>
+    ///     Input format. Defaults to the culture's short date pattern for dates, year-month pattern for months and "yyyy" for
+    ///     years.
+    /// </summary>
+    [Parameter]
+    public string? Format { get; set; }
+
+    [Parameter]
+    public string? Placeholder { get; set; }
+
+    [Parameter]
+    public string Icon { get; set; } = "calendar";
+
+    [Parameter]
+    public bool ShowToday { get; set; }
+
+    [Parameter]
+    public string TodayText { get; set; } = "Today";
+
+    [Parameter]
+    public Size Size { get; set; }
+
+    [Parameter]
+    public bool IsInverted { get; set; }
+
+    [Parameter]
+    public EditState State { get; set; }
+
+    private CultureInfo EffectiveCulture => Culture ?? CultureInfo.CurrentCulture;
+
+    private DateOnly Today => DateOnly.FromDateTime(DateTime.Now);
+
+    private string EffectiveFormat => Format ?? Type switch
+    {
+        CalendarType.Month => EffectiveCulture.DateTimeFormat.YearMonthPattern,
+        CalendarType.Year => "yyyy",
+        _ => EffectiveCulture.DateTimeFormat.ShortDatePattern
+    };
+
+    private string InputText => _rejectedInput
+                                ?? Value?.ToString(EffectiveFormat, EffectiveCulture)
+                                ?? "";
+
+    private string PopupClass => new[]
+    {
+        "ui bottom left popup calendar transition visible",
+        "inverted".ToClassIf(IsInverted)
+    }.ToClass();
+
+    private RenderFragment CalendarTable => __builder =>
+    {
+        CalendarPage calendarPage = CalendarPage.Create(_view, _focus, new CalendarOptions(
+            Today,
+            Value,
+            MinDate,
+            MaxDate,
+            IsDisabledDate,
+            FirstDayOfWeek ?? EffectiveCulture.DateTimeFormat.FirstDayOfWeek,
+            EffectiveCulture));
+
+        <table class="@calendarPage.TableClass(this.IsInverted)">
+            <thead>
+            <tr>
+                <th colspan="@calendarPage.Columns">
+                    <span class="link" @onclick="ZoomOut">@calendarPage.Header</span>
+                    <span class="@("prev link" + (calendarPage.Previous is null ? " disabled" : ""))"
+                          @onclick="() => Navigate(calendarPage.Previous)">
+                            <i class="chevron left icon"></i>
+                        </span>
+                    <span class="@("next link" + (calendarPage.Next is null ? " disabled" : ""))"
+                          @onclick="() => Navigate(calendarPage.Next)">
+                            <i class="chevron right icon"></i>
+                        </span>
+                </th>
+            </tr>
+            @if (calendarPage.ColumnHeaders.Count > 0)
+            {
+                <tr>
+                    @foreach (var columnHeader in calendarPage.ColumnHeaders)
+                    {
+                        <th>@columnHeader</th>
+                    }
+                </tr>
+            }
+            </thead>
+            <tbody>
+            @foreach (var row in calendarPage.Rows)
+            {
+                <tr>
+                    @foreach (CalendarCell cell in row)
+                    {
+                        <td class="@cell.Class" @onclick="() => SelectCell(cell)">@cell.Text</td>
+                    }
+                </tr>
+            }
+            @if (ShowToday)
+            {
+                <tr>
+                    <td colspan="@calendarPage.Columns" class="today link"
+                        @onclick="SelectToday">@(this.TodayText)</td>
+                </tr>
+            }
+            </tbody>
+        </table>
+    };
+
+    protected override void OnParametersSet()
+    {
+        base.OnParametersSet();
+
+        var valueChanged = _lastValue != Value;
+        _lastValue = Value;
+
+        // follow the value set by the parent, but don't move the page the user is browsing
+        if (_focus == default || (valueChanged && !_isOpen))
+        {
+            ResetPage();
+        }
+        else if (_view < Type.ToView())
+        {
+            _view = Type.ToView();
+        }
+    }
+
+    protected override IEnumerable<string> Classes()
+    {
+        yield return Size.ToClass();
+        yield return "inverted".ToClassIf(IsInverted);
+        yield return State.ToClass();
+    }
+
+    protected override void InitializeAttributes(Dictionary<string, object> attributes)
+    {
+        base.InitializeAttributes(attributes);
+
+        if (!IsInline)
+        {
+            // the popup is positioned below the input by CSS only, relative to this element
+            var style = attributes.TryGetValue("style", out var existing) ? $"{existing}; " : "";
+            attributes["style"] = style + "position: relative;";
+        }
+    }
+
+    private bool IsEditable => State == EditState.Edit;
+
+    private void ResetPage()
+    {
+        _focus = Value ?? Today;
+        _view = Type.ToView();
+    }
+
+    private void Open()
+    {
+        if (_isOpen || !IsEditable)
+        {
+            return;
+        }
+
+        ResetPage();
+        _isOpen = true;
+    }
+
+    private void Close()
+    {
+        _isOpen = false;
+    }
+
+    private void Navigate(DateOnly? focus)
+    {
+        if (focus is { } f && IsEditable)
+        {
+            _focus = f;
+        }
+    }
+
+    private void ZoomOut()
+    {
+        if (!IsEditable)
+        {
+            return;
+        }
+
+        _view = _view switch
+        {
+            CalendarView.Day => CalendarView.Month,
+            _ => CalendarView.Year
+        };
+    }
+
+    private async Task SelectCell(CalendarCell cell)
+    {
+        if (!cell.IsSelectable || !IsEditable)
+        {
+            return;
+        }
+
+        if (_view == Type.ToView())
+        {
+            await SetValue(cell.Date);
+            return;
+        }
+
+        // drill down towards the selected type: year -> month -> day
+        _focus = cell.Date;
+        _view = _view == CalendarView.Year ? CalendarView.Month : CalendarView.Day;
+    }
+
+    private async Task SelectToday()
+    {
+        DateOnly today = Type.Normalize(Today);
+        if (IsEditable && IsAllowed(today))
+        {
+            await SetValue(today);
+        }
+    }
+
+    private async Task InputChanged(ChangeEventArgs e)
+    {
+        var text = (e.Value as string ?? "").Trim();
+        if (text.Length == 0)
+        {
+            await SetValue(null);
+            return;
+        }
+
+        if (TryParse(text, out DateOnly date) && IsAllowed(date))
+        {
+            await SetValue(date);
+            return;
+        }
+
+        // re-render the rejected text first so the next render restores the formatted value in the input
+        _rejectedInput = text;
+        StateHasChanged();
+        await Task.Yield();
+        _rejectedInput = null;
+    }
+
+    private void InputKeyDown(KeyboardEventArgs e)
+    {
+        if (e.Key is "Escape" or "Tab")
+        {
+            Close();
+        }
+    }
+
+    private bool TryParse(string text, out DateOnly date)
+    {
+        var parsed = DateOnly.TryParseExact(text, EffectiveFormat, EffectiveCulture, DateTimeStyles.None, out date)
+                     || DateOnly.TryParse(text, EffectiveCulture, DateTimeStyles.None, out date);
+
+        date = Type.Normalize(date);
+        return parsed;
+    }
+
+    private bool IsAllowed(DateOnly date)
+    {
+        CalendarPage period = CalendarPage.Create(Type.ToView(), date, new CalendarOptions(
+            Today, null, MinDate, MaxDate, IsDisabledDate,
+            FirstDayOfWeek ?? EffectiveCulture.DateTimeFormat.FirstDayOfWeek, EffectiveCulture));
+
+        return period.Rows
+            .SelectMany(r => r)
+            .Any(c => c.Date == date && c.IsSelectable);
+    }
+
+    private async Task SetValue(DateOnly? date)
+    {
+        var value = date is { } d ? Type.Normalize(d) : (DateOnly?)null;
+
+        Value = value;
+        _lastValue = value;
+        if (value is { } v)
+        {
+            _focus = v;
+        }
+
+        _isOpen = false;
+        await ValueChanged.InvokeAsync(value);
+    }
+
+}

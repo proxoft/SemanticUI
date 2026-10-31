@@ -1,0 +1,36 @@
+﻿@inherits ContainerFomanticComponent
+@namespace Proxoft.FomanticUI.Blazor
+
+<table class="@Class()"
+       @onclick="OnClick"
+       @attributes="Attributes()">
+    @ChildContent
+</table>
+
+@code {
+
+    public Table() : base("table")
+    {
+    }
+
+    [Parameter]
+    public TableDecorations Decorations { get; set; } = Compact | Striped;
+
+    [Parameter]
+    public Size Size { get; set; }
+
+    [Parameter]
+    public Amount Columns { get; set; }
+
+    [Parameter]
+    public Color Color { get; set; }
+
+    protected override IEnumerable<string> Classes()
+    {
+        yield return Size.ToClass();
+        yield return Decorations.ToClass();
+        yield return Columns.ToClass("column");
+        yield return Color.ToClass();
+    }
+
+}

@@ -1,0 +1,28 @@
+@inherits ContainerFomanticComponent
+@namespace Proxoft.FomanticUI.Blazor
+
+<DivTemplate Component="this"/>
+
+@code {
+
+    public Feed() : base("feed")
+    {
+    }
+
+    [Parameter]
+    public Color Color { get; set; }
+
+    [Parameter]
+    public FeedDecorations Decorations { get; set; }
+
+    [Parameter]
+    public Size Size { get; set; }
+
+    protected override IEnumerable<string> Classes()
+    {
+        yield return Color.ToClass();
+        yield return Decorations.ToClass();
+        yield return Size.ToClass();
+    }
+
+}

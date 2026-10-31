@@ -1,0 +1,79 @@
+@page "/Modules/Progress"
+
+<h1>Progress</h1>
+
+<Example Header="Progress"
+         Text="Bar widths, texts and states are computed in C#, without JavaScript. Change the value with the buttons.">
+
+    <Progress Value="_percent" Decorations="ProgressDecorations.Indicating">Uploading files</Progress>
+
+    <Button OnClick="() => _percent = Math.Max(0, _percent - 10)">-10</Button>
+    <Button OnClick="() => _percent = Math.Min(100, _percent + 10)">+10</Button>
+</Example>
+
+<Example Header="Ratio"
+         Text="A progress can show a value out of a total">
+
+    <Progress Value="_files" Total="20" BarText="ProgressBarText.Ratio" Color="Teal">
+        @_files of 20 files
+    </Progress>
+
+    <Button OnClick="() => _files = Math.Min(20, _files + 1)">Add file</Button>
+    <Button OnClick="() => _files = 0">Reset</Button>
+</Example>
+
+<Example Header="Multiple"
+         Text="A progress can show several bars side by side">
+
+    <Progress Values="@(new double[] { 15, 30, 25 })" BarColors="@(new[] { Red, Orange, Green })"/>
+    <Progress Values="@(new double[] { 3, 0, 5 })" Total="10" BarText="ProgressBarText.Ratio"
+              BarColors="@(new[] { Blue, Purple, Pink })"/>
+</Example>
+
+<Example Header="States"
+         Text="A progress can show success, warning or error; a single bar turns to success at 100%">
+
+    <Progress Value="100">Complete</Progress>
+    <Progress Value="70" State="Warning">Running low on space</Progress>
+    <Progress Value="35" State="Error">Upload failed</Progress>
+    <Progress Value="50" Decorations="ProgressDecorations.Disabled">Disabled</Progress>
+</Example>
+
+<Example Header="Indeterminate"
+         Text="A progress can show activity when its value is unknown">
+
+    <Progress Value="100" Indeterminate="ProgressIndeterminate.Default" BarText="ProgressBarText.None">Waiting
+    </Progress>
+    <Progress Value="100" Indeterminate="ProgressIndeterminate.Sliding" Color="Blue" BarText="ProgressBarText.None">
+        Sliding
+    </Progress>
+    <Progress Value="100" Indeterminate="ProgressIndeterminate.Swinging" Color="Green"
+              Decorations="ProgressDecorations.Fast" BarText="ProgressBarText.None">Swinging (fast)
+    </Progress>
+</Example>
+
+<Example Header="Color, Size, Inverted"
+         Text="A progress can be colored, sized or inverted">
+
+    <Progress Value="62" Color="Purple" Size="Small">Small purple</Progress>
+    <Progress Value="62" Color="Olive" Size="Large">Large olive</Progress>
+
+    <Segment Decorations="SegmentDecorations.Inverted">
+        <Progress Value="62" Color="Yellow" Decorations="ProgressDecorations.Inverted">Inverted</Progress>
+    </Segment>
+</Example>
+
+<Example Header="Attached"
+         Text="A progress can be attached to the top or bottom of a segment">
+
+    <Segment>
+        <Progress Value="40" Attached="Top" BarText="ProgressBarText.None"/>
+        Segment content
+        <Progress Value="80" Attached="Bottom" BarText="ProgressBarText.None"/>
+    </Segment>
+</Example>
+
+@code {
+    private double _percent = 30;
+    private double _files = 4;
+}

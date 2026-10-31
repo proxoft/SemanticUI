@@ -1,0 +1,21 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+    <PropertyGroup>
+        <AssemblyName>Proxoft.FomanticUI.TagHelpers.Sample</AssemblyName>
+        <RootNamespace>Proxoft.FomanticUI.TagHelpers.Sample</RootNamespace>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <Compile Remove="Pages\Modules\**"/>
+        <Content Remove="Pages\Modules\**"/>
+        <EmbeddedResource Remove="Pages\Modules\**"/>
+        <None Remove="Pages\Modules\**"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <ProjectReference Include="..\FomanticUI.Core\FomanticUI.Core.csproj"/>
+        <ProjectReference Include="..\FomanticUI.Resources\FomanticUI.Resources.csproj"/>
+        <ProjectReference Include="..\FomanticUI.TagHelpers\FomanticUI.TagHelpers.csproj"/>
+    </ItemGroup>
+
+</Project>

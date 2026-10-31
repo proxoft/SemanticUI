@@ -1,0 +1,78 @@
+@page "/Views/Comment"
+
+<h1>Comment</h1>
+
+<Example Header="Comments"
+         Text="A list of comments with nested replies">
+
+    <Comments>
+        <Comment>
+            <CommentAvatar Src="/images/avatar/small/matt.jpg" Href="#"/>
+            <Content>
+                <CommentAuthor Href="#">Matt</CommentAuthor>
+                <CommentMetadata><span>Today at 5:42PM</span></CommentMetadata>
+                <CommentText>How artistic!</CommentText>
+                <Actions><a class="reply">Reply</a></Actions>
+            </Content>
+        </Comment>
+
+        <Comment>
+            <CommentAvatar Src="/images/avatar/small/elliot.jpg" Href="#"/>
+            <Content>
+                <CommentAuthor Href="#">Elliot Fu</CommentAuthor>
+                <CommentMetadata><span>Yesterday at 12:30AM</span></CommentMetadata>
+                <CommentText>This has been very useful for my research. Thanks as well!</CommentText>
+                <Actions><a class="reply">Reply</a></Actions>
+            </Content>
+
+            <Comments IsNested="true">
+                <Comment>
+                    <CommentAvatar Src="/images/avatar/small/lena.png" Href="#"/>
+                    <Content>
+                        <CommentAuthor Href="#">Lena</CommentAuthor>
+                        <CommentMetadata><span>Just now</span></CommentMetadata>
+                        <CommentText>Elliot you are always so right :)</CommentText>
+                    </Content>
+                </Comment>
+            </Comments>
+        </Comment>
+    </Comments>
+</Example>
+
+<Example Header="Threaded and Minimal"
+         Text="Comments can be threaded, and minimal comments show actions only on hover">
+
+    <Comments Decorations="CommentsDecorations.Threaded | CommentsDecorations.Minimal">
+        <Comment>
+            <CommentAvatar Src="/images/avatar/small/christian.jpg"/>
+            <Content>
+                <CommentAuthor>Christian</CommentAuthor>
+                <CommentText>Threaded and minimal</CommentText>
+                <Actions><a class="reply">Reply</a></Actions>
+            </Content>
+            <Comments IsNested="true">
+                <Comment>
+                    <CommentAvatar Src="/images/avatar/small/stevie.jpg"/>
+                    <Content>
+                        <CommentAuthor>Stevie</CommentAuthor>
+                        <CommentText>A reply</CommentText>
+                    </Content>
+                </Comment>
+            </Comments>
+        </Comment>
+    </Comments>
+</Example>
+
+<Example Header="Size"
+         Text="Comments can have different sizes">
+
+    <Comments Size="Large">
+        <Comment>
+            <CommentAvatar Src="/images/avatar/small/tom.jpg"/>
+            <Content>
+                <CommentAuthor>Tom</CommentAuthor>
+                <CommentText>Large comment</CommentText>
+            </Content>
+        </Comment>
+    </Comments>
+</Example>

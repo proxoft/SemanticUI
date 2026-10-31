@@ -1,0 +1,25 @@
+﻿@inherits MenuBase
+@namespace Proxoft.FomanticUI.Blazor
+
+<DivTemplate Component="this"/>
+
+@code {
+
+    public Menu() : base(true)
+    {
+    }
+
+    [Parameter]
+    public Orientation Orientation { get; set; } = Horizontal;
+
+
+    [Parameter]
+    public Size Size { get; set; }
+
+
+    protected override IEnumerable<string> Classes()
+    {
+        return base.Classes().Concat(new[] { Orientation.ToClass(), Size.ToClass() });
+    }
+
+}

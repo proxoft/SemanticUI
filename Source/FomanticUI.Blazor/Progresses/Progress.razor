@@ -1,0 +1,213 @@
+@using System.Globalization
+@inherits ContainerFomanticComponent
+@namespace Proxoft.FomanticUI.Blazor
+
+@*
+    Renders Fomantic UI's progress markup; bar widths, texts and states are computed in C#
+    instead of Fomantic's jQuery module, so it runs without JS interop (e.g. in Blazor WebAssembly).
+*@
+
+<div class="@Class()"
+     @attributes="Attributes()"
+     @onclick="OnClick">
+
+    @foreach (ProgressBar bar in _state.Bars)
+    {
+        <div class="@BarClass(bar)" style="@BarStyle(bar)">
+            @if (bar.Text is not null && !IsIndeterminate)
+            {
+                <div class="progress">@bar.Text</div>
+            }
+        </div>
+    }
+
+    @if (ChildContent is not null)
+    {
+        <div class="label">@ChildContent</div>
+    }
+</div>
+
+@code {
+    private ProgressState _state = ProgressState.Calculate([0], new ProgressOptions());
+
+    public Progress() : base("progress")
+    {
+    }
+
+    /// <summary>
+    ///     Percent of a single bar, or an amount of <see cref="Total" /> when it is set.
+    /// </summary>
+    [Parameter]
+    public double Value { get; set; }
+
+    /// <summary>
+    ///     Values of multiple bars shown side by side; overrides <see cref="Value" />.
+    /// </summary>
+    [Parameter]
+    public IReadOnlyList<double>? Values { get; set; }
+
+    [Parameter]
+    public double? Total { get; set; }
+
+    /// <summary>
+    ///     Decimal places of the displayed percent.
+    /// </summary>
+    [Parameter]
+    public int Decimals { get; set; }
+
+    [Parameter]
+    public ProgressBarText BarText { get; set; }
+
+    /// <summary>
+    ///     Bar text for <see cref="ProgressBarText.Percent" />; supports {percent}, {value}, {total} and {left}.
+    /// </summary>
+    [Parameter]
+    public string PercentFormat { get; set; } = "{percent}%";
+
+    /// <summary>
+    ///     Bar text for <see cref="ProgressBarText.Ratio" />; supports {percent}, {value}, {total} and {left}.
+    /// </summary>
+    [Parameter]
+    public string RatioFormat { get; set; } = "{value} of {total}";
+
+    /// <summary>
+    ///     Colors of the individual bars of a multiple progress.
+    /// </summary>
+    [Parameter]
+    public IReadOnlyList<Color>? BarColors { get; set; }
+
+    [Parameter]
+    public CultureInfo? Culture { get; set; }
+
+    [Parameter]
+    public Color Color { get; set; }
+
+    [Parameter]
+    public Size Size { get; set; }
+
+    [Parameter]
+    public ProgressDecorations Decorations { get; set; }
+
+    [Parameter]
+    public ProgressIndeterminate Indeterminate { get; set; }
+
+    [Parameter]
+    public Position Alignment { get; set; }
+
+    [Parameter]
+    public Position Attached { get; set; }
+
+    /// <summary>
+    ///     Explicit state: Success, Warning or Error. When none is set, a completed single bar becomes Success (see
+    ///     <see cref="AutoSuccess" />).
+    /// </summary>
+    [Parameter]
+    public Severity State { get; set; }
+
+    [Parameter]
+    public bool AutoSuccess { get; set; } = true;
+
+    /// <summary>
+    ///     Pulses the bar while the progress is between 0 and 100%.
+    /// </summary>
+    [Parameter]
+    public bool ShowActivity { get; set; } = true;
+
+    private bool IsIndeterminate => Indeterminate != ProgressIndeterminate.None;
+
+    protected override void OnParametersSet()
+    {
+        base.OnParametersSet();
+
+        _state = ProgressState.Calculate(
+            Values ?? [Value],
+            new ProgressOptions(
+                Total,
+                Decimals,
+                BarText,
+                PercentFormat,
+                RatioFormat,
+                BarColors,
+                Culture));
+    }
+
+    protected override IEnumerable<string> Classes()
+    {
+        yield return Color.ToClass();
+        yield return Size.ToClass();
+        yield return Decorations.ToClass();
+        yield return Indeterminate.ToClass();
+        yield return Alignment.ToAlignmentClass();
+        yield return Attached.ToAttachedClass();
+        yield return StateClass();
+    }
+
+    protected override void InitializeAttributes(Dictionary<string, object> attributes)
+    {
+        base.InitializeAttributes(attributes);
+
+        if (!IsIndeterminate)
+        {
+            attributes["data-percent"] = _state.DataPercent;
+        }
+    }
+
+    private string StateClass()
+    {
+        if (State is Severity.Success or Severity.Warning or Severity.Error)
+        {
+            return State.ToClass();
+        }
+
+        if (IsIndeterminate)
+        {
+            return string.Empty;
+        }
+
+        if (_state.IsComplete && AutoSuccess && _state.Bars.Count == 1)
+        {
+            return "success";
+        }
+
+        var isDisabled = Decorations.HasFlag(ProgressDecorations.Disabled);
+        return "active".ToClassIf(ShowActivity && !isDisabled && _state.IsInProgress);
+    }
+
+    private static string BarClass(ProgressBar bar)
+    {
+        return new[] { bar.Color.ToClass(), "bar" }.ToClass();
+    }
+
+    private string? BarStyle(ProgressBar bar)
+    {
+        if (IsIndeterminate)
+        {
+            return null;
+        }
+
+        if (!bar.IsVisible)
+        {
+            return "display: none;";
+        }
+
+        var style = $"width: {bar.Width};";
+        if (bar.IsTransparent)
+        {
+            style += " background: transparent;";
+        }
+
+        // inner edges of adjacent bars are square, as Fomantic does for multiple bars
+        if (!bar.RoundLeft)
+        {
+            style += " border-top-left-radius: 0; border-bottom-left-radius: 0;";
+        }
+
+        if (!bar.RoundRight)
+        {
+            style += " border-top-right-radius: 0; border-bottom-right-radius: 0;";
+        }
+
+        return style;
+    }
+
+}

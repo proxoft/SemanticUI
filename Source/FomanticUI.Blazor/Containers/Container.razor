@@ -1,0 +1,24 @@
+﻿@inherits ContainerFomanticComponent
+@namespace Proxoft.FomanticUI.Blazor
+
+<DivTemplate Component="this"/>
+
+@code {
+
+    public Container() : base("container")
+    {
+    }
+
+    [Parameter]
+    public bool Fluid { get; set; }
+
+    [Parameter]
+    public Position Alignment { get; set; } = Default;
+
+    protected override IEnumerable<string> Classes()
+    {
+        yield return Alignment.ToAlignmentClass();
+        yield return "fluid".ToClassIf(Fluid);
+    }
+
+}
