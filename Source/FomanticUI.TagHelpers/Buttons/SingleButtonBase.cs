@@ -1,48 +1,43 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using Microsoft.AspNetCore.Razor.TagHelpers;
+﻿using Microsoft.AspNetCore.Razor.TagHelpers;
 using Proxoft.FomanticUI.Core;
 
-namespace Proxoft.FomanticUI.TagHelpers
+namespace Proxoft.FomanticUI.TagHelpers;
+
+public abstract class SingleButtonBase : ButtonBase<SingleButtonData>
 {
-    public abstract class SingleButtonBase : ButtonBase<SingleButtonData>
+    protected SingleButtonBase(string tagName) : base("button", tagName)
     {
-        protected SingleButtonBase(string tagName) : base("button", tagName)
+    }
+
+    public ButtonState State { get; set; }
+
+    public Emphasizes Emphasizes { get; set; }
+
+    public bool Disabled => Effective.State == ButtonState.Disabled;
+
+    public override void Process(TagHelperContext context, TagHelperOutput output)
+    {
+        base.Process(context, output);
+        if (Disabled) output.Attributes.Add("disabled", "disabled");
+    }
+
+    protected override SingleButtonData ApplyProperties(TagHelperContext context, SingleButtonData data)
+    {
+        SingleButtonData applied = base.ApplyProperties(context, data);
+        return applied with
         {
-        }
+            State = IsSet(context, nameof(State)) ? State : applied.State,
+            Emphasizes = IsSet(context, nameof(Emphasizes)) ? Emphasizes : applied.Emphasizes
+        };
+    }
 
-        public ButtonState State { get; set; }
-
-        public Emphasizes Emphasizes { get; set; }
-
-        public bool Disabled => this.Effective.State == ButtonState.Disabled;
-
-        public override void Process(TagHelperContext context, TagHelperOutput output)
-        {
-            base.Process(context, output);
-            if (this.Disabled)
+    protected override IEnumerable<string> Classes()
+    {
+        return base.Classes()
+            .Concat(new[]
             {
-                output.Attributes.Add("disabled", "disabled");
-            }
-        }
-
-        protected override SingleButtonData ApplyProperties(TagHelperContext context, SingleButtonData data)
-        {
-            var applied = base.ApplyProperties(context, data);
-            return applied with
-            {
-                State = IsSet(context, nameof(this.State)) ? this.State : applied.State,
-                Emphasizes = IsSet(context, nameof(this.Emphasizes)) ? this.Emphasizes : applied.Emphasizes
-            };
-        }
-
-        protected override IEnumerable<string> Classes()
-        {
-            return base.Classes()
-                .Concat(new[] {
-                    this.Effective.Emphasizes.ToClass(),
-                    this.Effective.State.ToClass()
-                });
-        }
+                Effective.Emphasizes.ToClass(),
+                Effective.State.ToClass()
+            });
     }
 }

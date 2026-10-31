@@ -2,9 +2,9 @@
 @namespace Proxoft.FomanticUI.Blazor
 
 <DivTemplate Component="this">
-    @if (!string.IsNullOrWhiteSpace(this.Text))
+    @if (!string.IsNullOrWhiteSpace(Text))
     {
-        @this.Text
+        @Text
     }
 </DivTemplate>
 
@@ -14,7 +14,7 @@
     {
     }
 
-    bool Active { get; set; } = true;
+    bool Active { get; } = true;
 
     [Parameter]
     public string Text { get; set; } = "";
@@ -27,8 +27,9 @@
 
     protected override IEnumerable<string> Classes()
     {
-        yield return "active".ToClassIf(this.Active);
-        yield return this.Decorations.ToClass();
-        yield return this.Size.ToClass();
+        yield return "active".ToClassIf(Active);
+        yield return Decorations.ToClass();
+        yield return Size.ToClass();
     }
+
 }

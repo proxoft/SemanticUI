@@ -1,9 +1,10 @@
 ﻿@inherits ContainerFomanticComponent
 @namespace Proxoft.FomanticUI.Blazor
 
-<DivTemplate Component="this" />
+<DivTemplate Component="this"/>
 
 @code {
+
     public Dimmer() : base("dimmer")
     {
     }
@@ -19,8 +20,9 @@
 
     protected override IEnumerable<string> Classes()
     {
-        yield return this.Decorations.ToClass();
-        yield return "active".ToClassIf(this.Active);
-        yield return this.Aligned.ToVerticalAlignmentClass();
+        yield return Decorations.ToClass();
+        yield return "active".ToClassIf(Active);
+        yield return Aligned.ToVerticalAlignmentClass();
     }
+
 }

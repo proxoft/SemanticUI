@@ -1,21 +1,19 @@
-﻿using System.Collections.Generic;
-using Microsoft.AspNetCore.Razor.TagHelpers;
+﻿using Microsoft.AspNetCore.Razor.TagHelpers;
 using Proxoft.FomanticUI.Core;
 
-namespace Proxoft.FomanticUI.TagHelpers.Statistics
+namespace Proxoft.FomanticUI.TagHelpers.Statistics;
+
+[HtmlTargetElement("fui-statistic-group")]
+public class StatisticGroup : FomanticTagHelper
 {
-    [HtmlTargetElement("fui-statistic-group")]
-    public class StatisticGroup : FomanticTagHelper
+    public StatisticGroup() : base("statistics", "div")
     {
-        public StatisticGroup() : base("statistics", "div")
-        {
-        }
+    }
 
-        public Amount Amount { get; set; }
+    public Amount Amount { get; set; }
 
-        protected override IEnumerable<string> Classes()
-        {
-            yield return this.Amount.ToClass(of: string.Empty);
-        }
+    protected override IEnumerable<string> Classes()
+    {
+        yield return Amount.ToClass(string.Empty);
     }
 }

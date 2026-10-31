@@ -1,15 +1,14 @@
-﻿namespace Proxoft.FomanticUI.Core
+﻿namespace Proxoft.FomanticUI.Core;
+
+public enum Size
 {
-    public enum Size
-    {
-        Undefined,
-        Mini,
-        Tiny,
-        Small,
-        Medium,
-        Large,
-        Big,
-        Huge,
-        Massive
-    }
+    Undefined,
+    Mini,
+    Tiny,
+    Small,
+    Medium,
+    Large,
+    Big,
+    Huge,
+    Massive
 }

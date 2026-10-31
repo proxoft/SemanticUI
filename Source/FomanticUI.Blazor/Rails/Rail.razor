@@ -1,18 +1,19 @@
 @inherits ContainerFomanticComponent
 @namespace Proxoft.FomanticUI.Blazor
 
-<DivTemplate Component="this" />
+<DivTemplate Component="this"/>
 
 @code {
+
     public Rail() : base("rail")
     {
     }
 
     /// <summary>
-    /// Side of the parent content the rail sits on: <see cref="Position.Left"/> or <see cref="Position.Right"/>.
+    ///     Side of the parent content the rail sits on: <see cref="Position.Left" /> or <see cref="Position.Right" />.
     /// </summary>
     [Parameter]
-    public Position Side { get; set; } = Position.Right;
+    public Position Side { get; set; } = Right;
 
     [Parameter]
     public RailDecorations Decorations { get; set; }
@@ -22,13 +23,14 @@
 
     protected override IEnumerable<string> Classes()
     {
-        yield return this.Decorations.ToClass();
-        yield return this.Size.ToClass();
-        yield return this.Side switch
+        yield return Decorations.ToClass();
+        yield return Size.ToClass();
+        yield return Side switch
         {
-            Position.Left => "left",
-            Position.Right => "right",
+            Left => "left",
+            Right => "right",
             _ => string.Empty
         };
     }
+
 }

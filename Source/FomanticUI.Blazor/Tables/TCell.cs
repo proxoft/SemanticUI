@@ -1,51 +1,42 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using Microsoft.AspNetCore.Components;
+﻿using Microsoft.AspNetCore.Components;
 using Proxoft.FomanticUI.Core;
 
-namespace Proxoft.FomanticUI.Blazor
+namespace Proxoft.FomanticUI.Blazor;
+
+public class TCell : TRowCell
 {
-    public class TCell : TRowCell
+    [Parameter]
+    public Position Alignment { get; set; } = Position.Default;
+
+    [Parameter]
+    public bool Collapsing { get; set; }
+
+    [Parameter]
+    public int RowSpan { get; set; }
+
+    [Parameter]
+    public int ColSpan { get; set; }
+
+    [Parameter]
+    public Amount Wide { get; set; }
+
+    protected override IEnumerable<string> Classes()
     {
-        [Parameter]
-        public Position Alignment { get; set; } = Position.Default;
+        return base.Classes()
+            .Concat(ClassesPrivate());
+    }
 
-        [Parameter]
-        public bool Collapsing { get; set; }
+    protected override void InitializeAttributes(Dictionary<string, object> attributes)
+    {
+        if (RowSpan > 1) attributes["rowspan"] = RowSpan;
 
-        [Parameter]
-        public int RowSpan { get; set; }
+        if (ColSpan > 1) attributes["colspan"] = ColSpan;
+    }
 
-        [Parameter]
-        public int ColSpan { get; set; }
-
-        [Parameter]
-        public Amount Wide { get; set; }
-
-        protected override IEnumerable<string> Classes()
-        {
-            return base.Classes()
-                .Concat(this.ClassesPrivate());
-        }
-
-        protected override void InitializeAttributes(Dictionary<string, object> attributes)
-        {
-            if (this.RowSpan > 1)
-            {
-                attributes["rowspan"] = this.RowSpan;
-            }
-
-            if (this.ColSpan > 1)
-            {
-                attributes["colspan"] = this.ColSpan;
-            }
-        }
-
-        private IEnumerable<string> ClassesPrivate()
-        {
-            yield return "collapsing".ToClassIf(this.Collapsing);
-            yield return this.Alignment.ToAlignmentClass();
-            yield return this.Wide.ToClass("wide");
-        }
+    private IEnumerable<string> ClassesPrivate()
+    {
+        yield return "collapsing".ToClassIf(Collapsing);
+        yield return Alignment.ToAlignmentClass();
+        yield return Wide.ToClass("wide");
     }
 }

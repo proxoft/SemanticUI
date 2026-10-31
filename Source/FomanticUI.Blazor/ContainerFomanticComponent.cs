@@ -1,13 +1,13 @@
 ﻿using Microsoft.AspNetCore.Components;
 
-namespace Proxoft.FomanticUI.Blazor
-{
-    public abstract class ContainerFomanticComponent : FomanticComponent
-    {
-        protected ContainerFomanticComponent(string cssName, bool prefixUiClass = true) : base(cssName, prefixUiClass)
-        {
-        }
+namespace Proxoft.FomanticUI.Blazor;
 
-        [Parameter] public RenderFragment ChildContent { get; set; } = null!;
+public abstract class ContainerFomanticComponent : FomanticComponent
+{
+    protected ContainerFomanticComponent(string cssName, bool prefixUiClass = true) : base(cssName, prefixUiClass)
+    {
     }
+
+    [Parameter]
+    public RenderFragment ChildContent { get; set; } = null!;
 }

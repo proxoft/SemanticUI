@@ -1,20 +1,21 @@
 @inherits FomanticComponent
 @namespace Proxoft.FomanticUI.Blazor
 
-@if (string.IsNullOrWhiteSpace(this.Href))
+@if (string.IsNullOrWhiteSpace(Href))
 {
     <DivTemplate Component="this">
-        <img src="@Src" alt="@Alt" />
+        <img src="@Src" alt="@Alt"/>
     </DivTemplate>
 }
 else
 {
     <AnchorTemplate Component="this" Href="@Href">
-        <img src="@Src" alt="@Alt" />
+        <img src="@Src" alt="@Alt"/>
     </AnchorTemplate>
 }
 
 @code {
+
     public CommentAvatar() : base("avatar", false)
     {
     }
@@ -32,4 +33,5 @@ else
     {
         yield break;
     }
+
 }

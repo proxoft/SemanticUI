@@ -1,12 +1,11 @@
 ﻿using Microsoft.AspNetCore.Razor.TagHelpers;
 
-namespace Proxoft.FomanticUI.TagHelpers.Common.Headers
+namespace Proxoft.FomanticUI.TagHelpers.Common.Headers;
+
+[HtmlTargetElement("fui-header")]
+public class Header : HeaderBase
 {
-    [HtmlTargetElement("fui-header")]
-    public class Header : HeaderBase
+    public Header() : base("header", true)
     {
-        public Header() : base("header", true)
-        {
-        }
     }
 }

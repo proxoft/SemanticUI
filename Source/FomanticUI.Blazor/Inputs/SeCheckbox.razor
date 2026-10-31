@@ -7,6 +7,7 @@
 </DivTemplate>
 
 @code {
+
     public SeCheckbox() : base("checkbox")
     {
     }
@@ -17,22 +18,24 @@
     [Parameter]
     public CheckboxType Type { get; set; }
 
-    [Parameter] public string Label { get; set; } = "";
+    [Parameter]
+    public string Label { get; set; } = "";
 
     [Parameter]
     public bool Fitted { get; set; }
 
-    private string HtmlType => this.Type == CheckboxType.Radio ? "radio" : "checkbox";
+    private string HtmlType => Type == CheckboxType.Radio ? "radio" : "checkbox";
 
     protected override IEnumerable<string> Classes()
     {
-        return base.Classes().Concat(this.ClassesPrivate());
+        return base.Classes().Concat(ClassesPrivate());
     }
 
     protected IEnumerable<string> ClassesPrivate()
     {
-        yield return this.State.ToClass();
-        yield return "fitted".ToClassIf(this.Fitted);
-        yield return this.Type.ToClass();
+        yield return State.ToClass();
+        yield return "fitted".ToClassIf(Fitted);
+        yield return Type.ToClass();
     }
+
 }

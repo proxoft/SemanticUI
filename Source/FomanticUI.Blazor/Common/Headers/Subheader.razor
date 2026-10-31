@@ -1,15 +1,16 @@
 ﻿@inherits HeaderBase
 @namespace Proxoft.FomanticUI.Blazor
 
-<DivTemplate Component="this" />
+<DivTemplate Component="this"/>
 
 @code {
+
     public Subheader() : base("sub header", false)
     {
     }
 
     /// <summary>
-    /// A subheader standing on its own (not inside a header) renders as "ui sub header".
+    ///     A subheader standing on its own (not inside a header) renders as "ui sub header".
     /// </summary>
     [Parameter]
     public bool IsRoot { get; set; }
@@ -17,6 +18,7 @@
     protected override void OnParametersSet()
     {
         base.OnParametersSet();
-        this.PrefixUiClass = this.IsRoot;
+        PrefixUiClass = IsRoot;
     }
+
 }

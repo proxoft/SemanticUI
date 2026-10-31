@@ -64,14 +64,14 @@
         <div>
             Some text here
         </div>
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
-        <br />
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
+        <br/>
 
-        <Dimmer Aligned="Position.Top" Active="@IsActive3">
+        <Dimmer Aligned="Top" Active="@IsActive3">
             <DimmerContent>
                 <h2 class="ui inverted header">Title</h2>
                 <div class="ui primary button">Add</div>
@@ -89,7 +89,7 @@
 <Example Header="Page Dimmer"
          Text="A dimmer can be formatted to be fixed to the page.">
 
-    <Dimmer Decorations="DimmerDecorations.Page"
+    <Dimmer Decorations="Page"
             Active="@IsActive4">
         <Button OnClick="() => IsActive4 = false">
             Close
@@ -105,10 +105,13 @@
 @code {
     private bool IsActive1 { get; set; }
     private bool IsActive2 { get; set; }
-    private SegmentDecorations Example2 => this.IsActive2 ? SegmentDecorations.Blurred : SegmentDecorations.NoDecoration;
+    private SegmentDecorations Example2 => IsActive2 ? SegmentDecorations.Blurred : SegmentDecorations.NoDecoration;
     private bool IsActive3 { get; set; }
     private bool IsActive4 { get; set; }
 
     private string ActiveText(bool isActive)
-        => isActive ? "Off" : "On";
+    {
+        return isActive ? "Off" : "On";
+    }
+
 }

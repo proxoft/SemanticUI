@@ -1,25 +1,23 @@
-﻿using System.Collections.Generic;
-using Proxoft.FomanticUI.Core;
+﻿using Proxoft.FomanticUI.Core;
 
-namespace Proxoft.FomanticUI.TagHelpers
+namespace Proxoft.FomanticUI.TagHelpers;
+
+public abstract class MenuBase : FomanticTagHelper
 {
-    public abstract class MenuBase : FomanticTagHelper
+    protected MenuBase(bool prefixUi = true) : base("menu", "div", prefixUi)
     {
-        protected MenuBase(bool prefixUi = true) : base("menu", "div", prefixUi)
-        {
-        }
+    }
 
-        public Orientation Orientation { get; set; } = Orientation.Horizontal;
+    public Orientation Orientation { get; set; } = Orientation.Horizontal;
 
-        public Position Alignment { get; set; } = Position.Left;
+    public Position Alignment { get; set; } = Position.Left;
 
-        public MenuDecorations Decorations { get; set; }
+    public MenuDecorations Decorations { get; set; }
 
-        protected override IEnumerable<string> Classes()
-        {
-            yield return this.Decorations.ToClass();
-            yield return this.Orientation.ToClass();
-            yield return this.Alignment.ToAlignmentClass();
-        }
+    protected override IEnumerable<string> Classes()
+    {
+        yield return Decorations.ToClass();
+        yield return Orientation.ToClass();
+        yield return Alignment.ToAlignmentClass();
     }
 }

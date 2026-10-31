@@ -14,7 +14,7 @@
     }
 
     /// <summary>
-    /// All settings in one value; individual parameters override its values.
+    ///     All settings in one value; individual parameters override its values.
     /// </summary>
     [Parameter]
     public IconData? Data { get; set; }
@@ -38,14 +38,14 @@
     {
         base.OnParametersSet();
 
-        var data = this.Data ?? new IconData();
+        IconData data = Data ?? new IconData();
         _effective = data with
         {
-            Name = this.Name ?? data.Name,
-            Size = this.Size ?? data.Size,
-            Color = this.Color ?? data.Color,
-            Decorations = this.Decorations ?? data.Decorations,
-            Corner = this.Corner ?? data.Corner
+            Name = Name ?? data.Name,
+            Size = Size ?? data.Size,
+            Color = Color ?? data.Color,
+            Decorations = Decorations ?? data.Decorations,
+            Corner = Corner ?? data.Corner
         };
     }
 
@@ -53,4 +53,5 @@
     {
         yield return _effective.ToClass();
     }
+
 }

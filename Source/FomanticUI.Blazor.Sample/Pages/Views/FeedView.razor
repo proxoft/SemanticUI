@@ -7,44 +7,56 @@
 
     <Feed>
         <FeedEvent>
-            <FeedLabel><img src="/images/avatar/small/elliot.jpg" /></FeedLabel>
+            <FeedLabel><img src="/images/avatar/small/elliot.jpg"/></FeedLabel>
             <Content>
                 <FeedSummary>
-                    <FeedUser Href="#">Elliot Fu</FeedUser> added you as a friend
+                    <FeedUser Href="#">Elliot Fu</FeedUser>
+                    added you as a friend
                     <FeedDate>1 Hour Ago</FeedDate>
                 </FeedSummary>
                 <MetaInfo>
-                    <FeedLike Href="#"><Icon Name="like" /> 4 Likes</FeedLike>
+                    <FeedLike Href="#">
+                        <Icon Name="like"/>
+                        4 Likes
+                    </FeedLike>
                 </MetaInfo>
             </Content>
         </FeedEvent>
 
         <FeedEvent>
-            <FeedLabel><Icon Name="pencil" /></FeedLabel>
+            <FeedLabel>
+                <Icon Name="pencil"/>
+            </FeedLabel>
             <Content>
                 <FeedSummary>
-                    You posted on your friend <FeedUser Href="#">Stevie Feliciano</FeedUser>'s wall.
+                    You posted on your friend
+                    <FeedUser Href="#">Stevie Feliciano</FeedUser>
+                    's wall.
                     <FeedDate>Today</FeedDate>
                 </FeedSummary>
                 <Extra Decorations="ExtraDecorations.Text">
                     Ours is a life of constant reruns. We're always circling back to where we'd we started.
                 </Extra>
                 <MetaInfo>
-                    <FeedLike Href="#" IsActive="true"><Icon Name="like" /> 5 Likes</FeedLike>
+                    <FeedLike Href="#" IsActive="true">
+                        <Icon Name="like"/>
+                        5 Likes
+                    </FeedLike>
                 </MetaInfo>
             </Content>
         </FeedEvent>
 
         <FeedEvent>
-            <FeedLabel><img src="/images/avatar/small/helen.jpg" /></FeedLabel>
+            <FeedLabel><img src="/images/avatar/small/helen.jpg"/></FeedLabel>
             <Content>
                 <FeedSummary>
-                    <FeedUser Href="#">Helen Troy</FeedUser> added 2 photos
+                    <FeedUser Href="#">Helen Troy</FeedUser>
+                    added 2 photos
                     <FeedDate>4 days ago</FeedDate>
                 </FeedSummary>
                 <Extra Decorations="ExtraDecorations.Images">
-                    <a><img src="/images/wireframe/image.png" /></a>
-                    <a><img src="/images/wireframe/image.png" /></a>
+                    <a><img src="/images/wireframe/image.png"/></a>
+                    <a><img src="/images/wireframe/image.png"/></a>
                 </Extra>
             </Content>
         </FeedEvent>
@@ -58,7 +70,7 @@
         @for (var i = 1; i <= 3; i++)
         {
             <FeedEvent>
-                <FeedLabel />
+                <FeedLabel/>
                 <Content>
                     <FeedSummary>Step @i</FeedSummary>
                 </Content>
@@ -73,12 +85,20 @@
     <Feed Size="Small" Decorations="FeedDecorations.Divided">
         <FeedEvent>
             <Content>
-                <FeedSummary><FeedUser>Tom</FeedUser> joined the team <FeedDate>3 days ago</FeedDate></FeedSummary>
+                <FeedSummary>
+                    <FeedUser>Tom</FeedUser>
+                    joined the team
+                    <FeedDate>3 days ago</FeedDate>
+                </FeedSummary>
             </Content>
         </FeedEvent>
         <FeedEvent>
             <Content>
-                <FeedSummary><FeedUser>Molly</FeedUser> left a comment <FeedDate>2 days ago</FeedDate></FeedSummary>
+                <FeedSummary>
+                    <FeedUser>Molly</FeedUser>
+                    left a comment
+                    <FeedDate>2 days ago</FeedDate>
+                </FeedSummary>
             </Content>
         </FeedEvent>
     </Feed>

@@ -2,14 +2,15 @@
 @namespace Proxoft.FomanticUI.Blazor
 
 <DivTemplate Component="this">
-    @if (!string.IsNullOrWhiteSpace(this.IconName))
+    @if (!string.IsNullOrWhiteSpace(IconName))
     {
-        <Icon Name="@IconName" />
+        <Icon Name="@IconName"/>
     }
 </DivTemplate>
 
 @code {
-    public Step(): base("step", false)
+
+    public Step() : base("step", false)
     {
     }
 
@@ -21,6 +22,7 @@
 
     protected override IEnumerable<string> Classes()
     {
-        yield return this.Decorations.ToClass();
+        yield return Decorations.ToClass();
     }
+
 }

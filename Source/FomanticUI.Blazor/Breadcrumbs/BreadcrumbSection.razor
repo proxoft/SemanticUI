@@ -1,16 +1,17 @@
 @inherits ContainerFomanticComponent
 @namespace Proxoft.FomanticUI.Blazor
 
-@if (string.IsNullOrWhiteSpace(this.Href))
+@if (string.IsNullOrWhiteSpace(Href))
 {
-    <DivTemplate Component="this" />
+    <DivTemplate Component="this"/>
 }
 else
 {
-    <AnchorTemplate Component="this" Href="@Href" />
+    <AnchorTemplate Component="this" Href="@Href"/>
 }
 
 @code {
+
     public BreadcrumbSection() : base("section", false)
     {
     }
@@ -23,6 +24,7 @@ else
 
     protected override IEnumerable<string> Classes()
     {
-        yield return "active".ToClassIf(this.IsActive);
+        yield return "active".ToClassIf(IsActive);
     }
+
 }

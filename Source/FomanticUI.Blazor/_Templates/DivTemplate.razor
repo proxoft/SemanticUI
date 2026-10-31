@@ -6,7 +6,7 @@
 
     @ChildContent
 
-    @if (this.Component is ContainerFomanticComponent c)
+    @if (Component is ContainerFomanticComponent c)
     {
         @c.ChildContent
     }
@@ -15,6 +15,7 @@
 </div>
 
 @code {
+
     [Parameter]
     public required FomanticComponent Component { get; set; }
 
@@ -23,4 +24,5 @@
 
     [Parameter]
     public required RenderFragment RightChildContent { get; set; }
+
 }

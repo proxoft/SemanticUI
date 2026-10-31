@@ -1,45 +1,41 @@
-﻿using System;
-using System.Linq;
+﻿using static Proxoft.FomanticUI.Core.LoaderDecorations;
 
-using static Proxoft.FomanticUI.Core.LoaderDecorations;
+namespace Proxoft.FomanticUI.Core;
 
-namespace Proxoft.FomanticUI.Core
+public enum LoaderDecorations
 {
-    public enum LoaderDecorations
+    NoDecoration = 0,
+    Centered = 1 << 1,
+    Indeterminate = 1 << 2,
+    Inline = 1 << 3,
+    Text = 1 << 4
+}
+
+public static class LoaderDecorationsExtensions
+{
+    private static readonly LoaderDecorations[] allValues = Enum.GetValues(typeof(LoaderDecorations))
+        .Cast<LoaderDecorations>()
+        .ToArray();
+
+    public static string ToClass(this LoaderDecorations decorations)
     {
-        NoDecoration  = 0,
-        Centered      = 1 << 1,
-        Indeterminate = 1 << 2,
-        Inline        = 1 << 3,
-        Text          = 1 << 4
+        var classes = allValues
+            .Select(v =>
+            {
+                return decorations.HasFlag(v)
+                    ? v.ValueToClass()
+                    : string.Empty;
+            });
+
+        return classes.ToClass();
     }
 
-    public static class LoaderDecorationsExtensions
+    private static string ValueToClass(this LoaderDecorations value)
     {
-        private static readonly LoaderDecorations[] allValues = Enum.GetValues(typeof(LoaderDecorations))
-                .Cast<LoaderDecorations>()
-                .ToArray();
-
-        public static string ToClass(this LoaderDecorations decorations)
+        return value switch
         {
-            var classes = allValues
-                .Select(v =>
-                {
-                    return decorations.HasFlag(v)
-                        ? v.ValueToClass()
-                        : string.Empty;
-                });
-
-            return classes.ToClass();
-        }
-
-        private static string ValueToClass(this LoaderDecorations value)
-        {
-            return value switch
-            {
-                NoDecoration => string.Empty,
-                _ => value.ToString().ToLower(),
-            };
-        }
+            NoDecoration => string.Empty,
+            _ => value.ToString().ToLower()
+        };
     }
 }

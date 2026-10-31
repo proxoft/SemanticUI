@@ -1,9 +1,10 @@
 ﻿@inherits ContainerFomanticComponent
 @namespace Proxoft.FomanticUI.Blazor
 
-<DivTemplate Component="this" />
+<DivTemplate Component="this"/>
 
 @code {
+
     public Card() : base("card")
     {
     }
@@ -16,7 +17,8 @@
 
     protected override IEnumerable<string> Classes()
     {
-        yield return this.Color.ToClass();
-        yield return this.Decorations.ToClass();
+        yield return Color.ToClass();
+        yield return Decorations.ToClass();
     }
+
 }

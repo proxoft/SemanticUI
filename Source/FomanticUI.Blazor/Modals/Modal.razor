@@ -1,12 +1,13 @@
 ﻿@inherits ContainerFomanticComponent
 @namespace Proxoft.FomanticUI.Blazor
 
-<Dimmer Active="this.IsActive"
-        Decorations="this.DimmerDecorations">
-    <DivTemplate Component="this" />
+<Dimmer Active="IsActive"
+        Decorations="DimmerDecorations">
+    <DivTemplate Component="this"/>
 </Dimmer>
 
 @code {
+
     public Modal() : base("modal")
     {
     }
@@ -25,8 +26,9 @@
 
     protected override IEnumerable<string> Classes()
     {
-        yield return "active".ToClassIf(this.IsActive);
-        yield return this.Decorations.ToClass();
-        yield return this.Size.ToClass();
+        yield return "active".ToClassIf(IsActive);
+        yield return Decorations.ToClass();
+        yield return Size.ToClass();
     }
+
 }

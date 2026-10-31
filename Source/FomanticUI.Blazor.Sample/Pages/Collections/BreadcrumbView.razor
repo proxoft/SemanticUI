@@ -7,9 +7,9 @@
 
     <Breadcrumb>
         <BreadcrumbSection Href="/">Home</BreadcrumbSection>
-        <BreadcrumbDivider />
+        <BreadcrumbDivider/>
         <BreadcrumbSection Href="/Collections/Breadcrumb">Collections</BreadcrumbSection>
-        <BreadcrumbDivider />
+        <BreadcrumbDivider/>
         <BreadcrumbSection IsActive="true">Breadcrumb</BreadcrumbSection>
     </Breadcrumb>
 </Example>
@@ -19,9 +19,9 @@
 
     <Breadcrumb>
         <BreadcrumbSection Href="/">Home</BreadcrumbSection>
-        <BreadcrumbDivider Icon="right angle" />
+        <BreadcrumbDivider Icon="right angle"/>
         <BreadcrumbSection Href="/Collections/Breadcrumb">Collections</BreadcrumbSection>
-        <BreadcrumbDivider Icon="right chevron" />
+        <BreadcrumbDivider Icon="right chevron"/>
         <BreadcrumbSection IsActive="true">Breadcrumb</BreadcrumbSection>
     </Breadcrumb>
 </Example>
@@ -29,12 +29,12 @@
 <Example Header="Size"
          Text="A breadcrumb can have different sizes">
 
-    @foreach (var size in new[] { Mini, Small, Large, Huge })
+    @foreach (Size size in new[] { Mini, Small, Large, Huge })
     {
         <div>
             <Breadcrumb Size="size">
                 <BreadcrumbSection Href="/">Home</BreadcrumbSection>
-                <BreadcrumbDivider Icon="right angle" />
+                <BreadcrumbDivider Icon="right angle"/>
                 <BreadcrumbSection IsActive="true">@size</BreadcrumbSection>
             </Breadcrumb>
         </div>
@@ -47,7 +47,7 @@
     <Segment Decorations="SegmentDecorations.Inverted">
         <Breadcrumb IsInverted="true">
             <BreadcrumbSection Href="/">Home</BreadcrumbSection>
-            <BreadcrumbDivider />
+            <BreadcrumbDivider/>
             <BreadcrumbSection IsActive="true">Inverted</BreadcrumbSection>
         </Breadcrumb>
     </Segment>

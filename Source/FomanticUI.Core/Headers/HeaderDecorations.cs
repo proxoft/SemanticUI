@@ -1,48 +1,44 @@
-﻿using System;
-using System.Linq;
+﻿using static Proxoft.FomanticUI.Core.HeaderDecorations;
 
-using static Proxoft.FomanticUI.Core.HeaderDecorations;
+namespace Proxoft.FomanticUI.Core;
 
-namespace Proxoft.FomanticUI.Core
+[Flags]
+public enum HeaderDecorations
 {
-    [Flags]
-    public enum HeaderDecorations
+    NoDecoration = 0,
+    Block = 1 << 0,
+    Disabled = 1 << 1,
+    Dividing = 1 << 2,
+    Icon = 1 << 3,
+    Inverted = 1 << 4,
+    Justified = 1 << 5
+}
+
+public static class HeaderDecorationsExtensions
+{
+    private static readonly HeaderDecorations[] allValues = Enum.GetValues(typeof(HeaderDecorations))
+        .Cast<HeaderDecorations>()
+        .ToArray();
+
+    public static string ToClass(this HeaderDecorations decorations)
     {
-        NoDecoration = 0,
-        Block        = 1 << 0,
-        Disabled     = 1 << 1,
-        Dividing     = 1 << 2,
-        Icon         = 1 << 3,
-        Inverted     = 1 << 4,
-        Justified    = 1 << 5
+        var classes = allValues
+            .Select(v =>
+            {
+                return decorations.HasFlag(v)
+                    ? v.ValueToClass()
+                    : string.Empty;
+            });
+
+        return classes.ToClass();
     }
 
-    public static class HeaderDecorationsExtensions
+    private static string ValueToClass(this HeaderDecorations value)
     {
-        private static readonly HeaderDecorations[] allValues = Enum.GetValues(typeof(HeaderDecorations))
-                .Cast<HeaderDecorations>()
-                .ToArray();
-
-        public static string ToClass(this HeaderDecorations decorations)
+        return value switch
         {
-            var classes = allValues
-                .Select(v =>
-                {
-                    return decorations.HasFlag(v)
-                        ? v.ValueToClass()
-                        : string.Empty;
-                });
-
-            return classes.ToClass();
-        }
-
-        private static string ValueToClass(this HeaderDecorations value)
-        {
-            return value switch
-            {
-                NoDecoration => string.Empty,
-                _ => value.ToString().ToLower(),
-            };
-        }
+            NoDecoration => string.Empty,
+            _ => value.ToString().ToLower()
+        };
     }
 }

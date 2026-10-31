@@ -7,18 +7,20 @@
 </i>
 
 @code {
+
     public Flag() : base("flag", false)
     {
     }
 
     /// <summary>
-    /// Country code or name, e.g. "de", "france" or "united kingdom".
+    ///     Country code or name, e.g. "de", "france" or "united kingdom".
     /// </summary>
     [Parameter]
     public required string Name { get; set; }
 
     protected override IEnumerable<string> Classes()
     {
-        yield return this.Name;
+        yield return Name;
     }
+
 }

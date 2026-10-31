@@ -1,13 +1,13 @@
 <Project Sdk="Microsoft.NET.Sdk.Web">
 
-  <PropertyGroup>
-    <AssemblyName>Proxoft.FomanticUI.Blazor.Sample</AssemblyName>
-    <RootNamespace>Proxoft.FomanticUI.Blazor.Sample</RootNamespace>
-  </PropertyGroup>
+    <PropertyGroup>
+        <AssemblyName>Proxoft.FomanticUI.Blazor.Sample</AssemblyName>
+        <RootNamespace>Proxoft.FomanticUI.Blazor.Sample</RootNamespace>
+    </PropertyGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\FomanticUI.Blazor\FomanticUI.Blazor.csproj" />
-    <ProjectReference Include="..\FomanticUI.Resources\FomanticUI.Resources.csproj" />
-  </ItemGroup>
+    <ItemGroup>
+        <ProjectReference Include="..\FomanticUI.Blazor\FomanticUI.Blazor.csproj"/>
+        <ProjectReference Include="..\FomanticUI.Resources\FomanticUI.Resources.csproj"/>
+    </ItemGroup>
 
 </Project>

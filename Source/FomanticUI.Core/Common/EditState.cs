@@ -1,22 +1,21 @@
-﻿namespace Proxoft.FomanticUI.Core
-{
-    public enum EditState
-    {
-        Edit,
-        ReadOnly,
-        Disabled
-    }
+﻿namespace Proxoft.FomanticUI.Core;
 
-    public static class EditStateExtensions
+public enum EditState
+{
+    Edit,
+    ReadOnly,
+    Disabled
+}
+
+public static class EditStateExtensions
+{
+    public static string ToClass(this EditState editState)
     {
-        public static string ToClass(this EditState editState)
+        return editState switch
         {
-            return editState switch
-            {
-                EditState.ReadOnly => "read-only",
-                EditState.Disabled => "disabled",
-                _ => string.Empty
-            };
-        }
+            EditState.ReadOnly => "read-only",
+            EditState.Disabled => "disabled",
+            _ => string.Empty
+        };
     }
 }

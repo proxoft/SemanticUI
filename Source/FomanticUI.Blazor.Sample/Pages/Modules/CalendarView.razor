@@ -1,19 +1,20 @@
 @page "/Modules/Calendar"
 @using System.Globalization
+@using Calendar = Proxoft.FomanticUI.Blazor.Calendar
 
 <h1>Calendar</h1>
 
 <Example Header="Date"
          Text="A date picker. Navigation, selection and the popup are handled in C#, without JavaScript.">
 
-    <Calendar @bind-Value="_date" Placeholder="Date" ShowToday="true" />
+    <Calendar @bind-Value="_date" Placeholder="Date" ShowToday="true"/>
     <p>Selected: @(_date?.ToString("D") ?? "none")</p>
 </Example>
 
 <Example Header="Inline"
          Text="A calendar can be shown inline instead of in a popup">
 
-    <Calendar @bind-Value="_inlineDate" IsInline="true" />
+    <Calendar @bind-Value="_inlineDate" IsInline="true"/>
     <p>Selected: @(_inlineDate?.ToString("D") ?? "none")</p>
 </Example>
 
@@ -22,11 +23,11 @@
 
     <Grid Columns="Two">
         <Column>
-            <Calendar @bind-Value="_month" Type="CalendarType.Month" Placeholder="Month" />
+            <Calendar @bind-Value="_month" Type="CalendarType.Month" Placeholder="Month"/>
             <p>Selected: @(_month?.ToString("Y") ?? "none")</p>
         </Column>
         <Column>
-            <Calendar @bind-Value="_year" Type="CalendarType.Year" Placeholder="Year" />
+            <Calendar @bind-Value="_year" Type="CalendarType.Year" Placeholder="Year"/>
             <p>Selected: @(_year?.Year.ToString() ?? "none")</p>
         </Column>
     </Grid>
@@ -39,7 +40,7 @@
               IsInline="true"
               MinDate="_today.AddDays(-5)"
               MaxDate="_today.AddDays(20)"
-              IsDisabledDate="d => d.DayOfWeek is DayOfWeek.Saturday or DayOfWeek.Sunday" />
+              IsDisabledDate="d => d.DayOfWeek is DayOfWeek.Saturday or DayOfWeek.Sunday"/>
 </Example>
 
 <Example Header="Culture and First Day of Week"
@@ -47,10 +48,12 @@
 
     <Grid Columns="Two">
         <Column>
-            <Calendar @bind-Value="_cultureDate" Culture="@CultureInfo.GetCultureInfo("sk-SK")" Placeholder="Dátum" TodayText="Dnes" ShowToday="true" />
+            <Calendar @bind-Value="_cultureDate" Culture="@CultureInfo.GetCultureInfo("sk-SK")" Placeholder="Dátum"
+                      TodayText="Dnes" ShowToday="true"/>
         </Column>
         <Column>
-            <Calendar @bind-Value="_cultureDate" Culture="@CultureInfo.GetCultureInfo("de-DE")" FirstDayOfWeek="DayOfWeek.Sunday" Placeholder="Datum" />
+            <Calendar @bind-Value="_cultureDate" Culture="@CultureInfo.GetCultureInfo("de-DE")"
+                      FirstDayOfWeek="DayOfWeek.Sunday" Placeholder="Datum"/>
         </Column>
     </Grid>
 </Example>
@@ -59,10 +62,10 @@
          Text="A calendar can have a different size, inverted colors, or be disabled">
 
     <Segment Decorations="SegmentDecorations.Inverted">
-        <Calendar @bind-Value="_invertedDate" IsInline="true" IsInverted="true" Size="Small" />
+        <Calendar @bind-Value="_invertedDate" IsInline="true" IsInverted="true" Size="Small"/>
     </Segment>
 
-    <Calendar Value="_today" State="EditState.Disabled" />
+    <Calendar Value="_today" State="EditState.Disabled"/>
 </Example>
 
 @code {

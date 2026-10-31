@@ -1,8 +1,7 @@
-﻿namespace Proxoft.FomanticUI.Core
+﻿namespace Proxoft.FomanticUI.Core;
+
+public enum ActiveUrlMatch
 {
-    public enum ActiveUrlMatch
-    {
-        None,
-        Exact
-    }
+    None,
+    Exact
 }

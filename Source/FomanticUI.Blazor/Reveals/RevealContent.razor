@@ -1,21 +1,23 @@
 @inherits ContainerFomanticComponent
 @namespace Proxoft.FomanticUI.Blazor
 
-<DivTemplate Component="this" />
+<DivTemplate Component="this"/>
 
 @code {
+
     public RevealContent() : base("content", false)
     {
     }
 
     /// <summary>
-    /// true for the content shown by default, false for the content revealed on hover.
+    ///     true for the content shown by default, false for the content revealed on hover.
     /// </summary>
     [Parameter]
     public bool IsVisible { get; set; }
 
     protected override IEnumerable<string> Classes()
     {
-        yield return this.IsVisible.ToClass("visible", "hidden");
+        yield return IsVisible.ToClass("visible", "hidden");
     }
+
 }

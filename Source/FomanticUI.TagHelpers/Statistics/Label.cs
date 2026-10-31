@@ -1,19 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using Microsoft.AspNetCore.Razor.TagHelpers;
+﻿using Microsoft.AspNetCore.Razor.TagHelpers;
 
-namespace Proxoft.FomanticUI.TagHelpers.Statistics
+namespace Proxoft.FomanticUI.TagHelpers.Statistics;
+
+[HtmlTargetElement("fui-statistic-label")]
+public class Label : FomanticTagHelper
 {
-    [HtmlTargetElement("fui-statistic-label")]
-    public class Label : FomanticTagHelper
+    public Label() : base("label", "div", false)
     {
-        public Label() : base("label", "div", false)
-        {
-        }
+    }
 
-        protected override IEnumerable<string> Classes()
-        {
-            yield break;
-        }
+    protected override IEnumerable<string> Classes()
+    {
+        yield break;
     }
 }

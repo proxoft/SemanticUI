@@ -2,7 +2,7 @@
 
 @namespace Proxoft.FomanticUI.Blazor
 
-@if (this.Effective.IsVisible)
+@if (Effective.IsVisible)
 {
     <button type="@ButtonTypeAttribute()"
             class="@Class()"
@@ -14,8 +14,13 @@
 }
 
 @code {
+
     [Parameter]
     public ButtonType Type { get; set; } = ButtonType.Button;
 
-    private string ButtonTypeAttribute() => this.Type.ToAttribute();
+    private string ButtonTypeAttribute()
+    {
+        return Type.ToAttribute();
+    }
+
 }

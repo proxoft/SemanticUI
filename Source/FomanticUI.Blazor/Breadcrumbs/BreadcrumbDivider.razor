@@ -1,7 +1,7 @@
 @inherits FomanticComponent
 @namespace Proxoft.FomanticUI.Blazor
 
-@if (this.HasIcon)
+@if (HasIcon)
 {
     <i class="@Class()"
        @attributes="Attributes()"
@@ -18,12 +18,13 @@ else
 }
 
 @code {
+
     public BreadcrumbDivider() : base("divider", false)
     {
     }
 
     /// <summary>
-    /// Icon name, e.g. "right angle". When set, the divider renders as an icon instead of <see cref="Text"/>.
+    ///     Icon name, e.g. "right angle". When set, the divider renders as an icon instead of <see cref="Text" />.
     /// </summary>
     [Parameter]
     public string Icon { get; set; } = "";
@@ -31,10 +32,11 @@ else
     [Parameter]
     public string Text { get; set; } = "/";
 
-    private bool HasIcon => !string.IsNullOrWhiteSpace(this.Icon);
+    private bool HasIcon => !string.IsNullOrWhiteSpace(Icon);
 
     protected override IEnumerable<string> Classes()
     {
-        yield return this.HasIcon ? $"{this.Icon} icon" : string.Empty;
+        yield return HasIcon ? $"{Icon} icon" : string.Empty;
     }
+
 }

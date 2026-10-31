@@ -1,46 +1,41 @@
-﻿using System;
-using System.Linq;
+﻿using static Proxoft.FomanticUI.Core.CardDecorations;
 
-using static Proxoft.FomanticUI.Core.CardDecorations;
+namespace Proxoft.FomanticUI.Core;
 
-namespace Proxoft.FomanticUI.Core
+[Flags]
+public enum CardDecorations
 {
+    NoDecoration = 0,
+    Centered,
+    Fluid,
+    Raised
+}
 
-    [Flags]
-    public enum CardDecorations
+public static class CardsDecorationsExtensions
+{
+    private static readonly CardDecorations[] allValues = Enum.GetValues(typeof(CardDecorations))
+        .Cast<CardDecorations>()
+        .ToArray();
+
+    public static string ToClass(this CardDecorations decorations)
     {
-        NoDecoration = 0,
-        Centered,
-        Fluid,
-        Raised,
+        var classes = allValues
+            .Select(v =>
+            {
+                return decorations.HasFlag(v)
+                    ? v.ValueToClass()
+                    : string.Empty;
+            });
+
+        return classes.ToClass();
     }
 
-    public static class CardsDecorationsExtensions
+    private static string ValueToClass(this CardDecorations value)
     {
-        private static readonly CardDecorations[] allValues = Enum.GetValues(typeof(CardDecorations))
-                .Cast<CardDecorations>()
-                .ToArray();
-
-        public static string ToClass(this CardDecorations decorations)
+        return value switch
         {
-            var classes = allValues
-                .Select(v =>
-                {
-                    return decorations.HasFlag(v)
-                        ? v.ValueToClass()
-                        : string.Empty;
-                });
-
-            return classes.ToClass();
-        }
-
-        private static string ValueToClass(this CardDecorations value)
-        {
-            return value switch
-            {
-                NoDecoration => string.Empty,
-                _ => value.ToString().ToLower(),
-            };
-        }
+            NoDecoration => string.Empty,
+            _ => value.ToString().ToLower()
+        };
     }
 }

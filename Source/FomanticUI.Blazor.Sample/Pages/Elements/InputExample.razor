@@ -5,7 +5,7 @@
 <Example Header="Input"
          Text="A standard input">
 
-    <SeInput Placeholder="Search..." />
+    <SeInput Placeholder="Search..."/>
 
 </Example>
 
@@ -15,30 +15,31 @@
 <Example Header="Focus"
          Text="An input field can show a user is currently interacting with it">
 
-    <SeInput Decorations="InputDecorations.Focus"
-             Placeholder="Search..." />
+    <SeInput Decorations="Focus"
+             Placeholder="Search..."/>
 
 </Example>
 
 <Example Header="Loading"
          Text="An icon input field can show that it is currently loading data">
 
-    <Message Content="Loading inputs automatically modify the input's icon on loading state to show loading indication" />
+    <Message
+        Content="Loading inputs automatically modify the input's icon on loading state to show loading indication"/>
 
-    <SeInput Decorations="InputDecorations.Icon | InputDecorations.Loading"
+    <SeInput Decorations="InputDecorations.Icon | Loading"
              Placeholder="Search...">
         <Left>
-            <Icon Name="search" />
+            <Icon Name="search"/>
         </Left>
     </SeInput>
 
-    <br />
-    <br />
+    <br/>
+    <br/>
 
-    <SeInput Decorations="InputDecorations.IconRight | InputDecorations.Loading"
+    <SeInput Decorations="IconRight | Loading"
              Placeholder="Search...">
         <Right>
-            <Icon Name="search" />
+            <Icon Name="search"/>
         </Right>
     </SeInput>
 
@@ -47,17 +48,17 @@
 <Example Header="Labeled"
          Text="An input can be formatted with a label">
 
-    <SeInput Decorations="InputDecorations.LabeledRight"
+    <SeInput Decorations="LabeledRight"
              Placeholder="Enter weight...">
         <Right>
             <Label Decorations="LabelDecorations.Basic">kg</Label>
         </Right>
     </SeInput>
 
-    <br />
-    <br />
+    <br/>
+    <br/>
 
-    <SeInput Decorations="InputDecorations.LabeledRight"
+    <SeInput Decorations="LabeledRight"
              Placeholder="Amount">
         <Left>
             <Label>$</Label>
@@ -70,19 +71,19 @@
 </Example>
 
 <Example Header="Value binding">
-    <SeInput @bind-Value="@_value" />
+    <SeInput @bind-Value="@_value"/>
     <Message Header="Binded value"
-             Content="@_value" />
+             Content="@_value"/>
 </Example>
 
 <Example Header="OnKeyUp">
-    <SeInput OnKeyUp="this.OnKeyUp" />
+    <SeInput OnKeyUp="OnKeyUp"/>
     <Message Header="Keys:"
-             Content="@_keys" />
+             Content="@_keys"/>
 </Example>
 
 <Example Header="Additional Css Class">
-    <SeInput CssClass="olive-background" />
+    <SeInput CssClass="olive-background"/>
 </Example>
 
 @code {
@@ -93,4 +94,5 @@
     {
         _keys += args.Key + " ";
     }
+
 }

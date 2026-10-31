@@ -6,7 +6,7 @@
          Text="A basic message">
 
     <Message Header="Changed in Service"
-             Content="We just updated our privacy policy here to better service our customers. We recommend reviewing the changes." />
+             Content="We just updated our privacy policy here to better service our customers. We recommend reviewing the changes."/>
 
 </Example>
 
@@ -14,10 +14,10 @@
          Text="A message that the user can choose to hide">
     @if (_isVisisble1)
     {
-    <Message Header="Welcome back!"
-             Content="This is a special notification which you can dismiss if you're bored with it."
-             CanClose="true"
-             OnCloseIconClick="() => _isVisisble1 = false" />
+        <Message Header="Welcome back!"
+                 Content="This is a special notification which you can dismiss if you're bored with it."
+                 CanClose="true"
+                 OnCloseIconClick="() => _isVisisble1 = false"/>
     }
     else
     {

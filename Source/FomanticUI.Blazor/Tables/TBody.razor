@@ -1,14 +1,15 @@
-﻿@inherits Proxoft.FomanticUI.Blazor.FomanticComponent
+﻿@inherits FomanticComponent
 @namespace Proxoft.FomanticUI.Blazor
 
 <tbody class="@Class()"
        @onclick="OnClick"
        @attributes="Attributes()">
-    @ChildContent
+@ChildContent
 </tbody>
 
 @code {
-    public TBody() : base("", prefixUiClass: false)
+
+    public TBody() : base("", false)
     {
     }
 
@@ -19,4 +20,5 @@
     {
         yield break;
     }
+
 }

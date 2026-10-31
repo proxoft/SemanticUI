@@ -1,6 +1,6 @@
+@using System.Globalization
 @inherits FomanticComponent
 @namespace Proxoft.FomanticUI.Blazor
-@using System.Globalization
 
 @*
     Renders Fomantic UI's calendar markup; navigation, selection and the popup are handled in C#
@@ -11,37 +11,37 @@
      @attributes="Attributes()"
      @onclick="OnClick">
 
-    @if (this.IsInline)
+    @if (IsInline)
     {
         <div class="calendar">
-            @this.CalendarTable
+            @CalendarTable
         </div>
     }
     else
     {
         <div class="ui left icon input">
-            <i class="@($"{this.Icon} icon")"></i>
+            <i class="@($"{Icon} icon")"></i>
             <input type="text"
-                   value="@this.InputText"
-                   placeholder="@this.Placeholder"
-                   readonly="@(this.State == EditState.ReadOnly)"
-                   disabled="@(this.State == EditState.Disabled)"
-                   @onclick="this.Open"
-                   @onfocus="this.Open"
-                   @onchange="this.InputChanged"
-                   @onkeydown="this.InputKeyDown" />
+                   value="@InputText"
+                   placeholder="@Placeholder"
+                   readonly="@(State == EditState.ReadOnly)"
+                   disabled="@(State == EditState.Disabled)"
+                   @onclick="Open"
+                   @onfocus="Open"
+                   @onchange="InputChanged"
+                   @onkeydown="InputKeyDown"/>
         </div>
 
         @if (_isOpen)
         {
             @* transparent layer closing the popup on a click anywhere outside of it *@
             <div style="position: fixed; top: 0; right: 0; bottom: 0; left: 0; z-index: 1899;"
-                 @onclick="this.Close">
+                 @onclick="Close">
             </div>
 
-            <div class="@this.PopupClass"
+            <div class="@PopupClass"
                  style="top: 100%; left: 0; right: auto; z-index: 1900;">
-                @this.CalendarTable
+                @CalendarTable
             </div>
         }
     }
@@ -65,13 +65,13 @@
     public EventCallback<DateOnly?> ValueChanged { get; set; }
 
     /// <summary>
-    /// What is selected: a date, a month (first day of the month) or a year (January 1st).
+    ///     What is selected: a date, a month (first day of the month) or a year (January 1st).
     /// </summary>
     [Parameter]
     public CalendarType Type { get; set; }
 
     /// <summary>
-    /// Shows the calendar directly instead of an input with a popup.
+    ///     Shows the calendar directly instead of an input with a popup.
     /// </summary>
     [Parameter]
     public bool IsInline { get; set; }
@@ -83,25 +83,26 @@
     public DateOnly? MaxDate { get; set; }
 
     /// <summary>
-    /// Disables individual days, e.g. weekends.
+    ///     Disables individual days, e.g. weekends.
     /// </summary>
     [Parameter]
     public Func<DateOnly, bool>? IsDisabledDate { get; set; }
 
     /// <summary>
-    /// Defaults to the culture's first day of the week.
+    ///     Defaults to the culture's first day of the week.
     /// </summary>
     [Parameter]
     public DayOfWeek? FirstDayOfWeek { get; set; }
 
     /// <summary>
-    /// Culture for month and day names and for the input format. Defaults to the current culture.
+    ///     Culture for month and day names and for the input format. Defaults to the current culture.
     /// </summary>
     [Parameter]
     public CultureInfo? Culture { get; set; }
 
     /// <summary>
-    /// Input format. Defaults to the culture's short date pattern for dates, year-month pattern for months and "yyyy" for years.
+    ///     Input format. Defaults to the culture's short date pattern for dates, year-month pattern for months and "yyyy" for
+    ///     years.
     /// </summary>
     [Parameter]
     public string? Format { get; set; }
@@ -127,79 +128,80 @@
     [Parameter]
     public EditState State { get; set; }
 
-    private CultureInfo EffectiveCulture => this.Culture ?? CultureInfo.CurrentCulture;
+    private CultureInfo EffectiveCulture => Culture ?? CultureInfo.CurrentCulture;
 
     private DateOnly Today => DateOnly.FromDateTime(DateTime.Now);
 
-    private string EffectiveFormat => this.Format ?? this.Type switch
+    private string EffectiveFormat => Format ?? Type switch
     {
-        CalendarType.Month => this.EffectiveCulture.DateTimeFormat.YearMonthPattern,
+        CalendarType.Month => EffectiveCulture.DateTimeFormat.YearMonthPattern,
         CalendarType.Year => "yyyy",
-        _ => this.EffectiveCulture.DateTimeFormat.ShortDatePattern
+        _ => EffectiveCulture.DateTimeFormat.ShortDatePattern
     };
 
     private string InputText => _rejectedInput
-        ?? this.Value?.ToString(this.EffectiveFormat, this.EffectiveCulture)
-        ?? "";
+                                ?? Value?.ToString(EffectiveFormat, EffectiveCulture)
+                                ?? "";
 
     private string PopupClass => new[]
     {
         "ui bottom left popup calendar transition visible",
-        "inverted".ToClassIf(this.IsInverted)
+        "inverted".ToClassIf(IsInverted)
     }.ToClass();
 
     private RenderFragment CalendarTable => __builder =>
     {
-        var calendarPage = CalendarPage.Create(_view, _focus, new CalendarOptions(
-            this.Today,
-            this.Value,
-            this.MinDate,
-            this.MaxDate,
-            this.IsDisabledDate,
-            this.FirstDayOfWeek ?? this.EffectiveCulture.DateTimeFormat.FirstDayOfWeek,
-            this.EffectiveCulture));
+        CalendarPage calendarPage = CalendarPage.Create(_view, _focus, new CalendarOptions(
+            Today,
+            Value,
+            MinDate,
+            MaxDate,
+            IsDisabledDate,
+            FirstDayOfWeek ?? EffectiveCulture.DateTimeFormat.FirstDayOfWeek,
+            EffectiveCulture));
 
         <table class="@calendarPage.TableClass(this.IsInverted)">
             <thead>
-                <tr>
-                    <th colspan="@calendarPage.Columns">
-                        <span class="link" @onclick="this.ZoomOut">@calendarPage.Header</span>
-                        <span class="@("prev link" + (calendarPage.Previous is null ? " disabled" : ""))"
-                              @onclick="() => this.Navigate(calendarPage.Previous)">
+            <tr>
+                <th colspan="@calendarPage.Columns">
+                    <span class="link" @onclick="ZoomOut">@calendarPage.Header</span>
+                    <span class="@("prev link" + (calendarPage.Previous is null ? " disabled" : ""))"
+                          @onclick="() => Navigate(calendarPage.Previous)">
                             <i class="chevron left icon"></i>
                         </span>
-                        <span class="@("next link" + (calendarPage.Next is null ? " disabled" : ""))"
-                              @onclick="() => this.Navigate(calendarPage.Next)">
+                    <span class="@("next link" + (calendarPage.Next is null ? " disabled" : ""))"
+                          @onclick="() => Navigate(calendarPage.Next)">
                             <i class="chevron right icon"></i>
                         </span>
-                    </th>
+                </th>
+            </tr>
+            @if (calendarPage.ColumnHeaders.Count > 0)
+            {
+                <tr>
+                    @foreach (var columnHeader in calendarPage.ColumnHeaders)
+                    {
+                        <th>@columnHeader</th>
+                    }
                 </tr>
-                @if (calendarPage.ColumnHeaders.Count > 0)
-                {
-                    <tr>
-                        @foreach (var columnHeader in calendarPage.ColumnHeaders)
-                        {
-                            <th>@columnHeader</th>
-                        }
-                    </tr>
-                }
+            }
             </thead>
             <tbody>
-                @foreach (var row in calendarPage.Rows)
-                {
-                    <tr>
-                        @foreach (var cell in row)
-                        {
-                            <td class="@cell.Class" @onclick="() => this.SelectCell(cell)">@cell.Text</td>
-                        }
-                    </tr>
-                }
-                @if (this.ShowToday)
-                {
-                    <tr>
-                        <td colspan="@calendarPage.Columns" class="today link" @onclick="this.SelectToday">@this.TodayText</td>
-                    </tr>
-                }
+            @foreach (var row in calendarPage.Rows)
+            {
+                <tr>
+                    @foreach (CalendarCell cell in row)
+                    {
+                        <td class="@cell.Class" @onclick="() => SelectCell(cell)">@cell.Text</td>
+                    }
+                </tr>
+            }
+            @if (ShowToday)
+            {
+                <tr>
+                    <td colspan="@calendarPage.Columns" class="today link"
+                        @onclick="SelectToday">@(this.TodayText)</td>
+                </tr>
+            }
             </tbody>
         </table>
     };
@@ -208,32 +210,32 @@
     {
         base.OnParametersSet();
 
-        var valueChanged = _lastValue != this.Value;
-        _lastValue = this.Value;
+        var valueChanged = _lastValue != Value;
+        _lastValue = Value;
 
         // follow the value set by the parent, but don't move the page the user is browsing
         if (_focus == default || (valueChanged && !_isOpen))
         {
-            this.ResetPage();
+            ResetPage();
         }
-        else if (_view < this.Type.ToView())
+        else if (_view < Type.ToView())
         {
-            _view = this.Type.ToView();
+            _view = Type.ToView();
         }
     }
 
     protected override IEnumerable<string> Classes()
     {
-        yield return this.Size.ToClass();
-        yield return "inverted".ToClassIf(this.IsInverted);
-        yield return this.State.ToClass();
+        yield return Size.ToClass();
+        yield return "inverted".ToClassIf(IsInverted);
+        yield return State.ToClass();
     }
 
     protected override void InitializeAttributes(Dictionary<string, object> attributes)
     {
         base.InitializeAttributes(attributes);
 
-        if (!this.IsInline)
+        if (!IsInline)
         {
             // the popup is positioned below the input by CSS only, relative to this element
             var style = attributes.TryGetValue("style", out var existing) ? $"{existing}; " : "";
@@ -241,22 +243,22 @@
         }
     }
 
-    private bool IsEditable => this.State == EditState.Edit;
+    private bool IsEditable => State == EditState.Edit;
 
     private void ResetPage()
     {
-        _focus = this.Value ?? this.Today;
-        _view = this.Type.ToView();
+        _focus = Value ?? Today;
+        _view = Type.ToView();
     }
 
     private void Open()
     {
-        if (_isOpen || !this.IsEditable)
+        if (_isOpen || !IsEditable)
         {
             return;
         }
 
-        this.ResetPage();
+        ResetPage();
         _isOpen = true;
     }
 
@@ -267,7 +269,7 @@
 
     private void Navigate(DateOnly? focus)
     {
-        if (focus is { } f && this.IsEditable)
+        if (focus is { } f && IsEditable)
         {
             _focus = f;
         }
@@ -275,7 +277,7 @@
 
     private void ZoomOut()
     {
-        if (!this.IsEditable)
+        if (!IsEditable)
         {
             return;
         }
@@ -289,14 +291,14 @@
 
     private async Task SelectCell(CalendarCell cell)
     {
-        if (!cell.IsSelectable || !this.IsEditable)
+        if (!cell.IsSelectable || !IsEditable)
         {
             return;
         }
 
-        if (_view == this.Type.ToView())
+        if (_view == Type.ToView())
         {
-            await this.SetValue(cell.Date);
+            await SetValue(cell.Date);
             return;
         }
 
@@ -307,10 +309,10 @@
 
     private async Task SelectToday()
     {
-        var today = this.Type.Normalize(this.Today);
-        if (this.IsEditable && this.IsAllowed(today))
+        DateOnly today = Type.Normalize(Today);
+        if (IsEditable && IsAllowed(today))
         {
-            await this.SetValue(today);
+            await SetValue(today);
         }
     }
 
@@ -319,19 +321,19 @@
         var text = (e.Value as string ?? "").Trim();
         if (text.Length == 0)
         {
-            await this.SetValue(null);
+            await SetValue(null);
             return;
         }
 
-        if (this.TryParse(text, out var date) && this.IsAllowed(date))
+        if (TryParse(text, out DateOnly date) && IsAllowed(date))
         {
-            await this.SetValue(date);
+            await SetValue(date);
             return;
         }
 
         // re-render the rejected text first so the next render restores the formatted value in the input
         _rejectedInput = text;
-        this.StateHasChanged();
+        StateHasChanged();
         await Task.Yield();
         _rejectedInput = null;
     }
@@ -340,24 +342,24 @@
     {
         if (e.Key is "Escape" or "Tab")
         {
-            this.Close();
+            Close();
         }
     }
 
     private bool TryParse(string text, out DateOnly date)
     {
-        var parsed = DateOnly.TryParseExact(text, this.EffectiveFormat, this.EffectiveCulture, DateTimeStyles.None, out date)
-            || DateOnly.TryParse(text, this.EffectiveCulture, DateTimeStyles.None, out date);
+        var parsed = DateOnly.TryParseExact(text, EffectiveFormat, EffectiveCulture, DateTimeStyles.None, out date)
+                     || DateOnly.TryParse(text, EffectiveCulture, DateTimeStyles.None, out date);
 
-        date = this.Type.Normalize(date);
+        date = Type.Normalize(date);
         return parsed;
     }
 
     private bool IsAllowed(DateOnly date)
     {
-        var period = CalendarPage.Create(this.Type.ToView(), date, new CalendarOptions(
-            this.Today, null, this.MinDate, this.MaxDate, this.IsDisabledDate,
-            this.FirstDayOfWeek ?? this.EffectiveCulture.DateTimeFormat.FirstDayOfWeek, this.EffectiveCulture));
+        CalendarPage period = CalendarPage.Create(Type.ToView(), date, new CalendarOptions(
+            Today, null, MinDate, MaxDate, IsDisabledDate,
+            FirstDayOfWeek ?? EffectiveCulture.DateTimeFormat.FirstDayOfWeek, EffectiveCulture));
 
         return period.Rows
             .SelectMany(r => r)
@@ -366,9 +368,9 @@
 
     private async Task SetValue(DateOnly? date)
     {
-        var value = date is { } d ? this.Type.Normalize(d) : (DateOnly?)null;
+        var value = date is { } d ? Type.Normalize(d) : (DateOnly?)null;
 
-        this.Value = value;
+        Value = value;
         _lastValue = value;
         if (value is { } v)
         {
@@ -376,6 +378,7 @@
         }
 
         _isOpen = false;
-        await this.ValueChanged.InvokeAsync(value);
+        await ValueChanged.InvokeAsync(value);
     }
+
 }

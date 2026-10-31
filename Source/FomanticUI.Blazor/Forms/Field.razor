@@ -1,10 +1,11 @@
 ﻿@inherits ContainerFomanticComponent
 @namespace Proxoft.FomanticUI.Blazor
 
-<DivTemplate Component="this" />
+<DivTemplate Component="this"/>
 
 @code {
-    public Field() : base("field", prefixUiClass: false)
+
+    public Field() : base("field", false)
     {
     }
 
@@ -22,9 +23,10 @@
 
     protected override IEnumerable<string> Classes()
     {
-        yield return this.State.ToClass();
-        yield return this.Wide.ToClass("wide");
-        yield return "required".ToClassIf(this.Required);
-        yield return "error".ToClassIf(this.HasError);
+        yield return State.ToClass();
+        yield return Wide.ToClass("wide");
+        yield return "required".ToClassIf(Required);
+        yield return "error".ToClassIf(HasError);
     }
+
 }

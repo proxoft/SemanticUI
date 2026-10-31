@@ -1,19 +1,18 @@
-﻿namespace Proxoft.FomanticUI.Core
-{
-    public enum State
-    {
-        NoState,
-        Positive,
-        Negative
-    }
+﻿namespace Proxoft.FomanticUI.Core;
 
-    public static class StateExtensions
+public enum State
+{
+    NoState,
+    Positive,
+    Negative
+}
+
+public static class StateExtensions
+{
+    public static string ToClass(this State state)
     {
-        public static string ToClass(this State state)
-        {
-            return state == State.NoState
-                ? string.Empty
-                : state.ToString().ToLower();
-        }
+        return state == State.NoState
+            ? string.Empty
+            : state.ToString().ToLower();
     }
 }

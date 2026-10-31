@@ -4,7 +4,7 @@
 <DivTemplate Component="this">
     @if (HasIcon)
     {
-        <Icon Name="@_effective.Icon" @onclick="OnIconClick" />
+        <Icon Name="@_effective.Icon" @onclick="OnIconClick"/>
     }
 
     <Content>
@@ -21,7 +21,7 @@
                 @_effective.Content
             </p>
         }
-        @if (this.HasItems)
+        @if (HasItems)
         {
             <ul>
                 @foreach (var i in _effective.Items)
@@ -34,7 +34,7 @@
 
     @if (_effective.CanClose)
     {
-        <Icon Name="close" @onclick="OnCloseIconClick" />
+        <Icon Name="close" @onclick="OnCloseIconClick"/>
     }
 </DivTemplate>
 
@@ -46,7 +46,7 @@
     }
 
     /// <summary>
-    /// All settings in one value; individual parameters override its values.
+    ///     All settings in one value; individual parameters override its values.
     /// </summary>
     [Parameter]
     public MessageData? Data { get; set; }
@@ -96,27 +96,27 @@
     {
         base.OnParametersSet();
 
-        var data = this.Data ?? new MessageData();
+        MessageData data = Data ?? new MessageData();
         _effective = data with
         {
-            Severity = this.Severity ?? data.Severity,
-            Size = this.Size ?? data.Size,
-            Color = this.Color ?? data.Color,
-            Icon = this.Icon ?? data.Icon,
-            Header = this.Header ?? data.Header,
-            Content = this.Content ?? data.Content,
-            CanClose = this.CanClose ?? data.CanClose,
-            Floating = this.Floating ?? data.Floating,
-            Items = this.Items?.ToArray() ?? data.Items
+            Severity = Severity ?? data.Severity,
+            Size = Size ?? data.Size,
+            Color = Color ?? data.Color,
+            Icon = Icon ?? data.Icon,
+            Header = Header ?? data.Header,
+            Content = Content ?? data.Content,
+            CanClose = CanClose ?? data.CanClose,
+            Floating = Floating ?? data.Floating,
+            Items = Items?.ToArray() ?? data.Items
         };
     }
 
     protected override IEnumerable<string> Classes()
     {
-        yield return "icon".ToClassIf(this.HasIcon);
+        yield return "icon".ToClassIf(HasIcon);
         yield return _effective.Severity.ToClass();
 
-        if (_effective.Severity == Proxoft.FomanticUI.Core.Severity.NoSeverity)
+        if (_effective.Severity == Core.Severity.NoSeverity)
         {
             yield return _effective.Color.ToClass();
         }
@@ -124,4 +124,5 @@
         yield return _effective.Size.ToClass();
         yield return "floating".ToClassIf(_effective.Floating);
     }
+
 }

@@ -5,13 +5,15 @@
     <RightChildContent>
         @if (HasRightIcon)
         {
-            <Icon Name="@RightIcon" />
+            <Icon Name="@RightIcon"/>
         }
     </RightChildContent>
 </DivTemplate>
 
 @code {
+
     public DropdownItem() : base("simple dropdown item", true)
     {
     }
+
 }

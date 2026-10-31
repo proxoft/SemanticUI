@@ -1,15 +1,15 @@
-﻿@inherits Proxoft.FomanticUI.Blazor.FomanticComponent
+﻿@inherits FomanticComponent
 @namespace Proxoft.FomanticUI.Blazor
 
-<tfoot class="@Class()" 
+<tfoot class="@Class()"
        @onclick="OnClick"
        @attributes="Attributes()">
-    @ChildContent
+@ChildContent
 </tfoot>
 
 @code
 {
-    public TFoot() : base("", prefixUiClass: false)
+    public TFoot() : base("", false)
     {
     }
 

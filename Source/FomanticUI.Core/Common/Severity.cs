@@ -1,11 +1,10 @@
-﻿namespace Proxoft.FomanticUI.Core
+﻿namespace Proxoft.FomanticUI.Core;
+
+public enum Severity
 {
-    public enum Severity
-    {
-        NoSeverity,
-        Info,
-        Warning,
-        Error,
-        Success,
-    }
+    NoSeverity,
+    Info,
+    Warning,
+    Error,
+    Success
 }

@@ -31,26 +31,26 @@
 
     $.fn.site = function (parameters) {
         var
-            time           = Date.now(),
-            performance    = [],
+            time = Date.now(),
+            performance = [],
 
-            query          = arguments[0],
-            methodInvoked  = typeof query === 'string',
+            query = arguments[0],
+            methodInvoked = typeof query === 'string',
             queryArguments = [].slice.call(arguments, 1),
 
-            settings        = $.isPlainObject(parameters)
+            settings = $.isPlainObject(parameters)
                 ? $.extend(true, {}, $.site.settings, parameters)
                 : $.extend({}, $.site.settings),
 
-            namespace       = settings.namespace,
-            error           = settings.error,
+            namespace = settings.namespace,
+            error = settings.error,
 
             moduleNamespace = 'module-' + namespace,
 
-            $document       = $(document),
-            $module         = $document,
-            element         = this,
-            instance        = $module.data(moduleNamespace),
+            $document = $(document),
+            $module = $document,
+            element = this,
+            instance = $module.data(moduleNamespace),
 
             module,
             returnedValue
@@ -72,13 +72,14 @@
             normalize: function () {
                 // keep the function for backward compatibility
                 // eslint-disable-next-line no-useless-return
-                return;
+
             },
 
             fix: {
                 consoleClear: function () {
                     module.debug('Disabling programmatic console clearing');
-                    window.console.clear = function () {};
+                    window.console.clear = function () {
+                    };
                 },
             },
 
@@ -218,15 +219,24 @@
                     module.debug('Disabling console function');
                     instance.cache.console = window.console;
                     window.console = {
-                        clear: function () {},
-                        error: function () {},
-                        group: function () {},
-                        groupCollapsed: function () {},
-                        groupEnd: function () {},
-                        info: function () {},
-                        log: function () {},
-                        table: function () {},
-                        warn: function () {},
+                        clear: function () {
+                        },
+                        error: function () {
+                        },
+                        group: function () {
+                        },
+                        groupCollapsed: function () {
+                        },
+                        groupEnd: function () {
+                        },
+                        info: function () {
+                        },
+                        log: function () {
+                        },
+                        table: function () {
+                        },
+                        warn: function () {
+                        },
                     };
                 }
             },
@@ -487,23 +497,23 @@
 
     $.fn.form = function (parameters) {
         var
-            $allModules      = $(this),
-            $window        = $(window),
+            $allModules = $(this),
+            $window = $(window),
 
-            time             = Date.now(),
-            performance      = [],
+            time = Date.now(),
+            performance = [],
 
-            query            = arguments[0],
-            methodInvoked    = typeof query === 'string',
-            queryArguments   = [].slice.call(arguments, 1),
+            query = arguments[0],
+            methodInvoked = typeof query === 'string',
+            queryArguments = [].slice.call(arguments, 1),
             returnedValue
         ;
         $allModules.each(function () {
             var
-                $module     = $(this),
-                element     = this,
+                $module = $(this),
+                element = this,
 
-                formErrors  = [],
+                formErrors = [],
                 formErrorsTracker = {},
                 keyHeldDown = false,
 
@@ -636,8 +646,8 @@
                     }
                     $field.each(function (index, el) {
                         var
-                            $input     = $(el),
-                            type       = $input.prop('type'),
+                            $input = $(el),
+                            type = $input.prop('type'),
                             inputEvent = module.get.changeEvent(type, $input)
                         ;
                         $input.on(inputEvent + eventNamespace, module.event.field.change);
@@ -671,16 +681,16 @@
                 clear: function () {
                     $field.each(function (index, el) {
                         var
-                            $field       = $(el),
-                            $element     = $field.parent(),
-                            $fieldGroup  = $field.closest($group),
-                            $prompt      = $fieldGroup.find(selector.prompt),
-                            $calendar    = $field.closest(selector.uiCalendar),
+                            $field = $(el),
+                            $element = $field.parent(),
+                            $fieldGroup = $field.closest($group),
+                            $prompt = $fieldGroup.find(selector.prompt),
+                            $calendar = $field.closest(selector.uiCalendar),
                             defaultValue = $field.data(metadata.defaultValue) || '',
-                            isCheckbox   = $field.is(selector.checkbox),
-                            isDropdown   = $element.is(selector.uiDropdown) && module.can.useElement('dropdown'),
-                            isCalendar   = $calendar.length > 0 && module.can.useElement('calendar'),
-                            isErrored    = $fieldGroup.hasClass(className.error)
+                            isCheckbox = $field.is(selector.checkbox),
+                            isDropdown = $element.is(selector.uiDropdown) && module.can.useElement('dropdown'),
+                            isCalendar = $calendar.length > 0 && module.can.useElement('calendar'),
+                            isErrored = $fieldGroup.hasClass(className.error)
                         ;
                         if (isErrored) {
                             module.verbose('Resetting error on field', $fieldGroup);
@@ -705,17 +715,17 @@
                 reset: function () {
                     $field.each(function (index, el) {
                         var
-                            $field       = $(el),
-                            $element     = $field.parent(),
-                            $fieldGroup  = $field.closest($group),
-                            $calendar    = $field.closest(selector.uiCalendar),
-                            $prompt      = $fieldGroup.find(selector.prompt),
+                            $field = $(el),
+                            $element = $field.parent(),
+                            $fieldGroup = $field.closest($group),
+                            $calendar = $field.closest(selector.uiCalendar),
+                            $prompt = $fieldGroup.find(selector.prompt),
                             defaultValue = $field.data(metadata.defaultValue),
-                            isCheckbox   = $field.is(selector.checkbox),
-                            isDropdown   = $element.is(selector.uiDropdown) && module.can.useElement('dropdown'),
-                            isCalendar   = $calendar.length > 0 && module.can.useElement('calendar'),
-                            isFile       = $field.is(selector.file),
-                            isErrored    = $fieldGroup.hasClass(className.error)
+                            isCheckbox = $field.is(selector.checkbox),
+                            isDropdown = $element.is(selector.uiDropdown) && module.can.useElement('dropdown'),
+                            isCalendar = $calendar.length > 0 && module.can.useElement('calendar'),
+                            isFile = $field.is(selector.file),
+                            isErrored = $fieldGroup.hasClass(className.error)
                         ;
                         if (defaultValue === undefined) {
                             return;
@@ -888,12 +898,12 @@
                     field: {
                         keydown: function (event) {
                             var
-                                $field       = $(this),
-                                key          = event.which,
-                                isInput      = $field.is(selector.input),
-                                isCheckbox   = $field.is(selector.checkbox),
+                                $field = $(this),
+                                key = event.which,
+                                isInput = $field.is(selector.input),
+                                isCheckbox = $field.is(selector.checkbox),
                                 isInDropdown = $field.closest(selector.uiDropdown).length > 0,
-                                keyCode      = {
+                                keyCode = {
                                     enter: 13,
                                     escape: 27,
                                 }
@@ -921,9 +931,9 @@
                         },
                         blur: function (event) {
                             var
-                                $field          = $(this),
+                                $field = $(this),
                                 validationRules = module.get.validation($field) || {},
-                                identifier      = module.get.identifier(validationRules, $field)
+                                identifier = module.get.identifier(validationRules, $field)
                             ;
                             if (settings.on === 'blur' || (!$module.hasClass(className.initial) && settings.revalidate)) {
                                 module.debug('Revalidating field', $field, validationRules);
@@ -935,7 +945,7 @@
                         },
                         change: function (event) {
                             var
-                                $field      = $(this),
+                                $field = $(this),
                                 validationRules = module.get.validation($field) || {},
                                 identifier = module.get.identifier(validationRules, $field)
                             ;
@@ -1002,7 +1012,7 @@
                                     rules: [],
                                 };
                                 $.each(rules, function (index, rule) {
-                                    fullFields[name].rules.push({ type: rule });
+                                    fullFields[name].rules.push({type: rule});
                                 });
                             }
 
@@ -1021,16 +1031,16 @@
                     },
                     prompt: function (rule, field) {
                         var
-                            ruleName      = module.get.ruleName(rule),
-                            ancillary     = module.get.ancillaryValue(rule),
-                            $field        = module.get.field(field.identifier),
-                            value         = $field.val(),
-                            promptCheck   = rule.prompt || settings.prompt[ruleName] || settings.text.unspecifiedRule,
-                            prompt        = String(isFunction(promptCheck)
+                            ruleName = module.get.ruleName(rule),
+                            ancillary = module.get.ancillaryValue(rule),
+                            $field = module.get.field(field.identifier),
+                            value = $field.val(),
+                            promptCheck = rule.prompt || settings.prompt[ruleName] || settings.text.unspecifiedRule,
+                            prompt = String(isFunction(promptCheck)
                                 ? promptCheck.call($field[0], value)
                                 : promptCheck),
                             requiresValue = prompt.search('{value}') !== -1,
-                            requiresName  = prompt.search('{name}') !== -1,
+                            requiresName = prompt.search('{name}') !== -1,
                             parts,
                             suffixPrompt
                         ;
@@ -1184,15 +1194,15 @@
                         ;
                         $fields.each(function (index, field) {
                             var
-                                $field       = $(field),
-                                $calendar    = $field.closest(selector.uiCalendar),
-                                name         = $field.prop('name') || $field.prop('id'),
-                                value        = $field.val(),
-                                isCheckbox   = $field.is(selector.checkbox),
-                                isRadio      = $field.is(selector.radio),
-                                isMultiple   = name.indexOf('[]') !== -1,
-                                isCalendar   = $calendar.length > 0 && module.can.useElement('calendar'),
-                                isChecked    = isCheckbox
+                                $field = $(field),
+                                $calendar = $field.closest(selector.uiCalendar),
+                                name = $field.prop('name') || $field.prop('id'),
+                                value = $field.val(),
+                                isCheckbox = $field.is(selector.checkbox),
+                                isRadio = $field.is(selector.radio),
+                                isMultiple = name.indexOf('[]') !== -1,
+                                isCalendar = $calendar.length > 0 && module.can.useElement('calendar'),
+                                isChecked = isCheckbox
                                     ? $field.is(':checked')
                                     : false
                             ;
@@ -1359,7 +1369,7 @@
                                 ? rules
                                 : [rules];
                             $.each(rules, function (_index, rule) {
-                                newValidation.rules.push({ type: rule });
+                                newValidation.rules.push({type: rule});
                             });
                         } else {
                             newValidation.rules = rules.rules;
@@ -1385,9 +1395,9 @@
                             return;
                         }
                         var
-                            $field       = module.get.field(identifier),
-                            $fieldGroup  = $field.closest($group),
-                            $prompt      = $fieldGroup.children(selector.prompt),
+                            $field = module.get.field(identifier),
+                            $fieldGroup = $field.closest($group),
+                            $prompt = $fieldGroup.children(selector.prompt),
                             promptExists = $prompt.length > 0,
                             canTransition = settings.transition && module.can.useElement('transition')
                         ;
@@ -1538,9 +1548,9 @@
                     },
                     prompt: function (identifier) {
                         var
-                            $field      = module.get.field(identifier),
+                            $field = module.get.field(identifier),
                             $fieldGroup = $field.closest($group),
-                            $prompt     = $fieldGroup.children(selector.prompt)
+                            $prompt = $fieldGroup.children(selector.prompt)
                         ;
                         $fieldGroup
                             .removeClass(className.error)
@@ -1572,13 +1582,13 @@
                     defaults: function () {
                         $field.each(function (index, el) {
                             var
-                                $el        = $(el),
-                                $parent    = $el.parent(),
+                                $el = $(el),
+                                $parent = $el.parent(),
                                 isCheckbox = $el.filter(selector.checkbox).length > 0,
                                 isDropdown = ($parent.is(selector.uiDropdown) || $el.is(selector.uiDropdown)) && module.can.useElement('dropdown'),
-                                $calendar  = $el.closest(selector.uiCalendar),
+                                $calendar = $el.closest(selector.uiCalendar),
                                 isCalendar = $calendar.length > 0 && module.can.useElement('calendar'),
-                                value      = isCheckbox
+                                value = isCheckbox
                                     ? $el.is(':checked')
                                     : $el.val()
                             ;
@@ -1615,15 +1625,15 @@
                         }
                         $.each(fields, function (key, value) {
                             var
-                                $field      = module.get.field(key),
-                                $element    = $field.parent(),
-                                $calendar   = $field.closest(selector.uiCalendar),
-                                isFile      = $field.is(selector.file),
-                                isMultiple  = Array.isArray(value),
-                                isCheckbox  = $element.is(selector.uiCheckbox) && module.can.useElement('checkbox'),
-                                isDropdown  = $element.is(selector.uiDropdown) && module.can.useElement('dropdown'),
-                                isRadio     = $field.is(selector.radio) && isCheckbox,
-                                isCalendar  = $calendar.length > 0 && module.can.useElement('calendar'),
+                                $field = module.get.field(key),
+                                $element = $field.parent(),
+                                $calendar = $field.closest(selector.uiCalendar),
+                                isFile = $field.is(selector.file),
+                                isMultiple = Array.isArray(value),
+                                isCheckbox = $element.is(selector.uiCheckbox) && module.can.useElement('checkbox'),
+                                isDropdown = $element.is(selector.uiDropdown) && module.can.useElement('dropdown'),
+                                isRadio = $field.is(selector.radio) && isCheckbox,
+                                isCalendar = $calendar.length > 0 && module.can.useElement('calendar'),
                                 fieldExists = $field.length > 0,
                                 $multipleField
                             ;
@@ -1706,16 +1716,16 @@
                         }
                         $field.each(function (_index, el) {
                             var
-                                $el        = $(el),
-                                $elGroup   = $el.closest($group),
+                                $el = $(el),
+                                $elGroup = $el.closest($group),
                                 isCheckbox = $el.filter(selector.checkbox).length > 0,
                                 isRequired = $el.prop('required') || $elGroup.hasClass(className.required) || $elGroup.parent().hasClass(className.required),
                                 isDisabled = $el.is(':disabled') || $elGroup.hasClass(className.disabled) || $elGroup.parent().hasClass(className.disabled),
                                 validation = module.get.validation($el),
                                 hasNotEmptyRule = validation
                                     ? $.grep(validation.rules, function (rule) {
-                                        return ['notEmpty', 'checked', 'empty'].indexOf(rule.type) >= 0;
-                                    }).length > 0
+                                    return ['notEmpty', 'checked', 'empty'].indexOf(rule.type) >= 0;
+                                }).length > 0
                                     : false,
                                 identifier = module.get.identifier(validation, $el)
                             ;
@@ -1816,13 +1826,13 @@
                             return true;
                         }
                         var
-                            identifier    = field.identifier || fieldName,
-                            $field        = module.get.field(identifier),
+                            identifier = field.identifier || fieldName,
+                            $field = module.get.field(identifier),
                             $fieldGroup = $field.closest($group),
                             $dependsField = field.depends
                                 ? module.get.field(field.depends)
                                 : false,
-                            fieldValid  = true,
+                            fieldValid = true,
                             fieldErrors = [],
                             isDisabled = $field.filter(':not(:disabled)').length === 0 || $fieldGroup.hasClass(className.disabled) || $fieldGroup.parent().hasClass(className.disabled),
                             validationMessage = $field[0].validationMessage,
@@ -1861,8 +1871,8 @@
                                             if (
                                                 // Always allow the first error prompt for new field identifiers
                                                 (!(identifier in formErrorsTracker)
-                                                // Also allow multiple error prompts per field identifier but make sure each prompt is unique
-                                                || formErrorsTracker[identifier].indexOf(fieldError) === -1)
+                                                    // Also allow multiple error prompts per field identifier but make sure each prompt is unique
+                                                    || formErrorsTracker[identifier].indexOf(fieldError) === -1)
                                                 // Limit the number of unique error prompts for every field identifier if specified
                                                 && (!errorLimit || (formErrorsTracker[identifier] || []).length < errorLimit)
                                             ) {
@@ -1901,9 +1911,9 @@
                     // takes validation rule and returns whether field passes rule
                     rule: function (field, rule, internal) {
                         var
-                            $field       = module.get.field(field.identifier),
-                            ancillary    = module.get.ancillaryValue(rule),
-                            ruleName     = module.get.ruleName(rule),
+                            $field = module.get.field(field.identifier),
+                            ancillary = module.get.ancillaryValue(rule),
+                            ruleName = module.get.ruleName(rule),
                             ruleFunction = settings.rules[ruleName],
                             invalidFields = [],
                             isCheckbox = $field.is(selector.checkbox),
@@ -2131,16 +2141,20 @@
         errorLimit: 0,
         noNativeValidation: false,
 
-        onValid: function () {},
-        onInvalid: function () {},
+        onValid: function () {
+        },
+        onInvalid: function () {
+        },
         onSuccess: function () {
             return true;
         },
         onFailure: function () {
             return false;
         },
-        onDirty: function () {},
-        onClean: function () {},
+        onDirty: function () {
+        },
+        onClean: function () {
+        },
 
         metadata: {
             defaultValue: 'default',
@@ -2395,8 +2409,8 @@
 
                 return (
                     regExp.test(value)
-                        && (min === undefined || value >= min)
-                        && (max === undefined || value <= max)
+                    && (min === undefined || value >= min)
+                    && (max === undefined || value <= max)
                 );
             },
 
@@ -2557,8 +2571,8 @@
                             length: [16],
                         },
                     },
-                    valid         = {},
-                    validCard     = false,
+                    valid = {},
+                    validCard = false,
                     requiredTypes = typeof cardTypes === 'string'
                         ? cardTypes.split(',')
                         : false,
@@ -2605,13 +2619,13 @@
 
                 // verify luhn, adapted from  <https://gist.github.com/2134376>
                 var
-                    length        = cardNumber.length,
-                    multiple      = 0,
+                    length = cardNumber.length,
+                    multiple = 0,
                     producedValue = [
                         [0, 1, 2, 3, 4, 5, 6, 7, 8, 9],
                         [0, 2, 4, 6, 8, 1, 3, 5, 7, 9],
                     ],
-                    sum           = 0
+                    sum = 0
                 ;
                 while (length--) {
                     sum += producedValue[multiple][parseInt(cardNumber.charAt(length), 10)];
@@ -2687,36 +2701,36 @@
 
     $.fn.accordion = function (parameters) {
         var
-            $allModules     = $(this),
+            $allModules = $(this),
 
-            time            = Date.now(),
-            performance     = [],
+            time = Date.now(),
+            performance = [],
 
-            query           = arguments[0],
-            methodInvoked   = typeof query === 'string',
-            queryArguments  = [].slice.call(arguments, 1),
+            query = arguments[0],
+            methodInvoked = typeof query === 'string',
+            queryArguments = [].slice.call(arguments, 1),
 
             returnedValue
         ;
         $allModules.each(function () {
             var
-                settings        = $.isPlainObject(parameters)
+                settings = $.isPlainObject(parameters)
                     ? $.extend(true, {}, $.fn.accordion.settings, parameters)
                     : $.extend({}, $.fn.accordion.settings),
 
-                className       = settings.className,
-                namespace       = settings.namespace,
-                selector        = settings.selector,
-                error           = settings.error,
+                className = settings.className,
+                namespace = settings.namespace,
+                selector = settings.selector,
+                error = settings.error,
 
-                eventNamespace  = '.' + namespace,
+                eventNamespace = '.' + namespace,
                 moduleNamespace = 'module-' + namespace,
 
-                $module  = $(this),
-                $title   = $module.find(selector.title),
+                $module = $(this),
+                $title = $module.find(selector.title),
                 $content = $module.find(selector.content),
 
-                element  = this,
+                element = this,
                 instance = $module.data(moduleNamespace),
                 observer,
                 module
@@ -2793,9 +2807,9 @@
                             : $(this).closest(selector.title),
                         $activeContent = $activeTitle.next($content),
                         isAnimating = $activeContent.hasClass(className.animating),
-                        isActive    = $activeContent.hasClass(className.active),
-                        isOpen      = isActive && !isAnimating,
-                        isOpening   = !isActive && isAnimating
+                        isActive = $activeContent.hasClass(className.active),
+                        isOpen = isActive && !isAnimating,
+                        isOpening = !isActive && isAnimating
                     ;
                     module.debug('Toggling visibility of content', $activeTitle);
                     if (isOpen || isOpening) {
@@ -2818,8 +2832,8 @@
                             : $(this).closest(selector.title),
                         $activeContent = $activeTitle.next($content),
                         isAnimating = $activeContent.hasClass(className.animating),
-                        isActive    = $activeContent.hasClass(className.active),
-                        isOpen      = isActive || isAnimating
+                        isActive = $activeContent.hasClass(className.active),
+                        isOpen = isActive || isAnimating
                     ;
                     if (isOpen) {
                         module.debug('Accordion already open, skipping', $activeContent);
@@ -2887,10 +2901,10 @@
                                 : $(query).closest(selector.title))
                             : $(this).closest(selector.title),
                         $activeContent = $activeTitle.next($content),
-                        isAnimating    = $activeContent.hasClass(className.animating),
-                        isActive       = $activeContent.hasClass(className.active),
-                        isOpening      = !isActive && isAnimating,
-                        isClosing      = isActive && isAnimating
+                        isAnimating = $activeContent.hasClass(className.animating),
+                        isActive = $activeContent.hasClass(className.active),
+                        isOpening = !isActive && isAnimating,
+                        isClosing = isActive && isAnimating
                     ;
                     if ((isActive || isOpening) && !isClosing) {
                         module.debug('Closing accordion content', $activeContent);
@@ -2946,10 +2960,10 @@
                         $activeTitle = index !== undefined
                             ? $title.eq(index)
                             : $(this).closest(selector.title),
-                        $parentTitles    = $activeTitle.parents(selector.content).prev(selector.title),
+                        $parentTitles = $activeTitle.parents(selector.content).prev(selector.title),
                         $activeAccordion = $activeTitle.closest(selector.accordion),
-                        activeSelector   = selector.title + '.' + className.active + ':visible',
-                        activeContent    = selector.content + '.' + className.active + ':visible',
+                        activeSelector = selector.title + '.' + className.active + ':visible',
+                        activeContent = selector.content + '.' + className.active + ':visible',
                         $openTitles,
                         $nestedTitles,
                         $openContents
@@ -3224,13 +3238,19 @@
         duration: 350, // duration of animation
         easing: 'easeOutQuad', // easing equation for animation
 
-        onOpening: function () {}, // callback before open animation
-        onClosing: function () {}, // callback before closing animation
-        onChanging: function () {}, // callback before closing or opening animation
+        onOpening: function () {
+        }, // callback before open animation
+        onClosing: function () {
+        }, // callback before closing animation
+        onChanging: function () {
+        }, // callback before closing or opening animation
 
-        onOpen: function () {}, // callback after open animation
-        onClose: function () {}, // callback after closing animation
-        onChange: function () {}, // callback after closing or opening animation
+        onOpen: function () {
+        }, // callback after open animation
+        onClose: function () {
+        }, // callback after closing animation
+        onChange: function () {
+        }, // callback after closing or opening animation
 
         error: {
             method: 'The method you called is not defined',
@@ -3283,22 +3303,22 @@
 
     $.fn.calendar = function (parameters) {
         var
-            $allModules    = $(this),
-            $document      = $(document),
+            $allModules = $(this),
+            $document = $(document),
 
-            time           = Date.now(),
-            performance    = [],
+            time = Date.now(),
+            performance = [],
 
-            query          = arguments[0],
-            methodInvoked  = typeof query === 'string',
+            query = arguments[0],
+            methodInvoked = typeof query === 'string',
             queryArguments = [].slice.call(arguments, 1),
             returnedValue,
             timeGapTable = {
-                5: { row: 4, column: 3 },
-                10: { row: 3, column: 2 },
-                15: { row: 2, column: 2 },
-                20: { row: 3, column: 1 },
-                30: { row: 2, column: 1 },
+                5: {row: 4, column: 3},
+                10: {row: 3, column: 2},
+                15: {row: 2, column: 2},
+                20: {row: 3, column: 1},
+                30: {row: 2, column: 1},
             },
             numberText = ['', 'one', 'two', 'three', 'four', 'five', 'six', 'seven', 'eight']
         ;
@@ -3408,7 +3428,7 @@
                         if ($container.length === 0) {
                             if (settings.context) {
                                 module.popupId = namespace + '_popup_' + (Math.random().toString(16) + '000000000').slice(2, 10);
-                                $container = $('<div/>', { id: module.popupId }).addClass(className.popup).appendTo($document.find(settings.context));
+                                $container = $('<div/>', {id: module.popupId}).addClass(className.popup).appendTo($document.find(settings.context));
                             } else {
                                 // prepend the popup element to the activator's parent so that it has less chance of messing with
                                 // the styling (eg input action button needs to be the last child to have correct border radius)
@@ -3802,7 +3822,7 @@
                             var inRange = !rangeDate
                                 ? false
                                 : (!!startDate && module.helper.isDateInRange(cellDate, mode, startDate, rangeDate))
-                                    || (!!endDate && module.helper.isDateInRange(cellDate, mode, rangeDate, endDate));
+                                || (!!endDate && module.helper.isDateInRange(cellDate, mode, rangeDate, endDate));
                             $cell.toggleClass(className.focusCell, focused && (!isTouch || isTouchDown) && (!adjacent || (settings.selectAdjacentDays && adjacent)) && !disabled);
 
                             if (module.helper.isTodayButton($cell)) {
@@ -4960,7 +4980,8 @@
             today: function (settings) {
                 return settings.type === 'date' ? settings.text.today : settings.text.now;
             },
-            cell: function (cell, date, cellOptions) {},
+            cell: function (cell, date, cellOptions) {
+            },
         },
 
         parser: {
@@ -5216,22 +5237,28 @@
         },
 
         // callback when date changes
-        onChange: function (date, text, mode) {},
+        onChange: function (date, text, mode) {
+        },
 
         // callback before show animation, return false to prevent show
-        onShow: function () {},
+        onShow: function () {
+        },
 
         // callback after show animation
-        onVisible: function () {},
+        onVisible: function () {
+        },
 
         // callback before hide animation, return false to prevent hide
-        onHide: function () {},
+        onHide: function () {
+        },
 
         // callback after hide animation
-        onHidden: function () {},
+        onHidden: function () {
+        },
 
         // callback before item is selected, return false to prevent selection
-        onSelect: function (date, mode) {},
+        onSelect: function (date, mode) {
+        },
 
         // is the given date disabled?
         isDisabled: function (date, mode) {
@@ -5329,40 +5356,40 @@
 
     $.fn.checkbox = function (parameters) {
         var
-            $allModules    = $(this),
+            $allModules = $(this),
 
-            time           = Date.now(),
-            performance    = [],
+            time = Date.now(),
+            performance = [],
 
-            query          = arguments[0],
-            methodInvoked  = typeof query === 'string',
+            query = arguments[0],
+            methodInvoked = typeof query === 'string',
             queryArguments = [].slice.call(arguments, 1),
             returnedValue
         ;
 
         $allModules.each(function () {
             var
-                settings        = $.extend(true, {}, $.fn.checkbox.settings, parameters),
+                settings = $.extend(true, {}, $.fn.checkbox.settings, parameters),
 
-                className       = settings.className,
-                namespace       = settings.namespace,
-                selector        = settings.selector,
-                error           = settings.error,
+                className = settings.className,
+                namespace = settings.namespace,
+                selector = settings.selector,
+                error = settings.error,
 
-                eventNamespace  = '.' + namespace,
+                eventNamespace = '.' + namespace,
                 moduleNamespace = 'module-' + namespace,
 
-                $module         = $(this),
-                $label          = $(this).children(selector.label),
-                $input          = $(this).children(selector.input),
-                input           = $input[0],
+                $module = $(this),
+                $label = $(this).children(selector.label),
+                $input = $(this).children(selector.input),
+                input = $input[0],
 
-                initialLoad     = false,
+                initialLoad = false,
                 shortcutPressed = false,
-                instance        = $module.data(moduleNamespace),
+                instance = $module.data(moduleNamespace),
 
                 observer,
-                element         = this,
+                element = this,
                 module
             ;
 
@@ -5505,7 +5532,7 @@
                     },
                     keydown: function (event) {
                         var
-                            key     = event.which,
+                            key = event.which,
                             keyCode = {
                                 enter: 13,
                                 space: 32,
@@ -6151,25 +6178,38 @@
         fireOnInit: false,
         enableEnterKey: true,
 
-        onChange: function () {},
+        onChange: function () {
+        },
 
-        beforeChecked: function () {},
-        beforeUnchecked: function () {},
-        beforeDeterminate: function () {},
-        beforeIndeterminate: function () {},
+        beforeChecked: function () {
+        },
+        beforeUnchecked: function () {
+        },
+        beforeDeterminate: function () {
+        },
+        beforeIndeterminate: function () {
+        },
 
-        onChecked: function () {},
-        onUnchecked: function () {},
+        onChecked: function () {
+        },
+        onUnchecked: function () {
+        },
 
-        onDeterminate: function () {},
-        onIndeterminate: function () {},
+        onDeterminate: function () {
+        },
+        onIndeterminate: function () {
+        },
 
-        onEnable: function () {},
-        onDisable: function () {},
+        onEnable: function () {
+        },
+        onDisable: function () {
+        },
 
         // preserve misspelled callbacks (will be removed in 3.0)
-        onEnabled: function () {},
-        onDisabled: function () {},
+        onEnabled: function () {
+        },
+        onDisabled: function () {
+        },
 
         className: {
             checked: 'checked',
@@ -6218,33 +6258,33 @@
 
     $.fn.dimmer = function (parameters) {
         var
-            $allModules     = $(this),
+            $allModules = $(this),
 
-            time            = Date.now(),
-            performance     = [],
+            time = Date.now(),
+            performance = [],
 
-            query           = arguments[0],
-            methodInvoked   = typeof query === 'string',
-            queryArguments  = [].slice.call(arguments, 1),
+            query = arguments[0],
+            methodInvoked = typeof query === 'string',
+            queryArguments = [].slice.call(arguments, 1),
 
             returnedValue
         ;
 
         $allModules.each(function () {
             var
-                settings        = $.isPlainObject(parameters)
+                settings = $.isPlainObject(parameters)
                     ? $.extend(true, {}, $.fn.dimmer.settings, parameters)
                     : $.extend({}, $.fn.dimmer.settings),
 
-                selector        = settings.selector,
-                namespace       = settings.namespace,
-                className       = settings.className,
-                error           = settings.error,
+                selector = settings.selector,
+                namespace = settings.namespace,
+                className = settings.className,
+                error = settings.error,
 
-                eventNamespace  = '.' + namespace,
+                eventNamespace = '.' + namespace,
                 moduleNamespace = 'module-' + namespace,
 
-                clickEvent      = 'ontouchstart' in document.documentElement
+                clickEvent = 'ontouchstart' in document.documentElement
                     ? 'touchstart'
                     : 'click',
 
@@ -6252,8 +6292,8 @@
                 $dimmer,
                 $dimmable,
 
-                element   = this,
-                instance  = $module.data(moduleNamespace),
+                element = this,
+                instance = $module.data(moduleNamespace),
                 module
             ;
 
@@ -6375,7 +6415,8 @@
                 show: function (callback) {
                     callback = isFunction(callback)
                         ? callback
-                        : function () {};
+                        : function () {
+                        };
                     if ((!module.is.dimmed() || module.is.animating()) && module.is.enabled()) {
                         if (settings.onShow.call(element) === false) {
                             module.verbose('Show callback returned false cancelling dimmer show');
@@ -6394,7 +6435,8 @@
                 hide: function (callback) {
                     callback = isFunction(callback)
                         ? callback
-                        : function () {};
+                        : function () {
+                        };
                     if (module.is.dimmed() || module.is.animating()) {
                         if (settings.onHide.call(element) === false) {
                             module.verbose('Hide callback returned false cancelling dimmer hide');
@@ -6424,7 +6466,8 @@
                     show: function (callback) {
                         callback = isFunction(callback)
                             ? callback
-                            : function () {};
+                            : function () {
+                            };
                         if (settings.useCSS && $.fn.transition !== undefined) {
                             if (settings.useFlex) {
                                 module.debug('Using flex dimmer');
@@ -6483,7 +6526,8 @@
                     hide: function (callback) {
                         callback = isFunction(callback)
                             ? callback
-                            : function () {};
+                            : function () {
+                            };
                         if (settings.useCSS && $.fn.transition !== undefined) {
                             module.verbose('Hiding dimmer with css');
                             $dimmer
@@ -6592,9 +6636,9 @@
                 set: {
                     opacity: function (opacity) {
                         var
-                            color      = $dimmer.css('background-color'),
+                            color = $dimmer.css('background-color'),
                             colorArray = color.split(','),
-                            isRGB      = colorArray && colorArray.length >= 3
+                            isRGB = colorArray && colorArray.length >= 3
                         ;
                         opacity = settings.opacity === 0 ? 0 : settings.opacity || opacity;
                         if (isRGB) {
@@ -6874,11 +6918,16 @@
         loaderText: false,
         loaderVariation: '',
 
-        onChange: function () {},
-        onShow: function () {},
-        onHide: function () {},
-        onVisible: function () {},
-        onHidden: function () {},
+        onChange: function () {
+        },
+        onShow: function () {
+        },
+        onHide: function () {
+        },
+        onVisible: function () {
+        },
+        onHidden: function () {
+        },
 
         error: {
             method: 'The method you called is not defined.',
@@ -6951,16 +7000,16 @@
 
     $.fn.dropdown = function (parameters) {
         var
-            $allModules    = $(this),
-            $document      = $(document),
+            $allModules = $(this),
+            $document = $(document),
 
-            time           = Date.now(),
-            performance    = [],
+            time = Date.now(),
+            performance = [],
 
-            query          = arguments[0],
-            methodInvoked  = typeof query === 'string',
+            query = arguments[0],
+            methodInvoked = typeof query === 'string',
             queryArguments = [].slice.call(arguments, 1),
-            contextCheck   = function (context, win) {
+            contextCheck = function (context, win) {
                 var $context;
                 if ([window, document].indexOf(context) >= 0) {
                     $context = $(context);
@@ -6978,50 +7027,50 @@
 
         $allModules.each(function (elementIndex) {
             var
-                settings          = $.isPlainObject(parameters)
+                settings = $.isPlainObject(parameters)
                     ? $.extend(true, {}, $.fn.dropdown.settings, parameters)
                     : $.extend({}, $.fn.dropdown.settings),
 
-                className       = settings.className,
-                message         = settings.message,
-                fields          = settings.fields,
-                keys            = settings.keys,
-                metadata        = settings.metadata,
-                namespace       = settings.namespace,
-                regExp          = settings.regExp,
-                selector        = settings.selector,
-                error           = settings.error,
-                templates       = settings.templates,
+                className = settings.className,
+                message = settings.message,
+                fields = settings.fields,
+                keys = settings.keys,
+                metadata = settings.metadata,
+                namespace = settings.namespace,
+                regExp = settings.regExp,
+                selector = settings.selector,
+                error = settings.error,
+                templates = settings.templates,
 
-                eventNamespace  = '.' + namespace,
+                eventNamespace = '.' + namespace,
                 moduleNamespace = 'module-' + namespace,
 
-                $module         = $(this),
-                $context        = contextCheck(settings.context, window),
-                $text           = $module.find(selector.text),
-                $search         = $module.find(selector.search),
-                $sizer          = $module.find(selector.sizer),
-                $input          = $module.find(selector.input),
-                $icon           = $module.find(selector.icon),
-                $clear          = $module.find(selector.clearIcon),
+                $module = $(this),
+                $context = contextCheck(settings.context, window),
+                $text = $module.find(selector.text),
+                $search = $module.find(selector.search),
+                $sizer = $module.find(selector.sizer),
+                $input = $module.find(selector.input),
+                $icon = $module.find(selector.icon),
+                $clear = $module.find(selector.clearIcon),
 
                 $combo = $module.prev().find(selector.text).length > 0
                     ? $module.prev().find(selector.text)
                     : $module.prev(),
 
-                $menu           = $module.children(selector.menu),
-                $item           = $menu.find(selector.item),
-                $divider        = settings.hideDividers
+                $menu = $module.children(selector.menu),
+                $item = $menu.find(selector.item),
+                $divider = settings.hideDividers
                     ? $item.parent().children(selector.divider)
                     : $(),
 
-                activated       = false,
-                itemActivated   = false,
-                internalChange  = false,
-                iconClicked     = false,
-                element         = this,
-                focused         = false,
-                instance        = $module.data(moduleNamespace),
+                activated = false,
+                itemActivated = false,
+                internalChange = false,
+                iconClicked = false,
+                element = this,
+                focused = false,
+                instance = $module.data(moduleNamespace),
 
                 selectActionActive,
                 initialLoad,
@@ -7255,7 +7304,7 @@
                         var
                             $nextAvailable = $selected.nextAll(selector.item).not(selector.unselectable).eq(0),
                             $prevAvailable = $selected.prevAll(selector.item).not(selector.unselectable).eq(0),
-                            hasNext        = $nextAvailable.length > 0
+                            hasNext = $nextAvailable.length > 0
                         ;
                         if (hasNext) {
                             module.verbose('Moving selection to', $nextAvailable);
@@ -7325,7 +7374,7 @@
                     },
                     select: function () {
                         var
-                            selectValues  = module.get.selectValues()
+                            selectValues = module.get.selectValues()
                         ;
                         module.debug('Dropdown initialized on a select', selectValues);
                         if ($module.is('select')) {
@@ -7392,7 +7441,7 @@
                     returnedObject: function () {
                         var
                             $firstModules = $allModules.slice(0, elementIndex),
-                            $lastModules  = $allModules.slice(elementIndex + 1)
+                            $lastModules = $allModules.slice(elementIndex + 1)
                         ;
                         // adjust all modules to use correct reference
                         $allModules = $firstModules.add($module).add($lastModules);
@@ -7461,7 +7510,8 @@
                 show: function (callback, preventFocus) {
                     callback = isFunction(callback)
                         ? callback
-                        : function () {};
+                        : function () {
+                        };
                     if ((focused || iconClicked) && module.is.remote() && module.is.noApiCache() && !module.has.maxSelections()) {
                         module.clearItems();
                     }
@@ -7494,7 +7544,8 @@
                 hide: function (callback, preventBlur) {
                     callback = isFunction(callback)
                         ? callback
-                        : function () {};
+                        : function () {
+                        };
                     if (module.is.active() && !module.is.animatingOutward()) {
                         module.debug('Hiding dropdown');
                         if (settings.onHide.call(element) !== false) {
@@ -7777,7 +7828,7 @@
                             },
                             onSuccess: function (response, $module, xhr) {
                                 var
-                                    values          = response[fields.remoteValues]
+                                    values = response[fields.remoteValues]
                                 ;
                                 if (!Array.isArray(values)) {
                                     values = [];
@@ -7808,7 +7859,7 @@
                     if (!$module.api('get request')) {
                         module.setup.api();
                     }
-                    apiSettings = $.extend(true, {}, apiSettings, settings.apiSettings, apiCallbacks, tempDisableApiCache ? { cache: false } : {});
+                    apiSettings = $.extend(true, {}, apiSettings, settings.apiSettings, apiCallbacks, tempDisableApiCache ? {cache: false} : {});
                     $module
                         .api('setting', apiSettings)
                         .api('query')
@@ -7933,7 +7984,7 @@
 
                 fuzzySearch: function (query, term) {
                     var
-                        termLength  = term.length,
+                        termLength = term.length,
                         queryLength = query.length
                     ;
                     if (settings.ignoreSearchCase) {
@@ -8001,8 +8052,8 @@
                 forceSelection: function () {
                     var
                         $currentlySelected = $item.not(className.filtered).filter('.' + className.selected).eq(0),
-                        $activeItem        = $item.not(className.filtered).filter('.' + className.active).eq(0),
-                        $selectedItem      = $currentlySelected.length > 0
+                        $activeItem = $item.not(className.filtered).filter('.' + className.active).eq(0),
+                        $selectedItem = $currentlySelected.length > 0
                             ? $currentlySelected
                             : $activeItem,
                         hasSelected = $selectedItem.length > 0
@@ -8204,11 +8255,11 @@
                     label: {
                         click: function (event) {
                             var
-                                $label        = $(this),
-                                $labels       = $module.find(selector.label),
+                                $label = $(this),
+                                $labels = $module.find(selector.label),
                                 $activeLabels = $labels.filter('.' + className.active),
-                                $nextActive   = $label.nextAll('.' + className.active),
-                                $prevActive   = $label.prevAll('.' + className.active),
+                                $nextActive = $label.nextAll('.' + className.active),
+                                $prevActive = $label.prevAll('.' + className.active),
                                 $range = $nextActive.length > 0
                                     ? $label.nextUntil($nextActive).add($activeLabels).add($label)
                                     : $label.prevUntil($prevActive).add($activeLabels).add($label)
@@ -8292,16 +8343,16 @@
                     menu: {
                         mutation: function (mutations) {
                             var
-                                mutation   = mutations[0],
+                                mutation = mutations[0],
                                 $addedNode = mutation.addedNodes
                                     ? $(mutation.addedNodes[0])
                                     : $(false),
                                 $removedNode = mutation.removedNodes
                                     ? $(mutation.removedNodes[0])
                                     : $(false),
-                                $changedNodes  = $addedNode.add($removedNode),
+                                $changedNodes = $addedNode.add($removedNode),
                                 isUserAddition = $changedNodes.is(selector.addition) || $changedNodes.closest(selector.addition).length > 0,
-                                isMessage      = $changedNodes.is(selector.message) || $changedNodes.closest(selector.message).length > 0
+                                isMessage = $changedNodes.is(selector.message) || $changedNodes.closest(selector.message).length > 0
                             ;
                             if (isUserAddition || isMessage) {
                                 module.debug('Updating item selector cache');
@@ -8321,11 +8372,11 @@
                     item: {
                         mouseenter: function (event) {
                             var
-                                $target        = $(event.target),
-                                $item          = $(this),
-                                $subMenu       = $item.children(selector.menu),
-                                $otherMenus    = $item.siblings(selector.item).children(selector.menu),
-                                hasSubMenu     = $subMenu.length > 0,
+                                $target = $(event.target),
+                                $item = $(this),
+                                $subMenu = $item.children(selector.menu),
+                                $otherMenus = $item.siblings(selector.item).children(selector.menu),
+                                hasSubMenu = $subMenu.length > 0,
                                 isBubbledEvent = $subMenu.find($target).length > 0
                             ;
                             if (!isBubbledEvent && hasSubMenu) {
@@ -8356,14 +8407,14 @@
                         },
                         click: function (event, skipRefocus) {
                             var
-                                $choice        = $(this),
-                                $target        = event
+                                $choice = $(this),
+                                $target = event
                                     ? $(event.target || '')
                                     : $(''),
-                                $subMenu       = $choice.find(selector.menu),
-                                text           = module.get.choiceText($choice),
-                                value          = module.get.choiceValue($choice, text),
-                                hasSubMenu     = $subMenu.length > 0,
+                                $subMenu = $choice.find(selector.menu),
+                                text = module.get.choiceText($choice),
+                                value = module.get.choiceValue($choice, text),
+                                hasSubMenu = $subMenu.length > 0,
                                 isBubbledEvent = $subMenu.find($target).length > 0
                             ;
                             // prevents IE11 bug where menu receives focus even though `tabindex=-1`
@@ -8401,25 +8452,25 @@
                         // label selection should occur even when element has no focus
                         keydown: function (event) {
                             var
-                                pressedKey    = event.which,
+                                pressedKey = event.which,
                                 isShortcutKey = module.is.inObject(pressedKey, keys)
                             ;
                             if (isShortcutKey) {
                                 var
-                                    $label            = $module.find(selector.label),
-                                    $activeLabel      = $label.filter('.' + className.active),
-                                    activeValue       = $activeLabel.data(metadata.value),
-                                    labelIndex        = $label.index($activeLabel),
-                                    labelCount        = $label.length,
-                                    hasActiveLabel    = $activeLabel.length > 0,
+                                    $label = $module.find(selector.label),
+                                    $activeLabel = $label.filter('.' + className.active),
+                                    activeValue = $activeLabel.data(metadata.value),
+                                    labelIndex = $label.index($activeLabel),
+                                    labelCount = $label.length,
+                                    hasActiveLabel = $activeLabel.length > 0,
                                     hasMultipleActive = $activeLabel.length > 1,
-                                    isFirstLabel      = labelIndex === 0,
-                                    isLastLabel       = labelIndex + 1 === labelCount,
-                                    isSearch          = module.is.searchSelection(),
+                                    isFirstLabel = labelIndex === 0,
+                                    isLastLabel = labelIndex + 1 === labelCount,
+                                    isSearch = module.is.searchSelection(),
                                     isFocusedOnSearch = module.is.focusedOnSearch(),
-                                    isFocused         = module.is.focused(),
-                                    caretAtStart      = isFocusedOnSearch && module.get.caretPosition(false) === 0,
-                                    isSelectedSearch  = caretAtStart && module.get.caretPosition(true) !== 0
+                                    isFocused = module.is.focused(),
+                                    caretAtStart = isFocusedOnSearch && module.get.caretPosition(false) === 0,
+                                    isSelectedSearch = caretAtStart && module.get.caretPosition(true) !== 0
                                 ;
                                 if (isSearch && !hasActiveLabel && !isFocusedOnSearch) {
                                     return;
@@ -8520,26 +8571,26 @@
 
                     keydown: function (event) {
                         var
-                            pressedKey    = event.which,
+                            pressedKey = event.which,
                             isShortcutKey = module.is.inObject(pressedKey, keys) || event.key === settings.delimiter
                         ;
                         if (isShortcutKey) {
                             var
                                 $currentlySelected = $item.not(selector.unselectable).filter('.' + className.selected).eq(0),
-                                $activeItem        = $menu.children('.' + className.active).eq(0),
-                                $selectedItem      = $currentlySelected.length > 0
+                                $activeItem = $menu.children('.' + className.active).eq(0),
+                                $selectedItem = $currentlySelected.length > 0
                                     ? $currentlySelected
                                     : $activeItem,
                                 $visibleItems = $selectedItem.length > 0
                                     ? $selectedItem.siblings(':not(.' + className.filtered + ')').addBack()
                                     : $menu.children(':not(.' + className.filtered + ')'),
-                                $subMenu              = $selectedItem.children(selector.menu),
-                                $parentMenu           = $selectedItem.closest(selector.menu),
-                                inVisibleMenu         = $parentMenu.hasClass(className.visible) || $parentMenu.hasClass(className.animating) || $parentMenu.parent(selector.menu).length > 0,
-                                hasSubMenu            = $subMenu.length > 0,
-                                hasSelectedItem       = $selectedItem.length > 0,
-                                selectedIsSelectable  = $selectedItem.not(selector.unselectable).length > 0,
-                                delimiterPressed      = event.key === settings.delimiter && module.is.multiple(),
+                                $subMenu = $selectedItem.children(selector.menu),
+                                $parentMenu = $selectedItem.closest(selector.menu),
+                                inVisibleMenu = $parentMenu.hasClass(className.visible) || $parentMenu.hasClass(className.animating) || $parentMenu.parent(selector.menu).length > 0,
+                                hasSubMenu = $subMenu.length > 0,
+                                hasSelectedItem = $selectedItem.length > 0,
+                                selectedIsSelectable = $selectedItem.not(selector.unselectable).length > 0,
+                                delimiterPressed = event.key === settings.delimiter && module.is.multiple(),
                                 isAdditionWithoutMenu = settings.allowAdditions && (pressedKey === keys.enter || delimiterPressed),
                                 $nextItem,
                                 isSubMenuItem
@@ -8737,13 +8788,14 @@
                     },
                     eventInModule: function (event, callback) {
                         var
-                            $target    = $(event.target),
+                            $target = $(event.target),
                             inDocument = $target.closest(document.documentElement).length > 0,
-                            inModule   = $target.closest($module).length > 0
+                            inModule = $target.closest($module).length > 0
                         ;
                         callback = isFunction(callback)
                             ? callback
-                            : function () {};
+                            : function () {
+                            };
                         if (inDocument && !inModule) {
                             module.verbose('Triggering event', callback);
                             callback();
@@ -8757,15 +8809,16 @@
                     },
                     eventOnElement: function (event, callback) {
                         var
-                            $target      = $(event.target),
-                            $label       = $target.closest(selector.siblingLabel),
+                            $target = $(event.target),
+                            $label = $target.closest(selector.siblingLabel),
                             inVisibleDOM = document.body.contains(event.target),
-                            notOnLabel   = $module.find($label).length === 0 || !(module.is.multiple() && settings.useLabels),
-                            notInMenu    = $target.closest($menu).length === 0
+                            notOnLabel = $module.find($label).length === 0 || !(module.is.multiple() && settings.useLabels),
+                            notInMenu = $target.closest($menu).length === 0
                         ;
                         callback = isFunction(callback)
                             ? callback
-                            : function () {};
+                            : function () {
+                            };
                         if (inVisibleDOM && notOnLabel && notInMenu) {
                             module.verbose('Triggering event', callback);
                             callback();
@@ -8781,7 +8834,8 @@
 
                 action: {
 
-                    nothing: function () {},
+                    nothing: function () {
+                    },
 
                     activate: function (text, value, element) {
                         value = value !== undefined
@@ -9027,13 +9081,13 @@
                             .find('option')
                             .each(function () {
                                 var
-                                    $option  = $(this),
-                                    name     = $option.html(),
+                                    $option = $(this),
+                                    name = $option.html(),
                                     disabled = $option.attr('disabled'),
-                                    value    = $option.attr('value') !== undefined
+                                    value = $option.attr('value') !== undefined
                                         ? $option.attr('value')
                                         : name,
-                                    text     = $option.data(metadata.text) !== undefined
+                                    text = $option.data(metadata.text) !== undefined
                                         ? $option.data(metadata.text)
                                         : name,
                                     group = $option.parent('optgroup')
@@ -9097,8 +9151,8 @@
                     },
                     itemWithAdditions: function (value) {
                         var
-                            $items       = module.get.item(value),
-                            $userItems   = module.create.userChoice(value),
+                            $items = module.get.item(value),
+                            $userItems = module.create.userChoice(value),
                             hasUserItems = $userItems && $userItems.length > 0
                         ;
                         if (hasUserItems) {
@@ -9131,9 +9185,9 @@
                             $item
                                 .each(function () {
                                     var
-                                        $choice       = $(this),
-                                        optionText    = module.get.choiceText($choice),
-                                        optionValue   = module.get.choiceValue($choice, optionText)
+                                        $choice = $(this),
+                                        optionText = module.get.choiceText($choice),
+                                        optionValue = module.get.choiceValue($choice, optionText)
                                     ;
                                     // safe early exit
                                     if (optionValue === null || optionValue === undefined) {
@@ -9216,7 +9270,7 @@
                     },
                     defaultText: function () {
                         var
-                            defaultText     = module.get.defaultText(),
+                            defaultText = module.get.defaultText(),
                             placeholderText = module.get.placeholderText
                         ;
                         if (defaultText === placeholderText) {
@@ -9382,13 +9436,13 @@
 
                 scrollPage: function (direction, $selectedItem) {
                     var
-                        $currentItem  = $selectedItem || module.get.selectedItem(),
-                        $menu         = $currentItem.closest(selector.menu),
-                        menuHeight    = $menu.outerHeight(),
+                        $currentItem = $selectedItem || module.get.selectedItem(),
+                        $menu = $currentItem.closest(selector.menu),
+                        menuHeight = $menu.outerHeight(),
                         currentScroll = $menu.scrollTop(),
-                        itemHeight    = $item.eq(0).outerHeight(),
-                        itemsPerPage  = Math.floor(menuHeight / itemHeight),
-                        newScroll     = direction === 'up'
+                        itemHeight = $item.eq(0).outerHeight(),
+                        itemsPerPage = Math.floor(menuHeight / itemHeight),
+                        newScroll = direction === 'up'
                             ? currentScroll - (itemHeight * itemsPerPage)
                             : currentScroll + (itemHeight * itemsPerPage),
                         $selectableItem = $item.not(selector.unselectable),
@@ -9427,15 +9481,15 @@
                 set: {
                     filtered: function () {
                         var
-                            isMultiple       = module.is.multiple(),
-                            isSearch         = module.is.searchSelection(),
+                            isMultiple = module.is.multiple(),
+                            isSearch = module.is.searchSelection(),
                             isSearchMultiple = isMultiple && isSearch,
-                            searchValue      = isSearch
+                            searchValue = isSearch
                                 ? module.get.query()
                                 : '',
-                            hasSearchValue   = typeof searchValue === 'string' && searchValue.length > 0,
-                            searchWidth      = module.get.searchWidth(),
-                            valueIsSet       = searchValue !== ''
+                            hasSearchValue = typeof searchValue === 'string' && searchValue.length > 0,
+                            searchWidth = module.get.searchWidth(),
+                            valueIsSet = searchValue !== ''
                         ;
                         if (isMultiple && hasSearchValue) {
                             module.verbose('Adjusting input width', searchWidth);
@@ -9569,9 +9623,9 @@
                     },
                     selectedItem: function ($item) {
                         var
-                            value      = module.get.choiceValue($item),
+                            value = module.get.choiceValue($item),
                             searchText = module.get.choiceText($item, false),
-                            text       = module.get.choiceText($item)
+                            text = module.get.choiceText($item)
                         ;
                         module.debug('Setting user selection to item', $item);
                         module.remove.activeItem();
@@ -9582,9 +9636,9 @@
                     },
                     selectedLetter: function (letter) {
                         var
-                            $selectedItem         = $item.filter('.' + className.selected),
+                            $selectedItem = $item.filter('.' + className.selected),
                             alreadySelectedLetter = $selectedItem.length > 0 && module.has.firstLetter($selectedItem, letter),
-                            $nextValue            = false,
+                            $nextValue = false,
                             $nextItem
                         ;
                         // check next of same letter
@@ -9660,9 +9714,9 @@
                         }
                         var
                             escapedValue = module.escape.value(value),
-                            hasInput     = $input.length > 0,
+                            hasInput = $input.length > 0,
                             currentValue = module.get.values(),
-                            stringValue  = value !== undefined
+                            stringValue = value !== undefined
                                 ? String(value)
                                 : value
                         ;
@@ -9758,15 +9812,15 @@
                         $selectedItem
                             .each(function () {
                                 var
-                                    $selected      = $(this),
-                                    selectedText   = module.get.choiceText($selected),
-                                    selectedValue  = module.get.choiceValue($selected, selectedText),
+                                    $selected = $(this),
+                                    selectedText = module.get.choiceText($selected),
+                                    selectedValue = module.get.choiceValue($selected, selectedText),
 
-                                    isFiltered     = $selected.hasClass(className.filtered),
-                                    isActive       = $selected.hasClass(className.active),
-                                    isActionable   = $selected.hasClass(className.actionable),
-                                    isUserValue    = $selected.hasClass(className.addition),
-                                    shouldAnimate  = isMultiple && $selectedItem && $selectedItem.length === 1
+                                    isFiltered = $selected.hasClass(className.filtered),
+                                    isActive = $selected.hasClass(className.active),
+                                    isActionable = $selected.hasClass(className.actionable),
+                                    isUserValue = $selected.hasClass(className.addition),
+                                    shouldAnimate = isMultiple && $selectedItem && $selectedItem.length === 1
                                 ;
                                 if (isActionable) {
                                     if ((!isMultiple || (!isActive || isUserValue)) && settings.apiSettings && settings.saveRemoteData) {
@@ -9821,7 +9875,7 @@
                 add: {
                     label: function (value, text, shouldAnimate) {
                         var
-                            $next  = module.is.searchSelection()
+                            $next = module.is.searchSelection()
                                 ? $search
                                 : $text,
                             escapedValue = module.escape.value(value),
@@ -9868,7 +9922,7 @@
                     message: function (message) {
                         var
                             $message = $menu.children(selector.message),
-                            html     = settings.templates.message(module.add.variables(message))
+                            html = settings.templates.message(module.add.variables(message))
                         ;
                         if ($message.length > 0) {
                             $message
@@ -9885,8 +9939,8 @@
                     optionValue: function (value) {
                         var
                             escapedValue = module.escape.value(value),
-                            $option      = $input.find('option[value="' + module.escape.string(escapedValue) + '"]'),
-                            hasOption    = $option.length > 0
+                            $option = $input.find('option[value="' + module.escape.string(escapedValue) + '"]'),
+                            hasOption = $option.length > 0
                         ;
                         if (hasOption) {
                             return;
@@ -9908,9 +9962,9 @@
                     },
                     userSuggestion: function (value) {
                         var
-                            $addition         = $menu.children(selector.addition),
-                            $existingItem     = module.get.item(value),
-                            alreadyHasValue   = $existingItem && $existingItem.not(selector.addition).length > 0,
+                            $addition = $menu.children(selector.addition),
+                            $existingItem = module.get.item(value),
+                            alreadyHasValue = $existingItem && $existingItem.not(selector.addition).length > 0,
                             hasUserSuggestion = $addition.length > 0,
                             html
                         ;
@@ -9955,9 +10009,9 @@
                     },
                     variables: function (message, term) {
                         var
-                            hasCount    = message.search('{count}') !== -1,
+                            hasCount = message.search('{count}') !== -1,
                             hasMaxCount = message.search('{maxCount}') !== -1,
-                            hasTerm     = message.search('{term}') !== -1,
+                            hasTerm = message.search('{term}') !== -1,
                             query
                         ;
                         module.verbose('Adding templated variables to message', message);
@@ -10075,8 +10129,8 @@
                     optionValue: function (value) {
                         var
                             escapedValue = module.escape.value(value),
-                            $option      = $input.find('option[value="' + module.escape.string(escapedValue) + '"]'),
-                            hasOption    = $option.length > 0
+                            $option = $input.find('option[value="' + module.escape.string(escapedValue) + '"]'),
+                            hasOption = $option.length > 0
                         ;
                         if (!hasOption || !$option.hasClass(className.addition)) {
                             return;
@@ -10113,8 +10167,8 @@
                         $selectedItem
                             .each(function () {
                                 var
-                                    $selected     = $(this),
-                                    selectedText  = module.get.choiceText($selected),
+                                    $selected = $(this),
+                                    selectedText = module.get.choiceText($selected),
                                     selectedValue = module.get.choiceValue($selected, selectedText)
                                 ;
                                 if (module.is.multiple()) {
@@ -10180,8 +10234,8 @@
                     },
                     label: function (value, shouldAnimate) {
                         var
-                            escapedValue  = module.escape.value(value),
-                            $labels       = $module.find(selector.label),
+                            escapedValue = module.escape.value(value),
+                            $labels = $module.find(selector.label),
                             $removedLabel = $labels.filter('[data-' + metadata.value + '="' + module.escape.string(settings.ignoreCase ? escapedValue.toLowerCase() : escapedValue) + '"]')
                         ;
                         module.verbose('Removing label', $removedLabel);
@@ -10198,8 +10252,8 @@
                         $labels
                             .each(function () {
                                 var
-                                    $label      = $(this),
-                                    value       = $label.data(metadata.value),
+                                    $label = $(this),
+                                    value = $label.data(metadata.value),
                                     stringValue = value !== undefined
                                         ? String(value)
                                         : value,
@@ -10305,7 +10359,7 @@
                     label: function (value) {
                         var
                             escapedValue = module.escape.value(value),
-                            $labels      = $module.find(selector.label)
+                            $labels = $module.find(selector.label)
                         ;
                         if (settings.ignoreCase) {
                             escapedValue = escapedValue.toLowerCase();
@@ -10336,7 +10390,7 @@
                     },
                     valueMatchingCase: function (value) {
                         var
-                            values   = module.get.values(true),
+                            values = module.get.values(true),
                             hasValue = Array.isArray(values)
                                 ? values && ($.inArray(value, values) !== -1)
                                 : values == value
@@ -10346,7 +10400,7 @@
                     },
                     valueIgnoringCase: function (value) {
                         var
-                            values   = module.get.values(true),
+                            values = module.get.values(true),
                             hasValue = false
                         ;
                         if (!Array.isArray(values)) {
@@ -10514,13 +10568,13 @@
                     activate: function ($item) {
                         return (
                             settings.useLabels
-                                || !module.has.maxSelections()
-                                || (module.has.maxSelections() && $item.hasClass(className.active))
+                            || !module.has.maxSelections()
+                            || (module.has.maxSelections() && $item.hasClass(className.active))
                         );
                     },
                     openDownward: function ($subMenu) {
                         var
-                            $currentMenu    = $subMenu || $menu,
+                            $currentMenu = $subMenu || $menu,
                             canOpenDownward,
                             onScreen,
                             calculations
@@ -10531,7 +10585,7 @@
                         calculations = {
                             context: {
                                 offset: $context[0] === window
-                                    ? { top: 0, left: 0 }
+                                    ? {top: 0, left: 0}
                                     : $context.offset(),
                                 scrollTop: $context.scrollTop(),
                                 height: $context.outerHeight(),
@@ -10567,7 +10621,7 @@
                     },
                     openRightward: function ($subMenu) {
                         var
-                            $currentMenu     = $subMenu || $menu,
+                            $currentMenu = $subMenu || $menu,
                             canOpenRightward = true,
                             isOffscreenRight = false,
                             calculations
@@ -10578,7 +10632,7 @@
                         calculations = {
                             context: {
                                 offset: $context[0] === window
-                                    ? { top: 0, left: 0 }
+                                    ? {top: 0, left: 0}
                                     : $context.offset(),
                                 scrollLeft: $context.scrollLeft(),
                                 width: $context.outerWidth(),
@@ -10624,7 +10678,8 @@
                         var
                             $currentMenu = $subMenu || $menu,
                             start = $subMenu
-                                ? function () {}
+                                ? function () {
+                                }
                                 : function () {
                                     module.hideSubMenus();
                                     module.hideOthers();
@@ -10634,7 +10689,8 @@
                         ;
                         callback = isFunction(callback)
                             ? callback
-                            : function () {};
+                            : function () {
+                            };
                         module.verbose('Doing menu show animation', $currentMenu);
                         module.set.direction($subMenu);
                         transition = settings.transition.showMethod || module.get.transition($subMenu);
@@ -10671,7 +10727,8 @@
                         var
                             $currentMenu = $subMenu || $menu,
                             start = $subMenu
-                                ? function () {}
+                                ? function () {
+                                }
                                 : function () {
                                     module.unbind.intent();
                                     module.remove.active();
@@ -10680,7 +10737,8 @@
                         ;
                         callback = isFunction(callback)
                             ? callback
-                            : function () {};
+                            : function () {
+                            };
                         if (module.is.visible($currentMenu) || module.is.animating($currentMenu)) {
                             module.verbose('Doing menu hide animation', $currentMenu);
 
@@ -10748,10 +10806,10 @@
                     value: function (value) {
                         var
                             multipleValues = Array.isArray(value),
-                            stringValue    = typeof value === 'string',
-                            isUnparsable   = !stringValue && !multipleValues,
-                            hasQuotes      = stringValue && value.search(regExp.quote) !== -1,
-                            values         = []
+                            stringValue = typeof value === 'string',
+                            isUnparsable = !stringValue && !multipleValues,
+                            hasQuotes = stringValue && value.search(regExp.quote) !== -1,
+                            values = []
                         ;
                         if (isUnparsable || !hasQuotes) {
                             return value;
@@ -10775,16 +10833,16 @@
                     htmlEntities: function (string, forceAmpersand) {
                         forceAmpersand = typeof forceAmpersand === 'number' ? false : forceAmpersand;
                         var
-                            badChars     = /["'<>`]/g,
+                            badChars = /["'<>`]/g,
                             shouldEscape = /["&'<>`]/,
-                            escape       = {
+                            escape = {
                                 '<': '&lt;',
                                 '>': '&gt;',
                                 '"': '&quot;',
                                 "'": '&#x27;',
                                 '`': '&#x60;',
                             },
-                            escapedChar  = function (chr) {
+                            escapedChar = function (chr) {
                                 return escape[chr];
                             }
                         ;
@@ -11046,13 +11104,19 @@
         },
 
         /* Callbacks */
-        onChange: function (value, text, $selected) {},
-        onAdd: function (value, text, $selected) {},
-        onRemove: function (value, text, $selected) {},
-        onActionable: function (value, text, $selected) {},
-        onSearch: function (searchTerm) {},
+        onChange: function (value, text, $selected) {
+        },
+        onAdd: function (value, text, $selected) {
+        },
+        onRemove: function (value, text, $selected) {
+        },
+        onActionable: function (value, text, $selected) {
+        },
+        onSearch: function (searchTerm) {
+        },
 
-        onLabelSelect: function ($selectedLabels) {},
+        onLabelSelect: function ($selectedLabels) {
+        },
         onLabelCreate: function (value, text) {
             return $(this);
         },
@@ -11062,8 +11126,10 @@
         onNoResults: function (searchTerm) {
             return true;
         },
-        onShow: function () {},
-        onHide: function () {},
+        onShow: function () {
+        },
+        onHide: function () {
+        },
 
         /* Component */
         name: 'Dropdown',
@@ -11208,16 +11274,16 @@
                 return string;
             }
             var
-                badChars     = /["'<>`]/g,
+                badChars = /["'<>`]/g,
                 shouldEscape = /["&'<>`]/,
-                escape       = {
+                escape = {
                     '<': '&lt;',
                     '>': '&gt;',
                     '"': '&quot;',
                     "'": '&#x27;',
                     '`': '&#x60;',
                 },
-                escapedChar  = function (chr) {
+                escapedChar = function (chr) {
                     return escape[chr];
                 }
             ;
@@ -11232,7 +11298,7 @@
         dropdown: function (select, fields, preserveHTML, className) {
             var
                 placeholder = select.placeholder || false,
-                html        = '',
+                html = '',
                 escape = $.fn.dropdown.settings.templates.escape,
                 deQuote = $.fn.dropdown.settings.templates.deQuote
             ;
@@ -11251,7 +11317,7 @@
         menu: function (response, fields, preserveHTML, className) {
             var
                 values = response[fields.values] || [],
-                html   = '',
+                html = '',
                 escape = $.fn.dropdown.settings.templates.escape,
                 deQuote = $.fn.dropdown.settings.templates.deQuote
             ;
@@ -11384,42 +11450,42 @@
 
     $.fn.embed = function (parameters) {
         var
-            $allModules     = $(this),
+            $allModules = $(this),
 
-            time            = Date.now(),
-            performance     = [],
+            time = Date.now(),
+            performance = [],
 
-            query           = arguments[0],
-            methodInvoked   = typeof query === 'string',
-            queryArguments  = [].slice.call(arguments, 1),
+            query = arguments[0],
+            methodInvoked = typeof query === 'string',
+            queryArguments = [].slice.call(arguments, 1),
 
             returnedValue
         ;
 
         $allModules.each(function () {
             var
-                settings        = $.isPlainObject(parameters)
+                settings = $.isPlainObject(parameters)
                     ? $.extend(true, {}, $.fn.embed.settings, parameters)
                     : $.extend({}, $.fn.embed.settings),
 
-                selector        = settings.selector,
-                className       = settings.className,
-                sources         = settings.sources,
-                error           = settings.error,
-                metadata        = settings.metadata,
-                namespace       = settings.namespace,
-                templates       = settings.templates,
+                selector = settings.selector,
+                className = settings.className,
+                sources = settings.sources,
+                error = settings.error,
+                metadata = settings.metadata,
+                namespace = settings.namespace,
+                templates = settings.templates,
 
-                eventNamespace  = '.' + namespace,
+                eventNamespace = '.' + namespace,
                 moduleNamespace = 'module-' + namespace,
 
-                $module         = $(this),
-                $placeholder    = $module.find(selector.placeholder),
-                $icon           = $module.find(selector.icon),
-                $embed          = $module.find(selector.embed),
+                $module = $(this),
+                $placeholder = $module.find(selector.placeholder),
+                $icon = $module.find(selector.icon),
+                $embed = $module.find(selector.embed),
 
-                element         = this,
-                instance        = $module.data(moduleNamespace),
+                element = this,
+                instance = $module.data(moduleNamespace),
                 module
             ;
 
@@ -11482,8 +11548,8 @@
 
                 createPlaceholder: function (placeholder) {
                     var
-                        icon  = module.get.icon(),
-                        alt   = module.get.alt()
+                        icon = module.get.icon(),
+                        alt = module.get.alt()
                     ;
                     placeholder = placeholder || module.get.placeholder();
                     $module.html(templates.placeholder(placeholder, icon, alt));
@@ -11628,7 +11694,7 @@
                     },
                     url: function () {
                         var
-                            id     = settings.id || $module.data(metadata.id),
+                            id = settings.id || $module.data(metadata.id),
                             source = settings.source || $module.data(metadata.source),
                             url
                         ;
@@ -11937,10 +12003,14 @@
         // additional parameters to include with the embed
         parameters: false,
 
-        onDisplay: function () {},
-        onPlaceholderDisplay: function () {},
-        onReset: function () {},
-        onCreate: function (url) {},
+        onDisplay: function () {
+        },
+        onPlaceholderDisplay: function () {
+        },
+        onReset: function () {
+        },
+        onCreate: function (url) {
+        },
         onEmbed: function (parameters) {
             return parameters;
         },
@@ -12043,9 +12113,12 @@
 
         // NOT YET IMPLEMENTED
         api: false,
-        onPause: function () {},
-        onPlay: function () {},
-        onStop: function () {},
+        onPause: function () {
+        },
+        onPlay: function () {
+        },
+        onStop: function () {
+        },
 
     };
 })(jQuery, window, document);
@@ -12073,20 +12146,20 @@
 
     $.fn.flyout = function (parameters) {
         var
-            $allModules     = $(this),
-            $window         = $(window),
-            $document       = $(document),
-            $html           = $('html'),
-            $head           = $('head'),
-            $body           = $('body'),
+            $allModules = $(this),
+            $window = $(window),
+            $document = $(document),
+            $html = $('html'),
+            $head = $('head'),
+            $body = $('body'),
 
-            time            = Date.now(),
-            performance     = [],
+            time = Date.now(),
+            performance = [],
 
-            query           = arguments[0],
-            methodInvoked   = typeof query === 'string',
-            queryArguments  = [].slice.call(arguments, 1),
-            contextCheck    = function (context, win) {
+            query = arguments[0],
+            methodInvoked = typeof query === 'string',
+            queryArguments = [].slice.call(arguments, 1),
+            contextCheck = function (context, win) {
                 var $context;
                 if ([window, document].indexOf(context) >= 0) {
                     $context = $body;
@@ -12104,41 +12177,41 @@
 
         $allModules.each(function () {
             var
-                settings             = $.isPlainObject(parameters)
+                settings = $.isPlainObject(parameters)
                     ? $.extend(true, {}, $.fn.flyout.settings, parameters)
                     : $.extend({}, $.fn.flyout.settings),
 
-                selector             = settings.selector,
-                className            = settings.className,
-                namespace            = settings.namespace,
-                fields               = settings.fields,
-                regExp               = settings.regExp,
-                error                = settings.error,
+                selector = settings.selector,
+                className = settings.className,
+                namespace = settings.namespace,
+                fields = settings.fields,
+                regExp = settings.regExp,
+                error = settings.error,
 
-                eventNamespace       = '.' + namespace,
-                moduleNamespace      = 'module-' + namespace,
+                eventNamespace = '.' + namespace,
+                moduleNamespace = 'module-' + namespace,
 
-                $module              = $(this),
-                $context             = contextCheck(settings.context, window),
-                $closeIcon           = $module.find(selector.close),
+                $module = $(this),
+                $context = contextCheck(settings.context, window),
+                $closeIcon = $module.find(selector.close),
                 $inputs,
                 $focusedElement,
 
-                $flyouts             = $module.children(selector.flyout),
-                $pusher              = $context.children(selector.pusher),
+                $flyouts = $module.children(selector.flyout),
+                $pusher = $context.children(selector.pusher),
                 $style,
 
-                isFlyoutComponent    = $module.hasClass('flyout'),
+                isFlyoutComponent = $module.hasClass('flyout'),
 
-                element              = this,
-                instance             = isFlyoutComponent ? $module.data(moduleNamespace) : undefined,
+                element = this,
+                instance = isFlyoutComponent ? $module.data(moduleNamespace) : undefined,
 
                 ignoreRepeatedEvents = false,
-                isBody               = $context[0] === $body[0],
-                initialBodyMargin    = '',
-                tempBodyMargin       = '',
-                hadScrollbar         = false,
-                windowRefocused      = false,
+                isBody = $context[0] === $body[0],
+                initialBodyMargin = '',
+                tempBodyMargin = '',
+                hadScrollbar = false,
+                windowRefocused = false,
 
                 elementNamespace,
                 id,
@@ -12177,7 +12250,7 @@
                     if (module.has.configActions()) {
                         var $actions = $module.find(selector.actions).addClass(settings.classActions);
                         if ($actions.length === 0) {
-                            $actions = $('<div/>', { class: className.actions + ' ' + (settings.classActions || '') }).appendTo($module);
+                            $actions = $('<div/>', {class: className.actions + ' ' + (settings.classActions || '')}).appendTo($module);
                         } else {
                             $actions.empty();
                         }
@@ -12190,7 +12263,8 @@
                                 cls = module.helpers.deQuote(el[fields.class] || ''),
                                 click = el[fields.click] && isFunction(el[fields.click])
                                     ? el[fields.click]
-                                    : function () {}
+                                    : function () {
+                                    }
                             ;
                             $actions.append($('<button/>', {
                                 html: icon + text,
@@ -12243,7 +12317,11 @@
                 create: {
                     flyout: function () {
                         module.verbose('Programmaticaly create flyout', $context);
-                        $module = $('<div/>', { class: className.flyout, role: 'dialog', 'aria-modal': settings.dimPage });
+                        $module = $('<div/>', {
+                            class: className.flyout,
+                            role: 'dialog',
+                            'aria-modal': settings.dimPage
+                        });
                         if (settings.closeIcon) {
                             $closeIcon = $('<i/>', {
                                 class: className.close,
@@ -12256,15 +12334,15 @@
                         if (settings.title !== '') {
                             var titleId = '_' + module.get.id() + 'title';
                             $module.attr('aria-labelledby', titleId);
-                            $('<div/>', { class: className.header, id: titleId }).appendTo($module);
+                            $('<div/>', {class: className.header, id: titleId}).appendTo($module);
                         }
                         if (settings.content !== '') {
                             var descId = '_' + module.get.id() + 'desc';
                             $module.attr('aria-describedby', descId);
-                            $('<div/>', { class: className.content, id: descId }).appendTo($module);
+                            $('<div/>', {class: className.content, id: descId}).appendTo($module);
                         }
                         if (module.has.configActions()) {
-                            $('<div/>', { class: className.actions }).appendTo($module);
+                            $('<div/>', {class: className.actions}).appendTo($module);
                         }
                         $module.prependTo($context);
                         element = $module[0];
@@ -12298,7 +12376,7 @@
                 event: {
                     keyboard: function (event) {
                         var
-                            keyCode   = event.which
+                            keyCode = event.which
                         ;
                         if (keyCode === settings.keys.escape) {
                             if (settings.closable) {
@@ -12326,7 +12404,7 @@
                         if (settings.closable) {
                             var
                                 clickedInPusher = $pusher.find(event.target).length > 0 || $pusher.is(event.target),
-                                clickedContext  = $context.is(event.target)
+                                clickedContext = $context.is(event.target)
                             ;
                             if (clickedInPusher) {
                                 module.verbose('User clicked on dimmed page');
@@ -12343,7 +12421,7 @@
                     },
                     closeKeyUp: function (event) {
                         var
-                            keyCode   = event.which
+                            keyCode = event.which
                         ;
                         if (keyCode === settings.keys.enter || keyCode === settings.keys.space) {
                             module.hide();
@@ -12476,11 +12554,11 @@
                 add: {
                     inlineCSS: function () {
                         var
-                            width     = module.cache.width || $module.outerWidth(),
-                            height    = module.cache.height || $module.outerHeight(),
-                            isRTL     = module.is.rtl(),
+                            width = module.cache.width || $module.outerWidth(),
+                            height = module.cache.height || $module.outerHeight(),
+                            isRTL = module.is.rtl(),
                             direction = module.get.direction(),
-                            distance  = {
+                            distance = {
                                 left: width,
                                 right: -width,
                                 top: height,
@@ -12705,7 +12783,8 @@
                 show: function (callback) {
                     callback = isFunction(callback)
                         ? callback
-                        : function () {};
+                        : function () {
+                        };
                     if (module.is.hidden()) {
                         if (settings.onShow.call(element) === false) {
                             module.verbose('Show callback returned false cancelling show');
@@ -12742,7 +12821,8 @@
                 hide: function (callback) {
                     callback = isFunction(callback)
                         ? callback
-                        : function () {};
+                        : function () {
+                        };
                     if (settings.onHide.call(element, $(this)) === false) {
                         module.verbose('Hide callback returned false cancelling hide');
                         ignoreRepeatedEvents = false;
@@ -12777,10 +12857,11 @@
                 hideOthers: function (callback) {
                     var
                         $otherFlyouts = $flyouts.not($module).filter('.' + className.visible),
-                        flyoutCount   = $otherFlyouts.length,
-                        callbackCount  = 0
+                        flyoutCount = $otherFlyouts.length,
+                        callbackCount = 0
                     ;
-                    callback = callback || function () {};
+                    callback = callback || function () {
+                    };
                     $otherFlyouts
                         .flyout('hide', function () {
                             callbackCount++;
@@ -12808,7 +12889,8 @@
                     ;
                     callback = isFunction(callback)
                         ? callback
-                        : function () {};
+                        : function () {
+                        };
                     module.set.overlay();
                     if (settings.returnScroll) {
                         currentScroll = (isBody ? $window : $context).scrollTop();
@@ -12845,7 +12927,8 @@
                     ;
                     callback = isFunction(callback)
                         ? callback
-                        : function () {};
+                        : function () {
+                        };
                     module.verbose('Removing context push state', module.get.direction());
 
                     module.unbind.clickaway();
@@ -12911,11 +12994,11 @@
                         var
                             $autofocus = $inputs.filter('[autofocus]'),
                             $rawInputs = $inputs.filter(':input'),
-                            $input     = ($autofocus.length > 0
-                                ? $autofocus
-                                : ($rawInputs.length > 0
-                                    ? $rawInputs
-                                    : $module)
+                            $input = ($autofocus.length > 0
+                                    ? $autofocus
+                                    : ($rawInputs.length > 0
+                                        ? $rawInputs
+                                        : $module)
                             ).first()
                         ;
                         $input.trigger('focus');
@@ -13111,8 +13194,8 @@
                     },
                     mobile: function () {
                         var
-                            userAgent    = navigator.userAgent,
-                            isMobile     = userAgent.match(regExp.mobile)
+                            userAgent = navigator.userAgent,
+                            isMobile = userAgent.match(regExp.mobile)
                         ;
                         if (isMobile) {
                             module.verbose('Browser was found to be mobile', userAgent);
@@ -13179,16 +13262,16 @@
                             return string;
                         }
                         var
-                            badChars     = /["'<>`]/g,
+                            badChars = /["'<>`]/g,
                             shouldEscape = /["&'<>`]/,
-                            escape       = {
+                            escape = {
                                 '<': '&lt;',
                                 '>': '&gt;',
                                 '"': '&quot;',
                                 "'": '&#x27;',
                                 '`': '&#x60;',
                             },
-                            escapedChar  = function (chr) {
+                            escapedChar = function (chr) {
                                 return escape[chr];
                             }
                         ;
@@ -13427,17 +13510,22 @@
             click: 'click',
         },
 
-        onChange: function () {},
-        onShow: function () {},
+        onChange: function () {
+        },
+        onShow: function () {
+        },
         onHide: function () {
             return true;
         },
 
         onHidden: false,
-        onVisible: function () {},
+        onVisible: function () {
+        },
 
-        onApprove: function () {},
-        onDeny: function () {},
+        onApprove: function () {
+        },
+        onDeny: function () {
+        },
 
         keys: {
             space: 32,
@@ -13511,13 +13599,15 @@
             var queryArguments = [].slice.call(args);
             if ($.isPlainObject(queryArguments[0])) {
                 return $.extend({
-                    handler: function () {},
+                    handler: function () {
+                    },
                     content: '',
                     title: '',
                 }, queryArguments[0]);
             }
             if (!isFunction(queryArguments[queryArguments.length - 1])) {
-                queryArguments.push(function () {});
+                queryArguments.push(function () {
+                });
             }
 
             return {
@@ -13529,7 +13619,7 @@
         alert: function () {
             var
                 settings = this.get.settings(),
-                args     = settings.templates.getArguments(arguments)
+                args = settings.templates.getArguments(arguments)
             ;
 
             return {
@@ -13545,7 +13635,7 @@
         confirm: function () {
             var
                 settings = this.get.settings(),
-                args     = settings.templates.getArguments(arguments)
+                args = settings.templates.getArguments(arguments)
             ;
 
             return {
@@ -13568,10 +13658,10 @@
         },
         prompt: function () {
             var
-                $this    = this,
+                $this = this,
                 settings = this.get.settings(),
-                args     = settings.templates.getArguments(arguments),
-                input    = $($.parseHTML(args.content)).filter('.ui.input')
+                args = settings.templates.getArguments(arguments),
+                input = $($.parseHTML(args.content)).filter('.ui.input')
             ;
             if (input.length === 0) {
                 args.content += '<p><div class="' + settings.className.prompt + '"><input placeholder="' + this.helpers.deQuote(args.placeholder || '') + '" type="text" value="' + this.helpers.deQuote(args.defaultValue || '') + '"></div></p>';
@@ -13625,18 +13715,18 @@
 
     $.fn.modal = function (parameters) {
         var
-            $allModules    = $(this),
-            $window        = $(window),
-            $document      = $(document),
-            $body          = $('body'),
+            $allModules = $(this),
+            $window = $(window),
+            $document = $(document),
+            $body = $('body'),
 
-            time           = Date.now(),
-            performance    = [],
+            time = Date.now(),
+            performance = [],
 
-            query          = arguments[0],
-            methodInvoked  = typeof query === 'string',
+            query = arguments[0],
+            methodInvoked = typeof query === 'string',
             queryArguments = [].slice.call(arguments, 1),
-            contextCheck   = function (context, win) {
+            contextCheck = function (context, win) {
                 var $context;
                 if ([window, document].indexOf(context) >= 0) {
                     $context = $body;
@@ -13654,23 +13744,23 @@
 
         $allModules.each(function () {
             var
-                settings    = $.isPlainObject(parameters)
+                settings = $.isPlainObject(parameters)
                     ? $.extend(true, {}, $.fn.modal.settings, parameters)
                     : $.extend({}, $.fn.modal.settings),
 
-                selector        = settings.selector,
-                className       = settings.className,
-                namespace       = settings.namespace,
-                fields          = settings.fields,
-                error           = settings.error,
+                selector = settings.selector,
+                className = settings.className,
+                namespace = settings.namespace,
+                fields = settings.fields,
+                error = settings.error,
 
-                eventNamespace  = '.' + namespace,
+                eventNamespace = '.' + namespace,
                 moduleNamespace = 'module-' + namespace,
 
-                $module         = $(this),
-                $context        = contextCheck(settings.context, window),
-                isBody          = $context[0] === $body[0],
-                $closeIcon      = $module.find(selector.closeIcon),
+                $module = $(this),
+                $context = contextCheck(settings.context, window),
+                isBody = $context[0] === $body[0],
+                $closeIcon = $module.find(selector.closeIcon),
                 $inputs,
 
                 $allModals,
@@ -13681,8 +13771,8 @@
 
                 isModalComponent = $module.hasClass('modal'),
 
-                element         = this,
-                instance        = isModalComponent ? $module.data(moduleNamespace) : undefined,
+                element = this,
+                instance = isModalComponent ? $module.data(moduleNamespace) : undefined,
 
                 ignoreRepeatedEvents = false,
 
@@ -13723,7 +13813,7 @@
                     if (module.has.configActions()) {
                         var $actions = $module.find(selector.actions).addClass(settings.classActions);
                         if ($actions.length === 0) {
-                            $actions = $('<div/>', { class: className.actions + ' ' + (settings.classActions || '') }).appendTo($module);
+                            $actions = $('<div/>', {class: className.actions + ' ' + (settings.classActions || '')}).appendTo($module);
                         } else {
                             $actions.empty();
                         }
@@ -13736,7 +13826,8 @@
                                 cls = module.helpers.deQuote(el[fields.class] || ''),
                                 click = el[fields.click] && isFunction(el[fields.click])
                                     ? el[fields.click]
-                                    : function () {}
+                                    : function () {
+                                    }
                             ;
                             $actions.append($('<button/>', {
                                 html: icon + text,
@@ -13784,7 +13875,7 @@
 
                 create: {
                     modal: function () {
-                        $module = $('<div/>', { class: className.modal, role: 'dialog', 'aria-modal': true });
+                        $module = $('<div/>', {class: className.modal, role: 'dialog', 'aria-modal': true});
                         if (settings.closeIcon) {
                             $closeIcon = $('<i/>', {
                                 class: className.close,
@@ -13797,15 +13888,15 @@
                         if (settings.title !== '') {
                             var titleId = '_' + module.get.id() + 'title';
                             $module.attr('aria-labelledby', titleId);
-                            $('<div/>', { class: className.title, id: titleId }).appendTo($module);
+                            $('<div/>', {class: className.title, id: titleId}).appendTo($module);
                         }
                         if (settings.content !== '') {
                             var descId = '_' + module.get.id() + 'desc';
                             $module.attr('aria-describedby', descId);
-                            $('<div/>', { class: className.content, id: descId }).appendTo($module);
+                            $('<div/>', {class: className.content, id: descId}).appendTo($module);
                         }
                         if (module.has.configActions()) {
-                            $('<div/>', { class: className.actions }).appendTo($module);
+                            $('<div/>', {class: className.actions}).appendTo($module);
                         }
                         $context.append($module);
                         element = $module[0];
@@ -13841,7 +13932,7 @@
                     },
                     innerDimmer: function () {
                         if ($module.find(selector.dimmer).length === 0) {
-                            $('<div/>', { class: className.innerDimmer }).prependTo($module);
+                            $('<div/>', {class: className.innerDimmer}).prependTo($module);
                         }
                     },
                 },
@@ -14001,13 +14092,13 @@
                     },
                     scrollLock: function () {
                         // touch events default to passive, due to changes in chrome to optimize mobile perf
-                        $dimmable[0].addEventListener('touchmove', module.event.preventScroll, { passive: false });
+                        $dimmable[0].addEventListener('touchmove', module.event.preventScroll, {passive: false});
                     },
                 },
 
                 unbind: {
                     scrollLock: function () {
-                        $dimmable[0].removeEventListener('touchmove', module.event.preventScroll, { passive: false });
+                        $dimmable[0].removeEventListener('touchmove', module.event.preventScroll, {passive: false});
                     },
                 },
 
@@ -14056,7 +14147,7 @@
                     },
                     closeKeyUp: function (event) {
                         var
-                            keyCode   = event.which
+                            keyCode = event.which
                         ;
                         if ((keyCode === settings.keys.enter || keyCode === settings.keys.space) && $module.hasClass(className.front)) {
                             module.hide();
@@ -14084,7 +14175,7 @@
                     },
                     mousedown: function (event) {
                         var
-                            $target   = $(event.target),
+                            $target = $(event.target),
                             isRtl = module.is.rtl()
                         ;
                         initialMouseDownInModal = $target.closest(selector.modal).length > 0;
@@ -14113,9 +14204,9 @@
                             return;
                         }
                         var
-                            $target   = $(event.target),
+                            $target = $(event.target),
                             isInModal = $target.closest(selector.modal).length > 0,
-                            isInDOM   = $.contains(document.documentElement, event.target)
+                            isInDOM = $.contains(document.documentElement, event.target)
                         ;
                         if (!isInModal && isInDOM && module.is.active() && $module.hasClass(className.front)) {
                             module.debug('Dimmer clicked, hiding all modals');
@@ -14137,7 +14228,7 @@
                     },
                     keyboard: function (event) {
                         var
-                            keyCode   = event.which
+                            keyCode = event.which
                         ;
                         if (keyCode === settings.keys.escape) {
                             if (settings.closable) {
@@ -14178,7 +14269,8 @@
                 show: function (callback) {
                     callback = isFunction(callback)
                         ? callback
-                        : function () {};
+                        : function () {
+                        };
                     module.refreshModals();
                     module.set.dimmerSettings();
                     module.set.dimmerStyles();
@@ -14189,7 +14281,8 @@
                 hide: function (callback) {
                     callback = isFunction(callback)
                         ? callback
-                        : function () {};
+                        : function () {
+                        };
                     module.refreshModals();
 
                     return module.hideModal(callback);
@@ -14198,7 +14291,8 @@
                 showModal: function (callback) {
                     callback = isFunction(callback)
                         ? callback
-                        : function () {};
+                        : function () {
+                        };
                     if (module.is.animating() || !module.is.active()) {
                         if (settings.onShow.call(element) === false) {
                             module.verbose('Show callback returned false cancelling show');
@@ -14275,7 +14369,8 @@
                     ;
                     callback = isFunction(callback)
                         ? callback
-                        : function () {};
+                        : function () {
+                        };
                     if (settings.onHide.call(element, $(this)) === false) {
                         module.verbose('Hide callback returned false cancelling hide');
                         ignoreRepeatedEvents = false;
@@ -14367,7 +14462,8 @@
                     ;
                     callback = isFunction(callback)
                         ? callback
-                        : function () {};
+                        : function () {
+                        };
                     if ($visibleModals.length > 0) {
                         module.debug('Hiding all visible modals');
                         var hideOk = true;
@@ -14391,7 +14487,8 @@
                     ;
                     callback = isFunction(callback)
                         ? callback
-                        : function () {};
+                        : function () {
+                        };
                     if ($visibleModals.length > 0) {
                         module.debug('Hiding other modals', $otherModals);
                         $visibleModals
@@ -14512,8 +14609,8 @@
                     $module.addClass(className.loading);
                     var
                         scrollHeight = $module.prop('scrollHeight'),
-                        modalWidth   = $module.outerWidth(),
-                        modalHeight  = $module.outerHeight()
+                        modalWidth = $module.outerWidth(),
+                        modalHeight = $module.outerHeight()
                     ;
                     if (module.cache.pageHeight === undefined || modalHeight !== 0) {
                         $.extend(module.cache, {
@@ -14539,16 +14636,16 @@
                             return string;
                         }
                         var
-                            badChars     = /["'<>`]/g,
+                            badChars = /["'<>`]/g,
                             shouldEscape = /["&'<>`]/,
-                            escape       = {
+                            escape = {
                                 '<': '&lt;',
                                 '>': '&gt;',
                                 '"': '&quot;',
                                 "'": '&#x27;',
                                 '`': '&#x60;',
                             },
-                            escapedChar  = function (chr) {
+                            escapedChar = function (chr) {
                                 return escape[chr];
                             }
                         ;
@@ -14583,13 +14680,13 @@
                     },
                     fit: function () {
                         var
-                            contextHeight  = module.cache.contextHeight,
+                            contextHeight = module.cache.contextHeight,
                             verticalCenter = module.cache.contextHeight / 2,
-                            topOffset      = module.cache.topOffset,
-                            scrollHeight   = module.cache.scrollHeight,
-                            height         = module.cache.height,
-                            paddingHeight  = settings.padding,
-                            startPosition  = verticalCenter + topOffset
+                            topOffset = module.cache.topOffset,
+                            scrollHeight = module.cache.scrollHeight,
+                            height = module.cache.height,
+                            paddingHeight = settings.padding,
+                            startPosition = verticalCenter + topOffset
                         ;
 
                         return scrollHeight > height
@@ -14671,11 +14768,11 @@
                         var
                             $autofocus = $inputs.filter('[autofocus]'),
                             $rawInputs = $inputs.filter(':input'),
-                            $input     = ($autofocus.length > 0
-                                ? $autofocus
-                                : ($rawInputs.length > 0
-                                    ? $rawInputs
-                                    : $module)
+                            $input = ($autofocus.length > 0
+                                    ? $autofocus
+                                    : ($rawInputs.length > 0
+                                        ? $rawInputs
+                                        : $module)
                             ).first()
                         ;
                         $input.trigger('focus');
@@ -15057,10 +15154,12 @@
         },
 
         // called before show animation
-        onShow: function () {},
+        onShow: function () {
+        },
 
         // called after show animation
-        onVisible: function () {},
+        onVisible: function () {
+        },
 
         // called before hide animation
         onHide: function () {
@@ -15139,13 +15238,15 @@
             var queryArguments = [].slice.call(args);
             if ($.isPlainObject(queryArguments[0])) {
                 return $.extend({
-                    handler: function () {},
+                    handler: function () {
+                    },
                     content: '',
                     title: '',
                 }, queryArguments[0]);
             }
             if (!isFunction(queryArguments[queryArguments.length - 1])) {
-                queryArguments.push(function () {});
+                queryArguments.push(function () {
+                });
             }
 
             return {
@@ -15157,7 +15258,7 @@
         alert: function () {
             var
                 settings = this.get.settings(),
-                args     = settings.templates.getArguments(arguments),
+                args = settings.templates.getArguments(arguments),
                 approveFn = args.handler
             ;
 
@@ -15175,7 +15276,7 @@
         confirm: function () {
             var
                 settings = this.get.settings(),
-                args     = settings.templates.getArguments(arguments),
+                args = settings.templates.getArguments(arguments),
                 approveFn = function () {
                     args.handler(true);
                 },
@@ -15202,10 +15303,10 @@
         },
         prompt: function () {
             var
-                $this    = this,
+                $this = this,
                 settings = this.get.settings(),
-                args     = settings.templates.getArguments(arguments),
-                input    = $($.parseHTML(args.content)).filter('.ui.input'),
+                args = settings.templates.getArguments(arguments),
+                input = $($.parseHTML(args.content)).filter('.ui.input'),
                 approveFn = function () {
                     var
                         settings = $this.get.settings(),
@@ -15263,16 +15364,16 @@
 
     $.fn.nag = function (parameters) {
         var
-            $allModules    = $(this),
-            $body          = $('body'),
+            $allModules = $(this),
+            $body = $('body'),
 
-            time           = Date.now(),
-            performance    = [],
+            time = Date.now(),
+            performance = [],
 
-            query          = arguments[0],
-            methodInvoked  = typeof query === 'string',
+            query = arguments[0],
+            methodInvoked = typeof query === 'string',
             queryArguments = [].slice.call(arguments, 1),
-            contextCheck   = function (context, win) {
+            contextCheck = function (context, win) {
                 var $context;
                 if ([window, document].indexOf(context) >= 0) {
                     $context = $(context);
@@ -15289,23 +15390,23 @@
         ;
         $allModules.each(function () {
             var
-                settings          = $.isPlainObject(parameters)
+                settings = $.isPlainObject(parameters)
                     ? $.extend(true, {}, $.fn.nag.settings, parameters)
                     : $.extend({}, $.fn.nag.settings),
 
-                selector        = settings.selector,
-                error           = settings.error,
-                namespace       = settings.namespace,
+                selector = settings.selector,
+                error = settings.error,
+                namespace = settings.namespace,
 
-                eventNamespace  = '.' + namespace,
+                eventNamespace = '.' + namespace,
                 moduleNamespace = namespace + '-module',
 
-                $module         = $(this),
+                $module = $(this),
 
-                $context        = settings.context ? contextCheck(settings.context, window) : $body,
+                $context = settings.context ? contextCheck(settings.context, window) : $body,
 
-                element         = this,
-                instance        = $module.data(moduleNamespace),
+                element = this,
+                instance = $module.data(moduleNamespace),
                 storage,
                 module
             ;
@@ -15463,7 +15564,7 @@
                                     var cookies = document.cookie.split('; ');
                                     for (var i = 0, il = cookies.length; i < il; i++) {
                                         var
-                                            parts    = cookies[i].split('='),
+                                            parts = cookies[i].split('='),
                                             foundKey = parts[0].replace(/(%[\da-f]{2})+/gi, decodeURIComponent)
                                         ;
                                         if (key === foundKey) {
@@ -15786,16 +15887,20 @@
         easing: 'easeOutQuad',
 
         // callback before show animation, return false to prevent show
-        onShow: function () {},
+        onShow: function () {
+        },
 
         // called after show animation
-        onVisible: function () {},
+        onVisible: function () {
+        },
 
         // callback before hide animation, return false to prevent hide
-        onHide: function () {},
+        onHide: function () {
+        },
 
         // callback after hide animation
-        onHidden: function () {},
+        onHidden: function () {
+        },
 
     };
 
@@ -15830,22 +15935,22 @@
 
     $.fn.popup = function (parameters) {
         var
-            $allModules    = $(this),
-            $document      = $(document),
-            $window        = $(window),
-            $body          = $('body'),
+            $allModules = $(this),
+            $document = $(document),
+            $window = $(window),
+            $body = $('body'),
 
-            clickEvent      = 'ontouchstart' in document.documentElement
+            clickEvent = 'ontouchstart' in document.documentElement
                 ? 'touchstart'
                 : 'click',
 
-            time           = Date.now(),
-            performance    = [],
+            time = Date.now(),
+            performance = [],
 
-            query          = arguments[0],
-            methodInvoked  = typeof query === 'string',
+            query = arguments[0],
+            methodInvoked = typeof query === 'string',
             queryArguments = [].slice.call(arguments, 1),
-            contextCheck   = function (context, win) {
+            contextCheck = function (context, win) {
                 var $context;
                 if ([window, document].indexOf(context) >= 0) {
                     $context = $(context);
@@ -15863,34 +15968,34 @@
         ;
         $allModules.each(function () {
             var
-                settings        = $.isPlainObject(parameters)
+                settings = $.isPlainObject(parameters)
                     ? $.extend(true, {}, $.fn.popup.settings, parameters)
                     : $.extend({}, $.fn.popup.settings),
 
-                selector           = settings.selector,
-                className          = settings.className,
-                error              = settings.error,
-                metadata           = settings.metadata,
-                namespace          = settings.namespace,
+                selector = settings.selector,
+                className = settings.className,
+                error = settings.error,
+                metadata = settings.metadata,
+                namespace = settings.namespace,
 
-                eventNamespace     = '.' + settings.namespace,
-                moduleNamespace    = 'module-' + namespace,
+                eventNamespace = '.' + settings.namespace,
+                moduleNamespace = 'module-' + namespace,
 
-                $module            = $(this),
-                $context           = contextCheck(settings.context, window),
-                $scrollContext     = contextCheck(settings.scrollContext, window),
-                $boundary          = contextCheck(settings.boundary, window),
-                $target            = settings.target ? contextCheck(settings.target, window) : $module,
+                $module = $(this),
+                $context = contextCheck(settings.context, window),
+                $scrollContext = contextCheck(settings.scrollContext, window),
+                $boundary = contextCheck(settings.boundary, window),
+                $target = settings.target ? contextCheck(settings.target, window) : $module,
 
                 $popup,
                 $offsetParent,
 
-                searchDepth        = 0,
-                triedPositions     = false,
-                openedWithTouch    = false,
+                searchDepth = 0,
+                triedPositions = false,
+                openedWithTouch = false,
 
-                element            = this,
-                instance           = $module.data(moduleNamespace),
+                element = this,
+                instance = $module.data(moduleNamespace),
 
                 documentObserver,
                 elementNamespace,
@@ -16063,9 +16168,9 @@
                     var
                         targetSibling = $target.next(selector.popup),
                         contentFallback = !settings.popup && targetSibling.length === 0 ? $module.attr('title') : false,
-                        html      = module.get.html(),
-                        title     = module.get.title(),
-                        content   = module.get.content(contentFallback)
+                        html = module.get.html(),
+                        title = module.get.title(),
+                        content = module.get.content(contentFallback)
                     ;
 
                     if (html || content || title) {
@@ -16139,7 +16244,8 @@
                 },
 
                 show: function (callback) {
-                    callback = callback || function () {};
+                    callback = callback || function () {
+                    };
                     module.debug('Showing pop-up', settings.transition);
                     if (module.is.hidden() && !(module.is.active() && module.is.dropdown())) {
                         if (!module.exists()) {
@@ -16164,7 +16270,8 @@
                 },
 
                 hide: function (callback) {
-                    callback = callback || function () {};
+                    callback = callback || function () {
+                    };
                     if (module.is.visible() || module.is.animating()) {
                         if (settings.onHide.call($popup, element) === false) {
                             module.debug('onHide callback returned false, cancelling popup animation');
@@ -16237,7 +16344,8 @@
                 },
                 animate: {
                     show: function (callback) {
-                        callback = isFunction(callback) ? callback : function () {};
+                        callback = isFunction(callback) ? callback : function () {
+                        };
                         if (settings.transition && module.can.useElement('transition')) {
                             module.set.visible();
                             $popup
@@ -16258,7 +16366,8 @@
                         }
                     },
                     hide: function (callback) {
-                        callback = isFunction(callback) ? callback : function () {};
+                        callback = isFunction(callback) ? callback : function () {
+                        };
                         module.debug('Hiding pop-up');
                         if (settings.transition && $.fn.transition !== undefined) {
                             $popup
@@ -16318,19 +16427,19 @@
                     calculations: function () {
                         var
                             $popupOffsetParent = module.get.offsetParent($popup),
-                            targetElement      = $target[0],
-                            isWindowEl         = $boundary[0] === window,
-                            targetOffset       = $target.offset(),
-                            parentOffset       = settings.inline || (settings.popup && settings.movePopup)
+                            targetElement = $target[0],
+                            isWindowEl = $boundary[0] === window,
+                            targetOffset = $target.offset(),
+                            parentOffset = settings.inline || (settings.popup && settings.movePopup)
                                 ? $target.offsetParent().offset()
-                                : { top: 0, left: 0 },
+                                : {top: 0, left: 0},
                             screenPosition = isWindowEl
-                                ? { top: 0, left: 0 }
+                                ? {top: 0, left: 0}
                                 : $boundary.offset(),
-                            calculations   = {},
+                            calculations = {},
                             scroll = isWindowEl
-                                ? { top: $window.scrollTop(), left: $window.scrollLeft() }
-                                : { top: 0, left: 0 },
+                                ? {top: $window.scrollTop(), left: $window.scrollLeft()}
+                                : {top: 0, left: 0},
                             screen
                         ;
                         calculations = {
@@ -16369,7 +16478,7 @@
                         // if popup offset context is not same as target, then adjust calculations
                         if ($popupOffsetParent[0] !== $offsetParent[0]) {
                             var
-                                popupOffset        = $popupOffsetParent.offset()
+                                popupOffset = $popupOffsetParent.offset()
                             ;
                             calculations.target.top -= popupOffset.top;
                             calculations.target.left -= popupOffset.left;
@@ -16461,13 +16570,13 @@
                                 ? $element[0]
                                 : $target[0],
                             parentNode = element.parentNode,
-                            $node    = $(parentNode)
+                            $node = $(parentNode)
                         ;
                         if (parentNode) {
                             var
-                                is2D     = $node.css('transform') === 'none',
+                                is2D = $node.css('transform') === 'none',
                                 isStatic = $node.css('position') === 'static',
-                                isBody   = $node.is('body')
+                                isBody = $node.is('body')
                             ;
                             while (parentNode && !isBody && isStatic && is2D) {
                                 parentNode = parentNode.parentNode;
@@ -16496,8 +16605,8 @@
                     },
                     nextPosition: function (position) {
                         var
-                            positions          = position.split(' '),
-                            verticalPosition   = positions[0],
+                            positions = position.split(' '),
+                            verticalPosition = positions[0],
                             horizontalPosition = positions[1],
                             opposite = {
                                 top: 'bottom',
@@ -16523,7 +16632,7 @@
                             adjacentsAvailable = verticalPosition === 'top' || verticalPosition === 'bottom',
                             oppositeTried = false,
                             adjacentTried = false,
-                            nextPosition  = false
+                            nextPosition = false
                         ;
                         if (!triedPositions) {
                             module.verbose('All available positions available');
@@ -17172,25 +17281,32 @@
         observeChanges: true,
 
         // callback only when element added to dom
-        onCreate: function () {},
+        onCreate: function () {
+        },
 
         // callback before element removed from dom
-        onRemove: function () {},
+        onRemove: function () {
+        },
 
         // callback before show animation
-        onShow: function () {},
+        onShow: function () {
+        },
 
         // callback after show animation
-        onVisible: function () {},
+        onVisible: function () {
+        },
 
         // callback before hide animation
-        onHide: function () {},
+        onHide: function () {
+        },
 
         // callback when popup cannot be positioned in visible screen
-        onUnplaceable: function () {},
+        onUnplaceable: function () {
+        },
 
         // callback after hide animation
-        onHidden: function () {},
+        onHidden: function () {
+        },
 
         // when to show popup
         on: 'hover',
@@ -17325,16 +17441,16 @@
         templates: {
             escape: function (string) {
                 var
-                    badChars     = /["'<>`]/g,
+                    badChars = /["'<>`]/g,
                     shouldEscape = /["&'<>`]/,
-                    escape       = {
+                    escape = {
                         '<': '&lt;',
                         '>': '&gt;',
                         '"': '&quot;',
                         "'": '&#x27;',
                         '`': '&#x60;',
                     },
-                    escapedChar  = function (chr) {
+                    escapedChar = function (chr) {
                         return escape[chr];
                     }
                 ;
@@ -17348,7 +17464,7 @@
             },
             popup: function (text) {
                 var
-                    html   = '',
+                    html = '',
                     escape = $.fn.popup.settings.templates.escape
                 ;
                 if (text !== undefined) {
@@ -17392,13 +17508,13 @@
 
     $.fn.progress = function (parameters) {
         var
-            $allModules    = $(this),
+            $allModules = $(this),
 
-            time           = Date.now(),
-            performance    = [],
+            time = Date.now(),
+            performance = [],
 
-            query          = arguments[0],
-            methodInvoked  = typeof query === 'string',
+            query = arguments[0],
+            methodInvoked = typeof query === 'string',
             queryArguments = [].slice.call(arguments, 1),
 
             returnedValue
@@ -17406,26 +17522,26 @@
 
         $allModules.each(function () {
             var
-                settings          = $.isPlainObject(parameters)
+                settings = $.isPlainObject(parameters)
                     ? $.extend(true, {}, $.fn.progress.settings, parameters)
                     : $.extend({}, $.fn.progress.settings),
 
-                className       = settings.className,
-                metadata        = settings.metadata,
-                namespace       = settings.namespace,
-                selector        = settings.selector,
-                error           = settings.error,
+                className = settings.className,
+                metadata = settings.metadata,
+                namespace = settings.namespace,
+                selector = settings.selector,
+                error = settings.error,
 
-                eventNamespace  = '.' + namespace,
+                eventNamespace = '.' + namespace,
                 moduleNamespace = 'module-' + namespace,
 
-                $module         = $(this),
-                $bars           = $(this).find(selector.bar),
-                $progresses     = $(this).find(selector.progress),
-                $label          = $(this).find(selector.label),
+                $module = $(this),
+                $bars = $(this).find(selector.bar),
+                $progresses = $(this).find(selector.progress),
+                $label = $(this).find(selector.label),
 
-                element         = this,
-                instance        = $module.data(moduleNamespace),
+                element = this,
+                instance = $module.data(moduleNamespace),
 
                 animating = false,
                 module
@@ -17438,26 +17554,26 @@
                         }, 0) : 0;
                     },
                     /**
-       * Derive precision for multiple progress with total and values.
-       *
-       * This helper dervices a precision that is sufficiently large to show minimum value of multiple progress.
-       *
-       * Example1
-       * - total: 1122
-       * - values: [325, 111, 74, 612]
-       * - min ratio: 74/1122 = 0.0659...
-       * - required precision:  100
-       *
-       * Example2
-       * - total: 10541
-       * - values: [3235, 1111, 74, 6121]
-       * - min ratio: 74/10541 = 0.0070...
-       * - required precision:   1000
-       *
-       * @param min A minimum value within multiple values
-       * @param total A total amount of multiple values
-       * @returns {number} A precision. Could be 1, 10, 100, ... 1e+10.
-       */
+                     * Derive precision for multiple progress with total and values.
+                     *
+                     * This helper dervices a precision that is sufficiently large to show minimum value of multiple progress.
+                     *
+                     * Example1
+                     * - total: 1122
+                     * - values: [325, 111, 74, 612]
+                     * - min ratio: 74/1122 = 0.0659...
+                     * - required precision:  100
+                     *
+                     * Example2
+                     * - total: 10541
+                     * - values: [3235, 1111, 74, 6121]
+                     * - min ratio: 74/10541 = 0.0070...
+                     * - required precision:   1000
+                     *
+                     * @param min A minimum value within multiple values
+                     * @param total A total amount of multiple values
+                     * @returns {number} A precision. Could be 1, 10, 100, ... 1e+10.
+                     */
                     derivePrecision: function (min, total) {
                         var precisionPower = 0;
                         var precision = 1;
@@ -17594,7 +17710,7 @@
                 },
                 decrement: function (decrementValue) {
                     var
-                        total     = module.get.total(),
+                        total = module.get.total(),
                         startValue,
                         newValue
                     ;
@@ -17629,8 +17745,8 @@
                         }
 
                         var
-                            value   = module.get.value(index),
-                            total   = module.get.total(),
+                            value = module.get.value(index),
+                            total = module.get.total(),
                             percent = animating
                                 ? module.get.displayPercent(index)
                                 : module.get.percent(index),
@@ -17697,10 +17813,10 @@
                     // gets current displayed percentage (if animating values this is the intermediary value)
                     displayPercent: function (index) {
                         var
-                            $bar           = $($bars[index]),
-                            barWidth       = $bar.width(),
-                            totalWidth     = $module.width(),
-                            minDisplay     = parseInt($bar.css('min-width'), 10),
+                            $bar = $($bars[index]),
+                            barWidth = $bar.width(),
+                            totalWidth = $module.width(),
+                            minDisplay = parseInt($bar.css('min-width'), 10),
                             displayPercent = barWidth > minDisplay
                                 ? (barWidth / totalWidth) * 100
                                 : module.percent
@@ -17877,7 +17993,7 @@
                                 return autoPrecision > 0
                                     ? Math.round(percent * (10 * autoPrecision)) / (10 * autoPrecision)
                                     : Math.round(percent)
-                                ;
+                                    ;
                             });
                             module.percent = roundedPercents;
                             if (hasTotal) {
@@ -18299,11 +18415,16 @@
         onLabelUpdate: function (state, text, value, total) {
             return text;
         },
-        onChange: function (percent, value, total) {},
-        onSuccess: function (total) {},
-        onActive: function (value, total) {},
-        onError: function (value, total) {},
-        onWarning: function (value, total) {},
+        onChange: function (percent, value, total) {
+        },
+        onSuccess: function (total) {
+        },
+        onActive: function (value, total) {
+        },
+        onError: function (value, total) {
+        },
+        onWarning: function (value, total) {
+        },
 
         error: {
             method: 'The method you called is not defined.',
@@ -18372,48 +18493,48 @@
 
     $.fn.slider = function (parameters) {
         var
-            $allModules    = $(this),
-            $document      = $(document),
-            $window        = $(window),
+            $allModules = $(this),
+            $document = $(document),
+            $window = $(window),
 
-            time           = Date.now(),
-            performance    = [],
+            time = Date.now(),
+            performance = [],
 
-            query          = arguments[0],
-            methodInvoked  = typeof query === 'string',
+            query = arguments[0],
+            methodInvoked = typeof query === 'string',
             queryArguments = [].slice.call(arguments, 1),
 
-            SINGLE_STEP     = 1,
-            BIG_STEP        = 2,
-            NO_STEP         = 0,
+            SINGLE_STEP = 1,
+            BIG_STEP = 2,
+            NO_STEP = 0,
             SINGLE_BACKSTEP = -1,
-            BIG_BACKSTEP    = -2,
+            BIG_BACKSTEP = -2,
 
             // Used to manage document bound events.
             // Use this so that we can distinguish between which document events are bound to which range.
-            currentRange    = 0,
+            currentRange = 0,
 
             returnedValue
         ;
 
         $allModules.each(function () {
             var
-                settings        = $.isPlainObject(parameters)
+                settings = $.isPlainObject(parameters)
                     ? $.extend(true, {}, $.fn.slider.settings, parameters)
                     : $.extend({}, $.fn.slider.settings),
 
-                className       = settings.className,
-                metadata        = settings.metadata,
-                namespace       = settings.namespace,
-                error           = settings.error,
-                keys            = settings.keys,
-                interpretLabel  = settings.interpretLabel,
+                className = settings.className,
+                metadata = settings.metadata,
+                namespace = settings.namespace,
+                error = settings.error,
+                keys = settings.keys,
+                interpretLabel = settings.interpretLabel,
 
-                isHover         = false,
-                eventNamespace  = '.' + namespace,
+                isHover = false,
+                eventNamespace = '.' + namespace,
                 moduleNamespace = 'module-' + namespace,
 
-                $module         = $(this),
+                $module = $(this),
                 $currThumb,
                 touchIdentifier,
                 $thumb,
@@ -18422,8 +18543,8 @@
                 $trackFill,
                 $labels,
 
-                element         = this,
-                instance        = $module.data(moduleNamespace),
+                element = this,
+                instance = $module.data(moduleNamespace),
 
                 documentEventID,
 
@@ -18537,10 +18658,10 @@
                     },
                     customLabel: function () {
                         var
-                            $children   = $labels.find('.label'),
+                            $children = $labels.find('.label'),
                             numChildren = $children.length,
-                            min         = module.get.min(),
-                            max         = module.get.max(),
+                            min = module.get.min(),
+                            max = module.get.max(),
                             ratio
                         ;
                         $children.each(function (index) {
@@ -18573,15 +18694,19 @@
                         ;
                         for (var i = 0; i <= len; i++) {
                             var
-                                stepValue =  Math.round(((i * (step === 0 ? 1 : step)) + module.get.min()) * precision) / precision,
+                                stepValue = Math.round(((i * (step === 0 ? 1 : step)) + module.get.min()) * precision) / precision,
                                 labelText = module.get.label(i, stepValue),
                                 showLabel = settings.restrictedLabels.length === 0 || settings.restrictedLabels.indexOf(labelText) >= 0,
                                 $label = labelText !== '' && (showLabel || settings.showLabelTicks === 'always')
                                     ? ((!(i % module.get.gapRatio()) && i < ignoreLabels) || i === len
-                                        ? $('<li/>', { class: className.label, 'data-value': stepValue, html: showLabel ? labelText : '' })
-                                        : $('<li/>', { class: 'halftick label', 'data-value': stepValue }))
+                                        ? $('<li/>', {
+                                            class: className.label,
+                                            'data-value': stepValue,
+                                            html: showLabel ? labelText : ''
+                                        })
+                                        : $('<li/>', {class: 'halftick label', 'data-value': stepValue}))
                                     : null,
-                                ratio  = i / len
+                                ratio = i / len
                             ;
                             if ($label) {
                                 module.update.labelPosition(ratio, $label);
@@ -19230,7 +19355,7 @@
                         return module.is.vertical()
                             ? (module.is.reversed() ? $element.css('bottom') : $element.css('top'))
                             : (module.is.reversed() ? $element.css('right') : $element.css('left'))
-                        ;
+                            ;
                     },
                     positionFromValue: function (val) {
                         var
@@ -19555,19 +19680,31 @@
                         ;
                         if (module.is.vertical()) {
                             if (module.is.reversed()) {
-                                thumbPosValue = { bottom: 'calc(' + thumbPosPercent + '% - ' + offset + 'px)', top: 'auto' };
-                                trackPosValue = { bottom: trackStartPosPercent + '%', top: trackEndPosPercent + '%' };
+                                thumbPosValue = {
+                                    bottom: 'calc(' + thumbPosPercent + '% - ' + offset + 'px)',
+                                    top: 'auto'
+                                };
+                                trackPosValue = {bottom: trackStartPosPercent + '%', top: trackEndPosPercent + '%'};
                             } else {
-                                thumbPosValue = { top: 'calc(' + thumbPosPercent + '% - ' + offset + 'px)', bottom: 'auto' };
-                                trackPosValue = { top: trackStartPosPercent + '%', bottom: trackEndPosPercent + '%' };
+                                thumbPosValue = {
+                                    top: 'calc(' + thumbPosPercent + '% - ' + offset + 'px)',
+                                    bottom: 'auto'
+                                };
+                                trackPosValue = {top: trackStartPosPercent + '%', bottom: trackEndPosPercent + '%'};
                             }
                         } else {
                             if (module.is.reversed()) {
-                                thumbPosValue = { right: 'calc(' + thumbPosPercent + '% - ' + offset + 'px)', left: 'auto' };
-                                trackPosValue = { right: trackStartPosPercent + '%', left: trackEndPosPercent + '%' };
+                                thumbPosValue = {
+                                    right: 'calc(' + thumbPosPercent + '% - ' + offset + 'px)',
+                                    left: 'auto'
+                                };
+                                trackPosValue = {right: trackStartPosPercent + '%', left: trackEndPosPercent + '%'};
                             } else {
-                                thumbPosValue = { left: 'calc(' + thumbPosPercent + '% - ' + offset + 'px)', right: 'auto' };
-                                trackPosValue = { left: trackStartPosPercent + '%', right: trackEndPosPercent + '%' };
+                                thumbPosValue = {
+                                    left: 'calc(' + thumbPosPercent + '% - ' + offset + 'px)',
+                                    right: 'auto'
+                                };
+                                trackPosValue = {left: trackStartPosPercent + '%', right: trackEndPosPercent + '%'};
                             }
                         }
                         $targetThumb.css(thumbPosValue);
@@ -19577,7 +19714,7 @@
                     labelPosition: function (ratio, $label) {
                         var
                             startMargin = module.get.trackStartMargin(),
-                            endMargin   = module.get.trackEndMargin(),
+                            endMargin = module.get.trackEndMargin(),
                             posDir = module.is.vertical()
                                 ? (module.is.reversed() ? 'bottom' : 'top')
                                 : (module.is.reversed() ? 'right' : 'left'),
@@ -19891,8 +20028,10 @@
             letter: 'letter',
         },
 
-        onChange: function (value, thumbVal, secondThumbVal) {},
-        onMove: function (value, thumbVal, secondThumbVal) {},
+        onChange: function (value, thumbVal, secondThumbVal) {
+        },
+        onMove: function (value, thumbVal, secondThumbVal) {
+        },
     };
 })(jQuery, window, document);
 
@@ -19919,37 +20058,37 @@
 
     $.fn.rating = function (parameters) {
         var
-            $allModules     = $(this),
+            $allModules = $(this),
 
-            time            = Date.now(),
-            performance     = [],
+            time = Date.now(),
+            performance = [],
 
-            query           = arguments[0],
-            methodInvoked   = typeof query === 'string',
-            queryArguments  = [].slice.call(arguments, 1),
+            query = arguments[0],
+            methodInvoked = typeof query === 'string',
+            queryArguments = [].slice.call(arguments, 1),
             returnedValue
         ;
         $allModules.each(function () {
             var
-                settings        = $.isPlainObject(parameters)
+                settings = $.isPlainObject(parameters)
                     ? $.extend(true, {}, $.fn.rating.settings, parameters)
                     : $.extend({}, $.fn.rating.settings),
 
-                namespace       = settings.namespace,
-                className       = settings.className,
-                error           = settings.error,
-                metadata        = settings.metadata,
-                selector        = settings.selector,
-                cssVars         = settings.cssVars,
+                namespace = settings.namespace,
+                className = settings.className,
+                error = settings.error,
+                metadata = settings.metadata,
+                selector = settings.selector,
+                cssVars = settings.cssVars,
 
-                eventNamespace  = '.' + namespace,
+                eventNamespace = '.' + namespace,
                 moduleNamespace = 'module-' + namespace,
 
-                element         = this,
-                instance        = $(this).data(moduleNamespace),
+                element = this,
+                instance = $(this).data(moduleNamespace),
 
-                $module         = $(this),
-                $icon           = $module.find(selector.icon),
+                $module = $(this),
+                $icon = $module.find(selector.icon),
 
                 initialLoad,
                 module
@@ -19999,8 +20138,8 @@
                     layout: function () {
                         var
                             maxRating = module.get.maxRating(),
-                            icon      = module.get.icon(),
-                            html      = $.fn.rating.settings.templates.icon(maxRating, icon)
+                            icon = module.get.icon(),
+                            html = $.fn.rating.settings.templates.icon(maxRating, icon)
                         ;
                         module.debug('Generating icon html dynamically');
                         $module
@@ -20038,10 +20177,10 @@
                     },
                     click: function () {
                         var
-                            $activeIcon   = $(this),
+                            $activeIcon = $(this),
                             currentRating = module.get.rating(),
-                            rating        = $icon.index($activeIcon) + 1,
-                            canClear      = settings.clearable === 'auto'
+                            rating = $icon.index($activeIcon) + 1,
+                            canClear = settings.clearable === 'auto'
                                 ? $icon.length === 1
                                 : settings.clearable
                         ;
@@ -20387,7 +20526,8 @@
 
         fireOnInit: false,
 
-        onRate: function (rating) {},
+        onRate: function (rating) {
+        },
 
         error: {
             method: 'The method you called is not defined',
@@ -20460,44 +20600,44 @@
 
     $.fn.search = function (parameters) {
         var
-            $allModules     = $(this),
+            $allModules = $(this),
 
-            time            = Date.now(),
-            performance     = [],
+            time = Date.now(),
+            performance = [],
 
-            query           = arguments[0],
-            methodInvoked   = typeof query === 'string',
-            queryArguments  = [].slice.call(arguments, 1),
+            query = arguments[0],
+            methodInvoked = typeof query === 'string',
+            queryArguments = [].slice.call(arguments, 1),
             returnedValue
         ;
         $allModules.each(function () {
             var
-                settings          = $.isPlainObject(parameters)
+                settings = $.isPlainObject(parameters)
                     ? $.extend(true, {}, $.fn.search.settings, parameters)
                     : $.extend({}, $.fn.search.settings),
 
-                className        = settings.className,
-                metadata         = settings.metadata,
-                regExp           = settings.regExp,
-                fields           = settings.fields,
-                selector         = settings.selector,
-                error            = settings.error,
-                namespace        = settings.namespace,
+                className = settings.className,
+                metadata = settings.metadata,
+                regExp = settings.regExp,
+                fields = settings.fields,
+                selector = settings.selector,
+                error = settings.error,
+                namespace = settings.namespace,
 
-                eventNamespace   = '.' + namespace,
-                moduleNamespace  = namespace + '-module',
+                eventNamespace = '.' + namespace,
+                moduleNamespace = namespace + '-module',
 
-                $module          = $(this),
-                $prompt          = $module.find(selector.prompt),
-                $searchButton    = $module.find(selector.searchButton),
-                $results         = $module.find(selector.results),
-                $result          = $module.find(selector.result),
-                $category        = $module.find(selector.category),
+                $module = $(this),
+                $prompt = $module.find(selector.prompt),
+                $searchButton = $module.find(selector.searchButton),
+                $results = $module.find(selector.results),
+                $result = $module.find(selector.result),
+                $category = $module.find(selector.category),
 
-                element          = this,
-                instance         = $module.data(moduleNamespace),
+                element = this,
+                instance = $module.data(moduleNamespace),
 
-                disabledBubbled  = false,
+                disabledBubbled = false,
                 resultsDismissed = false,
 
                 module
@@ -20609,7 +20749,7 @@
                     blur: function (event) {
                         var
                             pageLostFocus = document.activeElement === this,
-                            callback      = function () {
+                            callback = function () {
                                 module.cancel.query();
                                 module.remove.focus();
                                 module.timer = setTimeout(function () {
@@ -20658,18 +20798,18 @@
                             module.debug('Search result selected');
                             var
                                 $result = $(this),
-                                $title  = $result.find(selector.title).eq(0),
-                                $link   = $result.is('a[href]')
+                                $title = $result.find(selector.title).eq(0),
+                                $link = $result.is('a[href]')
                                     ? $result
                                     : $result.find('a[href]').eq(0),
-                                href    = $link.attr('href') || false,
-                                target  = $link.attr('target') || false,
+                                href = $link.attr('href') || false,
+                                target = $link.attr('target') || false,
                                 // title is used for result lookup
-                                value   = $title.length > 0
+                                value = $title.length > 0
                                     ? $title.text()
                                     : false,
                                 results = module.get.results(),
-                                result  = $result.data(metadata.result) || module.get.result(value, results)
+                                result = $result.data(metadata.result) || module.get.result(value, results)
                             ;
                             var oldValue = module.get.value();
                             if (isFunction(settings.onSelect)) {
@@ -20721,15 +20861,15 @@
                 handleKeyboard: function (event) {
                     var
                         // force selector refresh
-                        $result         = $module.find(selector.result),
-                        $category       = $module.find(selector.category),
-                        $activeResult   = $result.filter('.' + className.active),
-                        currentIndex    = $result.index($activeResult),
-                        resultSize      = $result.length,
+                        $result = $module.find(selector.result),
+                        $category = $module.find(selector.category),
+                        $activeResult = $result.filter('.' + className.active),
+                        currentIndex = $result.index($activeResult),
+                        resultSize = $result.length,
                         hasActiveResult = $activeResult.length > 0,
 
-                        keyCode         = event.which,
-                        keys            = {
+                        keyCode = event.which,
+                        keys = {
                             backspace: 8,
                             enter: 13,
                             escape: 27,
@@ -20908,7 +21048,7 @@
                     inputEvent: function () {
                         var
                             prompt = $prompt[0],
-                            inputEvent   = prompt !== undefined && prompt.oninput !== undefined
+                            inputEvent = prompt !== undefined && prompt.oninput !== undefined
                                 ? 'input'
                                 : (prompt !== undefined && prompt.onpropertychange !== undefined
                                     ? 'propertychange'
@@ -20925,7 +21065,7 @@
                     },
                     result: function (value, results) {
                         var
-                            result       = false
+                            result = false
                         ;
                         value = value !== undefined
                             ? value
@@ -21002,12 +21142,14 @@
                 query: function (callback) {
                     callback = isFunction(callback)
                         ? callback
-                        : function () {};
+                        : function () {
+                        };
                     var
                         searchTerm = module.get.value(),
                         cache = module.read.cache(searchTerm)
                     ;
-                    callback = callback || function () {};
+                    callback = callback || function () {
+                    };
                     if (module.has.minimumCharacters()) {
                         if (cache) {
                             module.debug('Reading result from cache', searchTerm);
@@ -21064,7 +21206,8 @@
                     remote: function (searchTerm, callback) {
                         callback = isFunction(callback)
                             ? callback
-                            : function () {};
+                            : function () {
+                            };
                         if ($module.api('is loading')) {
                             $module.api('abort');
                         }
@@ -21076,16 +21219,16 @@
                     object: function (searchTerm, source, searchFields) {
                         searchTerm = module.remove.diacritics(String(searchTerm));
                         var
-                            results      = [],
+                            results = [],
                             exactResults = [],
                             fuzzyResults = [],
-                            searchExp    = searchTerm.replace(regExp.escape, '\\$&'),
+                            searchExp = searchTerm.replace(regExp.escape, '\\$&'),
                             matchRegExp = new RegExp(regExp.beginsWith + searchExp, settings.ignoreSearchCase ? 'i' : ''),
 
                             // avoid duplicates when pushing results
                             addResult = function (array, result) {
                                 var
-                                    notResult      = $.inArray(result, results) === -1,
+                                    notResult = $.inArray(result, results) === -1,
                                     notFuzzyResult = $.inArray(result, fuzzyResults) === -1,
                                     notExactResults = $.inArray(result, exactResults) === -1
                                 ;
@@ -21123,7 +21266,7 @@
                                     text = typeof content[field] === 'string'
                                         ? module.remove.diacritics(content[field])
                                         : content[field].toString();
-                                    text = $('<div/>', { html: text }).text().trim();
+                                    text = $('<div/>', {html: text}).text().trim();
                                     if (settings.fullTextSearch === 'all') {
                                         concatenatedContent.push(text);
                                         if (index < lastSearchFieldIndex) {
@@ -21178,7 +21321,7 @@
                 },
                 fuzzySearch: function (query, term) {
                     var
-                        termLength  = term.length,
+                        termLength = term.length,
                         queryLength = query.length
                     ;
                     if (typeof query !== 'string') {
@@ -21251,7 +21394,7 @@
                 has: {
                     minimumCharacters: function () {
                         var
-                            searchTerm    = module.get.value(),
+                            searchTerm = module.get.value(),
                             numCharacters = searchTerm.length
                         ;
 
@@ -21329,7 +21472,7 @@
                     },
                     id: function (resultIndex, categoryIndex) {
                         var
-                            resultID      = resultIndex + 1, // not zero indexed
+                            resultID = resultIndex + 1, // not zero indexed
                             letterID,
                             id
                         ;
@@ -21379,7 +21522,7 @@
                         var
                             // since results may be object, we must use counters
                             categoryIndex = 0,
-                            resultIndex   = 0
+                            resultIndex = 0
                         ;
                         if (settings.type === 'category') {
                             // iterate through each category result
@@ -21462,7 +21605,8 @@
                 showResults: function (callback) {
                     callback = isFunction(callback)
                         ? callback
-                        : function () {};
+                        : function () {
+                        };
                     if (resultsDismissed) {
                         return;
                     }
@@ -21499,7 +21643,8 @@
                 hideResults: function (callback) {
                     callback = isFunction(callback)
                         ? callback
-                        : function () {};
+                        : function () {
+                        };
                     if (module.is.visible()) {
                         if (module.can.transition()) {
                             module.debug('Hiding results with css animations');
@@ -21530,10 +21675,10 @@
                 generateResults: function (response) {
                     module.debug('Generating html from response', response);
                     var
-                        template       = settings.templates[settings.type],
+                        template = settings.templates[settings.type],
                         isProperObject = $.isPlainObject(response[fields.results]) && !$.isEmptyObject(response[fields.results]),
-                        isProperArray  = Array.isArray(response[fields.results]) && response[fields.results].length > 0,
-                        html           = ''
+                        isProperArray = Array.isArray(response[fields.results]) && response[fields.results].length > 0,
+                        html = ''
                     ;
                     if (isProperObject || isProperArray) {
                         if (settings.maxResults > 0) {
@@ -21845,11 +21990,15 @@
         onSelect: false,
         onResultsAdd: false,
 
-        onSearchQuery: function (query) {},
-        onResults: function (response, fromCache) {},
+        onSearchQuery: function (query) {
+        },
+        onResults: function (response, fromCache) {
+        },
 
-        onResultsOpen: function () {},
-        onResultsClose: function () {},
+        onResultsOpen: function () {
+        },
+        onResultsClose: function () {
+        },
 
         className: {
             animating: 'animating',
@@ -21920,16 +22069,16 @@
                     return string;
                 }
                 var
-                    badChars     = /["'<>`]/g,
+                    badChars = /["'<>`]/g,
                     shouldEscape = /["&'<>`]/,
-                    escape       = {
+                    escape = {
                         '<': '&lt;',
                         '>': '&gt;',
                         '"': '&quot;',
                         "'": '&#x27;',
                         '`': '&#x60;',
                     },
-                    escapedChar  = function (chr) {
+                    escapedChar = function (chr) {
                         return escape[chr];
                     };
                 if (shouldEscape.test(string)) {
@@ -22007,13 +22156,13 @@
                     if (response[fields.action]) {
                         html += fields.actionURL === false
                             ? ''
-                                + '<div class="action">'
-                                + escape(response[fields.action][fields.actionText], preserveHTML)
-                                + '</div>'
+                            + '<div class="action">'
+                            + escape(response[fields.action][fields.actionText], preserveHTML)
+                            + '</div>'
                             : ''
-                                + '<a href="' + response[fields.action][fields.actionURL].replace(/"/g, '') + '" class="action">'
-                                + escape(response[fields.action][fields.actionText], preserveHTML)
-                                + '</a>';
+                            + '<a href="' + response[fields.action][fields.actionURL].replace(/"/g, '') + '" class="action">'
+                            + escape(response[fields.action][fields.actionText], preserveHTML)
+                            + '</a>';
                     }
 
                     return html;
@@ -22055,13 +22204,13 @@
                     if (response[fields.action]) {
                         html += fields.actionURL === false
                             ? ''
-                                + '<div class="action">'
-                                + escape(response[fields.action][fields.actionText], preserveHTML)
-                                + '</div>'
+                            + '<div class="action">'
+                            + escape(response[fields.action][fields.actionText], preserveHTML)
+                            + '</div>'
                             : ''
-                                + '<a href="' + response[fields.action][fields.actionURL].replace(/"/g, '') + '" class="action">'
-                                + escape(response[fields.action][fields.actionText], preserveHTML)
-                                + '</a>';
+                            + '<a href="' + response[fields.action][fields.actionURL].replace(/"/g, '') + '" class="action">'
+                            + escape(response[fields.action][fields.actionText], preserveHTML)
+                            + '</a>';
                     }
 
                     return html;
@@ -22102,38 +22251,38 @@
 
     $.fn.shape = function (parameters) {
         var
-            $allModules     = $(this),
+            $allModules = $(this),
 
-            time            = Date.now(),
-            performance     = [],
+            time = Date.now(),
+            performance = [],
 
-            query           = arguments[0],
-            methodInvoked   = typeof query === 'string',
-            queryArguments  = [].slice.call(arguments, 1),
+            query = arguments[0],
+            methodInvoked = typeof query === 'string',
+            queryArguments = [].slice.call(arguments, 1),
 
             returnedValue
         ;
 
         $allModules.each(function () {
             var
-                settings       = $.isPlainObject(parameters)
+                settings = $.isPlainObject(parameters)
                     ? $.extend(true, {}, $.fn.shape.settings, parameters)
                     : $.extend({}, $.fn.shape.settings),
 
                 // internal aliases
-                namespace     = settings.namespace,
-                selector      = settings.selector,
-                error         = settings.error,
-                className     = settings.className,
+                namespace = settings.namespace,
+                selector = settings.selector,
+                error = settings.error,
+                className = settings.className,
 
                 // define namespaces for modules
-                eventNamespace  = '.' + namespace,
+                eventNamespace = '.' + namespace,
                 moduleNamespace = 'module-' + namespace,
 
                 // selector cache
-                $module       = $(this),
-                $sides        = $module.find('>' + selector.sides),
-                $side         = $sides.find('>' + selector.side),
+                $module = $(this),
+                $sides = $module.find('>' + selector.sides),
+                $side = $sides.find('>' + selector.side),
 
                 // private variables
                 nextIndex = false,
@@ -22141,8 +22290,8 @@
                 $nextSide,
 
                 // standard module
-                element       = this,
-                instance      = $module.data(moduleNamespace),
+                element = this,
+                instance = $module.data(moduleNamespace),
                 module
             ;
 
@@ -22180,7 +22329,7 @@
                 repaint: function () {
                     module.verbose('Forcing repaint event');
                     var
-                        shape          = $sides[0] || document.createElement('div'),
+                        shape = $sides[0] || document.createElement('div'),
                         fakeAssignment = shape.offsetWidth
                     ;
                 },
@@ -22293,8 +22442,8 @@
                     currentStageSize: function () {
                         var
                             $activeSide = $side.filter('.' + className.active),
-                            width       = $activeSide.outerWidth(true),
-                            height      = $activeSide.outerHeight(true)
+                            width = $activeSide.outerWidth(true),
+                            height = $activeSide.outerHeight(true)
                         ;
                         $module
                             .css({
@@ -22306,20 +22455,20 @@
 
                     stageSize: function () {
                         var
-                            $clone      = $module.clone().addClass(className.loading),
-                            $side       = $clone.find('>' + selector.sides + '>' + selector.side),
+                            $clone = $module.clone().addClass(className.loading),
+                            $side = $clone.find('>' + selector.sides + '>' + selector.side),
                             $activeSide = $side.filter('.' + className.active),
-                            $nextSide   = nextIndex
+                            $nextSide = nextIndex
                                 ? $side.eq(nextIndex)
                                 : ($activeSide.next(selector.side).length > 0
                                     ? $activeSide.next(selector.side)
                                     : $side.first()),
-                            newWidth    = settings.width === 'next'
+                            newWidth = settings.width === 'next'
                                 ? $nextSide.outerWidth(true)
                                 : (settings.width === 'initial'
                                     ? $module.width()
                                     : settings.width),
-                            newHeight    = settings.height === 'next'
+                            newHeight = settings.height === 'next'
                                 ? $nextSide.outerHeight(true)
                                 : (settings.height === 'initial'
                                     ? $module.height()
@@ -22845,8 +22994,10 @@
         height: 'initial',
 
         // callback occurs on side change
-        onBeforeChange: function () {},
-        onChange: function () {},
+        onBeforeChange: function () {
+        },
+        onChange: function () {
+        },
 
         // allow animation to same side
         allowRepeats: false,
@@ -22900,20 +23051,20 @@
 
     $.fn.sidebar = function (parameters) {
         var
-            $allModules     = $(this),
-            $window         = $(window),
-            $document       = $(document),
-            $body           = $('body'),
-            $html           = $('html'),
-            $head           = $('head'),
+            $allModules = $(this),
+            $window = $(window),
+            $document = $(document),
+            $body = $('body'),
+            $html = $('html'),
+            $head = $('head'),
 
-            time            = Date.now(),
-            performance     = [],
+            time = Date.now(),
+            performance = [],
 
-            query           = arguments[0],
-            methodInvoked   = typeof query === 'string',
-            queryArguments  = [].slice.call(arguments, 1),
-            contextCheck    = function (context, win) {
+            query = arguments[0],
+            methodInvoked = typeof query === 'string',
+            queryArguments = [].slice.call(arguments, 1),
+            contextCheck = function (context, win) {
                 var $context;
                 if ([window, document].indexOf(context) >= 0) {
                     $context = $body;
@@ -22930,30 +23081,30 @@
 
         $allModules.each(function () {
             var
-                settings        = $.isPlainObject(parameters)
+                settings = $.isPlainObject(parameters)
                     ? $.extend(true, {}, $.fn.sidebar.settings, parameters)
                     : $.extend({}, $.fn.sidebar.settings),
 
-                selector        = settings.selector,
-                className       = settings.className,
-                namespace       = settings.namespace,
-                regExp          = settings.regExp,
-                error           = settings.error,
+                selector = settings.selector,
+                className = settings.className,
+                namespace = settings.namespace,
+                regExp = settings.regExp,
+                error = settings.error,
 
-                eventNamespace  = '.' + namespace,
+                eventNamespace = '.' + namespace,
                 moduleNamespace = 'module-' + namespace,
 
-                $module         = $(this),
-                $context        = contextCheck(settings.context, window),
-                isBody          = $context[0] === $body[0],
+                $module = $(this),
+                $context = contextCheck(settings.context, window),
+                isBody = $context[0] === $body[0],
 
-                $sidebars       = $module.children(selector.sidebar),
-                $fixed          = $context.children(selector.fixed),
-                $pusher         = $context.children(selector.pusher),
+                $sidebars = $module.children(selector.sidebar),
+                $fixed = $context.children(selector.fixed),
+                $pusher = $context.children(selector.pusher),
                 $style,
 
-                element         = this,
-                instance        = $module.data(moduleNamespace),
+                element = this,
+                instance = $module.data(moduleNamespace),
 
                 elementNamespace,
                 id,
@@ -23019,7 +23170,7 @@
                         if (settings.closable) {
                             var
                                 clickedInPusher = $pusher.find(event.target).length > 0 || $pusher.is(event.target),
-                                clickedContext  = $context.is(event.target)
+                                clickedContext = $context.is(event.target)
                             ;
                             if (clickedInPusher) {
                                 module.verbose('User clicked on dimmed page');
@@ -23095,11 +23246,11 @@
                 add: {
                     inlineCSS: function () {
                         var
-                            width     = module.cache.width || $module.outerWidth(),
-                            height    = module.cache.height || $module.outerHeight(),
-                            isRTL     = module.is.rtl(),
+                            width = module.cache.width || $module.outerWidth(),
+                            height = module.cache.height || $module.outerHeight(),
+                            isRTL = module.is.rtl(),
                             direction = module.get.direction(),
-                            distance  = {
+                            distance = {
                                 left: width,
                                 right: -width,
                                 top: height,
@@ -23253,7 +23404,8 @@
                 show: function (callback) {
                     callback = isFunction(callback)
                         ? callback
-                        : function () {};
+                        : function () {
+                        };
                     if (module.is.hidden()) {
                         if (settings.onShow.call(element) === false) {
                             module.verbose('Show callback returned false cancelling show');
@@ -23294,7 +23446,8 @@
                 hide: function (callback) {
                     callback = isFunction(callback)
                         ? callback
-                        : function () {};
+                        : function () {
+                        };
                     if ((module.is.visible() || module.is.animating()) && settings.onHide.call(element) !== false) {
                         module.debug('Hiding sidebar', callback);
                         module.refreshSidebars();
@@ -23319,10 +23472,11 @@
                 hideOthers: function (callback) {
                     var
                         $otherSidebars = $sidebars.not($module).filter('.' + className.visible),
-                        sidebarCount   = $otherSidebars.length,
-                        callbackCount  = 0
+                        sidebarCount = $otherSidebars.length,
+                        callbackCount = 0
                     ;
-                    callback = callback || function () {};
+                    callback = callback || function () {
+                    };
                     $otherSidebars
                         .sidebar('hide', function () {
                             callbackCount++;
@@ -23354,7 +23508,8 @@
                     ;
                     callback = isFunction(callback)
                         ? callback
-                        : function () {};
+                        : function () {
+                        };
                     if (settings.returnScroll) {
                         currentScroll = (isBody ? $window : $context).scrollTop();
                     }
@@ -23399,7 +23554,8 @@
                     ;
                     callback = isFunction(callback)
                         ? callback
-                        : function () {};
+                        : function () {
+                        };
                     module.verbose('Removing context push state', module.get.direction());
 
                     module.unbind.clickaway();
@@ -23640,8 +23796,8 @@
 
                     mobile: function () {
                         var
-                            userAgent    = navigator.userAgent,
-                            isMobile     = userAgent.match(regExp.mobile)
+                            userAgent = navigator.userAgent,
+                            isMobile = userAgent.match(regExp.mobile)
                         ;
                         if (isMobile) {
                             module.verbose('Browser was found to be mobile', userAgent);
@@ -23886,12 +24042,17 @@
         returnScroll: false,
         delaySetup: false,
 
-        onChange: function () {},
-        onShow: function () {},
-        onHide: function () {},
+        onChange: function () {
+        },
+        onShow: function () {
+        },
+        onHide: function () {
+        },
 
-        onHidden: function () {},
-        onVisible: function () {},
+        onHidden: function () {
+        },
+        onVisible: function () {
+        },
 
         className: {
             active: 'active',
@@ -23955,16 +24116,16 @@
 
     $.fn.sticky = function (parameters) {
         var
-            $allModules    = $(this),
-            $document      = $(document),
+            $allModules = $(this),
+            $document = $(document),
 
-            time           = Date.now(),
-            performance    = [],
+            time = Date.now(),
+            performance = [],
 
-            query          = arguments[0],
-            methodInvoked  = typeof query === 'string',
+            query = arguments[0],
+            methodInvoked = typeof query === 'string',
             queryArguments = [].slice.call(arguments, 1),
-            contextCheck   = function (context, win) {
+            contextCheck = function (context, win) {
                 var $context;
                 if ([window, document].indexOf(context) >= 0) {
                     $context = $(context);
@@ -23982,26 +24143,26 @@
 
         $allModules.each(function () {
             var
-                settings              = $.isPlainObject(parameters)
+                settings = $.isPlainObject(parameters)
                     ? $.extend(true, {}, $.fn.sticky.settings, parameters)
                     : $.extend({}, $.fn.sticky.settings),
 
-                className             = settings.className,
-                namespace             = settings.namespace,
-                error                 = settings.error,
+                className = settings.className,
+                namespace = settings.namespace,
+                error = settings.error,
 
-                eventNamespace        = '.' + namespace,
-                moduleNamespace       = 'module-' + namespace,
+                eventNamespace = '.' + namespace,
+                moduleNamespace = 'module-' + namespace,
 
-                $module               = $(this),
-                $window               = $(window),
-                $scroll               = contextCheck(settings.scrollContext, window),
+                $module = $(this),
+                $window = $(window),
+                $scroll = contextCheck(settings.scrollContext, window),
                 $container,
                 $context,
 
-                instance              = $module.data(moduleNamespace),
+                instance = $module.data(moduleNamespace),
 
-                element         = this,
+                element = this,
 
                 documentObserver,
                 observer,
@@ -24267,11 +24428,11 @@
                     elementScroll: function (scroll) {
                         scroll = scroll || $scroll.scrollTop();
                         var
-                            element        = module.cache.element,
-                            scrollContext  = module.cache.scrollContext,
-                            delta          = module.get.scrollChange(scroll),
-                            maxScroll      = element.height - scrollContext.height + settings.offset,
-                            elementScroll  = module.get.currentElementScroll(),
+                            element = module.cache.element,
+                            scrollContext = module.cache.scrollContext,
+                            delta = module.get.scrollChange(scroll),
+                            maxScroll = element.height - scrollContext.height + settings.offset,
+                            elementScroll = module.get.currentElementScroll(),
                             possibleScroll = elementScroll + delta
                         ;
                         if (module.cache.fits || possibleScroll < 0) {
@@ -24338,7 +24499,7 @@
                     },
                     minimumSize: function () {
                         var
-                            element   = module.cache.element
+                            element = module.cache.element
                         ;
                         $container
                             .css('min-height', element.height)
@@ -24397,25 +24558,25 @@
                 stick: function (scrollPosition) {
                     var
                         cachedPosition = scrollPosition || $scroll.scrollTop(),
-                        cache          = module.cache,
-                        fits           = cache.fits,
-                        sameHeight     = cache.sameHeight,
-                        element        = cache.element,
-                        scrollContext  = cache.scrollContext,
-                        context        = cache.context,
-                        offset         = module.is.bottom() && settings.pushing
+                        cache = module.cache,
+                        fits = cache.fits,
+                        sameHeight = cache.sameHeight,
+                        element = cache.element,
+                        scrollContext = cache.scrollContext,
+                        context = cache.context,
+                        offset = module.is.bottom() && settings.pushing
                             ? settings.bottomOffset
                             : settings.offset,
-                        scroll         = {
+                        scroll = {
                             top: cachedPosition + offset,
                             bottom: cachedPosition + offset + scrollContext.height,
                         },
-                        elementScroll  = fits
+                        elementScroll = fits
                             ? 0
                             : module.get.elementScroll(scroll.top),
 
                         // shorthand
-                        doesntFit      = !fits,
+                        doesntFit = !fits,
                         elementVisible = element.height !== 0
                     ;
                     if (elementVisible && !sameHeight) {
@@ -24815,22 +24976,28 @@
         observeChanges: false,
 
         // Called when position is recalculated
-        onReposition: function () {},
+        onReposition: function () {
+        },
 
         // Called on each scroll
-        onScroll: function () {},
+        onScroll: function () {
+        },
 
         // Called when element is stuck to viewport
-        onStick: function () {},
+        onStick: function () {
+        },
 
         // Called when element is unstuck from viewport
-        onUnstick: function () {},
+        onUnstick: function () {
+        },
 
         // Called when element reaches top of context
-        onTop: function () {},
+        onTop: function () {
+        },
 
         // Called when element reaches bottom of context
-        onBottom: function () {},
+        onBottom: function () {
+        },
 
         error: {
             visible: 'Element is hidden, you must call refresh after element becomes visible. Use silent setting to suppress this warning in production.',
@@ -24878,17 +25045,17 @@
     $.fn.tab = function (parameters) {
         var
             // use window context if none specified
-            $allModules     = isFunction(this)
+            $allModules = isFunction(this)
                 ? $(window)
                 : $(this),
-            $document      = $(document),
-            time            = Date.now(),
-            performance     = [],
+            $document = $(document),
+            time = Date.now(),
+            performance = [],
 
-            query           = arguments[0],
-            methodInvoked   = typeof query === 'string',
-            queryArguments  = [].slice.call(arguments, 1),
-            contextCheck   = function (context, win) {
+            query = arguments[0],
+            methodInvoked = typeof query === 'string',
+            queryArguments = [].slice.call(arguments, 1),
+            contextCheck = function (context, win) {
                 var $context;
                 if ([window, document].indexOf(context) >= 0) {
                     $context = $(context);
@@ -24907,28 +25074,28 @@
 
         $allModules.each(function () {
             var
-                settings        = $.isPlainObject(parameters)
+                settings = $.isPlainObject(parameters)
                     ? $.extend(true, {}, $.fn.tab.settings, parameters)
                     : $.extend({}, $.fn.tab.settings),
 
-                className       = settings.className,
-                metadata        = settings.metadata,
-                selector        = settings.selector,
-                error           = settings.error,
-                regExp          = settings.regExp,
+                className = settings.className,
+                metadata = settings.metadata,
+                selector = settings.selector,
+                error = settings.error,
+                regExp = settings.regExp,
 
-                eventNamespace  = '.' + settings.namespace,
+                eventNamespace = '.' + settings.namespace,
                 moduleNamespace = 'module-' + settings.namespace,
 
-                $module         = $(this),
+                $module = $(this),
                 $context,
                 $tabs,
 
-                cache           = {},
-                firstLoad       = true,
-                recursionDepth  = 0,
-                element         = this,
-                instance        = $module.data(moduleNamespace),
+                cache = {},
+                firstLoad = true,
+                recursionDepth = 0,
+                element = this,
+                instance = $module.data(moduleNamespace),
 
                 activeTabPath,
                 parameterArray,
@@ -25079,7 +25246,7 @@
                     history: {
                         change: function (event) {
                             var
-                                tabPath   = event.pathNames.join('/') || module.get.initialPath(),
+                                tabPath = event.pathNames.join('/') || module.get.initialPath(),
                                 pageTitle = settings.templates.determineTitle(tabPath) || false
                             ;
                             module.performance.display();
@@ -25147,7 +25314,7 @@
                     },
                     loading: function (tabPath) {
                         var
-                            $tab      = module.get.tabElement(tabPath),
+                            $tab = module.get.tabElement(tabPath),
                             isLoading = $tab.hasClass(className.loading)
                         ;
                         if (!isLoading) {
@@ -25170,8 +25337,8 @@
                 changeTab: function (tabPath) {
                     var
                         pushStateAvailable = window.history && window.history.pushState,
-                        shouldIgnoreLoad   = pushStateAvailable && settings.ignoreFirstLoad && firstLoad,
-                        remoteContent      = settings.auto || $.isPlainObject(settings.apiSettings),
+                        shouldIgnoreLoad = pushStateAvailable && settings.ignoreFirstLoad && firstLoad,
+                        remoteContent = settings.auto || $.isPlainObject(settings.apiSettings),
                         // only add default path if not remote content
                         pathArray = remoteContent && !shouldIgnoreLoad
                             ? module.utilities.pathToArray(tabPath)
@@ -25180,13 +25347,13 @@
                     tabPath = module.utilities.arrayToPath(pathArray);
                     $.each(pathArray, function (index, tab) {
                         var
-                            currentPathArray   = pathArray.slice(0, index + 1),
-                            currentPath        = module.utilities.arrayToPath(currentPathArray),
+                            currentPathArray = pathArray.slice(0, index + 1),
+                            currentPath = module.utilities.arrayToPath(currentPathArray),
 
-                            isTab              = module.is.tab(currentPath),
-                            isLastIndex        = index + 1 === pathArray.length,
+                            isTab = module.is.tab(currentPath),
+                            isLastIndex = index + 1 === pathArray.length,
 
-                            $tab               = module.get.tabElement(currentPath),
+                            $tab = module.get.tabElement(currentPath),
                             $anchor,
                             nextPathArray,
                             nextPath,
@@ -25291,7 +25458,7 @@
                     content: function (tabPath, html, evaluateScripts) {
                         var
                             $tab = module.get.tabElement(tabPath),
-                            tab  = $tab[0]
+                            tab = $tab[0]
                         ;
                         evaluateScripts = evaluateScripts !== undefined
                             ? evaluateScripts
@@ -25317,7 +25484,7 @@
 
                     content: function (tabPath, fullTabPath) {
                         var
-                            $tab        = module.get.tabElement(tabPath),
+                            $tab = module.get.tabElement(tabPath),
                             apiSettings = {
                                 dataType: 'html',
                                 encodeParameters: false,
@@ -25358,7 +25525,7 @@
                                     tab: fullTabPath,
                                 },
                             },
-                            request         = $tab.api('get request') || false,
+                            request = $tab.api('get request') || false,
                             existingRequest = request && request.state() === 'pending',
                             requestSettings,
                             cachedContent
@@ -25399,11 +25566,11 @@
                     },
                     tab: function (tabPath) {
                         var
-                            $tab          = module.get.tabElement(tabPath),
+                            $tab = module.get.tabElement(tabPath),
                             $deactiveTabs = settings.deactivate === 'siblings'
                                 ? $tab.siblings($tabs)
                                 : $tabs.not($tab),
-                            isActive      = $tab.hasClass(className.active)
+                            isActive = $tab.hasClass(className.active)
                         ;
                         module.verbose('Showing tab content for', $tab);
                         if (!isActive) {
@@ -25420,11 +25587,11 @@
                     },
                     navigation: function (tabPath) {
                         var
-                            $navigation         = module.get.navElement(tabPath),
+                            $navigation = module.get.navElement(tabPath),
                             $deactiveNavigation = settings.deactivate === 'siblings'
                                 ? $navigation.siblings($allModules)
                                 : $allModules.not($navigation),
-                            isActive    = $navigation.hasClass(className.active)
+                            isActive = $navigation.hasClass(className.active)
                         ;
                         module.verbose('Activating tab navigation for', $navigation, tabPath);
                         if (!isActive) {
@@ -25477,7 +25644,7 @@
                     defaultPath: function (tabPath) {
                         var
                             $defaultNav = $allModules.filter('[data-' + metadata.tab + '^="' + module.escape.string(tabPath) + '/"]').eq(0),
-                            defaultTab  = $defaultNav.data(metadata.tab) || false
+                            defaultTab = $defaultNav.data(metadata.tab) || false
                         ;
                         if (defaultTab) {
                             module.debug('Found default tab', defaultTab);
@@ -25775,14 +25942,20 @@
         evaluateScripts: 'once', // whether inline scripts should be parsed (true/false/once). Once will not re-evaluate on cached content
         autoTabActivation: true, // whether a non existing active tab will auto activate the first available tab
 
-        onFirstLoad: function (tabPath, parameterArray, historyEvent) {}, // called first time loaded
-        onLoad: function (tabPath, parameterArray, historyEvent) {}, // called on every load
-        onVisible: function (tabPath, parameterArray, historyEvent) {}, // called every time tab visible
-        onRequest: function (tabPath, parameterArray, historyEvent) {}, // called ever time a tab beings loading remote content
-        onBeforeChange: function (tabPath) {}, // called before a tab is about to be changed. Returning false will cancel the tab change
+        onFirstLoad: function (tabPath, parameterArray, historyEvent) {
+        }, // called first time loaded
+        onLoad: function (tabPath, parameterArray, historyEvent) {
+        }, // called on every load
+        onVisible: function (tabPath, parameterArray, historyEvent) {
+        }, // called every time tab visible
+        onRequest: function (tabPath, parameterArray, historyEvent) {
+        }, // called ever time a tab beings loading remote content
+        onBeforeChange: function (tabPath) {
+        }, // called before a tab is about to be changed. Returning false will cancel the tab change
 
         templates: {
-            determineTitle: function (tabArray) {}, // returns page title for path
+            determineTitle: function (tabArray) {
+            }, // returns page title for path
         },
 
         error: {
@@ -25841,16 +26014,16 @@
 
     $.fn.toast = function (parameters) {
         var
-            $allModules    = $(this),
-            $body          = $('body'),
+            $allModules = $(this),
+            $body = $('body'),
 
-            time           = Date.now(),
-            performance    = [],
+            time = Date.now(),
+            performance = [],
 
-            query          = arguments[0],
-            methodInvoked  = typeof query === 'string',
+            query = arguments[0],
+            methodInvoked = typeof query === 'string',
             queryArguments = [].slice.call(arguments, 1),
-            contextCheck   = function (context, win) {
+            contextCheck = function (context, win) {
                 var $context;
                 if ([window, document].indexOf(context) >= 0) {
                     $context = $(context);
@@ -25867,20 +26040,20 @@
         ;
         $allModules.each(function () {
             var
-                settings          = $.isPlainObject(parameters)
+                settings = $.isPlainObject(parameters)
                     ? $.extend(true, {}, $.fn.toast.settings, parameters)
                     : $.extend({}, $.fn.toast.settings),
 
-                className        = settings.className,
-                selector         = settings.selector,
-                error            = settings.error,
-                namespace        = settings.namespace,
-                fields           = settings.fields,
+                className = settings.className,
+                selector = settings.selector,
+                error = settings.error,
+                namespace = settings.namespace,
+                fields = settings.fields,
 
-                eventNamespace   = '.' + namespace,
-                moduleNamespace  = namespace + '-module',
+                eventNamespace = '.' + namespace,
+                moduleNamespace = namespace + '-module',
 
-                $module          = $(this),
+                $module = $(this),
                 $toastBox,
                 $toast,
                 $actions,
@@ -25888,12 +26061,12 @@
                 $progressBar,
                 $animationObject,
                 $close,
-                $context         = settings.context ? contextCheck(settings.context, window) : $body,
+                $context = settings.context ? contextCheck(settings.context, window) : $body,
 
                 isToastComponent = $module.hasClass('toast') || $module.hasClass('message') || $module.hasClass('card'),
 
-                element          = this,
-                instance         = isToastComponent ? $module.data(moduleNamespace) : undefined,
+                element = this,
+                instance = isToastComponent ? $module.data(moduleNamespace) : undefined,
 
                 id,
                 module
@@ -25957,7 +26130,8 @@
 
                         return;
                     }
-                    callback = callback || function () {};
+                    callback = callback || function () {
+                    };
                     module.debug('Showing toast');
                     module.animate.show(callback);
                 },
@@ -25968,7 +26142,8 @@
 
                         return;
                     }
-                    callback = callback || function () {};
+                    callback = callback || function () {
+                    };
                     module.debug('Closing toast');
                     module.remove.visible();
                     module.unbind.events();
@@ -25980,8 +26155,8 @@
                         module.verbose('Creating container');
                         $context.append($('<div/>', {
                             class: settings.position + ' ' + className.container + ' '
-                            + (settings.horizontal ? className.horizontal : '') + ' '
-                            + (settings.context && settings.context !== 'body' ? className.absolute : ''),
+                                + (settings.horizontal ? className.horizontal : '') + ' '
+                                + (settings.context && settings.context !== 'body' ? className.absolute : ''),
                         }));
                     },
                     id: function () {
@@ -25989,14 +26164,14 @@
                         module.verbose('Creating unique id for element', id);
                     },
                     toast: function () {
-                        $toastBox = $('<div/>', { class: className.box });
+                        $toastBox = $('<div/>', {class: className.box});
                         var iconClass = module.get.iconClass();
                         if (!isToastComponent) {
                             module.verbose('Creating toast');
-                            $toast = $('<div/>', { role: 'alert' });
-                            var $content = $('<div/>', { class: className.content });
+                            $toast = $('<div/>', {role: 'alert'});
+                            var $content = $('<div/>', {class: className.content});
                             if (iconClass !== '') {
-                                $toast.append($('<i/>', { class: iconClass + ' ' + className.icon }));
+                                $toast.append($('<i/>', {class: iconClass + ' ' + className.icon}));
                             }
 
                             if (settings.showImage) {
@@ -26067,7 +26242,7 @@
                         $actions = $toast.find('.actions');
                         if (module.has.configActions()) {
                             if ($actions.length === 0) {
-                                $actions = $('<div/>', { class: className.actions + ' ' + (settings.classActions || '') }).appendTo($toast);
+                                $actions = $('<div/>', {class: className.actions + ' ' + (settings.classActions || '')}).appendTo($toast);
                             }
                             if ($toast.hasClass('card') && !$actions.hasClass(className.attached)) {
                                 $actions.addClass(className.extraContent);
@@ -26080,13 +26255,14 @@
                                 var
                                     icon = el[fields.icon]
                                         ? '<i ' + (el[fields.text] ? 'aria-hidden="true"' : '')
-                                            + ' class="' + module.helpers.deQuote(el[fields.icon]) + ' icon"></i>'
+                                        + ' class="' + module.helpers.deQuote(el[fields.icon]) + ' icon"></i>'
                                         : '',
                                     text = module.helpers.escape(el[fields.text] || '', settings.preserveHTML),
                                     cls = module.helpers.deQuote(el[fields.class] || ''),
                                     click = el[fields.click] && isFunction(el[fields.click])
                                         ? el[fields.click]
-                                        : function () {}
+                                        : function () {
+                                        }
                                 ;
                                 $actions.append($('<button/>', {
                                     html: icon + text,
@@ -26162,7 +26338,7 @@
                                         $progress.removeClass(className.inverted);
                                     }
                                 }
-                                $progressBar = $('<div/>', { class: 'bar ' + (settings.progressUp ? 'up ' : 'down ') + progressingClass });
+                                $progressBar = $('<div/>', {class: 'bar ' + (settings.progressUp ? 'up ' : 'down ') + progressingClass});
                                 $progress
                                     .addClass(settings.showProgress)
                                     .append($progressBar)
@@ -26174,7 +26350,7 @@
                                 }
                                 $progressBar.css('animation-duration', settings.displayTime / 1000 + 's');
                             }
-                            $animationObject = $('<span/>', { class: 'wait ' + progressingClass });
+                            $animationObject = $('<span/>', {class: 'wait ' + progressingClass});
                             $animationObject.css('animation-duration', settings.displayTime / 1000 + 's');
                             $animationObject.appendTo($toast);
                         }
@@ -26228,7 +26404,8 @@
 
                 animate: {
                     show: function (callback) {
-                        callback = isFunction(callback) ? callback : function () {};
+                        callback = isFunction(callback) ? callback : function () {
+                        };
                         if (settings.transition && module.can.useElement('transition')) {
                             module.set.visible();
                             $toastBox
@@ -26248,7 +26425,8 @@
                         }
                     },
                     close: function (callback) {
-                        callback = isFunction(callback) ? callback : function () {};
+                        callback = isFunction(callback) ? callback : function () {
+                        };
                         if (settings.transition && $.fn.transition !== undefined) {
                             $toastBox
                                 .transition({
@@ -26261,7 +26439,8 @@
                                     interval: 50,
 
                                     onBeforeHide: function (callback) {
-                                        callback = isFunction(callback) ? callback : function () {};
+                                        callback = isFunction(callback) ? callback : function () {
+                                        };
                                         if (settings.transition.closeEasing !== '') {
                                             if ($toastBox) {
                                                 $toastBox.css('opacity', '0');
@@ -26420,16 +26599,16 @@
                             return string;
                         }
                         var
-                            badChars     = /["'<>`]/g,
+                            badChars = /["'<>`]/g,
                             shouldEscape = /["&'<>`]/,
-                            escape       = {
+                            escape = {
                                 '<': '&lt;',
                                 '>': '&gt;',
                                 '"': '&quot;',
                                 "'": '&#x27;',
                                 '`': '&#x60;',
                             },
-                            escapedChar  = function (chr) {
+                            escapedChar = function (chr) {
                                 return escape[chr];
                             }
                         ;
@@ -26744,14 +26923,22 @@
         },
 
         // callbacks
-        onShow: function () {},
-        onVisible: function () {},
-        onClick: function () {},
-        onHide: function () {},
-        onHidden: function () {},
-        onRemove: function () {},
-        onApprove: function () {},
-        onDeny: function () {},
+        onShow: function () {
+        },
+        onVisible: function () {
+        },
+        onClick: function () {
+        },
+        onHide: function () {
+        },
+        onHidden: function () {
+        },
+        onRemove: function () {
+        },
+        onApprove: function () {
+        },
+        onDeny: function () {
+        },
     };
 
     $.extend($.easing, {
@@ -26806,22 +26993,22 @@
 
     $.fn.transition = function () {
         var
-            $allModules     = $(this),
+            $allModules = $(this),
 
-            time            = Date.now(),
-            performance     = [],
+            time = Date.now(),
+            performance = [],
 
             moduleArguments = arguments,
-            query           = moduleArguments[0],
-            queryArguments  = [].slice.call(arguments, 1),
-            methodInvoked   = typeof query === 'string',
+            query = moduleArguments[0],
+            queryArguments = [].slice.call(arguments, 1),
+            methodInvoked = typeof query === 'string',
 
             returnedValue
         ;
         $allModules.each(function (index) {
             var
-                $module  = $(this),
-                element  = this,
+                $module = $(this),
+                element = this,
 
                 // set at run time
                 settings,
@@ -27008,11 +27195,11 @@
                 force: {
                     visible: function () {
                         var
-                            style          = $module.attr('style'),
-                            userStyle      = module.get.userStyle(style),
-                            displayType    = module.get.displayType(),
-                            overrideStyle  = userStyle + 'display: ' + displayType + ' !important;',
-                            inlineDisplay  = $module[0].style.display,
+                            style = $module.attr('style'),
+                            userStyle = module.get.userStyle(style),
+                            displayType = module.get.displayType(),
+                            overrideStyle = userStyle + 'display: ' + displayType + ' !important;',
+                            inlineDisplay = $module[0].style.display,
                             mustStayHidden = !displayType || (inlineDisplay === 'none' && settings.skipInlineHidden) || $module[0].tagName.match(/(script|link|style)/i)
                         ;
                         if (mustStayHidden) {
@@ -27029,9 +27216,9 @@
                     },
                     hidden: function () {
                         var
-                            style          = $module.attr('style'),
+                            style = $module.attr('style'),
                             currentDisplay = $module.css('display'),
-                            emptyStyle     = style === undefined || style === ''
+                            emptyStyle = style === undefined || style === ''
                         ;
                         if (currentDisplay !== 'none' && !module.is.hidden()) {
                             module.verbose('Overriding default display to hide element');
@@ -27395,9 +27582,9 @@
                 can: {
                     transition: function (forced) {
                         var
-                            animation         = settings.animation,
-                            transitionExists  = module.get.transitionExists(animation),
-                            displayType       = module.get.displayType(false),
+                            animation = settings.animation,
+                            transitionExists = module.get.transitionExists(animation),
+                            displayType = module.get.displayType(false),
                             elementClass,
                             tagName,
                             $clone,
@@ -27759,15 +27946,21 @@
         reverse: 'auto',
 
         // animation callback event
-        onStart: function () {},
-        onComplete: function () {},
-        onShow: function () {},
+        onStart: function () {
+        },
+        onComplete: function () {
+        },
+        onShow: function () {
+        },
         onBeforeShow: function (callback) {
             callback.call(this);
         },
-        onVisible: function () {},
-        onHide: function () {},
-        onHidden: function () {},
+        onVisible: function () {
+        },
+        onHide: function () {
+        },
+        onHidden: function () {
+        },
         onBeforeHide: function (callback) {
             callback.call(this);
         },
@@ -27846,16 +28039,16 @@
     $.fn.api = function (parameters) {
         var
             // use window context if none specified
-            $allModules     = isFunction(this)
+            $allModules = isFunction(this)
                 ? $(window)
                 : $(this),
-            time           = Date.now(),
-            performance    = [],
+            time = Date.now(),
+            performance = [],
 
-            query          = arguments[0],
-            methodInvoked  = typeof query === 'string',
+            query = arguments[0],
+            methodInvoked = typeof query === 'string',
             queryArguments = [].slice.call(arguments, 1),
-            contextCheck   = function (context, win) {
+            contextCheck = function (context, win) {
                 var $context;
                 if ([window, document].indexOf(context) >= 0) {
                     $context = $(context);
@@ -27873,28 +28066,28 @@
 
         $allModules.each(function () {
             var
-                settings          = $.isPlainObject(parameters)
+                settings = $.isPlainObject(parameters)
                     ? $.extend(true, {}, $.fn.api.settings, parameters)
                     : $.extend({}, $.fn.api.settings),
 
                 // internal aliases
-                regExp          = settings.regExp,
-                namespace       = settings.namespace,
-                metadata        = settings.metadata,
-                selector        = settings.selector,
-                error           = settings.error,
-                className       = settings.className,
+                regExp = settings.regExp,
+                namespace = settings.namespace,
+                metadata = settings.metadata,
+                selector = settings.selector,
+                error = settings.error,
+                className = settings.className,
 
                 // define namespaces for modules
-                eventNamespace  = '.' + namespace,
+                eventNamespace = '.' + namespace,
                 moduleNamespace = 'module-' + namespace,
 
                 // element that creates request
-                $module         = $(this),
-                $form           = $module.closest(selector.form),
+                $module = $(this),
+                $form = $module.closest(selector.form),
 
                 // context used for state
-                $context        = settings.stateContext ? contextCheck(settings.stateContext, window) : $module,
+                $context = settings.stateContext ? contextCheck(settings.stateContext, window) : $module,
 
                 // request details
                 ajaxSettings,
@@ -27905,9 +28098,9 @@
                 originalData,
 
                 // standard module
-                element         = this,
-                context         = $context[0],
-                instance        = $module.data(moduleNamespace),
+                element = this,
+                context = $context[0],
+                instance = $module.data(moduleNamespace),
                 module
             ;
 
@@ -28065,9 +28258,12 @@
                         data: data,
                         url: settings.base + url,
                         beforeSend: settings.beforeXHR,
-                        success: function () {},
-                        failure: function () {},
-                        complete: function () {},
+                        success: function () {
+                        },
+                        failure: function () {
+                        },
+                        complete: function () {
+                        },
                     });
 
                     module.debug('Querying URL', ajaxSettings.url);
@@ -28087,7 +28283,8 @@
                         if (!settings.throttleFirstRequest && !module.timer) {
                             module.debug('Sending request', data, ajaxSettings.method);
                             module.send.request();
-                            module.timer = setTimeout(function () {}, settings.throttle);
+                            module.timer = setTimeout(function () {
+                            }, settings.throttle);
                         } else {
                             module.debug('Throttling request', settings.throttle);
                             clearTimeout(module.timer);
@@ -28192,7 +28389,7 @@
                                         variable = templatedString.indexOf('$') !== -1
                                             ? templatedString.slice(2, -1)
                                             : templatedString.slice(1, -1),
-                                        value   = $.isPlainObject(urlData) && urlData[variable] !== undefined
+                                        value = $.isPlainObject(urlData) && urlData[variable] !== undefined
                                             ? urlData[variable]
                                             : ($module.data(variable) !== undefined
                                                 ? $module.data(variable)
@@ -28223,7 +28420,7 @@
                                         variable = templatedString.indexOf('$') !== -1
                                             ? templatedString.slice(3, -1)
                                             : templatedString.slice(2, -1),
-                                        value   = $.isPlainObject(urlData) && urlData[variable] !== undefined
+                                        value = $.isPlainObject(urlData) && urlData[variable] !== undefined
                                             ? urlData[variable]
                                             : ($module.data(variable) !== undefined
                                                 ? $module.data(variable)
@@ -28275,7 +28472,7 @@
                             // add files
                             $.each($('input[type="file"]', $form), function (i, tag) {
                                 $.each($(tag)[0].files, function (j, file) {
-                                    formArray.push({ name: tag.name, value: file });
+                                    formArray.push({name: tag.name, value: file});
                                 });
                             });
                             $.each(formArray, function (i, el) {
@@ -28365,9 +28562,9 @@
                         },
                         done: function (response, textStatus, xhr) {
                             var
-                                context            = this,
-                                elapsedTime        = Date.now() - requestStartTime,
-                                timeLeft           = settings.loadingDuration - elapsedTime,
+                                context = this,
+                                elapsedTime = Date.now() - requestStartTime,
+                                timeLeft = settings.loadingDuration - elapsedTime,
                                 translatedResponse = isFunction(settings.onResponse)
                                     ? (module.is.expectingJSON() && !settings.rawResponse
                                         ? settings.onResponse.call(context, $.extend(true, {}, response))
@@ -28394,9 +28591,9 @@
                         },
                         fail: function (xhr, status, httpMessage) {
                             var
-                                context     = this,
+                                context = this,
                                 elapsedTime = Date.now() - requestStartTime,
-                                timeLeft    = settings.loadingDuration - elapsedTime
+                                timeLeft = settings.loadingDuration - elapsedTime
                             ;
                             timeLeft = timeLeft > 0
                                 ? timeLeft
@@ -28441,7 +28638,7 @@
                         fail: function (xhr, status, httpMessage) {
                             var
                                 // pull response from xhr if available
-                                response     = module.get.responseFromXHR(xhr),
+                                response = module.get.responseFromXHR(xhr),
                                 errorMessage = module.get.errorFromRequest(response, status, httpMessage)
                             ;
                             if (status === 'aborted') {
@@ -28486,16 +28683,16 @@
                             .always(module.event.request.complete)
                             .done(module.event.request.done)
                             .fail(module.event.request.fail)
-                        ;
+                            ;
                     },
 
                     mockedXHR: function () {
                         var
                             // xhr does not simulate these properties of xhr but must return them
-                            textStatus     = false,
-                            status         = false,
-                            httpMessage    = false,
-                            responder      = settings.mockResponse || settings.response,
+                            textStatus = false,
+                            status = false,
+                            httpMessage = false,
+                            responder = settings.mockResponse || settings.response,
                             asyncResponder = settings.mockResponseAsync || settings.responseAsync,
                             asyncCallback,
                             response,
@@ -28517,15 +28714,15 @@
                                 response = responder;
                             }
                             // simulating response
-                            mockedXHR.resolveWith(context, [response, textStatus, { responseText: response }]);
+                            mockedXHR.resolveWith(context, [response, textStatus, {responseText: response}]);
                         } else if (isFunction(asyncResponder)) {
                             asyncCallback = function (response) {
                                 module.debug('Async callback returned response', response);
 
                                 if (response) {
-                                    mockedXHR.resolveWith(context, [response, textStatus, { responseText: response }]);
+                                    mockedXHR.resolveWith(context, [response, textStatus, {responseText: response}]);
                                 } else {
-                                    mockedXHR.rejectWith(context, [{ responseText: response }, status, httpMessage]);
+                                    mockedXHR.rejectWith(context, [{responseText: response}, status, httpMessage]);
                                 }
                             };
                             module.debug('Using specified async response callback', asyncResponder);
@@ -28633,8 +28830,8 @@
                     },
                     urlEncodedValue: function (value) {
                         var
-                            decodedValue   = window.decodeURIComponent(value),
-                            encodedValue   = window.encodeURIComponent(value),
+                            decodedValue = window.decodeURIComponent(value),
+                            encodedValue = window.encodeURIComponent(value),
                             alreadyEncoded = decodedValue !== value
                         ;
                         if (alreadyEncoded) {
@@ -28976,26 +29173,33 @@
         beforeSend: function (settings) {
             return settings;
         },
-        beforeXHR: function (xhr) {},
-        onRequest: function (promise, xhr) {},
+        beforeXHR: function (xhr) {
+        },
+        onRequest: function (promise, xhr) {
+        },
 
         // after request
         onResponse: false, // function(response) { },
 
         // response was successful, if JSON passed validation
-        onSuccess: function (response, $module) {},
+        onSuccess: function (response, $module) {
+        },
 
         // request finished without aborting
-        onComplete: function (response, $module) {},
+        onComplete: function (response, $module) {
+        },
 
         // failed JSON success test
-        onFailure: function (response, $module) {},
+        onFailure: function (response, $module) {
+        },
 
         // server error
-        onError: function (errorMessage, $module) {},
+        onError: function (errorMessage, $module) {
+        },
 
         // request aborted
-        onAbort: function (errorMessage, $module) {},
+        onAbort: function (errorMessage, $module) {
+        },
 
         successTest: false,
 
@@ -29067,15 +29271,15 @@
 
     $.fn.state = function (parameters) {
         var
-            $allModules     = $(this),
+            $allModules = $(this),
 
-            time            = Date.now(),
-            performance     = [],
+            time = Date.now(),
+            performance = [],
 
-            query           = arguments[0],
-            methodInvoked   = typeof query === 'string',
-            queryArguments  = [].slice.call(arguments, 1),
-            contextCheck    = function (context, win) {
+            query = arguments[0],
+            methodInvoked = typeof query === 'string',
+            queryArguments = [].slice.call(arguments, 1),
+            contextCheck = function (context, win) {
                 var $context;
                 if ([window, document].indexOf(context) >= 0) {
                     $context = $(context);
@@ -29092,25 +29296,25 @@
         ;
         $allModules.each(function () {
             var
-                settings          = $.isPlainObject(parameters)
+                settings = $.isPlainObject(parameters)
                     ? $.extend(true, {}, $.fn.state.settings, parameters)
                     : $.extend({}, $.fn.state.settings),
 
-                error           = settings.error,
-                metadata        = settings.metadata,
-                className       = settings.className,
-                namespace       = settings.namespace,
-                states          = settings.states,
-                text            = settings.text,
+                error = settings.error,
+                metadata = settings.metadata,
+                className = settings.className,
+                namespace = settings.namespace,
+                states = settings.states,
+                text = settings.text,
 
-                eventNamespace  = '.' + namespace,
+                eventNamespace = '.' + namespace,
                 moduleNamespace = namespace + '-module',
 
-                $module         = $(this),
-                $context        = settings.context ? contextCheck(settings.context, window) : $module,
+                $module = $(this),
+                $context = settings.context ? contextCheck(settings.context, window) : $module,
 
-                element         = this,
-                instance        = $module.data(moduleNamespace),
+                element = this,
+                instance = $module.data(moduleNamespace),
 
                 module
             ;
@@ -29407,7 +29611,8 @@
                         module.debug('Flashing text message', text, duration);
                         text = text || settings.text.flash;
                         duration = duration || settings.flashDuration;
-                        callback = callback || function () {};
+                        callback = callback || function () {
+                        };
                         module.update.text(text);
                         setTimeout(function () {
                             module.update.text(previousText);
@@ -29420,7 +29625,7 @@
                     // on mouseout sets text to previous value
                     text: function () {
                         var
-                            activeText   = text.active || $module.data(metadata.storedText),
+                            activeText = text.active || $module.data(metadata.storedText),
                             inactiveText = text.inactive || $module.data(metadata.storedText)
                         ;
                         if (module.is.textEnabled()) {
@@ -29646,9 +29851,12 @@
         performance: true,
 
         // callback occurs on state change
-        onActivate: function () {},
-        onDeactivate: function () {},
-        onChange: function () {},
+        onActivate: function () {
+        },
+        onDeactivate: function () {
+        },
+        onChange: function () {
+        },
 
         // state test functions
         activateTest: function () {
@@ -29765,15 +29973,15 @@
 
     $.fn.visibility = function (parameters) {
         var
-            $allModules    = $(this),
+            $allModules = $(this),
 
-            time           = Date.now(),
-            performance    = [],
+            time = Date.now(),
+            performance = [],
 
-            query          = arguments[0],
-            methodInvoked  = typeof query === 'string',
+            query = arguments[0],
+            methodInvoked = typeof query === 'string',
             queryArguments = [].slice.call(arguments, 1),
-            contextCheck   = function (context, win) {
+            contextCheck = function (context, win) {
                 var $context;
                 if ([window, document].indexOf(context) >= 0) {
                     $context = $(context);
@@ -29788,35 +29996,35 @@
             },
             returnedValue,
 
-            moduleCount    = $allModules.length,
-            loadedCount    = 0
+            moduleCount = $allModules.length,
+            loadedCount = 0
         ;
 
         $allModules.each(function () {
             var
-                settings        = $.isPlainObject(parameters)
+                settings = $.isPlainObject(parameters)
                     ? $.extend(true, {}, $.fn.visibility.settings, parameters)
                     : $.extend({}, $.fn.visibility.settings),
 
-                className       = settings.className,
-                namespace       = settings.namespace,
-                error           = settings.error,
-                metadata        = settings.metadata,
+                className = settings.className,
+                namespace = settings.namespace,
+                error = settings.error,
+                metadata = settings.metadata,
 
-                eventNamespace  = '.' + namespace,
+                eventNamespace = '.' + namespace,
                 moduleNamespace = 'module-' + namespace,
 
-                $window         = $(window),
+                $window = $(window),
 
-                $module         = $(this),
-                $context        = contextCheck(settings.context, window),
+                $module = $(this),
+                $context = contextCheck(settings.context, window),
 
                 $placeholder,
 
-                instance        = $module.data(moduleNamespace),
+                instance = $module.data(moduleNamespace),
 
-                element         = this,
-                disabled        = false,
+                element = this,
+                disabled = false,
 
                 contextObserver,
                 observer,
@@ -29979,11 +30187,11 @@
                         images = [images];
                     }
                     var
-                        imagesLength  = images.length,
+                        imagesLength = images.length,
                         loadedCounter = 0,
-                        cache         = [],
-                        cacheImage    = document.createElement('img'),
-                        handleLoad    = function () {
+                        cache = [],
+                        cacheImage = document.createElement('img'),
+                        handleLoad = function () {
                             loadedCounter++;
                             if (loadedCounter >= images.length) {
                                 if (isFunction(callback)) {
@@ -30154,14 +30362,14 @@
                 is: {
                     onScreen: function () {
                         var
-                            calculations   = module.get.elementCalculations()
+                            calculations = module.get.elementCalculations()
                         ;
 
                         return calculations.onScreen;
                     },
                     offScreen: function () {
                         var
-                            calculations   = module.get.elementCalculations()
+                            calculations = module.get.elementCalculations()
                         ;
 
                         return calculations.offScreen;
@@ -30257,7 +30465,7 @@
 
                 passed: function (amount, newCallback) {
                     var
-                        calculations   = module.get.elementCalculations()
+                        calculations = module.get.elementCalculations()
                     ;
                     // assign callback
                     if (amount && newCallback) {
@@ -30278,7 +30486,7 @@
                 onScreen: function (newCallback) {
                     var
                         calculations = module.get.elementCalculations(),
-                        callback     = newCallback || settings.onOnScreen,
+                        callback = newCallback || settings.onOnScreen,
                         callbackName = 'onScreen'
                     ;
                     if (newCallback) {
@@ -30298,7 +30506,7 @@
                 offScreen: function (newCallback) {
                     var
                         calculations = module.get.elementCalculations(),
-                        callback     = newCallback || settings.onOffScreen,
+                        callback = newCallback || settings.onOffScreen,
                         callbackName = 'offScreen'
                     ;
                     if (newCallback) {
@@ -30318,7 +30526,7 @@
                 passing: function (newCallback) {
                     var
                         calculations = module.get.elementCalculations(),
-                        callback     = newCallback || settings.onPassing,
+                        callback = newCallback || settings.onPassing,
                         callbackName = 'passing'
                     ;
                     if (newCallback) {
@@ -30338,7 +30546,7 @@
                 topVisible: function (newCallback) {
                     var
                         calculations = module.get.elementCalculations(),
-                        callback     = newCallback || settings.onTopVisible,
+                        callback = newCallback || settings.onTopVisible,
                         callbackName = 'topVisible'
                     ;
                     if (newCallback) {
@@ -30358,7 +30566,7 @@
                 bottomVisible: function (newCallback) {
                     var
                         calculations = module.get.elementCalculations(),
-                        callback     = newCallback || settings.onBottomVisible,
+                        callback = newCallback || settings.onBottomVisible,
                         callbackName = 'bottomVisible'
                     ;
                     if (newCallback) {
@@ -30378,7 +30586,7 @@
                 topPassed: function (newCallback) {
                     var
                         calculations = module.get.elementCalculations(),
-                        callback     = newCallback || settings.onTopPassed,
+                        callback = newCallback || settings.onTopPassed,
                         callbackName = 'topPassed'
                     ;
                     if (newCallback) {
@@ -30398,7 +30606,7 @@
                 bottomPassed: function (newCallback) {
                     var
                         calculations = module.get.elementCalculations(),
-                        callback     = newCallback || settings.onBottomPassed,
+                        callback = newCallback || settings.onBottomPassed,
                         callbackName = 'bottomPassed'
                     ;
                     if (newCallback) {
@@ -30418,7 +30626,7 @@
                 passingReverse: function (newCallback) {
                     var
                         calculations = module.get.elementCalculations(),
-                        callback     = newCallback || settings.onPassingReverse,
+                        callback = newCallback || settings.onPassingReverse,
                         callbackName = 'passingReverse'
                     ;
                     if (newCallback) {
@@ -30440,7 +30648,7 @@
                 topVisibleReverse: function (newCallback) {
                     var
                         calculations = module.get.elementCalculations(),
-                        callback     = newCallback || settings.onTopVisibleReverse,
+                        callback = newCallback || settings.onTopVisibleReverse,
                         callbackName = 'topVisibleReverse'
                     ;
                     if (newCallback) {
@@ -30462,7 +30670,7 @@
                 bottomVisibleReverse: function (newCallback) {
                     var
                         calculations = module.get.elementCalculations(),
-                        callback     = newCallback || settings.onBottomVisibleReverse,
+                        callback = newCallback || settings.onBottomVisibleReverse,
                         callbackName = 'bottomVisibleReverse'
                     ;
                     if (newCallback) {
@@ -30484,7 +30692,7 @@
                 topPassedReverse: function (newCallback) {
                     var
                         calculations = module.get.elementCalculations(),
-                        callback     = newCallback || settings.onTopPassedReverse,
+                        callback = newCallback || settings.onTopPassedReverse,
                         callbackName = 'topPassedReverse'
                     ;
                     if (newCallback) {
@@ -30506,7 +30714,7 @@
                 bottomPassedReverse: function (newCallback) {
                     var
                         calculations = module.get.elementCalculations(),
-                        callback     = newCallback || settings.onBottomPassedReverse,
+                        callback = newCallback || settings.onBottomPassedReverse,
                         callbackName = 'bottomPassedReverse'
                     ;
                     if (newCallback) {
@@ -30528,7 +30736,7 @@
                 execute: function (callback, callbackName) {
                     var
                         calculations = module.get.elementCalculations(),
-                        screen       = module.get.screenCalculations()
+                        screen = module.get.screenCalculations()
                     ;
                     callback = callback || false;
                     if (callback) {
@@ -30599,7 +30807,7 @@
                     },
                     direction: function () {
                         var
-                            scroll     = module.get.scroll(),
+                            scroll = module.get.scroll(),
                             lastScroll = module.get.lastScroll(),
                             direction
                         ;
@@ -30617,7 +30825,7 @@
                     elementPosition: function () {
                         var
                             element = module.cache.element,
-                            screen  = module.get.screenSize()
+                            screen = module.get.screenSize()
                         ;
                         module.verbose('Saving element position');
                         // (quicker than $.extend)
@@ -30639,8 +30847,8 @@
                     },
                     elementCalculations: function () {
                         var
-                            screen     = module.get.screenCalculations(),
-                            element    = module.get.elementPosition()
+                            screen = module.get.screenCalculations(),
+                            element = module.get.elementPosition()
                         ;
                         // offset
                         if (settings.includeMargin) {
@@ -31006,16 +31214,21 @@
         onBottomPassedReverse: false,
 
         // special callbacks for image
-        onLoad: function () {},
-        onAllLoaded: function () {},
+        onLoad: function () {
+        },
+        onAllLoaded: function () {
+        },
 
         // special callbacks for fixed position
-        onFixed: function () {},
-        onUnfixed: function () {},
+        onFixed: function () {
+        },
+        onUnfixed: function () {
+        },
 
         // utility callbacks
         onUpdate: false, // disabled by default for performance
-        onRefresh: function () {},
+        onRefresh: function () {
+        },
 
         metadata: {
             src: 'src',

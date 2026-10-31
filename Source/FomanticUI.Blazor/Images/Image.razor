@@ -1,9 +1,10 @@
 ﻿@inherits FomanticComponent
 @namespace Proxoft.FomanticUI.Blazor
 
-<img src="@Src" class="@Class()" alt="@Alt" />
+<img src="@Src" class="@Class()" alt="@Alt"/>
 
 @code {
+
     public Image() : base("image")
     {
     }
@@ -11,7 +12,8 @@
     [Parameter]
     public required string Src { get; set; }
 
-    [Parameter] public string Alt { get; set; } = "";
+    [Parameter]
+    public string Alt { get; set; } = "";
 
     [Parameter]
     public ImageDecorations Decorations { get; set; }
@@ -30,10 +32,11 @@
 
     protected override IEnumerable<string> Classes()
     {
-        yield return this.Decorations.ToClass();
-        yield return this.Size.ToClass();
-        yield return this.VerticallyAligned.ToVerticalAlignmentClass();
-        yield return this.Spaced.ToSpacedClass();
-        yield return this.Floated.ToFloatedClass();
+        yield return Decorations.ToClass();
+        yield return Size.ToClass();
+        yield return VerticallyAligned.ToVerticalAlignmentClass();
+        yield return Spaced.ToSpacedClass();
+        yield return Floated.ToFloatedClass();
     }
+
 }

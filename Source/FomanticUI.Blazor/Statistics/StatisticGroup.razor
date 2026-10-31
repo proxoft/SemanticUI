@@ -1,9 +1,10 @@
 ﻿@inherits ContainerFomanticComponent
 @namespace Proxoft.FomanticUI.Blazor
 
-<DivTemplate Component="this" />
+<DivTemplate Component="this"/>
 
 @code {
+
     public StatisticGroup() : base("statistics")
     {
     }
@@ -13,6 +14,7 @@
 
     protected override IEnumerable<string> Classes()
     {
-        yield return this.Count.ToClass(string.Empty);
+        yield return Count.ToClass(string.Empty);
     }
+
 }

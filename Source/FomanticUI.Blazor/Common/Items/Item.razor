@@ -6,13 +6,15 @@
     <RightChildContent>
         @if (HasRightIcon)
         {
-            <Icon Name="@(RightIcon ?? "")" />
+            <Icon Name="@(RightIcon ?? "")"/>
         }
     </RightChildContent>
 </DivTemplate>
 
 @code {
-    public Item(): base("item", false)
+
+    public Item() : base("item", false)
     {
     }
+
 }

@@ -1,30 +1,29 @@
-﻿namespace Proxoft.FomanticUI.Core
-{
-    public enum Color
-    {
-        NoColor,
-        Red,
-        Orange,
-        Yellow,
-        Olive,
-        Green,
-        Teal,
-        Blue,
-        Violet,
-        Purple,
-        Pink,
-        Brown,
-        Grey,
-        Black
-    }
+﻿namespace Proxoft.FomanticUI.Core;
 
-    public static class ColorExtensions
+public enum Color
+{
+    NoColor,
+    Red,
+    Orange,
+    Yellow,
+    Olive,
+    Green,
+    Teal,
+    Blue,
+    Violet,
+    Purple,
+    Pink,
+    Brown,
+    Grey,
+    Black
+}
+
+public static class ColorExtensions
+{
+    public static string ToClass(this Color color)
     {
-        public static string ToClass(this Color color)
-        {
-            return color == Color.NoColor
-                ? string.Empty
-                : color.ToString().ToLower();
-        }
+        return color == Color.NoColor
+            ? string.Empty
+            : color.ToString().ToLower();
     }
 }

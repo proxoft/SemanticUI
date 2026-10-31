@@ -25,25 +25,31 @@
 <Example Header="Multiple"
          Text="A progress can show several bars side by side">
 
-    <Progress Values="@(new double[] { 15, 30, 25 })" BarColors="@(new[] { Red, Orange, Green })" />
-    <Progress Values="@(new double[] { 3, 0, 5 })" Total="10" BarText="ProgressBarText.Ratio" BarColors="@(new[] { Blue, Purple, Pink })" />
+    <Progress Values="@(new double[] { 15, 30, 25 })" BarColors="@(new[] { Red, Orange, Green })"/>
+    <Progress Values="@(new double[] { 3, 0, 5 })" Total="10" BarText="ProgressBarText.Ratio"
+              BarColors="@(new[] { Blue, Purple, Pink })"/>
 </Example>
 
 <Example Header="States"
          Text="A progress can show success, warning or error; a single bar turns to success at 100%">
 
     <Progress Value="100">Complete</Progress>
-    <Progress Value="70" State="Severity.Warning">Running low on space</Progress>
-    <Progress Value="35" State="Severity.Error">Upload failed</Progress>
+    <Progress Value="70" State="Warning">Running low on space</Progress>
+    <Progress Value="35" State="Error">Upload failed</Progress>
     <Progress Value="50" Decorations="ProgressDecorations.Disabled">Disabled</Progress>
 </Example>
 
 <Example Header="Indeterminate"
          Text="A progress can show activity when its value is unknown">
 
-    <Progress Value="100" Indeterminate="ProgressIndeterminate.Default" BarText="ProgressBarText.None">Waiting</Progress>
-    <Progress Value="100" Indeterminate="ProgressIndeterminate.Sliding" Color="Blue" BarText="ProgressBarText.None">Sliding</Progress>
-    <Progress Value="100" Indeterminate="ProgressIndeterminate.Swinging" Color="Green" Decorations="ProgressDecorations.Fast" BarText="ProgressBarText.None">Swinging (fast)</Progress>
+    <Progress Value="100" Indeterminate="ProgressIndeterminate.Default" BarText="ProgressBarText.None">Waiting
+    </Progress>
+    <Progress Value="100" Indeterminate="ProgressIndeterminate.Sliding" Color="Blue" BarText="ProgressBarText.None">
+        Sliding
+    </Progress>
+    <Progress Value="100" Indeterminate="ProgressIndeterminate.Swinging" Color="Green"
+              Decorations="ProgressDecorations.Fast" BarText="ProgressBarText.None">Swinging (fast)
+    </Progress>
 </Example>
 
 <Example Header="Color, Size, Inverted"
@@ -61,9 +67,9 @@
          Text="A progress can be attached to the top or bottom of a segment">
 
     <Segment>
-        <Progress Value="40" Attached="Top" BarText="ProgressBarText.None" />
+        <Progress Value="40" Attached="Top" BarText="ProgressBarText.None"/>
         Segment content
-        <Progress Value="80" Attached="Bottom" BarText="ProgressBarText.None" />
+        <Progress Value="80" Attached="Bottom" BarText="ProgressBarText.None"/>
     </Segment>
 </Example>
 

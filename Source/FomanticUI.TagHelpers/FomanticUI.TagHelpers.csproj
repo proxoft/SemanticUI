@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.Razor">
 
     <PropertyGroup>
-         <AssemblyName>Proxoft.FomanticUI.TagHelpers</AssemblyName>
+        <AssemblyName>Proxoft.FomanticUI.TagHelpers</AssemblyName>
         <RootNamespace>Proxoft.FomanticUI.TagHelpers</RootNamespace>
         <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
         <RepositoryUrl>https://github.com/proxoft/SemanticUI</RepositoryUrl>
@@ -18,13 +18,13 @@
     <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
         <OutputPath>../../../Builds/FomanticUI.TagHelpers/Release</OutputPath>
     </PropertyGroup>
-    
+
     <ItemGroup>
-      <FrameworkReference Include="Microsoft.AspNetCore.App" />
+        <FrameworkReference Include="Microsoft.AspNetCore.App"/>
     </ItemGroup>
-    
+
     <ItemGroup>
-      <ProjectReference Include="..\FomanticUI.Core\FomanticUI.Core.csproj" />
+        <ProjectReference Include="..\FomanticUI.Core\FomanticUI.Core.csproj"/>
     </ItemGroup>
 
 </Project>

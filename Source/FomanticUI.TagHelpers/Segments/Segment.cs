@@ -1,36 +1,34 @@
-﻿using System.Collections.Generic;
-using Microsoft.AspNetCore.Razor.TagHelpers;
+﻿using Microsoft.AspNetCore.Razor.TagHelpers;
 using Proxoft.FomanticUI.Core;
 
-namespace Proxoft.FomanticUI.TagHelpers
+namespace Proxoft.FomanticUI.TagHelpers;
+
+[HtmlTargetElement("fui-segment")]
+public class Segment : FomanticTagHelper
 {
-    [HtmlTargetElement("fui-segment")]
-    public class Segment : FomanticTagHelper
+    public Segment() : base("segment", "div")
     {
-        public Segment() : base("segment", "div")
-        {
-        }
+    }
 
-        public Color Color { get; set; }
+    public Color Color { get; set; }
 
-        public SegmentDecorations Decorations { get; set; }
+    public SegmentDecorations Decorations { get; set; }
 
-        public Position Alignment { get; set; }
+    public Position Alignment { get; set; }
 
-        public Position Attached { get; set; }
+    public Position Attached { get; set; }
 
-        public Position Floated { get; set; }
+    public Position Floated { get; set; }
 
-        public Orientation Orientation { get; set; } = Orientation.Horizontal;
+    public Orientation Orientation { get; set; } = Orientation.Horizontal;
 
-        protected override IEnumerable<string> Classes()
-        {
-            yield return this.Decorations.ToClass();
-            yield return this.Color.ToClass();
-            yield return this.Alignment.ToAlignmentClass();
-            yield return this.Floated.ToFloatedClass();
-            yield return this.Attached.ToAttachedClass();
-            yield return this.Orientation.ToClass(emptyIf: Orientation.Horizontal);
-        }
+    protected override IEnumerable<string> Classes()
+    {
+        yield return Decorations.ToClass();
+        yield return Color.ToClass();
+        yield return Alignment.ToAlignmentClass();
+        yield return Floated.ToFloatedClass();
+        yield return Attached.ToAttachedClass();
+        yield return Orientation.ToClass(Orientation.Horizontal);
     }
 }

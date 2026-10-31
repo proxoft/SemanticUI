@@ -1,9 +1,10 @@
 @inherits ContainerFomanticComponent
 @namespace Proxoft.FomanticUI.Blazor
 
-<DivTemplate Component="this" />
+<DivTemplate Component="this"/>
 
 @code {
+
     public Placeholder() : base("placeholder")
     {
     }
@@ -13,6 +14,7 @@
 
     protected override IEnumerable<string> Classes()
     {
-        yield return this.Decorations.ToClass();
+        yield return Decorations.ToClass();
     }
+
 }

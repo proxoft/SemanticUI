@@ -8,6 +8,7 @@
 </span>
 
 @code {
+
     public StyledText() : base("text")
     {
     }
@@ -26,9 +27,10 @@
 
     protected override IEnumerable<string> Classes()
     {
-        yield return this.Color.ToClass();
-        yield return this.Severity.ToClass();
-        yield return this.Size.ToClass();
-        yield return this.Decorations.ToClass();
+        yield return Color.ToClass();
+        yield return Severity.ToClass();
+        yield return Size.ToClass();
+        yield return Decorations.ToClass();
     }
+
 }

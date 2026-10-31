@@ -8,8 +8,8 @@ public abstract class FomanticComponent : ComponentBase
 {
     protected FomanticComponent(string cssName, bool prefixUiClass = true)
     {
-        this.CssName = cssName;
-        this.PrefixUiClass = prefixUiClass;
+        CssName = cssName;
+        PrefixUiClass = prefixUiClass;
     }
 
     [Parameter(CaptureUnmatchedValues = true)]
@@ -19,7 +19,7 @@ public abstract class FomanticComponent : ComponentBase
     public Tooltip? Tooltip { get; set; }
 
     /// <summary>
-    /// Tooltip text; overrides <see cref="Tooltip"/>.Content.
+    ///     Tooltip text; overrides <see cref="Tooltip" />.Content.
     /// </summary>
     [Parameter]
     public string? TooltipContent { get; set; }
@@ -40,14 +40,14 @@ public abstract class FomanticComponent : ComponentBase
     internal string Class()
     {
         return new[]
-        {
-            this.PrefixUiClass.ToClassIf("ui")
-        }
-        .Concat(this.Classes())
-        .Concat([this.CssName])
-        .Concat(this.AfterCssNameClasses())
-        .Concat([this.CssClass])
-        .ToClass();
+            {
+                PrefixUiClass.ToClassIf("ui")
+            }
+            .Concat(Classes())
+            .Concat([CssName])
+            .Concat(AfterCssNameClasses())
+            .Concat([CssClass])
+            .ToClass();
     }
 
     protected abstract IEnumerable<string> Classes();
@@ -60,18 +60,18 @@ public abstract class FomanticComponent : ComponentBase
     internal Dictionary<string, object> Attributes()
     {
         // copy, so values added here never persist in UnmatchedAttributes across renders
-        var attributes = new Dictionary<string, object>(this.UnmatchedAttributes ?? []);
-        this.InitializeAttributes(attributes);
+        var attributes = new Dictionary<string, object>(UnmatchedAttributes ?? []);
+        InitializeAttributes(attributes);
         return attributes;
     }
 
     protected virtual void InitializeAttributes(Dictionary<string, object> attributes)
     {
-        var tooltip = this.TooltipContent is { } content
-            ? (this.Tooltip ?? new Tooltip()) with { Content = content }
-            : this.Tooltip;
+        Tooltip? tooltip = TooltipContent is { } content
+            ? (Tooltip ?? new Tooltip()) with { Content = content }
+            : Tooltip;
 
         tooltip.SetAttributes(attributes);
-        this.Title.SetAsAttribute("title", attributes);
+        Title.SetAsAttribute("title", attributes);
     }
 }

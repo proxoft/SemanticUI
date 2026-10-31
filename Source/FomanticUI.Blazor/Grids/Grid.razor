@@ -1,9 +1,10 @@
 ﻿@inherits ContainerFomanticComponent
 @namespace Proxoft.FomanticUI.Blazor
 
-<DivTemplate Component="this" />
+<DivTemplate Component="this"/>
 
 @code {
+
     public Grid() : base("grid")
     {
     }
@@ -22,18 +23,20 @@
 
     protected override IEnumerable<string> Classes()
     {
-        yield return this.Decorations.ToClass();
-        yield return this.Alignment.ToAlignmentClass();
-        yield return this.Columns.ToClass("column");
+        yield return Decorations.ToClass();
+        yield return Alignment.ToAlignmentClass();
+        yield return Columns.ToClass("column");
     }
 
     protected override IEnumerable<string> AfterCssNameClasses()
     {
         return base
-            .AfterCssNameClasses()
-            .Concat(new[] {
-                "container".ToClassIf(this.IsContainer)
-            })
+                .AfterCssNameClasses()
+                .Concat(new[]
+                {
+                    "container".ToClassIf(IsContainer)
+                })
             ;
     }
+
 }

@@ -1,18 +1,17 @@
-﻿namespace Proxoft.FomanticUI.Core
-{
-    public enum Orientation
-    {
-        Horizontal,
-        Vertical
-    }
+﻿namespace Proxoft.FomanticUI.Core;
 
-    public static class OrientationExtensions
+public enum Orientation
+{
+    Horizontal,
+    Vertical
+}
+
+public static class OrientationExtensions
+{
+    public static string ToClass(this Orientation orientation, Orientation emptyIf = Orientation.Horizontal)
     {
-        public static string ToClass(this Orientation orientation, Orientation emptyIf = Orientation.Horizontal)
-        {
-            return orientation == emptyIf
-                ? string.Empty
-                : orientation.ToString().ToLower();
-        }
+        return orientation == emptyIf
+            ? string.Empty
+            : orientation.ToString().ToLower();
     }
 }

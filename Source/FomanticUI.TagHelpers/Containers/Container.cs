@@ -1,24 +1,22 @@
-﻿using System.Collections.Generic;
-using Microsoft.AspNetCore.Razor.TagHelpers;
+﻿using Microsoft.AspNetCore.Razor.TagHelpers;
 using Proxoft.FomanticUI.Core;
 
-namespace Proxoft.FomanticUI.TagHelpers
+namespace Proxoft.FomanticUI.TagHelpers;
+
+[HtmlTargetElement("fui-container")]
+public class Container : FomanticTagHelper
 {
-    [HtmlTargetElement("fui-container")]
-    public class Container : FomanticTagHelper
+    public Container() : base("container", "div")
     {
-        public Container() : base("container", "div")
-        {
-        }
+    }
 
-        public bool Fluid { get; set; }
+    public bool Fluid { get; set; }
 
-        public Position Alignment { get; set; } = Position.Default;
+    public Position Alignment { get; set; } = Position.Default;
 
-        protected override IEnumerable<string> Classes()
-        {
-            yield return this.Alignment.ToAlignmentClass();
-            yield return "fluid".ToClassIf(this.Fluid);
-        }
+    protected override IEnumerable<string> Classes()
+    {
+        yield return Alignment.ToAlignmentClass();
+        yield return "fluid".ToClassIf(Fluid);
     }
 }

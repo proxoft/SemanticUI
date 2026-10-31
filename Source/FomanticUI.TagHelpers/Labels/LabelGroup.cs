@@ -1,28 +1,26 @@
-﻿using System.Collections.Generic;
-using Microsoft.AspNetCore.Razor.TagHelpers;
+﻿using Microsoft.AspNetCore.Razor.TagHelpers;
 using Proxoft.FomanticUI.Core;
 
-namespace Proxoft.FomanticUI.TagHelpers
+namespace Proxoft.FomanticUI.TagHelpers;
+
+[HtmlTargetElement("fui-labelGroup")]
+public class LabelGroup : FomanticTagHelper
 {
-    [HtmlTargetElement("fui-labelGroup")]
-    public class LabelGroup : FomanticTagHelper
+    public LabelGroup() : base("labels", "div")
     {
-        public LabelGroup() : base("labels", "div")
-        {
-        }
+    }
 
-        public Color Color { get; set; }
+    public Color Color { get; set; }
 
-        public Size Size { get; set; }
+    public Size Size { get; set; }
 
-        // only circular and tag
-        public LabelDecorations Decorations { get; set; }
+    // only circular and tag
+    public LabelDecorations Decorations { get; set; }
 
-        protected override IEnumerable<string> Classes()
-        {
-            yield return this.Color.ToClass();
-            yield return this.Size.ToClass();
-            yield return this.Decorations.ToClass();
-        }
+    protected override IEnumerable<string> Classes()
+    {
+        yield return Color.ToClass();
+        yield return Size.ToClass();
+        yield return Decorations.ToClass();
     }
 }

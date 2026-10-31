@@ -5,7 +5,7 @@
 <Example Header="Color"
          Text="Text can be colored">
 
-    @foreach (var color in Enum.GetValues<Color>().Where(c => c != NoColor))
+    @foreach (Color color in Enum.GetValues<Color>().Where(c => c != NoColor))
     {
         <StyledText Color="color">@color </StyledText>
     }
@@ -14,30 +14,30 @@
 <Example Header="Severity"
          Text="Text can show a severity">
 
-    <StyledText Severity="Severity.Info">Info </StyledText>
-    <StyledText Severity="Severity.Success">Success </StyledText>
-    <StyledText Severity="Severity.Warning">Warning </StyledText>
-    <StyledText Severity="Severity.Error">Error</StyledText>
+    <StyledText Severity="Info">Info</StyledText>
+    <StyledText Severity="Success">Success</StyledText>
+    <StyledText Severity="Warning">Warning</StyledText>
+    <StyledText Severity="Error">Error</StyledText>
 </Example>
 
 <Example Header="Size"
          Text="Text can have different sizes">
 
-    <StyledText Size="Mini">Mini </StyledText>
-    <StyledText Size="Small">Small </StyledText>
-    <StyledText Size="Large">Large </StyledText>
+    <StyledText Size="Mini">Mini</StyledText>
+    <StyledText Size="Small">Small</StyledText>
+    <StyledText Size="Large">Large</StyledText>
     <StyledText Size="Huge">Huge</StyledText>
 </Example>
 
 <Example Header="Variations"
          Text="Text can be disabled, primary, secondary or inverted">
 
-    <StyledText Decorations="TextDecorations.Disabled">Disabled </StyledText>
-    <StyledText Decorations="TextDecorations.Primary">Primary </StyledText>
+    <StyledText Decorations="TextDecorations.Disabled">Disabled</StyledText>
+    <StyledText Decorations="TextDecorations.Primary">Primary</StyledText>
     <StyledText Decorations="TextDecorations.Secondary">Secondary</StyledText>
 
     <Segment Decorations="SegmentDecorations.Inverted">
-        <StyledText Color="Red" Decorations="TextDecorations.Inverted">Inverted red </StyledText>
+        <StyledText Color="Red" Decorations="TextDecorations.Inverted">Inverted red</StyledText>
         <StyledText Color="Green" Decorations="TextDecorations.Inverted">Inverted green</StyledText>
     </Segment>
 </Example>

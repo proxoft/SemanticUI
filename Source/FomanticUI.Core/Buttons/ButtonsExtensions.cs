@@ -1,10 +1,9 @@
-﻿namespace Proxoft.FomanticUI.Core
+﻿namespace Proxoft.FomanticUI.Core;
+
+public static class ButtonsExtensions
 {
-    public static class ButtonsExtensions
+    public static string ToAttribute(this ButtonType buttonType)
     {
-        public static string ToAttribute(this ButtonType buttonType)
-        {
-            return buttonType.ToString().ToLower();
-        }
+        return buttonType.ToString().ToLower();
     }
 }

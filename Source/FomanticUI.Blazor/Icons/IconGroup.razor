@@ -1,5 +1,5 @@
 ﻿@inherits ContainerFomanticComponent
-@namespace  Proxoft.FomanticUI.Blazor
+@namespace Proxoft.FomanticUI.Blazor
 
 <i class="@Class()"
    @attributes="UnmatchedAttributes"
@@ -8,6 +8,7 @@
 </i>
 
 @code {
+
     public IconGroup() : base("icons")
     {
     }
@@ -17,6 +18,7 @@
 
     protected override IEnumerable<string> Classes()
     {
-        yield return this.Size.ToClass();
+        yield return Size.ToClass();
     }
+
 }

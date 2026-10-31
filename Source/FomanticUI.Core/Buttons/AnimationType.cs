@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿namespace Proxoft.FomanticUI.Core;
 
-namespace Proxoft.FomanticUI.Core
+public enum AnimationType
 {
-    public enum AnimationType
-    {
-        NoAnimation,
-    }
+    NoAnimation
 }

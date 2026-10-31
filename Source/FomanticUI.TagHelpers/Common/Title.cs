@@ -1,18 +1,16 @@
-﻿using System.Collections.Generic;
-using Microsoft.AspNetCore.Razor.TagHelpers;
+﻿using Microsoft.AspNetCore.Razor.TagHelpers;
 
-namespace Proxoft.FomanticUI.TagHelpers.Common
+namespace Proxoft.FomanticUI.TagHelpers.Common;
+
+[HtmlTargetElement("fui-title")]
+public class Title : FomanticTagHelper
 {
-    [HtmlTargetElement("fui-title")]
-    public class Title : FomanticTagHelper
+    public Title() : base("title", "div", false)
     {
-        public Title() : base("title", "div", false)
-        {
-        }
+    }
 
-        protected override IEnumerable<string> Classes()
-        {
-            yield break;
-        }
+    protected override IEnumerable<string> Classes()
+    {
+        yield break;
     }
 }

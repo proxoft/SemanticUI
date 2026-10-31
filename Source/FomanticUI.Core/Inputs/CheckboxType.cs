@@ -1,18 +1,17 @@
-﻿namespace Proxoft.FomanticUI.Core
-{
-    public enum CheckboxType
-    {
-        Checkbox,
-        Radio,
-        Slider,
-        Toggle
-    }
+﻿namespace Proxoft.FomanticUI.Core;
 
-    public static class CheckboxTypeExtensions
+public enum CheckboxType
+{
+    Checkbox,
+    Radio,
+    Slider,
+    Toggle
+}
+
+public static class CheckboxTypeExtensions
+{
+    public static string ToClass(this CheckboxType type)
     {
-        public static string ToClass(this CheckboxType type)
-        {
-            return type.ToString().ToLower();
-        }
+        return type.ToString().ToLower();
     }
 }

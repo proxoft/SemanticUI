@@ -2,7 +2,7 @@
 
 <Example Header="Modal">
     @code {
-        bool example1 = false;
+        bool example1;
     }
 
     <Modal IsActive="@example1">
@@ -26,7 +26,7 @@
 
 <Example Header="Actions">
     @code {
-        bool example2 = false;
+        bool example2;
     }
 
     <Modal IsActive="@example2">
@@ -58,14 +58,14 @@
 
 <Example Header="Image">
     @code {
-        bool example3 = false;
+        bool example3;
     }
 
     <Modal IsActive="@example3">
-        <Header>Modal #1 </Header>
+        <Header>Modal #1</Header>
         <Content Decorations="ContentDecorations.Image">
             <ImageDiv>
-                <Icon Name="right arrow" />
+                <Icon Name="right arrow"/>
             </ImageDiv>
             <Description>
                 We have more to share with you. Follow us along to modal 2
@@ -87,14 +87,14 @@
 
 <Example Header="Basic">
     @code {
-        bool example4 = false;
+        bool example4;
     }
 
     <Modal IsActive="@example4"
            Decorations="ModalDecorations.Basic"
            Size="Small">
         <Header Decorations="HeaderDecorations.Icon">
-            <Icon Name="archive" />
+            <Icon Name="archive"/>
             Archive Old Messages
         </Header>
         <Content>
@@ -105,14 +105,14 @@
                     Emphasizes="Emphasizes.Cancel"
                     Decoration="ButtonDecoration.Basic | ButtonDecoration.Inverted"
                     OnClick="() => example4 = false">
-                <Icon Name="remove" />
+                <Icon Name="remove"/>
                 No
             </Button>
             <Button Color="Green"
                     Emphasizes="Emphasizes.Ok"
                     Decoration="ButtonDecoration.Basic | ButtonDecoration.Inverted"
                     OnClick="() => example4 = false">
-                <Icon Name="checkmark" />
+                <Icon Name="checkmark"/>
                 Yes
             </Button>
         </Actions>

@@ -5,20 +5,21 @@
     @Left
 
     <input value="@Value"
-            type="text"
-            placeholder="@Placeholder"
-            readonly="@IsReadonly"
-            disabled="@IsDisabled"
-            @onchange="this.InputValueChanged"
-            @onkeydown="this.OnKeyDown"
-            @onkeyup="this.OnKeyUp"
-            @onfocus="this.OnFocus"
-            @onblur="this.OnBlur" />
+           type="text"
+           placeholder="@Placeholder"
+           readonly="@IsReadonly"
+           disabled="@IsDisabled"
+           @onchange="InputValueChanged"
+           @onkeydown="OnKeyDown"
+           @onkeyup="OnKeyUp"
+           @onfocus="OnFocus"
+           @onblur="OnBlur"/>
 
     @Right
 </DivTemplate>
 
 @code {
+
     public SeInput() : base("input")
     {
     }
@@ -53,22 +54,23 @@
     [Parameter]
     public EventCallback<FocusEventArgs> OnFocus { get; set; }
 
-    private bool IsReadonly => this.State == EditState.ReadOnly;
-    private bool IsDisabled => this.State == EditState.Disabled;
+    private bool IsReadonly => State == EditState.ReadOnly;
+    private bool IsDisabled => State == EditState.Disabled;
 
     protected override IEnumerable<string> Classes()
     {
-        return base.Classes().Concat(this.ClassesPrivate());
+        return base.Classes().Concat(ClassesPrivate());
     }
 
     private void InputValueChanged(ChangeEventArgs e)
     {
-        this.Value = e.Value as string ?? "";
-        this.ValueChanged.InvokeAsync(this.Value);
+        Value = e.Value as string ?? "";
+        ValueChanged.InvokeAsync(Value);
     }
 
     private IEnumerable<string> ClassesPrivate()
     {
-        yield return this.Decorations.ToClass();
+        yield return Decorations.ToClass();
     }
+
 }

@@ -1,12 +1,11 @@
-namespace Proxoft.FomanticUI.Core
+namespace Proxoft.FomanticUI.Core;
+
+/// <summary>
+///     Text shown inside each bar of a progress.
+/// </summary>
+public enum ProgressBarText
 {
-    /// <summary>
-    /// Text shown inside each bar of a progress.
-    /// </summary>
-    public enum ProgressBarText
-    {
-        Percent,
-        Ratio,
-        None
-    }
+    Percent,
+    Ratio,
+    None
 }

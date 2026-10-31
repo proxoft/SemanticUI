@@ -1,9 +1,8 @@
-﻿namespace Proxoft.FomanticUI.Core
+﻿namespace Proxoft.FomanticUI.Core;
+
+public enum ButtonType
 {
-    public enum ButtonType
-    {
-        Button,
-        Submit,
-        Reset
-    }
+    Button,
+    Submit,
+    Reset
 }

@@ -1,12 +1,11 @@
 ﻿using Microsoft.AspNetCore.Razor.TagHelpers;
 
-namespace Proxoft.FomanticUI.TagHelpers
+namespace Proxoft.FomanticUI.TagHelpers;
+
+[HtmlTargetElement("fui-submenu")]
+public class SubMenu : MenuBase
 {
-    [HtmlTargetElement("fui-submenu")]
-    public class SubMenu : MenuBase
+    public SubMenu() : base(false)
     {
-        public SubMenu() : base(false)
-        {
-        }
     }
 }
